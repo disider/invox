@@ -1,0 +1,69 @@
+<!--
+  ~ This file is part of the Invox.
+  ~ (c) Di-SiDE s.r.l.
+  ~
+  ~ For the full copyright and license information, please view the LICENSE
+  ~ file that was distributed with this source code.
+  ~
+  -->
+
+<article>
+    <table class="rows table">
+        <tbody>
+        <tr>
+            <th class="left col-5">{{ 'document_row.title'|trans }}</th>
+            <th class="right col-2">{{ 'document_row.unit_price'|trans }}</th>
+            <th class="right col-1">{{ 'document_row.quantity'|trans }}</th>
+            <th class="right col-1">{{ 'document_row.net_cost'|trans }}</th>
+            <th class="right col-1">{{ 'document_row.vat'|trans }}</th>
+            <th class="right col-1">{{ 'document_row.taxes'|trans }}</th>
+            <th class="right col-1">{{ 'document_row.gross_cost'|trans }}</th>
+        </tr>
+        {% for row in document.rows %}
+        <tr class="row">
+            <td class="title left">{{ row.title }}</td>
+            <td class="unit-price right">{{ row.unitPrice|format_currency }}</td>
+            <td class="quantity right">{{ row.quantity }}</td>
+            <td class="net-cost right">{{ row.netCost|format_currency }}</td>
+            <td class="tax-rate right">{{ row.taxRateAmount|format_tax_rate(0) }}</td>
+            <td class="taxes right">{{ row.taxes|format_currency }}</td>
+            <td class="gross-cost right">{{ row.grossCost|format_currency }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot class="footer">
+
+        {% set vatGroupCollection = document.vatGroupCollection %}
+        {% if vatGroupCollection.hasGroups %}
+        {% for vatGroup in vatGroupCollection.groups %}
+        <tr class="taxes-{{ (vatGroup.formatTaxRate) }}">
+            <td colspan="6" class="right">
+                {{ 'document.taxes'|trans({'%taxRate%':vatGroup.taxRate, '%netTotal%': vatGroup.netTotal|format_number, '%currency%': currency() })|raw }}
+            </td>
+            <td class="right">{{ vatGroup.taxesTotal|format_currency }}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        <tr class="net-total">
+            <td colspan="6" class="right">{{ 'document.net_total'|trans }}</td>
+            <td class="right">{{ document.netTotal|format_currency }}</td>
+        </tr>
+        {% if document.discount %}
+        <tr class="discount">
+            <td colspan="6" class="right">{{ 'document.discount'|trans }}</td>
+            <td class="right">{{ document.discount|format_currency }}</td>
+        </tr>
+        {% endif %}
+        {% if document.rounding %}
+        <tr class="rounding">
+            <td colspan="6" class="right">{{ 'document.rounding'|trans }}</td>
+            <td class="right">{{ document.rounding|format_currency }}</td>
+        </tr>
+        {% endif %}
+        <tr class="gross-total">
+            <td colspan="6" class="right">{{ 'document.gross_total'|trans }}</td>
+            <td class="right">{{ document.grossTotal|format_currency }}</td>
+        </tr>
+        </tfoot>
+    </table>
+</article>

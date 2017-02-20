@@ -1,0 +1,129 @@
+{
+  "name": "invox/main",
+  "license": "MIT",
+  "type": "project",
+  "description": "Invox Project",
+  "autoload": {
+    "psr-4": {
+      "": "src/"
+    },
+    "classmap": [
+      "app/AppKernel.php",
+      "app/AppCache.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "jquery/jquery",
+        "version": "1.11.1",
+        "dist": {
+          "url": "https://code.jquery.com/jquery-1.11.1.js",
+          "type": "file"
+        }
+      }
+    },
+    {
+      "type": "git",
+      "url": "https://github.com/disider/GeneratorBundle.git"
+    },
+    {
+      "type": "git",
+      "url": "https://github.com/disider/BehatExtension.git"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.9",
+    "symfony/symfony": "3.2.*",
+    "doctrine/orm": "^2.5",
+    "doctrine/doctrine-bundle": "^1.6",
+    "doctrine/doctrine-cache-bundle": "^1.2",
+    "symfony/swiftmailer-bundle": "^2.3.10",
+    "symfony/monolog-bundle": "^3.0",
+    "symfony/polyfill-apcu": "^1.0",
+    "sensio/distribution-bundle": "^5.0",
+    "sensio/framework-extra-bundle": "^3.0.2",
+    "incenteev/composer-parameter-handler": "^2.0",
+
+    "a2lix/translation-form-bundle": "^2.1",
+    "braincrafted/bootstrap-bundle": "^2.2",
+    "doctrine/doctrine-migrations-bundle": "^1.2",
+    "egeloen/ckeditor-bundle": "^4.0",
+    "genemu/form-bundle": "^3.0@dev",
+    "guzzlehttp/guzzle": "^6.2",
+    "jms/di-extra-bundle": "^1.8",
+    "jms/i18n-routing-bundle" : "^2.0",
+    "jms/serializer-bundle": "^1.1",
+    "jms/translation-bundle" : "^1.3",
+    "knplabs/doctrine-behaviors": "^1.4",
+    "knplabs/knp-menu-bundle" : "^2.1",
+    "knplabs/knp-paginator-bundle" : "^2.5",
+    "knplabs/knp-snappy-bundle": "^1.4",
+    "lexik/form-filter-bundle" : "^5.0",
+    "liip/imagine-bundle": "^1.7",
+    "nelmio/api-doc-bundle": "@stable",
+    "oneup/uploader-bundle": "^1.7",
+    "sonata-project/core-bundle": "^3.1",
+    "sonata-project/admin-bundle": "^3.10",
+    "sonata-project/doctrine-orm-admin-bundle": "^3.1",
+    "twbs/bootstrap": "^3.3",
+    "twig/extensions": "^1.3",
+    "webfactory/exceptions-bundle": "@stable",
+    "excelwebzone/recaptcha-bundle": "^1.4"
+  },
+  "require-dev": {
+    "sensio/generator-bundle": "^3.0",
+    "symfony/phpunit-bridge": "^3.0",
+    "phpunit/phpunit": "^4.8",
+    "anho/behat-formatter-teamcity": "dev-master",
+    "behat/behat": "^3.3",
+    "behat/mink": "^1.7",
+    "behat/mink-extension": "^2.2",
+    "behat/mink-browserkit-driver": "^1.3",
+    "behat/mink-selenium2-driver": "^1.3",
+    "behat/symfony2-extension": "^2.1",
+    "doctrine/doctrine-fixtures-bundle": "^2.3",
+    "hautelook/alice-bundle": "^1.4",
+    "polishsymfonycommunity/symfony2-mocker-extension": "^2.0",
+
+    "diside/behat-extension": "^2.0",
+    "diside/generator-bundle": "dev-master"
+  },
+  "scripts": {
+    "symfony-scripts": [
+      "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+    ],
+    "post-install-cmd": [
+      "@symfony-scripts"
+    ],
+    "post-update-cmd": [
+      "@symfony-scripts"
+    ]
+  },
+  "config": {
+    "bin-dir": "bin",
+    "discard-changes": true
+  },
+  "extra": {
+    "symfony-app-dir": "app",
+    "symfony-bin-dir": "bin",
+    "symfony-var-dir": "var",
+    "symfony-web-dir": "web",
+    "symfony-tests-dir": "tests",
+    "symfony-assets-install": "relative",
+    "incenteev-parameters": {
+      "file": "app/config/parameters.yml"
+    }
+  }
+}

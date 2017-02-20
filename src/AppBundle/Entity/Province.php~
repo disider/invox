@@ -1,0 +1,122 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+
+class Province
+{
+    /** @var int */
+    private $id;
+
+    /**
+     * @Assert\NotBlank(message="error.empty_name")
+     *
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @Assert\NotBlank(message="error.empty_code")
+     *
+     * @var string
+     */
+    private $code;
+    
+    /** @var Country */
+    private $country;
+    
+    /** @var ArrayCollection */
+    private $cities;
+
+    public static function create(Country $country, $name, $code)
+    {
+        $entity = new self();
+        $entity->country = $country;
+        $entity->name = $name;
+        $entity->code = $code;
+
+        return $entity;
+    }
+    
+    public function __construct() 
+    {
+        $this->cities = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    public function setCode($code)
+    {
+        $this->code = $code;
+    }
+
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    }
+
+    public function getCities()
+    {
+        return $this->cities;
+    }
+
+    public function setCities($cities)
+    {
+        $this->cities = $cities;
+    }
+    
+
+    /**
+     * Add city
+     *
+     * @param \AppBundle\Entity\City $city
+     *
+     * @return Province
+     */
+    public function addCity(\AppBundle\Entity\City $city)
+    {
+        $this->cities[] = $city;
+
+        return $this;
+    }
+
+    /**
+     * Remove city
+     *
+     * @param \AppBundle\Entity\City $city
+     */
+    public function removeCity(\AppBundle\Entity\City $city)
+    {
+        $this->cities->removeElement($city);
+    }
+}

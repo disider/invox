@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <mapped-superclass name="AppBundle\Entity\BaseDocumentTemplate">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="name" column="name" type="string" length="255"/>
+        <field name="textColor" column="text_color" type="string" length="255"/>
+        <field name="headingColor" column="heading_color" type="string" length="255"/>
+        <field name="tableHeaderColor" column="table_header_color" type="string" length="255"/>
+        <field name="tableHeaderBackgroundColor" column="table_header_background_color" type="string" length="255"/>
+        <field name="fontFamily" column="font_family" type="string" length="255"/>
+        <field name="header" column="header" type="text" />
+        <field name="content" column="content" type="text" />
+        <field name="footer" column="footer" type="text" />
+
+    </mapped-superclass>
+
+</doctrine-mapping>

@@ -1,0 +1,50 @@
+<!--
+  ~ This file is part of the Invox.
+  ~ (c) Di-SiDE s.r.l.
+  ~
+  ~ For the full copyright and license information, please view the LICENSE
+  ~ file that was distributed with this source code.
+  ~
+  -->
+
+<header>
+    <table class="document table">
+        <tr>
+            <td colspan="2">
+                {% if document.hasCompanyLogoUrl %}
+                <img src="{{ document.companyLogoWebPath|imagine_filter('logo_thumb') }}"/>
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td class="col-8">
+                <h1>{{ ('document.type.' ~ document.type)|trans }}</h1>
+
+                <p class="document-ref">{{ 'document.number_line'|trans({
+                    '%ref%': document.formatRef,
+                    '%issued_at%': document.issuedAt|date('d/m/Y') }) }}</p>
+                <h3>{{ document.title }}</h3>
+            </td>
+
+            <td class="customer col-4">
+                <h2 class="name">{{ document.customerName }}</h2>
+                <ul class="list-unstyled">
+                    {% if document.customerAddress %}
+                    <li class="address">{{ document.customerAddress }}</li>
+                    {% endif %}
+                    {% if document.customerVatNumber %}
+                    <li class="vat-number">{{ document.customerVatNumber }}</li>
+                    {% endif %}
+                </ul>
+            </td>
+        </tr>
+    </table>
+</header>
+
+{% if document.content %}
+<article>
+    {{ document.content | raw }}
+
+    <br/>
+</article>
+{% endif %}

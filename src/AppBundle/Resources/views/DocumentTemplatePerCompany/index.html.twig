@@ -1,0 +1,33 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+    <h1>{{ 'document_templates.title'|trans }}</h1>
+
+    {% if pagination|length > 0 %}
+        <table id="document-templates" class="table">
+            <tr>
+                <th>{{ 'sort.name'|trans }}</th>
+                <th>&nbsp;</th>
+            </tr>
+            {% for documentTemplatePerCompany in pagination %}
+                <tr class="document-template">
+                    <td class="col-md-3">
+                        {{ format_edit_link('document_template_per_company', documentTemplatePerCompany, documentTemplatePerCompany, { routeParameters: { 'companyId': documentTemplatePerCompany.company.id }}) }}
+                    </td>
+                    <td class="col-md-3 text-right">
+                        {{ format_edit_icon('document_template_per_company', documentTemplatePerCompany, { routeParameters: { 'companyId': documentTemplatePerCompany.company.id }}) }}
+                        {{ format_action_icon('document_template_per_company', 'preview', 'eye', documentTemplatePerCompany, { routeParameters: { 'companyId': documentTemplatePerCompany.company.id }}) }}
+                        {{ format_action_icon('document_template_per_company', 'restore', 'undo', documentTemplatePerCompany, { routeParameters: { 'companyId': documentTemplatePerCompany.company.id }}) }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        {{ knp_pagination_render(pagination) }}
+    {% else %}
+        <p class="empty-list">
+            {{ 'document_templates.empty_list'|trans }}
+        </p>
+    {% endif %}
+
+{% endblock main_content %}

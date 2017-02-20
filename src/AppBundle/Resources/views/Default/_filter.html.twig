@@ -1,0 +1,32 @@
+{% set filterForm %}
+    {{ form_start(form, {method: 'GET', attr: { class: 'filter form-horizontal'}}) }}
+    {{ bootstrap_set_style('horizontal') }}
+
+    {{ form_widget(filterForm) }}
+
+    {{ form_rest(filterForm) }}
+    {{ bootstrap_set_style('') }}
+
+    <div class="text-right">
+        <button type="submit"
+                class="btn btn-primary btn-sm ">{{ 'actions.filter'|trans }}</button>
+    </div>
+
+    {{ form_end(form) }}
+{% endset %}
+
+<div class="filter-markup pull-right">
+    <a href="#" class="trigger" data-toggle="popover">
+        {{ 'actions.filter'|trans }} {{ icon('filter') }}
+    </a>
+
+    <script class="title" type="text/template">
+        {{ 'actions.filter'|trans }}
+    </script>
+
+    <div class="filter-content hidden">
+        {{ filterForm|raw }}
+    </div>
+
+</div>
+

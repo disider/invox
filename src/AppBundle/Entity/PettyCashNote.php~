@@ -1,0 +1,247 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use AppBundle\Validator\Constraints as AppAssert;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @AppAssert\ValidPettyCashNote
+ */
+class PettyCashNote
+{
+    /** @var int */
+    private $id;
+
+    /**
+     * @var Company
+     */
+    private $company;
+
+    /** @var string */
+    private $ref;
+
+    /** @var \DateTime */
+    private $recordedAt;
+
+    /** @var float */
+    private $amountFrom = 0;
+
+    /** @var float */
+    private $amountTo = 0;
+
+    /**
+     * @var Account
+     */
+    private $accountFrom;
+
+    /**
+     * @var Account
+     */
+    private $accountTo;
+
+    /**
+     * @Assert\Valid
+     *
+     * @var ArrayCollection
+     */
+    private $invoices;
+
+    public static function create(Company $company, $ref, Account $accountFrom = null, $amountFrom = 0, Account $accountTo = null, $amountTo = 0)
+    {
+        $entity = new self();
+        $entity->company = $company;
+        $entity->ref = $ref;
+        $entity->accountFrom = $accountFrom;
+        $entity->amountFrom = $amountFrom;
+        $entity->accountTo = $accountTo;
+        $entity->amountTo = $amountTo;
+
+        if ($accountFrom) {
+            $accountFrom->addOutcomeNote($entity);
+        }
+
+        if ($accountTo) {
+            $accountTo->addIncomeNote($entity);
+        }
+
+        return $entity;
+    }
+
+    public static function createEmpty($ref, Company $company = null)
+    {
+        $entity = new self();
+        $entity->company = $company;
+        $entity->ref = $ref;
+
+        return $entity;
+    }
+
+    public function __toString()
+    {
+        return $this->ref;
+    }
+
+    public function __construct()
+    {
+        $this->recordedAt = new \DateTime();
+        $this->invoices = new ArrayCollection();
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setCompany(Company $company)
+    {
+        $this->company = $company;
+    }
+
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    public function getRef()
+    {
+        return $this->ref;
+    }
+
+    public function setRef($ref)
+    {
+        $this->ref = $ref;
+    }
+
+    public function getRecordedAt()
+    {
+        return $this->recordedAt;
+    }
+
+    public function setRecordedAt(\DateTime $recordedAt)
+    {
+        $this->recordedAt = $recordedAt;
+    }
+
+    public function getAmountFrom()
+    {
+        return $this->amountFrom;
+    }
+
+    public function setAmountFrom($amountFrom)
+    {
+        $this->amountFrom = $amountFrom;
+    }
+
+    public function getAmountTo()
+    {
+        return $this->amountTo;
+    }
+
+    public function setAmountTo($amountTo)
+    {
+        $this->amountTo = $amountTo;
+    }
+
+    public function getAccountFrom()
+    {
+        return $this->accountFrom;
+    }
+
+    public function setAccountFrom(Account $accountFrom = null)
+    {
+        $this->accountFrom = $accountFrom;
+    }
+
+    public function getAccountTo()
+    {
+        return $this->accountTo;
+    }
+
+    public function setAccountTo(Account $accountTo = null)
+    {
+        $this->accountTo = $accountTo;
+    }
+
+    public function getType()
+    {
+        if ($this->accountFrom != null) {
+            if ($this->accountTo != null)
+                return 'transfer';
+
+            return 'outcome';
+        }
+
+        return 'income';
+    }
+
+    public function getInvoices()
+    {
+        return $this->invoices;
+    }
+
+    public function setInvoices($invoices)
+    {
+        $this->invoices = $invoices;
+    }
+
+    public function linkInvoice(Document $invoice, $amount)
+    {
+        $invoicePerNote = InvoicePerNote::create($invoice, $this, $amount);
+
+        $this->invoices->add($invoicePerNote);
+    }
+
+    public function canAddInvoice()
+    {
+        if($this->getId() === null) {
+            return true;
+        }
+
+        $total = $this->getInvoicesTotal();
+
+        return $this->getAmount() > $total;
+    }
+
+    public function getInvoicesTotal()
+    {
+        $total = 0;
+
+        /** @var InvoicePerNote $invoice */
+        foreach ($this->invoices as $invoice) {
+            $total += $invoice->getAmount();
+        }
+        return $total;
+    }
+
+    public function getAmount()
+    {
+        return $this->amountTo;// - $this->amountFrom;
+    }
+
+
+    /**
+     * Add invoice
+     *
+     * @param \AppBundle\Entity\InvoicePerNote $invoice
+     *
+     * @return PettyCashNote
+     */
+    public function addInvoice(\AppBundle\Entity\InvoicePerNote $invoice)
+    {
+        $this->invoices[] = $invoice;
+
+        return $this;
+    }
+
+    /**
+     * Remove invoice
+     *
+     * @param \AppBundle\Entity\InvoicePerNote $invoice
+     */
+    public function removeInvoice(\AppBundle\Entity\InvoicePerNote $invoice)
+    {
+        $this->invoices->removeElement($invoice);
+    }
+}

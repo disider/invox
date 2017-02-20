@@ -1,0 +1,4 @@
+AppBundle\Entity\ParagraphTemplate:
+    paragraph_template_{1..10}:
+        company: '@acme'
+        title: ParagraphTemplate<current()>

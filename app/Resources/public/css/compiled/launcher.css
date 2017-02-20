@@ -1,0 +1,136 @@
+@charset "UTF-8";
+a > span {
+  vertical-align: middle; }
+
+ul {
+  padding-left: 20px; }
+
+li {
+  font-weight: 500;
+  color: #f7a92d;
+  list-style-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJklEQVQoU2P8v5brPwMRgBGkkDH4GyM+tWA1owpxBRE8eIgIbwYAUBY7HU82EzMAAAAASUVORK5CYII=");
+  margin-bottom: 10px;
+  padding-left: 10px; }
+  li > span {
+    color: #1D1D1B; }
+
+.panel.panel-default {
+  border: none; }
+
+.row {
+  margin-bottom: 20px; }
+
+.box {
+  background: #f2f2f2;
+  border-top: 1px solid #f7a92d;
+  border-bottom: 1px solid #f7a92d; }
+  .box p {
+    margin: 10px; }
+
+.btn {
+  margin-right: 15px;
+  width: 200px;
+  padding: 14px 10px;
+  font-weight: bold;
+  font-size: 16px; }
+  .btn span.fa {
+    margin-right: 8px; }
+
+.btn-launcher {
+  background-color: #f7a92d;
+  color: white;
+  border: none; }
+
+.btn-launcher:hover,
+.btn-launcher:active,
+.btn-launcher:focus {
+  background-color: #e49c28;
+  color: white; }
+
+.btn-pro {
+  width: 100%;
+  background-color: #333333;
+  border: 1px solid #f7a92d;
+  color: white; }
+  .btn-pro img {
+    margin-right: 10px; }
+
+.btn-pro:hover {
+  color: #f7a92d; }
+
+.btn-pro:active,
+.btn-pro:hover,
+.btn-pro:focus {
+  background-color: #666;
+  color: #f7a92d; }
+
+.fa {
+  font-size: 30px;
+  margin-top: -2px;
+  margin-right: 3px;
+  width: 30px;
+  text-align: center; }
+
+.carousel-indicators li {
+  background-color: rgba(247, 169, 45, 0.51); }
+
+.carousel-indicators .active {
+  background-color: #f7a92d; }
+
+.slider-container {
+  padding: 0; }
+
+.short-description {
+  height: 380px;
+  display: flex;
+  align-items: center; }
+
+.features  {
+  background-color: white; }
+  .features  > div {
+    padding: 0; }
+    .features  > div .header {
+      padding: 10px 0;
+      font-weight: 500; }
+    .features  > div .content {
+      padding: 30px 44px; }
+  .features  > div:nth-child(1) .header {
+    background-color: #666;
+    color: white; }
+  .features  > div:nth-child(2) {
+    background-color: #f2f2f2; }
+    .features  > div:nth-child(2) p {
+      margin: 15px 0; }
+    .features  > div:nth-child(2) .links {
+      background-color: white;
+      border: 1px solid #f7a92d;
+      padding: 15px;
+      font-size: 16px; }
+      .features  > div:nth-child(2) .links a {
+        display: block;
+        color: #f7a92d;
+        margin: 34px 0;
+        font-weight: 500; }
+      .features  > div:nth-child(2) .links span.fa {
+        margin-right: 10px; }
+    .features  > div:nth-child(2) .header {
+      background-color: #CCCCCC;
+      color: #333333; }
+    .features  > div:nth-child(2) .btn {
+      width: 100%; }
+  .features  > div:nth-child(3) .header {
+    background-color: #E6E6E6;
+    color: #333333; }
+
+@media (min-width: 992px) {
+  .features  {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap; }
+    .features  > [class*='col-'] {
+      display: flex;
+      flex-direction: column; } }
+
+/*# sourceMappingURL=launcher.css.map */

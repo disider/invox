@@ -1,0 +1,25 @@
+{% block _product_enabledInWarehouse_javascript %}
+    <script>
+        $(function () {
+            var $enable = $('#{{ form.vars.id }}');
+
+            $enable.on('change', function () {
+                handleWarehouse();
+            });
+
+            function handleWarehouse() {
+                var $warehouse = $enable.parents('.warehouse');
+                var $stocks = $warehouse.find('.stock');
+
+                if ($enable.is(':checked')) {
+                    $stocks.show();
+                }
+                else {
+                    $stocks.hide();
+                }
+            }
+
+            handleWarehouse();
+        });
+    </script>
+{% endblock %}

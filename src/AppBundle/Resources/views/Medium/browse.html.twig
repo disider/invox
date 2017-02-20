@@ -1,0 +1,73 @@
+{% extends '::base.html.twig' %}
+{% block header %}
+{% endblock header %}
+
+{% block main_container %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h2>
+                    {{ 'medium.browse'|trans }}
+                </h2>
+
+                {% if pagination|length > 0 %}
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>{{ 'fields.file_name'|trans }}</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for medium in pagination %}
+                            <tr class="medium">
+                                <td class="medium-name col-md-10">
+                                    <a class="select" href="{{ medium.webPath }}">
+                                        <img src="{{ medium.webPath|imagine_filter('thumb') }}"
+                                             alt="{{ medium.fileName }}"/>
+                                        {{ medium }}
+                                    </a>
+                                </td>
+
+                                <td class=" col-md-2 text-right">
+                                    <a class="select btn btn-xs btn-default"
+                                       href="{{ medium.webPath }}">{{ fa_icon('crosshairs') }}</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <div class="navigation pull-right">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+
+                {% else %}
+                    <p class="empty-list">
+                        {{ 'media.empty_list'|trans }}
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock main_container %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        var CKEDITOR_BASEPATH = "/ckeditor";
+    </script>
+    {#<script type="text/javascript" src="{{ ckeditor_js_path('bundles/ivoryckeditor/ckeditor.js') }}"></script>#}
+
+    <script>
+        $(function () {
+            $('.select').on('click', function (event) {
+                window.opener.CKEDITOR.tools.callFunction('{{ editorRef }}', this.href);
+                window.close();
+
+                event.preventDefault();
+                event.stopPropagation();
+            });
+        });
+    </script>
+{% endblock javascripts %}

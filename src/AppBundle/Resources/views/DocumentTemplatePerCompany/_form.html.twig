@@ -1,0 +1,66 @@
+{{ form_start(form) }}
+    {% if app.user.isSuperadmin %}
+
+
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h2 class="panel-title">{{ 'fields.superadmin_details'|trans }}</h2>
+            </div>
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        {{ form_row(form.company) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        {{ form_errors(form, { global_errors: true }) }}
+
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_row(form.name) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                {{ form_row(form.textColor) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_row(form.headingColor) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.fontFamily) }}
+            </div>
+        </div>
+
+        <h2>{{ 'fields.tables'|trans }}</h2>
+
+        <div class="row">
+            <div class="col-md-3">
+                {{ form_row(form.tableHeaderColor) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_row(form.tableHeaderBackgroundColor) }}
+            </div>
+        </div>
+
+        <h2>{{ 'fields.contents'|trans }}</h2>
+
+        {{ form_row(form.header, { attr: { rows: 20 }}) }}
+        {{ form_row(form.content, { attr: { rows: 40 }}) }}
+        {{ form_row(form.footer, { attr: { rows: 20 }}) }}
+    </div>
+</div>
+
+<div class="form-actions">
+    {{ form_widget(form.save) }}
+    {{ form_widget(form.saveAndClose) }}
+</div>
+
+{{ form_end(form) }}

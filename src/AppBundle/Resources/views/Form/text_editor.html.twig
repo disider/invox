@@ -1,0 +1,7 @@
+{% block textEditor_javascript %}
+    <script>
+        $(function () {
+            $('#{{ form.vars.id }}').textEditor(textEditorOptions);
+        });
+    </script>
+{% endblock %}

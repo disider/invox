@@ -1,0 +1,14 @@
+{% extends '::one-column.html.twig' %}
+
+{% block header %}
+{% endblock %}
+
+{% block main_content %}
+    <h1>{{ 'document.preview_error'|trans }}</h1>
+
+    <p>{{ exception.message }}</p>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+

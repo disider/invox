@@ -1,0 +1,84 @@
+{% extends '::base.html.twig' %}
+
+{% block left_menu_nav %}
+    <button id="left-menu-button" class="visible-xs navbar-toggle">
+        {{ fa_icon('bars', 'lg') }}
+    </button>
+{% endblock left_menu_nav %}
+
+{% block right_menu_nav %}
+    {{ parent() }}
+
+    <button id="close-left-menu-button" class="navbar-toggle hidden">
+        {{ fa_icon('close', 'lg') }}
+    </button>
+
+{% endblock right_menu_nav %}
+
+{% block page %}
+    <aside id="left-menu-content" class="col-md-3 hidden-xs">
+        {{ knp_menu_render('AppBundle:MenuBuilder:mainMenu', { 'allow_safe_labels': true, 'currentClass': 'active' }) }}
+        <br />
+        {{ knp_menu_render('AppBundle:MenuBuilder:superadminMenu', { 'allow_safe_labels': true, 'currentClass': 'active' }) }}
+    </aside>
+
+    <section id="main-content" class="col-md-9">
+        <div class="panel panel-default">
+
+            <div class="panel-body">
+
+                {% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': true } %}
+
+                {% block main_content %}
+
+                {% endblock main_content %}
+            </div>
+        </div>
+    </section>
+{% endblock page %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        var showLeftPush = $("#left-menu-button");
+        var closeLeftMenuButton = $("#close-left-menu-button");
+
+        showLeftPush.click(function () {
+            var menuLeft = $("#left-menu-content");
+            var mainContent = $("#main-content");
+            var footerContent = $("footer.footer");
+            var menuRightButton = $("#right-menu-button");
+            var closeLeftMenuButton = $("#close-left-menu-button");
+
+            if (menuLeft.hasClass("hidden-xs")) {
+                menuLeft.removeClass("hidden-xs")
+                mainContent.addClass("hidden-xs");
+                footerContent.addClass("hidden-xs");
+                $(this).addClass("hidden-xs");
+                menuRightButton.addClass("hidden-xs");
+                closeLeftMenuButton.addClass("visible-xs");
+                closeLeftMenuButton.removeClass("hidden");
+            }
+        });
+
+        closeLeftMenuButton.click(function () {
+            var menuLeft = $("#left-menu-content");
+            var mainContent = $("#main-content");
+            var footerContent = $("footer.footer");
+            var menuRightButton = $("#right-menu-button");
+            var showLeftPush = $("#left-menu-button");
+
+            if (!menuLeft.hasClass("hidden-xs")) {
+                menuLeft.addClass("hidden-xs")
+                mainContent.removeClass("hidden-xs");
+                footerContent.removeClass("hidden-xs");
+                showLeftPush.removeClass("hidden-xs");
+                menuRightButton.removeClass("hidden-xs");
+                $(this).removeClass("visible-xs");
+                $(this).addClass("hidden");
+            }
+        });
+
+    </script>
+{% endblock javascripts %}

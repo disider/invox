@@ -1,0 +1,14 @@
+<script>
+    $('.filter-markup').each(function () {
+        var $self = $(this);
+
+        $self.find('.trigger').popover({
+            content: function () {
+                return $self.find('.filter-content').html();
+            },
+            container: 'body',
+            placement: 'bottom',
+            html: true
+        });
+    });
+</script>

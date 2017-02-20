@@ -1,0 +1,47 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+    <h1>{{ 'tax_rates.title'|trans }}</h1>
+
+    {% if pagination|length > 0 %}
+        <table id="tax-rates" class="table">
+            <tr>
+                <th>{{ 'sort.name'|trans }}</th>
+                <th class="text-right">{{ knp_pagination_sortable(pagination, 'sort.amount'|trans, 'entity.amount') }}</th>
+                <th>&nbsp;</th>
+            </tr>
+            {% for taxRate in pagination %}
+                <tr class="tax-rate">
+                    <td class="col-md-8">
+                        {{ format_edit_link('tax_rate', taxRate, taxRate) }}
+                    </td>
+
+                    <td class="col-md-2 text-right">
+                        {{ taxRate.amount | format_tax_rate(0) }}
+                    </td>
+
+                    <td class="col-md-2 text-right">
+                        {{ format_edit_icon('tax_rate', taxRate) }}
+                        {{ format_delete_icon('tax_rate', taxRate) }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        {{ knp_pagination_render(pagination) }}
+    {% else %}
+        <p class="empty-list">
+            {{ 'tax_rates.empty_list'|trans }}
+        </p>
+    {% endif %}
+
+    {{ format_create_link('tax_rate') }}
+{% endblock main_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'AppBundle:Default:_filter_js.html.twig' %}
+
+    {% include 'AppBundle:Default:_delete_js.html.twig' with { message: 'tax_rate.delete_confirmation' } %}
+{% endblock javascripts %}

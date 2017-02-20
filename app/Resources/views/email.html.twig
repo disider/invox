@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{{ 'app.name'|trans }}</title>
+</head>
+
+<body style="margin: 20px">
+<div style="border: 1px solid #E7E7E7; overflow: hidden; background-color: #000">
+    <div style="padding: 10px">
+        <a href="{{ url('homepage') }}">
+            <img src="{{ app.request.getSchemeAndHttpHost() ~ asset('logo.png') }}" style="margin: 5px" alt="logo"/>
+        </a>
+    </div>
+    <div style="border-top: 1px solid #E7E7E7;border-bottom: 1px solid #E7E7E7;background-color: #fbfbfb;padding: 10px">
+        {% block main_content %}
+            {{ body|raw }}
+        {% endblock main_content %}
+    </div>
+    <div style="text-align: center;margin: 10px">
+        <div style="color: #D1D1D1">
+            © <a href="http://di-side.com" style="color: #D1D1D1">Di-SiDE</a> {{ 'now'|date('Y') }}
+        </div>
+    </div>
+</div>
+</body>
+</html>

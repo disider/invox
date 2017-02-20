@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dynamic List Test</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+
+    <script type="text/javascript" src="lib/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="lib/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="../public/js/dynamic-list.js"></script>
+    <script type="text/javascript" src="../public/js/sortable-list.js"></script>
+    <script type="text/javascript" src="../public/js/document.js"></script>
+
+    <style>
+        th, td {
+            padding: 2px 4px;
+        }
+
+        span {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+        }
+
+        .sortable-placeholder {
+            border: 1px solid #cccccc;
+            background: #efefef;
+            height: 30px;
+        }
+
+        .sortable-placeholder th, td {
+            padding: 2px 4px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+<div class="container">
+    <div id="menu" class="navbar navbar-default"></div>
+
+    <div class="row">
+        <div id="container" class="col-md-9"></div>
+    </div>
+</div>
+
+<script>
+    $('#menu').load('menu.html');
+
+    $('#container').load('spec/javascripts/fixtures/document.html', function () {
+        $('.rows').document();
+    });
+
+</script>
+</body>
+</html>

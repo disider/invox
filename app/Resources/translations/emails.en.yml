@@ -1,0 +1,83 @@
+# Loco yaml export: Symfony YAML object
+# Project: Invox
+# Release: Working copy
+# Locale: en-US, English (USA)
+# Tagged: emails
+# Status: Translated
+# Exported by: Neil Armstrong
+# Exported at: Fri, 13 Jan 2017 10:43:11 +0000
+---
+invite:
+    accountant:
+        html_body: |
+            Dear %accountant%, <br>
+            the owner of "%company%" asked for you as the accountant!<br>
+            <br>
+            Please click <a href="%url%">here</a> to accept the request.<br>
+            <br>
+            Happy accounting,<br>
+            The Invox Team
+        subject: '[Invox] You have a new company request'
+        txt_body: |
+            Dear %accountant%,
+            the owner of "%company%" asked for you as the accountant!
+            Please click on the following link to accept the request:
+            %url%
+            Happy accounting,
+            The Invox Team
+registration:
+    completed:
+        html_body: |
+            Welcome %user%, <br>
+            your registration is now complete!<br>
+            <br>
+            Your account is active, and you can start managing your company!<br>
+            <br>
+            Happy accounting,<br>
+            The Invox Team
+        subject: Welcome to Invox
+        txt_body: |
+            Welcome %user%,
+            your registration is now complete!
+            Your account is active, and you can start managing your company!
+            Happy accounting,
+            The Invox Team
+    confirm:
+        html_body: |
+            Welcome %user%, <br>
+            your registration is almost complete!<br>
+            <br>
+            Click <a href="%url%">here</a> to activate your account, and start managing your company!<br>
+            <br>
+            Best regards,<br>
+            The Invox Team
+        subject: '[Invox] Please activate your account'
+        txt_body: |
+            Welcome %user%,
+            your registration is almost complete!
+            Click on the following link:
+            %url%
+            to activate your account, and start managing your company!
+            Best regards,
+            The Invox Team
+reset_password:
+    html_body: |
+        Dear %user%,<br>
+        you requested a password reset!<br>
+        <br>
+        Please click <a href="%url%">here</a> to create a new password.<br>
+        <br>
+        Happy accounting,<br>
+        The Invox Team
+    subject: '[Invox] Reset your password'
+    txt_body: |
+        Dear %user%,
+        you requested a password reset!
+        Please click on the following link to create a new password:
+        %url%
+        Happy accounting,
+        The Invox Team
+contact_us:
+    subject: 'Info request from %from%: %subject%'
+    html_body: %body%
+    txt_body: %body%

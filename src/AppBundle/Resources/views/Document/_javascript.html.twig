@@ -1,0 +1,332 @@
+<script src="{{ asset('js/document-link.js') }}?version={{ version }}"></script>
+
+<script type="text/javascript">
+    $(function () {
+        var isNew = {{ form.vars.data.id ? 'false' : 'true' }};
+        var $ref = $('#{{ form.ref.vars.id }}');
+        var $type = $('#{{ form.type.vars.id }}');
+        var $year = $('#{{ form.year.vars.id }}');
+        var $direction = $('.direction  ');
+        var $customerName = $('#{{ form.customerName.vars.id }}');
+        var $linkedCustomer = $('#{{ form.linkedCustomer.vars.id }}');
+        var $customerLink = $('.customer-link');
+
+
+        {% if form.addNewCustomer is defined %}
+        var $form = $('#{{ form.vars.id }}');
+        var $addNewCustomer = $('#{{ form.addNewCustomer.vars.id }}');
+        $addNewCustomer.hide();
+
+        var $buttons = $form.find(':submit');
+
+        $buttons.on('click', function (event) {
+            if (!$linkedCustomer.val()) {
+                var $self = $(this);
+
+                var $element = $('<input type="hidden"/>');
+                $element.attr('name', this.name).val($self.val()).appendTo($form);
+
+                bootbox.confirm({
+                    message: '{{ 'document.add_new_customer'|trans }}',
+                    confirm: {
+                        label: {{ 'actions.yes'|trans }},
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: {{ 'actions.no'|trans }},
+                        className: 'btn-link'
+                    },
+                    callback: function (result) {
+                        $addNewCustomer.prop('checked', result);
+
+                        $form.submit();
+
+                        $element.remove();
+                    }
+                });
+
+                event.preventDefault();
+                event.stopPropagation();
+            }
+        });
+        {% endif %}
+
+        $customerLink.documentLink({
+            linkedTo: $linkedCustomer
+        });
+
+        $customerName.autocomplete({
+            datasets: [{
+                url: '{{ path('customer_search') }}?term=',
+                field: 'customers',
+                display: function (item) {
+                    return item.name;
+                }
+            }],
+            templates: {
+                empty: '<div class="empty-list">' + '{{ 'customers.none_found'|trans }}' + '</div>'
+            },
+            afterSelect: function (event, item) {
+                $linkedCustomer.val(item.id);
+                $linkedCustomer.trigger('change');
+                $customerLink.documentLink('setLink');
+
+                $('#{{ form.customerVatNumber.vars.id }}').val(item.vatNumber);
+                $('#{{ form.customerFiscalCode.vars.id }}').val(item.fiscalCode);
+                $('#{{ form.customerAddress.vars.id }}').val(item.address);
+                $('#{{ form.customerAddressNotes.vars.id }}').val(item.addressNotes);
+                $('#{{ form.customerPhoneNumber.vars.id }}').val(item.phoneNumber);
+                $('#{{ form.customerFaxNumber.vars.id }}').val(item.faxNumber);
+                $('#{{ form.customerProvince.vars.id }}').val(item.province);
+                $('#{{ form.customerCity.vars.id }}').val(item.city);
+                $('#{{ form.customerZipCode.vars.id }}').val(item.zipCode);
+
+                var $country = $('#{{ form.customerCountry.vars.id }}');
+
+                var selectize = $country[0].selectize;
+                selectize.setValue(item.countryId);
+            }
+        });
+
+        var $customerCity = $('#{{ form.customerCity.vars.id }}');
+
+        $customerCity.zipCodeTypeahead({
+            url: '{{ path('zip_code_search') }}',
+            provinceId: '#{{ form.customerProvince.vars.id }}',
+            zipCodeId: '#{{ form.customerZipCode.vars.id }}',
+            countryId: '#{{ form.customerCountry.vars.id }}'
+        });
+
+        var $companyCity = $('#{{ form.companyCity.vars.id }}');
+
+        $companyCity.zipCodeTypeahead({
+            url: '{{ path('zip_code_search') }}',
+            provinceId: '#{{ form.companyProvince.vars.id }}',
+            zipCodeId: '#{{ form.companyZipCode.vars.id }}',
+            countryId: '#{{ form.companyCountry.vars.id }}'
+        });
+
+        var $paymentType = $('#{{ form.paymentType.vars.id }}');
+        var $validUntil = $('#{{ form.validUntil.vars.id }}');
+        var $issuedAt = $('#{{ form.issuedAt.vars.id }}');
+
+        $paymentType.on('change', function () {
+            updateValidUntil();
+        });
+
+        function updateValidUntil() {
+            var $selected = $paymentType.find(':selected');
+            var days = $selected.data('days');
+
+            var endOfMonth = $selected.data('eom');
+            var issuedAt = moment($issuedAt.val(), 'DD/MM/YYYY');
+
+            var validUntil = issuedAt;
+            if (days > 0) {
+                validUntil = issuedAt.add(days, 'day');
+            }
+            if (endOfMonth) {
+                validUntil = validUntil.endOf('month');
+            }
+
+            $validUntil.val(validUntil.format('DD/MM/YYYY'));
+        }
+
+        updateValidUntil();
+
+        $linkedCustomer.on('change', function () {
+            linkRecurrence();
+        });
+
+        var currentCustomerId = $linkedCustomer.val();
+        linkRecurrence();
+
+        function linkRecurrence() {
+            var entityId = '{{ form.recurrence.vars.id }}';
+            var $entity = $('#' + entityId);
+            var $title = $('#' + entityId + 'Title');
+            var $link = $('.recurrence-link');
+
+            if (currentCustomerId != $linkedCustomer.val()) {
+                $title.typeahead('destroy');
+                $title.val('');
+                $('.recurrence-link').trigger('click');
+
+                currentCustomerId = $linkedCustomer.val();
+            } else {
+                $link.documentLink({
+                    linkedTo: $entity
+                });
+
+
+                $title.on('keyup', function () {
+                    $entity.val('');
+                });
+
+                $title.on('blur', function () {
+                    if (!$entity.val()) {
+                        $title.val('');
+                    }
+                });
+            }
+
+            var url = '{{ path('recurrence_search') }}?customerId=' + currentCustomerId;
+
+            $title.autocomplete({
+                datasets: [{
+                    url: url + "&term=",
+                    field: 'recurrences',
+                    display: function (item) {
+                        return item.content;
+                    }
+                }],
+                templates: {
+                    empty: '<div class="empty-list">' + '{{ 'recurrences.none_found'|trans }}' + '</div>',
+                    suggestion: function (item) {
+                        return '<div>' + item.content + '</div>'
+                    }
+                },
+                afterSelect: function (event, item) {
+                    $entity.val(item.id);
+                    $link.documentLink('setLink')
+                }
+            });
+        }
+
+
+        linkDocument('{{ form.linkedOrder.vars.id }}', 'order', '{{ path('document_search') }}?type=order');
+        linkDocument('{{ form.linkedInvoice.vars.id }}', 'invoice', '{{ path('document_search') }}?type=invoice');
+        linkDocument('{{ form.linkedCreditNote.vars.id }}', 'credit-note', '{{ path('document_search') }}?type=credit-note');
+
+        $type.find(':input').on('change', function () {
+            selectCurrentType(this.value);
+        });
+
+        $direction.find(':input').on('change', function () {
+            updateRef();
+        });
+
+        $year.on('change', function () {
+            updateRef();
+        });
+
+        function linkDocument(documentId, type, url) {
+            var $document = $('#' + documentId);
+            var $title = $('#' + documentId + 'Title');
+            var $link = $('.' + type + '-link');
+
+            $link.documentLink({
+                linkedTo: $document
+            });
+
+            $title.autocomplete({
+                datasets: [{
+                    url: url + '&term=',
+                    field: 'documents',
+                    display: function (item) {
+                        return item.fullRef;
+                    }
+                }],
+                templates: {
+                    empty: '<div class="empty-list">' + '{{ 'documents.none_found'|trans }}' + '</div>',
+                    suggestion: function (item) {
+                        return '<div>' + item.fullTitle + '</div>'
+                    }
+                },
+                afterSelect: function (event, item) {
+                    $document.val(item.id);
+                    $link.documentLink('setLink')
+                }
+            });
+
+            $title.on('keyup', function () {
+                $document.val('');
+            });
+
+            $title.on('blur', function () {
+                if (!$document.val()) {
+                    $title.val('');
+                }
+            });
+        }
+
+
+        function selectCurrentType(type) {
+            var $selfInvoice = $('.self-invoice');
+            var $linkedOrder = $('.linked-order');
+            var $linkedInvoice = $('.linked-invoice');
+            var $linkedCreditNote = $('.linked-credit-note');
+            var $paymentType = $('.payment-type');
+            var $validUntil = $('.valid-until');
+            var $linkedRecurrence = $('.linked-recurrence');
+
+            $direction.hide();
+            $selfInvoice.hide();
+            $linkedOrder.hide();
+            $linkedCreditNote.hide();
+            $linkedInvoice.hide();
+            $paymentType.hide();
+            $validUntil.hide();
+            $linkedRecurrence.hide();
+
+            switch (type) {
+                case 'invoice' : {
+                    $direction.show();
+                    $selfInvoice.show();
+                    $linkedOrder.show();
+                    $linkedCreditNote.show();
+                    $paymentType.show();
+                    $validUntil.show();
+                    $linkedRecurrence.show();
+                    break;
+                }
+                case 'receipt' : {
+                    $direction.show();
+                    $paymentType.show();
+                    break;
+                }
+                case 'credit_note' : {
+                    $direction.show();
+                    $linkedOrder.show();
+                    $linkedInvoice.show();
+                    break;
+                }
+                case 'quote' : {
+                    $validUntil.show();
+                    break;
+                }
+                case 'order' : {
+                    $validUntil.show();
+                    break;
+                }
+            }
+
+            updateRef();
+        }
+
+        function updateRef() {
+            if (!isNew) {
+                return;
+            }
+
+            var direction = $direction.find('.active input').val();
+
+            var type = $type.find('.active input').val();
+
+            if ((type == 'quote') || (type == 'order') || ((type == 'receipt' || type == 'invoice' || type == 'credit_note') && (direction == 'outgoing'))) {
+                $ref.addClass('loading');
+
+                var year = $year.val();
+                $.get('{{ path('document_generate_ref') }}?type=' + type + '&year=' + year, function (data) {
+                    $ref.val(data.ref);
+                    $ref.removeClass('loading');
+                });
+            }
+            else {
+                $ref.val('');
+            }
+        }
+
+        selectCurrentType('{{ form.vars.data.type }}');
+    });
+</script>

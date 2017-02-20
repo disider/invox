@@ -1,0 +1,43 @@
+{% extends '::two-columns.html.twig' %}
+
+{% form_theme form _self %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('css/form.css') }}?{{ version }}" rel="stylesheet" media="screen">
+
+    {# this cannot be added since it ruins the form javascript #}
+    {# I wonder how this happens #}
+    {#{{ form_stylesheet(form) }}#}
+{% endblock stylesheets %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('js/form.min.js') }}?{{ version }}"></script>
+    <script src="{{ asset('ckeditor/ckeditor.js') }}?{{ version }}"></script>
+
+    <script>
+        var CKEDITOR_BASEPATH = "/ckeditor";
+        var textEditorOptions = {
+            browsePath: '{{ path('media_browse') }}',
+            uploadPath: '{{ path('_uploader_upload_medium') }}'
+        };
+
+        $(function() {
+            $(document).on('change', '.localized-number', function() {
+                var $number = $(this);
+                var decimalPoint = '{{ decimalPoint() }}';
+                var thousandSep = '{{ thousandSeparator() }}';
+
+                var number = $number.val().parseMoney(decimalPoint, thousandSep);
+
+                $number.val(number.formatMoney({{ decimalPosition() }}, decimalPoint, thousandSep));
+            });
+        });
+
+    </script>
+
+    {{ form_javascript(form) }}
+{% endblock javascripts %}

@@ -1,0 +1,36 @@
+{% extends '::form.html.twig' %}
+
+{% block main_content %}
+    {% set company = form.vars.data.company %}
+
+    <h1>{{ 'company.manage_accountant_for'|trans({'%company%': company }) }}</h1>
+
+    <div class="col-md-push-3 col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+                {% for invite in company.invites %}
+                    <p class="invite">{{ invite.email }} <span class="pull-right label label-warning">{{ 'invite.pending'|trans }}</span></p>
+                    {{ format_action_link('invite', 'delete', 'company.delete_invite_accountant'|trans, invite, { class: 'btn btn-default'}) }}
+                {% endfor %}
+
+                {% if company.hasAccountant %}
+                    <p class="accountant">{{ company.accountant.email }} <span class="pull-right label label-success">{{ 'invite.accepted'|trans }}</span></p>
+                    {{ format_action_link('company', 'disconnect_accountant', 'company.disconnect_accountant'|trans({'%company%': company}), company, { class: 'btn btn-default'}) }}
+                {% endif %}
+
+                {% if not company.hasAccountant and company.invites|length == 0 %}
+                    {{ form_start(form, {'novalide' : 'novalidate', 'method' : 'POST'}) }}
+                        {{ form_errors(form, { global_errors: true}) }}
+
+                        {{ form_rest(form) }}
+                    {{ form_end(form) }}
+
+                    {#{{ format_action_link('company', 'invite_accountant', 'company.invite_accountant'|trans({'%company%': company}), company, { class: 'btn btn-default'}) }}#}
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock main_content %}

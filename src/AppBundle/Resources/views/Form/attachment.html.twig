@@ -1,0 +1,36 @@
+{% block attachment_widget %}
+    {% spaceless %}
+        <div class="form-group attachment">
+            {% if form.vars.data %}
+                <a href="#" class="delete btn btn-default btn-xs"
+                   title="{{ 'actions.delete'|trans }}">{{ fa_icon('trash') }}</a>
+
+                &nbsp; <a href="{{ form.vars.data.webPath }}">{{ form.vars.data.fileName }}</a>
+            {% else %}
+                <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
+
+                <a href="#" class="cancel e btn btn-default btn-xs qq-upload-cancel-selector"
+                   title="{{ 'actions.cancel'|trans }}">{{ fa_icon('times') }}</a>
+                <a href="#" class="retry btn btn-default btn-xs qq-upload-retry-selector"
+                   title="{{ 'actions.retry'|trans }}">{{ fa_icon('refresh') }}</a>
+                <a href="#" class="delete btn btn-default btn-xs"
+                   title="{{ 'actions.delete'|trans }}">{{ fa_icon('trash') }}</a>
+
+                &nbsp; <span class="qq-upload-file-selector"></span>
+                {{ form_widget(form.fileName, { attr: { value: '__fileName__'}} ) }}
+                {{ form_widget(form.fileUrl, { attr: { value: '__fileUrl__'}} ) }}
+
+                <div class="progress qq-progress-bar-container-selector">
+                    <div class="progress-bar qq-progress-bar-selector" role="progressbar" aria-valuenow="0"
+                         aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+
+                <small>
+                    <div class="qq-upload-status-text-selector" role="status"></div>
+                </small>
+            {% endif %}
+
+            {{ form_rest(form) }}
+        </div>
+    {% endspaceless %}
+{% endblock %}

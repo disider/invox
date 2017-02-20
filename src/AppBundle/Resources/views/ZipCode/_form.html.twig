@@ -1,0 +1,22 @@
+{{ form_start(form) }}
+<div class="panel panel-default">
+    <div class="panel-body ">
+        {{ form_errors(form, { global_errors: true }) }}
+
+        <div class="row">
+            <div class="col-md-4">
+                {{ form_row(form.code) }}
+            </div>
+            <div class="col-md-4">
+                {{ form_row(form.city) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-actions">
+    {{ form_widget(form.save) }}
+    {{ form_widget(form.saveAndClose) }}
+</div>
+
+{{ form_end(form) }}

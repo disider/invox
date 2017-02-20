@@ -1,0 +1,48 @@
+default:
+    suites:
+        appbundle:
+            type: symfony_bundle
+            bundle: AppBundle
+            contexts:
+              - AppBundle\Features\Context\FeatureContext:
+                    userProvider: user_provider
+                    firewallName: main
+
+              - AppBundle\Features\Context\AccountContext
+              - AppBundle\Features\Context\CityContext
+              - AppBundle\Features\Context\CompanyContext
+              - AppBundle\Features\Context\CountryContext
+              - AppBundle\Features\Context\CustomerContext
+              - AppBundle\Features\Context\DocumentContext
+              - AppBundle\Features\Context\DocumentTemplateContext
+              - AppBundle\Features\Context\InviteContext
+              - AppBundle\Features\Context\JsonContext
+              - AppBundle\Features\Context\MediumContext
+              - AppBundle\Features\Context\PageContext
+              - AppBundle\Features\Context\ParagraphTemplateContext
+              - AppBundle\Features\Context\PaymentTypeContext
+              - AppBundle\Features\Context\PettyCashContext
+              - AppBundle\Features\Context\ProductContext
+              - AppBundle\Features\Context\ProvinceContext
+              - AppBundle\Features\Context\RecurrenceContext
+              - AppBundle\Features\Context\ServiceContext
+              - AppBundle\Features\Context\TaxRateContext
+              - AppBundle\Features\Context\UserContext
+              - AppBundle\Features\Context\WorkingNoteContext
+              - AppBundle\Features\Context\ZipCodeContext
+
+    extensions:
+        Behat\Symfony2Extension: ~
+        Behat\MinkExtension:
+            base_url: http://invox.local/app_test.php
+            sessions:
+                default:
+                    symfony2: ~
+                javascript:
+                    selenium2:
+                        wd_host: "http://localhost:8643/wd/hub"
+
+        Behat\TeamCityFormatter\TeamCityFormatterExtension: ~
+    formatters:
+        pretty: true
+

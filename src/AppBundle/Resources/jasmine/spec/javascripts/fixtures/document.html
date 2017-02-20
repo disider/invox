@@ -1,0 +1,41 @@
+<form>
+    <div id="document">
+        <table class="rows list-unstyled initial-view">
+            <tr>
+                <th>Actions</th>
+                <th>Title</th>
+            </tr>
+            <tr class="document-row">
+                <td class="actions"></td>
+                <td>
+                    <input class="position" type="text" name="row_0_position" value="0"/>
+                    <input class="title" type="text" name="row_0_title" value="Row #1"/>
+                </td>
+            </tr>
+            <tr class="document-row">
+                <td class="actions"></td>
+                <td>
+                    <input class="position" type="text" name="row_1_position" value="1"/>
+                    <input class="title" type="text" name="row_1_title" value="Row #2"/>
+                </td>
+            </tr>
+            <tr class="document-row">
+                <td class="actions"></td>
+                <td>
+                    <input class="position" type="text" name="task_2_position" value="2"/>
+                    <input class="title" type="text" name="task_2_title" value="Row #3"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+<script id="row-template" type="text/template">
+    <td class="actions"></td>
+    <td>
+        <input class="position" type="text" name="task___name___position"/>
+        <input class="title" type="text" name="task___name___title"/>
+    </td>
+</script>
+
+

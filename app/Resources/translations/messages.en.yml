@@ -1,0 +1,866 @@
+# Loco yaml export: Symfony YAML object
+# Project: Invox
+# Release: Working copy
+# Locale: en-US, English (USA)
+# Tagged: messages
+# Status: Translated
+# Exported by: Neil Armstrong
+# Exported at: Fri, 13 Jan 2017 10:43:10 +0000
+---
+account:
+    create: Add an account
+    delete: Delete "%account%"
+    delete_confirmation: Are you sure you want to delete this account?
+    edit: Edit "%account%"
+    empty_list: No accounts defined
+    from: From
+    title: Accounts
+    to: To
+    type:
+        bank: Bank account
+        cash: Cash
+        credit_card: Credit card
+        debit_card: Debit card
+accounts:
+    empty_list: No accounts defined
+    title: Accounts
+actions:
+    accept: Accept
+    add: Add
+    add_document_attachment: Add new attachment
+    add_document_row: Add row
+    add_invoice: Add invoice
+    add_paragraph: Add paragraph
+    add_paragraph_template: Add paragraph from template
+    back_to_list: Back to list
+    cancel: Cancel
+    close: Close
+    copy: Copy
+    delete: Delete
+    delete_attachment: Delete attachment
+    delete_document_row: Delete row
+    delete_invoice: Delete
+    delete_logo: Delete logo
+    delete_paragraph: Delete paragraph
+    edit: Edit
+    edit_filename: Edit filename
+    edit_profile: Edit profile
+    exit_impersonate: Exit
+    filter: Filter
+    here: here
+    login: Login
+    move_document_row_down: Move down
+    move_document_row_up: Move up
+    move_paragraph_down: Move down
+    move_paragraph_up: Move up
+    page_size: 'Per page:'
+    refuse: Refuse
+    register: Register
+    register_user: Register user
+    remove: Remove
+    request_reset_password: Request
+    reset: Reset
+    reset_password: Reset
+    retry: Retry
+    save: Save
+    send: Send
+    save_and_close: Save and close
+    title: Actions
+    upload: Upload
+    view: View
+    yes: Sì
+    no: No
+    hide_paragraph: Hide
+    children: Paragraphs
+alert:
+    warning: Warning
+app:
+    name: Invox
+    welcome: Welcome to Invox
+change_password:
+    title: Change password
+cities:
+    empty_list: No cities defined
+    title: Cities
+city:
+    create: Add a city
+    delete: Delete "%city%"
+    delete_confirmation: Are you sure that you want to delete this city?
+    edit: Edit "%city%"
+    name: Name
+companies:
+    empty_list: No companies are defined
+    title: Companies
+company:
+    accountant: Accountant
+    address_details: Address details
+    contact_details: Contact details
+    create: Add a company
+    delete: Delete "%company%"
+    delete_confirmation: Are you sure that you want to delete this company?
+    delete_invite_accountant: Remove invite
+    deselect: Deselect "%company%"
+    disconnect_accountant: Disconnect accountant
+    edit: Edit "%company%"
+    fax_number: Fax
+    manage_accountant_for: Manage accountant for "%company%"
+    name: Name
+    phone_number: Ph.
+    select: Select "%company%"
+    settings: Settings
+    vat: VAT ID
+    vat_number: VAT ID
+    view: Show "%company%"
+countries:
+    empty_list: No Countries defined
+    title: Countries
+country:
+    create: Add a Country
+    delete: Delete "%country%"
+    delete_confirmation: Are you sure that you want to delete this Country?
+    edit: Edit "%country%"
+    name: Name
+credit_notes:
+    title: Credit notes
+customer:
+    add_document: Add a document
+    address: Address
+    address_details: Address details
+    contact_details: Contact details
+    create: Add a customer
+    delete: Delete "%customer%"
+    delete_confirmation: Are you sure that you want to delete this customer?
+    edit: Edit "%customer%"
+    name: Name
+    vat_number: VAT ID
+    type:
+      customer: Customer
+      prospect: Prospect
+      supplier: Supplier
+customers:
+    empty_list: No customers defined
+    none_found: No customer found
+    title: Customers
+delivery_notes:
+    title: Delivery notes
+days:
+    friday: Fri
+    monday: Mon
+    saturday: Sat
+    sunday: Sun
+    thursday: Thu
+    tuesday: Tue
+    wednesday: Wed
+document:
+    add_new_customer: Do you want to add a customer?
+    changed_company_details: The company details have changed, click <a href="%url%">here</a> to reload.
+    company: Company
+    copy: Copy "%document%"
+    create: Add a document
+    customer: Customer
+    delete: Delete "%document%"
+    delete_confirmation: Are you sure that you want to delete this document?
+    details: Details
+    direction:
+        incoming: Incoming
+        outgoing: Outgoing
+    discount: Discount
+    edit: Edit "%document%"
+    generating: Generating...
+    gross_total: Gross total
+    internal_ref: 'Internal #'
+    net_total: Net total
+    number_line: Nr. %ref% issued on %issued_at%
+    paid_total: Paid total
+    preview_error: You template has same errors
+    print: Print "%document%"
+    ref: '#'
+    rounding: Rounding
+    rows: Rows
+    status:
+        none: None
+        paid: Paid
+        unpaid: Unpaid
+    taxes: Taxes <small>(%taxRate%% of %currency%&nbsp;%netTotal%)</small>
+    type:
+        all_types: All
+        credit_note: Credit note
+        delivery_note: Delivery note
+        invoice: Invoice
+        order: Order
+        quote: Quote
+        receipt: Receipt
+    unpaid_total: Unpaid total
+    view: Show "%document%"
+document_row:
+    gross_cost: Total
+    net_cost: Net
+    product: 'Product:'
+    quantity: Quantity
+    service: 'Service:'
+    taxes: Taxes
+    title: Title
+    unit_price: Unit price
+    vat: VAT
+document_rows:
+    empty_list: No rows defined
+document_template:
+    create: Add a document template
+    delete: Delete "%document_template%"
+    delete_confirmation: Are you sure that you want to delete this document template?
+    edit: Edit "%document_template%"
+    preview: Document template preview
+    restore: Restore "%document_template%"
+    title: Document template
+document_template_per_company:
+    edit: Edit "%document_template_per_company%"
+    preview: Preview "%document_template_per_company%"
+    restore: Restore "%document_template_per_company%"
+document_templates:
+    empty_list: No document templates defined
+    title: Document templates
+documents:
+    empty_list: No documents defined
+    none_found: No documents found
+    title: Documents
+error:
+    bad_credentials: Bad credentials
+    email_already_defined: Email already defined
+    unauthorized: Unauthorized
+    wrong_password: Wrong password
+fields:
+    account: Account
+    account_from: Account from
+    account_to: Account to
+    accountant: Accountant
+    accounted_companies: Accounted companies
+    action: Action
+    additional_details: Additional details
+    address: Address
+    address_notes: Extra address notes
+    amount: Amount
+    amount_from: Amount from
+    amount_to: Amount to
+    attachment: Attachment
+    attachments: Attachments
+    autocomplete_city: Insert 3 or more chars
+    autocomplete_customer: Insert 3 or more chars
+    autocomplete_invoice: Insert 3 or more chars
+    background_color: Background color
+    body: Body
+    category: Category
+    change_type: Change type
+    city: City
+    code: Code
+    company: Company
+    content: Content
+    contents: Contents
+    cost_centers: Cost centers
+    country: Country
+    current_amount: Current amount
+    current_password: Current password
+    current_stock: Current stock
+    customer: Customer
+    days: Days
+    description: Description
+    direction: Direction
+    discount: Discount
+    discount_per_item: Discount (per unit)
+    document: Document
+    document_types: Document types
+    email: Email
+    emails: Emails
+    enabled: Enabled?
+    enabled_in_warehouse: Enable in warehouse
+    end_of_month: End of month
+    end_at: End at
+    expired_at: Expired on
+    fax_number: Fax number
+    file_name: File name
+    file_url: URL
+    fiscal_code: Fiscal code
+    font_family: Font family
+    footer: Footer
+    from_date: From
+    gross_total: Gross total
+    header: Header
+    header_color: Header color
+    heading_color: Title color
+    iban: IBAN
+    id: Id
+    initial_amount: Initial amount
+    initial_stock: Initial stock
+    internal_notes: Internal notes
+    internal_ref: Internal reference
+    invite: Invite
+    invoice: Invoice
+    invoiced_total: Invoiced total
+    invoices: Invoices
+    is_super_admin: Is super admin
+    issued_at: Issue date
+    language: Language
+    link_customer: Link
+    linked_credit_note: Credit note
+    linked_invoice: Invoice
+    linked_order: Order
+    login: Login
+    logo: Logo
+    managed_companies: Managed companies
+    manager: Manager
+    marketed_companies: Marketed companies
+    measure_unit: Measure unit
+    name: Name
+    new_password: New password
+    not_invoiced_total: Not invoiced total
+    notes: Notes
+    optional: Optional
+    owned_companies: Owned companies
+    owner: Owner
+    occurrences: Occurrences
+    paragraphs: Paragraphs
+    password: Password
+    payment_type: Payment type
+    petty_cash_notes: Petty cash notes
+    phone_number: Phone number
+    placeholder:
+        content: Insert your content here
+        description: Insert a description
+        internal_ref: Insert an internal reference
+        ref: Insert a reference
+        title: Insert the title
+    position: Position
+    province: Province
+    quantity: Quantity
+    recorded_at: Recorded at
+    ref: Number
+    referent: Referent
+    repeats: Repeats
+    repeat_every: Repeat every
+    repeat_days: Repeat on
+    repeat_for: Repeat on
+    recurrence: Recurrence
+    remember_me: Remember me
+    roles: Roles
+    rounding: Rounding
+    rows: Rows
+    start_at: Start at
+    sales_agent: Sales agent
+    self_invoice: Self-invoice
+    show_advanced_details: Show advanced details
+    status: Status
+    stock: Stock
+    subject: Subject
+    superadmin_details: Superadmin details
+    table_header_background_color: Table header background color
+    table_header_color: Table header color
+    tables: Tables
+    tags: Tags
+    tax_rate: Tax rate
+    template: Template
+    text_color: Text color
+    title: Title
+    to_date: To
+    total: Total
+    total_amount: Total amount
+    type: Type
+    unit_price: Unit price
+    unlink_customer: Unlink
+    unpaid_amount: Unpaid total
+    upload: Upload
+    url: URL
+    use_customer_tax_rate: Use default customer tax rate
+    username_or_email: Email
+    valid_until: Valid until
+    vat: VAT
+    vat_number: VAT ID
+    year: Year
+    zip_code: ZIP code
+    next_due_date: Next due date
+filter:
+    show: Show filter
+flash:
+    account:
+        created: Account "%account%" successfully created.
+        deleted: Account "%account%" successfully deleted.
+        updated: Account "%account%" successfully updated.
+    city:
+        created: City "%city%" successfully created.
+        deleted: City "%city%" successfully deleted.
+        updated: City "%city%" successfully updated.
+    company:
+        accountant_already_connected: Accountant already connected.
+        accountant_already_invited: Accountant "%accountant%" already invited.
+        accountant_disconnected: Accountant successfully disconnected.
+        accountant_invited: Accountant "%accountant%" successfully invited.
+        created: Company "%company%" successfully created.
+        deleted: Company "%company%" successfully deleted.
+        updated: Company "%company%" successfully updated.
+    country:
+        created: Country "%country%" successfully created.
+        deleted: Country "%country%" successfully deleted.
+        updated: Country "%country%" successfully updated.
+    customer:
+        created: Customer "%customer%" successfully created.
+        deleted: Customer "%customer%" successfully deleted.
+        updated: Customer "%customer%" successfully updated.
+    document:
+        copied: Document "%document%" successfully copied.
+        created: Document "%document%" successfully created.
+        deleted: Document "%document%" successfully deleted.
+        updated: Document "%document%" successfully updated.
+    document_template:
+        created: Document template "%document_template%" successfully created.
+        deleted: Document template "%document_template%" successfully deleted.
+        restored: Document template "%document_template%" successfully restored.
+        updated: Document template "%document_template%" successfully updated.
+    invite:
+        accepted: Invite for "%company%" accepted.
+        refused: Invite for "%company%" refused.
+    medium:
+        created: Medium successfully created.
+        deleted: Medium successfully deleted.
+        updated: Medium successfully updated.
+    module:
+        disabled: Module "%module%" successfully disabled.
+        enabled: Module "%module%" successfully enabled.
+    paragraph_template:
+        created: Paragraph template successfully created.
+        deleted: Paragraph template successfully deleted.
+        updated: Paragraph template successfully updated.
+    password:
+        updated: Password successfully updated.
+    payment_type:
+        created: Payment type "%payment_type%" successfully created.
+        deleted: Payment type "%payment_type%" successfully deleted.
+        updated: Payment type "%payment_type%" successfully updated.
+    petty_cash_note:
+        created: Petty cash note "%petty_cash_note%" successfully created.
+        deleted: Petty cash note "%petty_cash_note%" successfully deleted.
+        updated: Petty cash note "%petty_cash_note%" successfully updated.
+    product:
+        created: Product "%product%" successfully created.
+        deleted: Product "%product%" successfully deleted.
+        updated: Product "%product%" successfully updated.
+    profile:
+        updated: Profile successfully updated.
+    province:
+        created: Province "%province%" successfully created.
+        deleted: Province "%province%" successfully deleted.
+        updated: Province "%province%" successfully updated.
+    registration:
+        confirmed: Your account is confirmed.
+    reset_password:
+        completed: Your password has been reset.
+    recurrence:
+        created: Recurrence "%recurrence%" successfully created.
+        deleted: Recurrence "%recurrence%" successfully deleted.
+        updated: Recurrence "%recurrence%" successfully updated.
+    service:
+        created: Service "%service%" successfully created.
+        deleted: Service "%service%" successfully deleted.
+        updated: Service "%service%" successfully updated.
+    tax_rate:
+        created: Tax rate "%tax_rate%" successfully created.
+        deleted: Tax rate "%tax_rate%" successfully deleted.
+        updated: Tax rate "%tax_rate%" successfully updated.
+    user:
+        created: User "%user%" successfully created.
+        deleted: User "%user%" successfully deleted.
+        updated: User "%user%" successfully updated.
+    warehouse_record:
+        created: Warehouse record successfully created.
+        deleted: Warehouse record successfully deleted.
+    working_note:
+        created: Working note successfully created.
+        deleted: Working note successfully deleted.
+        updated: Working note successfully updated.
+    zip_code:
+        created: Zip code "%zip_code%" successfully created.
+        deleted: Zip code "%zip_code%" successfully deleted.
+        updated: Zip code "%zip_code%" successfully updated.
+invite:
+    accept: Accept invite from "%company%"
+    accepted: accepted
+    help: You have been invited to handle the "%company%" accounting.
+    pending: pending acceptance
+    refuse: Refuse invite from "%company%"
+    show: Invite from "%company%"
+invites:
+    empty_list: No invites defined
+    title: Invites
+invoices:
+    empty_list: No invoices defined
+    expired_incoming: Expired incoming invoices
+    expired_outgoing: Expired outgoing invoices
+    title: Invoices
+locale:
+    en: English
+    it: Italian
+login:
+    already_registered: Are you already registered?
+    title: Login
+logs:
+    empty_list: No logs recorded.
+    title: Logs
+media:
+    empty_list: No media defined
+medium:
+    browse: Browse media
+    create: Add a medium
+    edit: Edit medium
+    list: Media
+menu:
+    accounts: Accounts
+    add_first_company: Add your company
+    cities: Cities
+    companies: Companies
+    countries: Countries
+    credit_notes: Credit notes
+    customers: Customers
+    delivery_notes: Delivery notes
+    document_templates: Document templates
+    documents: Documents
+    dashboard: Dashboard
+    invites: Invites
+    invoices: Invoices
+    login: Login
+    logout: Logout
+    logs: Logs
+    media: Media
+    modules: Modules
+    my_company: My company
+    orders: Orders
+    pages: Pages
+    paragraph_templates: Paragraph templates
+    payment_types: Payment types
+    petty_cash_notes: Petty cash
+    products: Products
+    provinces: Provinces
+    quotes: Quotes
+    receipts: Receipts
+    register: Register
+    recurrences: Recurrences
+    select_company: Select company
+    services: Services
+    settings: Settings
+    superadmin: Superadmin
+    tax_rates: Tax rates
+    users: Users
+    welcome: Welcome, <a class="navbar-link" href="%url%" title="%user%">%user%</a> %exit_impersonate%
+    working_notes: Working notes
+    zip_codes: Zip codes
+module:
+    accounts: Accounts
+    disable: Disable "%module%"
+    disabled: Disabled
+    enable: Enable "%module%"
+    enabled: Enabled
+    petty_cash_notes: Petty cash notes
+    products: Products
+    services: Services
+    warehouse: Warehouse
+    working_notes: Working notes
+    recurrences: Recurrences
+modules:
+    title: Modules
+orders:
+    title: Orders
+page:
+    create: Add a page
+    delete: Delete "%page%"
+    delete_confirmation: Are you sure that you want to delete this page?
+    edit: Edit "%page%"
+    view: Show "%page%"
+pages:
+    empty_list: No pages defined
+    title: Pages
+pagination:
+    results: Showing %from% to %to% of %results% results
+paragraph_template:
+    create: Add a paragraph template
+    delete: Delete "%paragraph_template%"
+    delete_confirmation: Are you sure that you want to delete this paragraph template?
+    edit: Edit "%paragraph_template%"
+paragraph_templates:
+    browse: Browse paragraph templates
+    empty_list: No paragraph templates defined
+    title: Paragraph templates
+payment_type:
+    create: Add a payment type
+    delete: Delete "%payment_type%"
+    delete_confirmation: Are you sure that you want to delete this payment type?
+    edit: Edit "%payment_type%"
+    name: Name
+payment_types:
+    empty_list: No payment types defined
+    title: Payment types
+petty_cash_note:
+    create: Add a petty cash note
+    delete: Delete "%petty_cash_note%"
+    delete_confirmation: Are you sure that you want to delete this note?
+    edit: Edit "%petty_cash_note%"
+    no_transfer: No transfer
+    transfer_to: Transfer to %link%
+    type:
+        all_types: All
+        income: Income
+        outcome: Outcome
+        transfer: Transfer
+    view: Show "%petty_cash_note%"
+petty_cash_notes:
+    empty_list: No petty cash notes defined
+    title: Petty cash
+product:
+    create: Add a product
+    delete: Delete "%product%"
+    delete_confirmation: Are you sure that you want to delete this product?
+    delete_warehouse_record: Delete
+    edit: Edit "%product%"
+    name: Name
+    show_warehouse: Show warehouse
+    warehouse_not_enabled: Warehouse not enabled
+products:
+    empty_list: No products defined
+    title: Products
+profile:
+    edit: Edit profile
+province:
+    create: Add a province
+    delete: Delete "%province%"
+    delete_confirmation: Are you sure that you want to delete this province?
+    edit: Edit "%province%"
+    name: Name
+provinces:
+    empty_list: No provinces defined
+    title: Provinces
+quotes:
+    title: Quotes
+receipts:
+    empty_list: No receipts defined
+    title: Receipts
+registration:
+    check_email: Your registration has been successful. Please, check your email and activate your account.
+    completed: Registration completed
+    login: login
+    message: You can now <a href="%url%">login</a>.
+    not_yet_registered: Are you not yet registered?
+    success: Registration successful
+    thank_you: Thank you!
+reset_password:
+    check_email: You requested a password reset. Please, check your email and reset your password.
+    completed: You changed your password
+    login: login
+    message: You can now <a href="%url%">login</a>.
+    request: Did you forget your password?
+    request_sent: Your password rest request has been sent
+    reset: Reset your password
+    thank_you: Thank you!
+role:
+    accountant: Accountant
+    admin: Admin
+    allowed_to_switch: Allowed to switch
+    clerk: Clerk
+    owner: Owner
+    sales: Sales
+    super_admin: Superadmin
+    user: User
+service:
+    create: Add a service
+    delete: Delete "%service%"
+    delete_confirmation: Are you sure that you want to delete this service?
+    edit: Edit "%service%"
+    name: Name
+services:
+    empty_list: No services defined
+    title: Services
+sort:
+    account: Account
+    action: Action
+    amount: Amount
+    balance: Balance
+    code: Code
+    company: Company
+    current_amount: Current amount
+    customer: Customer
+    date: Date
+    delete_attachment: Delete
+    description: Description
+    document: Document
+    email: Email
+    enabled: Enabled?
+    initial_amount: Initial amount
+    internal_ref: 'Internal #'
+    invoices: Invoices
+    issued_at: Date
+    load_quantity: Load
+    name: Name
+    purchase_price: Purchase price
+    quantity: Quantity
+    ref: '#'
+    role: Role
+    sell_price: Sell price
+    status: Status
+    stock: Stock
+    tax_rate: Tax rate
+    title: Title
+    total: Total
+    type: Type
+    unit_price: Unit price
+    unload_quantity: Unload
+    url: URL
+    user: User
+status:
+    all: All
+    completed: Completed
+    idle: Idle
+    started: Started
+tag:
+    add: Add
+tax_rate:
+    create: Add a tax rate
+    delete: Delete "%tax_rate%"
+    delete_confirmation: Are you sure that you want to delete this tax rate?
+    edit: Edit "%tax_rate%"
+    name: Name
+tax_rates:
+    empty_list: No tax rates defined
+    title: Tax rates
+uploader:
+    drop_file: Drop file here
+    drop_files: Drop files here
+    processing_files: Processing files...
+user:
+    change_password: Change password
+    create: Add a user
+    delete: Delete "%user%"
+    delete_confirmation: Are you sure you want to delete this user?
+    edit: Edit "%user%"
+    impersonate: Impersonate "%user%"
+users:
+    empty_list: No users defined
+    title: Users
+warehouse:
+    delete_confirmation: Are you sure you want to delete this warehouse record?
+    title: Warehouse for "%product%"
+welcome:
+    add_company: Click <a href="%url%">here</a> to start managing your accounts, documents and customers.
+working_note:
+    create: Add a working note
+    delete: Delete "%working_note%"
+    delete_confirmation: Are you sure that you want to delete this working note?
+    edit: Edit "%working_note%"
+    generating: Generating...
+    print: Print "%working_note%"
+    title:
+        show: Working note
+        create: Create working note
+        edit: Edit working note
+        list: List working note
+    view: View "%working_note%"
+working_notes:
+    empty_list: No working notes defined
+    title: Working notes
+paragraph_templates:
+    title: Paragraph templates
+    empty_list: No paragraph templates defined
+    browse: Browse paragraph templates
+quotes:
+  title: Quotes
+orders:
+  title: Orders
+credit_notes:
+  title: Credits notes
+recurrence:
+  create: Create recurrence
+  edit: Edit %recurrence%
+  delete: Delete %recurrence%
+  delete_confirmation: Are you sure that you want to delete this recurrence?
+  direction:
+    incoming: Incoming
+    outgoing: Outgoing
+  finished: Finished
+  repeat:
+    everyday: Everyday
+    every_week: Every week
+    every_month: Every month
+    every_year: Every year
+  repeat_for:
+    day_of_the_week: Day of the week
+    day_of_the_month: Day of the month
+recurrences:
+  title: Recurrences
+  empty_list: No recurrences defined
+  none_found: No recurrence found
+zip_code:
+    create: Add a zip code
+    delete: Delete "%zip_code%"
+    delete_confirmation: Are you sure that you want to delete this zip code?
+    edit: Edit "%zip_code%"
+    name: Name
+zip_codes:
+    empty_list: No zip codes defined
+    title: Zip codes
+contact_us:
+  title: Contact us
+  success: Thank you for your support. Your email will be soon processed by our support team.
+privacy:
+  title: Privacy
+  iubenda_link: //www.iubenda.com/privacy-policy/8015605
+homepage:
+  short_description: |
+    <p>
+      <strong>Invox</strong> is the <em>in cloud</em> tool essential for a proper company accountability. Easy and intuitive, it's managing software particularly suitable for services companies and freelances that can handle and share data through the web, with other people and across different devices.
+    </p>
+    <p>
+      <strong>Invox</strong> is an <em>open source</em> platform and it's the key to always have a clear representation of the economic-financial status of your own company.
+    </p>
+  description: |
+    <p>
+      Other than a tool, <strong>Invox</strong> is a <em>skilled accountant</em> that helps you for the administration. You can create a client and supplier list, linking each profile with the invoice data. You can generate orders and quotes for the clients that ask you for a work.
+      When the quote is accepted by your client, the order and the corresponding invoice in PDF format are automatically generated.
+    </p>
+    <p>
+     In the “first note” section the payments done or received are linked to their respective invoices. Thanks to this operation your bank accounts are updated automatically. You can add one or more bank accounts or credit/debt cards depending on your needs, managing them separately. With Invox you have a tool at your service for the economic-financial management.
+    </p>
+    <p>
+      Available in english and italian
+    </p>
+  read_more: Read more
+  live_preview: Demo
+  main_features:
+    title: Main features
+    features: |
+        <ul>
+          <li><span>Client and supplier list</span></li>
+          <li><span>First note management, done and received payments</span></li>
+          <li><span>Company bank accounts management</span></li>
+          <li><span>Products and service management</span></li>
+          <li><span>Store</span></li>
+          <li><span>Order and invoice generation</span></li>
+          <li><span>Quote generation</span></li>
+          <li><span>Save and print PDF documents</span></li>
+          <li><span>Attachments and media files</span></li>
+          <li><span>Easily alterable document templates</span></li>
+          <li><span>Sharing with your accountant</span></li>
+          <li><span>Expired documents visualization</span></li>
+        </ul>
+  open_source:
+    title: Open Source Project
+    description: Invox Open Source is a free and complete software for managing your company's accountability
+    download_github: Download on Github
+    wiki: Wiki and FAQ
+    repository: Github Repository
+    community: Community
+    join_development: Join the development
+  pro_install:
+    title: Pro install
+    description: Install, configuration, support and your cloud space. Upgrade to the Pro version, with more features, no strss and no thoughts
+    go_pro: Invox Pro
+    features: |
+        <ul>
+          <li><span>Multi-company management</span></li>
+          <li><span>Install</span></li>
+          <li><span>Configuration</span></li>
+          <li><span>Support</span></li>
+          <li><span>Hosted solution</span></li>
+        </ul>

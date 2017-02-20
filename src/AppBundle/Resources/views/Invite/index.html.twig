@@ -1,0 +1,37 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+    <h1>{{ 'invites.title'|trans }}</h1>
+
+    {% if invites|length > 0 %}
+        <table id="invites" class="table">
+            <tr>
+                <th>{{ 'sort.company'|trans }}</th>
+                <th>&nbsp;</th>
+            </tr>
+            {% for invite in invites %}
+                <tr class="invite">
+                    <td class="col-md-8">
+                        <a href="{{ path('invite_view', {'token': invite.token }) }}">{{ invite.company }}</a>
+                        <br>
+                        <small>{{ invite.sender }}</small>
+                    </td>
+
+                    <td class="col-md-2 text-right">
+                        <a class="accept btn btn-xs btn-default"
+                           href="{{ path('invite_accept', {'token': invite.token }) }}"
+                           title="{{ 'invite.accept'|trans({'%company%': invite.company }) }}">{{ icon('check') }}</a>
+
+                        <a class="refuse btn btn-xs btn-default text-danger"
+                           href="{{ path('invite_refuse', {'token': invite.token }) }}"
+                           title="{{ 'invite.refuse'|trans({'%company%': invite.company }) }}">{{ icon('times') }}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    <p class="empty-list {% if invites|length > 0 %}hidden{% endif %}">
+        {{ 'invites.empty_list'|trans }}
+    </p>
+{% endblock main_content %}

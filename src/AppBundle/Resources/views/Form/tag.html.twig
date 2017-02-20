@@ -1,0 +1,26 @@
+{% block tag_javascript %}
+    {% spaceless %}
+        <script type="text/javascript">
+            $(function () {
+                var $tags = $('#{{ form.vars.id }}');
+
+                $tags.selectize({
+                    create: true,
+                    valueField: 'name',
+                    labelField: 'name',
+                    searchField: 'name',
+                    render: {
+                        option_create: function (data, escape) {
+                            return '<div class="create">{{ 'tag.add'|trans }} <strong>' + escape(data.input) + '</strong></div>';
+                        }
+                    },
+                    load: function (query, callback) {
+                        $.get('{{ path(route) }}?term=' + query, function (data) {
+                            callback(data.{{ collection }});
+                        });
+                    }
+                });
+            });
+        </script>
+    {% endspaceless %}
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+    <h1>{{ 'pages.title'|trans }}</h1>
+
+    {% if pagination|length > 0 %}
+        <table id="pages" class="table">
+            <tr>
+                <th>{{ 'sort.title'|trans }}</th>
+                <th>{{ 'sort.url'|trans }}</th>
+                <th>&nbsp;</th>
+            </tr>
+            {% for page in pagination %}
+                <tr class="page">
+                    <td class="col-md-3">
+                        {{ format_edit_link('page', page, page) }}
+                    </td>
+                    <td class="col-md-6">
+                        <a href="{{ path('page_view', {'url': page.url}) }}"
+                           title="{{ 'page.view'|trans({'%page%': page }) }}">{{ page.url }}</a>
+                    </td>
+
+                    <td class="col-md-3 text-right">
+                        {{ format_edit_icon('page', page) }}
+                        {{ format_delete_icon('page', page) }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        {{ knp_pagination_render(pagination) }}
+    {% else %}
+        <p class="empty-list">
+            {{ 'pages.empty_list'|trans }}
+        </p>
+    {% endif %}
+
+    {{ format_create_link('page') }}
+{% endblock main_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'AppBundle:Default:_delete_js.html.twig' with { message: 'page.delete_confirmation' } %}
+{% endblock %}

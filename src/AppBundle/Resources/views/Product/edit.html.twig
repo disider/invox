@@ -1,0 +1,7 @@
+{% extends '::form.html.twig' %}
+
+{% block main_content %}
+    <h1>{{ 'product.edit'|trans({'%product%': form.vars.data }) }}</h1>
+
+    {% include 'AppBundle:Product:_form.html.twig' %}
+{% endblock main_content %}

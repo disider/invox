@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="AppBundle\Entity\Customer" table="customer"
+            repository-class="AppBundle\Entity\Repository\CustomerRepository">
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="name" column="name" type="string" length="255"/>
+        <field name="email" column="email" type="string" length="255" nullable="true"/>
+        <field name="vatNumber" column="vat_number" type="string" length="20" />
+        <field name="fiscalCode" column="fiscal_code" type="string" length="20" nullable="true"/>
+        <field name="referent" column="referent" type="string" length="255" nullable="true"/>
+        <field name="phoneNumber" column="phone_number" type="string" length="255" nullable="true"/>
+        <field name="faxNumber" column="fax_number" type="string" length="255" nullable="true"/>
+        <field name="address" column="address" type="text" nullable="true"/>
+        <field name="zipCode" column="zip_code" type="string" length="10" nullable="true"/>
+        <field name="city" column="city" type="string" length="255" nullable="true"/>
+        <field name="province" column="province" type="string" length="5" nullable="true"/>
+        <field name="addressNotes" column="address_notes" type="text" nullable="true" />
+        <field name="notes" column="notes" type="text" nullable="true"/>
+        <field name="language" column="language" type="string" length="5" />
+
+        <one-to-many field="documents" target-entity="Document" mapped-by="linkedCustomer">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+        <one-to-many field="attachments" target-entity="CustomerAttachment" mapped-by="container" orphan-removal="true">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+        <many-to-one field="company" target-entity="Company" inversed-by="customers">
+            <join-column name="company_id" referenced-column-name="id" on-delete="CASCADE" nullable="false"/>
+        </many-to-one>
+
+        <many-to-one field="country" target-entity="Country">
+            <join-column name="country_id" referenced-column-name="id" on-delete="CASCADE" nullable="false"/>
+        </many-to-one>
+
+    </entity>
+
+</doctrine-mapping>

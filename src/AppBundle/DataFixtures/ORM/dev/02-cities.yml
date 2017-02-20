@@ -1,0 +1,8 @@
+AppBundle\Entity\City:
+    rome_city:
+        name: Rome
+        province: '@rome_province'
+
+    milan_city:
+        name: Milan
+        province: '@milan_province'

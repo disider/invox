@@ -1,0 +1,63 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+    <article class="document">
+
+        <h1>
+            {{ ('document.type.' ~ document.type)|trans }}: {{ document }}
+
+            <small class="pull-right">
+                {{ format_edit_link('document', document, icon('pencil')) }}
+                {{ format_action_link('document', 'print', icon('print'), document) }}
+                {% if debug %}
+                    {% if showAsHtml %}
+                        {{ format_view_link('document', document, icon('eye')) }}
+                    {% else %}
+                        {{ format_action_link('document', 'view', icon('cog'), document, { routeParameters: { 'showAsHtml' : 'true' }}) }}
+                    {% endif %}
+                {% endif %}
+            </small>
+        </h1>
+
+        <div class="preview-container">
+            <iframe class="preview"
+                    src="{{ path('document_render', {'id': document.id}, true) }}{{ showAsHtml ? '?showAsHtml=true' : '' }}"></iframe>
+            {% if not showAsHtml %}
+                <div class="loader">{{ 'document.generating'|trans }}</div>
+            {% endif %}
+        </div>
+
+        {% if document.hasAttachments %}
+            <br />
+            <h3>{{ 'fields.attachments'|trans }}</h3>
+            <ul class="list-unstyled">
+                {% for attachment in document.attachments %}
+                    <li><a href="{{ attachment.webPath }}">{{ attachment }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </article>
+
+{% endblock main_content %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="/css/form.css" rel="stylesheet" media="screen">
+{% endblock stylesheets %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(function () {
+            $('.preview').on('load', function () {
+                $('.preview-container .loader').hide();
+            });
+        })
+    </script>
+
+    <script src="/js/form.min.js"></script>
+
+{% endblock javascripts %}

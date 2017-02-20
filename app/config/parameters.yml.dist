@@ -1,0 +1,38 @@
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: ~
+    database_name: invox
+    database_user: root
+    database_password: 'root'
+
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: ~
+    mailer_password: ~
+
+    locale: en
+    available_locales: [en, it]
+    secret: ThisTokenIsNotSoSecretChangeIt
+    mailer_delivery_address:
+    noreply_display_name: No Reply
+    noreply_email: noreply@invox.it
+    info_display_name: 'Invox - Info'
+    info_email: info@invox.it
+
+    show_analytics: true
+    show_chat: true
+    show_registration: true
+
+    redirect_to_login: false
+
+    jms_serializer.camel_case_naming_strategy.class: JMS\Serializer\Naming\IdenticalPropertyNamingStrategy
+    loco_api_key: loco-api-key
+
+    launcher_links:
+        demo: http://demo.invox.it/login
+        downlaod_code: "#"
+        wiki: "#"
+        github_repo: "#"
+        community: "#"
+        join_development: "#"

@@ -1,0 +1,239 @@
+{% set highlightColorDark = '#2B7E96' %}
+{% set highlightColor = '#DEEEFD' %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        html {
+            font-size: 62.5%;
+        }
+
+        body {
+            color: #000000;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            padding-top: 10px;
+        }
+
+        .working-note {
+            font-size: 1.2em;
+        }
+
+        h1 {
+            font-size: 2.1em;
+        }
+
+        h1, h2 {
+            color: {{ highlightColorDark }};
+            margin: 15px 0 10px;
+            padding: 0;
+            font-weight: normal;
+        }
+
+        h3 {
+            background-color: {{ highlightColorDark }};
+            color: white;
+            margin: 10px 0;
+            padding: 5px;
+            font-weight: normal;
+        }
+
+        h4 {
+            background-color: {{ highlightColor }};
+            color: {{ highlightColorDark }};
+            font-weight: normal;
+            margin: 10px 0;
+            padding: 5px;
+        }
+
+        h5, h6 {
+            color: {{ highlightColorDark }};
+            font-weight: normal;
+            padding: 5px 0;
+            font-size: 1em;
+            margin: 10px 0 0;
+        }
+
+        h5 {
+            border-bottom: 1px solid {{ highlightColor }};
+            border-left: 1px solid {{ highlightColor }};
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        h3 span, h4 span, h5 span, h6 span  {
+            padding-right: 10px;
+        }
+
+        .code  {
+            color: #9d9d9d;
+        }
+
+        table {
+            border: none;
+            border-collapse: collapse;
+            vertical-align: top;
+            margin-top: 10px;
+        }
+
+        tr {
+            vertical-align: top;
+        }
+
+        th, td {
+            vertical-align: top;
+            padding: 8px 0;
+        }
+
+        p {
+            line-height: 18px;
+            margin: 0 0 10px;
+        }
+
+        ul {
+            margin: 0;
+            list-style-type: square;
+        }
+
+        .table {
+            width: 100%;
+        }
+
+        .list-unstyled {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .row {
+            overflow: hidden;
+        }
+
+        .col-1 {
+            float: left;
+            width: 8.34%;
+        }
+
+        .col-2 {
+            float: left;
+            width: 16.67%;
+        }
+
+        .col-3 {
+            float: left;
+            width: 25%;
+        }
+
+        .col-4 {
+            float: left;
+            width: 33.34%;
+        }
+
+        .col-5 {
+            float: left;
+            width: 41.67%;
+        }
+
+        .col-6 {
+            float: left;
+            width: 50%;
+        }
+
+        .col-7 {
+            float: left;
+            width: 58.34%;
+        }
+
+        .col-8 {
+            float: left;
+            width: 65.67%;
+        }
+
+        .col-9 {
+            float: left;
+            width: 75%;
+        }
+
+        .col-10 {
+            float: left;
+            width: 83.34%;
+        }
+
+        .col-11 {
+            float: left;
+            width: 91.67%;
+        }
+
+        .col-12 {
+            float: left;
+            width: 100%;
+        }
+
+        .left {
+            text-align: left;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        header th,
+        header td {
+            padding: 8px 0;
+            font-size: 12px;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        section th,
+        section td {
+            font-size: 12px;
+        }
+
+        footer {
+            margin-top: 10px;
+            border-top: 1px solid {{ highlightColor }};
+        }
+
+        thead {
+            display: table-header-group
+        }
+
+        tfoot {
+            display: table-row-group
+        }
+
+        tr {
+            page-break-inside: avoid
+        }
+
+        .pull-right {
+            float: right;
+        }
+
+        footer {
+            color: #9d9d9d;
+        }
+
+        .customer {
+            text-align: right;
+        }
+    </style>
+
+</head>
+<body>
+
+{% block content %}
+    {{ content | raw }}
+{% endblock content %}
+
+</body>
+</html>

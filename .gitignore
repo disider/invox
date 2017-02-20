@@ -29,10 +29,14 @@
 
 # Assets and user uploads
 /web/bundles/
+/web/media
 /web/uploads/
 
 # Assets managed by Bower
 /web/assets/vendor/
+
+# Assets managed by npm
+/node_modules
 
 # PHPUnit
 /app/phpunit.xml
@@ -46,3 +50,10 @@
 
 # Backup entities generated with doctrine:generate:entities command
 */Entity/*~
+
+# Misc
+.DS_Store
+.idea
+.sass-cache
+.rules
+.vagrant

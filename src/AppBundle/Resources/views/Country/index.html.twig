@@ -1,0 +1,43 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+    <h1>{{ 'countries.title'|trans }}</h1>
+
+    {% if pagination|length > 0 %}
+        <table id="countries" class="table">
+            <tr>
+                <th>{{ 'sort.name'|trans }}</th>
+                <th>&nbsp;</th>
+            </tr>
+            {% for country in pagination %}
+                <tr class="country">
+                    <td class="col-md-9">
+                        <span class="type badge">{{ country.code }}</span>
+                        {{ format_edit_link('country', country, country, { class: 'name'}) }}
+                    </td>
+
+                    <td class="col-md-3 text-right">
+                        {{ format_edit_icon('country', country) }}
+                        {{ format_delete_icon('country', country) }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        {{ knp_pagination_render(pagination) }}
+    {% else %}
+        <p class="empty-list">
+            {{ 'countries.empty_list'|trans }}
+        </p>
+    {% endif %}
+
+    {{ format_create_link('country') }}
+{% endblock main_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'AppBundle:Default:_filter_js.html.twig' %}
+
+    {% include 'AppBundle:Default:_delete_js.html.twig' with { message: 'country.delete_confirmation' } %}
+{% endblock javascripts %}

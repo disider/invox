@@ -1,0 +1,87 @@
+<form class="running-checklist">
+    <h3>Tasks</h3>
+    <table class="table tasks">
+        <tr>
+            <td class="col-md-9">
+                <div class="media">
+                    <div class="media-heading pull-left">
+                        <input type="checkbox" id="task_0" name="task_0" checked="checked" data-task-id="0"/>
+                    </div>
+                    <div class="media-body">
+                        <label for="task_0">Task #1</label>
+                    </div>
+                </div>
+            </td>
+
+            <td class="col-md-3">
+                <div class="pull-right">
+                    <img class="youtube-video thumbnail pull-left" src=""/>
+
+                    <img class="image-preview thumbnail pull-left" src=""/>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="col-md-9">
+                <div class="media">
+                    <div class="media-heading pull-left">
+                        <input type="checkbox" id="task_1" name="task_1" checked="checked" data-task-id="1"/>
+                    </div>
+                    <div class="media-body">
+                        <label for="task_1">Task #2</label>
+                    </div>
+                </div>
+            </td>
+
+            <td class="col-md-3">
+                <div class="pull-right">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="col-md-9">
+                <div class="media">
+                    <div class="media-heading pull-left">
+                        <input type="checkbox" id="task_2" name="task_2" data-task-id="2"/>
+                    </div>
+                    <div class="media-body">
+                        <label for="task_2">Task #3</label>
+                    </div>
+                </div>
+            </td>
+
+            <td class="col-md-3">
+                <div class="pull-right">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="col-md-9">
+                <div class="media">
+                    <div class="media-heading pull-left">
+                        <input type="checkbox" id="task_3" name="task_3" data-task-id="3"/>
+                    </div>
+                    <div class="media-body">
+                        <label for="task_3">Task #4</label>
+                    </div>
+                </div>
+            </td>
+
+            <td class="col-md-3">
+                <div class="pull-right">
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<input type="checkbox" id="sequential-toggle" checked="checked"/>
+<label for="sequential-toggle">Sequential</label>
+<script>
+    $(function () {
+        $('#sequential-toggle').on('click', function () {
+            var plugin = $('.running-checklist').data('plugin_runningChecklist');
+            plugin.setSequential(this.checked);
+        });
+    });
+</script>

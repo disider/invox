@@ -1,0 +1,13 @@
+{% extends 'one-column.html.twig' %}
+
+
+{% block main_content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{ 'terms.title'|trans({}, 'terms')|raw }}</h1>
+            <hr>
+            {{ 'terms.content'|trans({}, 'terms')|raw }}
+        </div>
+    </div>
+{% endblock %}
+

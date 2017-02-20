@@ -1,0 +1,82 @@
+# Loco yaml export: Symfony YAML object
+# Project: Invox
+# Release: Working copy
+# Locale: it-IT, Italian (Italy)
+# Tagged: validators
+# Status: Translated
+# Exported by: Neil Armstrong
+# Exported at: Fri, 13 Jan 2017 10:43:11 +0000
+---
+error:
+    amount_exceeding_invoice_amount: L'ammontare (%amount%) non può eccedere l'ammontare disponibile della fattura (%invoiceAmount%)
+    cannot_add_incoming_invoice_if_income: Non puoi collegare una fattura in entrata ad una prima nota in entrata
+    cannot_add_invoices_if_transfer: Un giroconto non può avere fatture collegate
+    cannot_add_outgoing_invoice_if_outcome: Non puoi collegare una fattura in uscita ad una prima nota in uscita
+    cannot_invite_self: Non puoi invitare te stesso
+    cannot_transfer_to_same_account: Non è possibile trasferire allo stesso conto
+    email_already_registered: Email già registrata
+    empty_amount: Ammontare richiesto
+    empty_body: Messaggio richiesto
+    empty_city: Città richiesta
+    empty_code: Codice richiesto
+    empty_content: Contenuto richiesto
+    empty_country: Paese richiesto
+    empty_date: Data richiesta
+    empty_description: Descrizione richiesta
+    empty_direction: Direzione richiesta
+    empty_discount: Sconto richiesto
+    empty_email: Inserisci un indirizzo email
+    empty_font_family: Font richiesto
+    empty_footer: Footer richiesto
+    empty_header: Header richiesto
+    empty_heading_color: Colore titolo richiesto
+    empty_issued_at: Data di emissione richiesta
+    empty_name: Inserisci il nome
+    empty_new_password: Inserisci la nuova password
+    empty_password: Inserisci la password
+    empty_payment_type: Tipo di pagamento richiesto
+    empty_position: Posizione richiesta
+    empty_price: Prezzo richiesto
+    empty_province: Provincia richiesta
+    empty_ref: Riferimento richiesto
+    empty_repeat_every: Ripeti ogni richiesto
+    empty_rounding: Arrotondamento richiesto
+    empty_subject: Oggetto richiesto
+    empty_start_at: Data di inizio richiesta
+    empty_table_header_background_color: Colore sfondo dell'header della tabella richiesto
+    empty_table_header_color: Colore dell'header della tabella richiesto
+    empty_text_color: Colore testo richiesto
+    empty_title: Titolo richiesto
+    empty_unit_price: Prezzo unitario richiesto
+    empty_url: Indirizzo richiesto
+    empty_valid_until: Data di scadenza richiesta
+    empty_vat_number: Partita IVA richiesta
+    empty_year: Anno richiesto
+    inactive_user: Il tuo account non è ancora confermato. Clicca <a href="%url%">qui</a> per ricevere una nuova email di conferma.
+    invalid_city: Città non conosciuta
+    invalid_credentials: Credenziali errate
+    invalid_credit_note: Nota di credito non valida
+    invalid_customer: Cliente non conosciuto
+    invalid_select_customer: Selezione un cliente/fornitore esistente
+    invalid_document: Documento non valido
+    invalid_document_type: Tipo di documento non valido
+    invalid_email: Email non valida
+    invalid_image_type: Tipo immagine non valido
+    invalid_invoice: Fattura non valida
+    invalid_order: Ordine non valido
+    invalid_price: Prezzo non valido
+    invalid_province: Provincia non conosciuta
+    invalid_quantity: Quantità non valida
+    invalid_recurrence: Ricorrenza non valida
+    invalid_vat_number: Partita IVA non valida
+    invalid_zip_code: CAP non conosciuto
+    invoices_exceeding_note_amount: Il totale delle fatture (%invoicesAmount%) non può eccedere il totale della nota (%noteAmount%)
+    module_already_enabled: Modulo già abilitato
+    module_not_enabled: Modulo non abilitato
+    no_account_selected: Seleziona un conto
+    no_warehouse_quantities_defined: Inserisci una quantità di carico o scarico
+    non_positive_amount: L'ammontare deve essere superiore a 0
+    not_found: Non trovato
+    unknown_customer_code: Codice cliente non conosciuto
+    wrong_current_password: Inserisci la tua password corrente
+    wrong_email: Indirizzo email non corretto

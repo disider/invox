@@ -1,0 +1,35 @@
+{{ form_start(form, {method: 'GET'}) }}
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_row(form.name) }}
+            </div>
+
+            <div class="col-md-2">
+                {{ form_row(form.type) }}
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                {{ form_row(form.vatNumber) }}
+            </div>
+            <div class="col-md-4">
+                {{ form_row(form.fiscalCode) }}
+            </div>
+        </div>
+
+
+        <div class="form-actions">
+            {{ form_widget(form.filter) }}
+
+            <a class="btn btn-default btn-sm" href="{{ path('customers') }}">{{ 'actions.reset'|trans }}</a>
+
+        </div>
+    </div>
+</div>
+
+{{ form_end(form) }}
+

@@ -1,0 +1,34 @@
+<script src="{{ asset('js/document-link.js') }}?version={{ version }}"></script>
+
+<script type="text/javascript">
+    $(function () {
+        var $customerName = $('#{{ form.customerName.vars.id }}');
+        var $customer = $('#{{ form.customer.vars.id }}');
+
+
+        var $customerLink = $('.customer-link');
+
+        $customerLink.documentLink({
+            linkedTo: $customer
+        });
+
+        $customerName.autocomplete({
+            datasets: [{
+                url: '{{ path('customer_search') }}?term=',
+                field: 'customers',
+                display: function (item) {
+                    return item.name;
+                }
+            }],
+            templates: {
+                empty: '<div class="empty-list">' + '{{ 'customers.none_found'|trans }}' + '</div>'
+            },
+            afterSelect: function (event, item) {
+                $customer.val(item.id);
+
+                $customerLink.documentLink('setLink');
+            }
+        });
+
+    });
+</script>

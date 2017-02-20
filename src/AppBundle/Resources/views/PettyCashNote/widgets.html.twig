@@ -1,0 +1,128 @@
+{% block invoices_widget %}
+    {% spaceless %}
+        {% if prototype is defined %}
+            {% set attr = attr|merge({'data-prototype': form_row(prototype)}) %}
+            {% set attr = attr|merge({'data-prototype-name': prototype.vars.name}) %}
+        {% endif %}
+        {% set attr = attr|merge({'data-allow-add': allow_add ? 1 : 0}) %}
+        {% set attr = attr|merge({'data-allow-remove': allow_delete ? 1 : 0 }) %}
+        {% set attr = attr|merge({'data-name-prefix': full_name}) %}
+
+        <div class="header">
+            <div class="col-xs-8">{{ 'fields.invoice'|trans }}</div>
+            <div class="col-xs-3">{{ 'fields.amount'|trans }}</div>
+            <div class="col-xs-1 text-right">&nbsp;</div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        {{ block('form_widget') }}
+    {% endspaceless %}
+{% endblock %}
+
+{% block invoicePerNote_widget %}
+    <div id="{{ form.vars.id }}" class="invoice-row">
+        <div class="row">
+            <div class="col-xs-8 {% if form.invoice.vars.errors|length > 0 %} has-error{% endif %}">
+                {{ form_widget(form.invoiceTitle) }}
+                {{ form_errors(form.invoiceTitle) }}
+                {{ form_widget(form.invoice) }}
+                {{ form_errors(form.invoice) }}
+            </div>
+            <div class="col-xs-3 text-right {% if form.amount.vars.errors|length > 0 %} has-error{% endif %}">
+                {{ form_widget(form.amount, {attr: {class: 'amount text-right'}}) }}
+                {{ form_errors(form.amount) }}
+            </div>
+            <div class="col-xs-1 text-right">
+                <a href="#" class="collection-remove btn btn-xs btn-default"
+                   title="{{ 'actions.delete_invoice'|trans }}">{{ fa_icon('trash') }}</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block pettyCashNote_javascript %}
+    <script src="{{ asset('js/petty-cash-note.js') }}?version={{ version }}"></script>
+    <script src="{{ asset('js/invoices-per-note.js') }}?version={{ version }}"></script>
+    <script src="{{ asset('js/invoice-per-note.js') }}?version={{ version }}"></script>
+    <script src="{{ asset('js/jquery.collection.js') }}?version={{ version }}"></script>
+    <script>
+        $(function () {
+            var decimalPoint = '{{ decimalPoint() }}';
+            var thousandSep = '{{ thousandSeparator() }}';
+
+            $('#{{ form.vars.id }}').pettyCashNote({
+                decimalPoint: decimalPoint,
+                thousandSep: thousandSep,
+                amountId: '{{ form.amount.vars.id }}',
+                invoicesId: '{{ form.invoices.vars.id }}',
+                documentUrl: '{{ path('document_search') }}',
+                emptyListTitle: '{{ 'documents.none_found'|trans }}',
+                currentNoteId: '{{ form.vars.data.id }}'
+            });
+        });
+    </script>
+
+    {% for child in form %}
+        {{ form_javascript(child) }}
+    {% endfor %}
+{% endblock %}
+
+{% block invoices_javascript %}
+
+    <script>
+        $(function () {
+            var $panel = $('#invoices-panel');
+            var $invoices = $('#{{ form.vars.id }}');
+
+            var $header = $panel.find('.header');
+            var $footer = $panel.find('.footer');
+            var $emptyList = $panel.find('.empty-list');
+
+            $invoices.collection({
+                add: '<a href="#" class="collection-add btn btn-primary" title="{{ 'actions.add_invoice'|trans }}">{{ 'actions.add_invoice'|trans }} </a>',
+                add_at_the_end: true,
+                allow_up: false,
+                allow_down: false,
+                form_name: '{{ full_name }}',
+                form_prefix: '{{ id }}',
+                after_add: function ($collection, $element) {
+                    var $row = $element.find('.invoice-row');
+                    $invoices.invoicesPerNote('addRow', $row);
+
+                    updateCollection($collection);
+                },
+                after_remove: function ($collection, $element) {
+                    updateCollection($collection);
+
+                    $invoices.invoicesPerNote('updateTotals');
+                }
+            });
+
+            function updateCollection($collection) {
+                var $addButton = $('.collection-add');
+
+                if ($collection.find('.invoice-row').length == 0) {
+                    $header.hide();
+                    $footer.hide();
+                    $emptyList.show();
+
+                    $addButton.detach().appendTo($emptyList.find('.add-container'));
+                }
+                else {
+                    $header.show();
+                    $footer.show();
+                    $emptyList.hide();
+
+                    $addButton.detach().appendTo($footer.find('.add-container'));
+                }
+            }
+
+            updateCollection($invoices);
+        });
+    </script>
+
+    {% for child in form %}
+        {{ form_javascript(child) }}
+    {% endfor %}
+{% endblock %}

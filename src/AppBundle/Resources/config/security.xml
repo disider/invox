@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="account_voter.class">AppBundle\Security\Voter\AccountVoter</parameter>
+        <parameter key="company_voter.class">AppBundle\Security\Voter\CompanyVoter</parameter>
+        <parameter key="customer_voter.class">AppBundle\Security\Voter\CustomerVoter</parameter>
+        <parameter key="document_voter.class">AppBundle\Security\Voter\DocumentVoter</parameter>
+        <parameter key="document_template_voter.class">AppBundle\Security\Voter\DocumentTemplateVoter</parameter>
+        <parameter key="recurrence_voter.class">AppBundle\Security\Voter\RecurrenceVoter</parameter>
+        <parameter key="document_template_per_company_voter.class">AppBundle\Security\Voter\DocumentTemplatePerCompanyVoter</parameter>
+        <parameter key="invite_voter.class">AppBundle\Security\Voter\InviteVoter</parameter>
+        <parameter key="medium_voter.class">AppBundle\Security\Voter\MediumVoter</parameter>
+        <parameter key="paragraph_template_voter.class">AppBundle\Security\Voter\ParagraphTemplateVoter</parameter>
+        <parameter key="petty_cash_note_voter.class">AppBundle\Security\Voter\PettyCashNoteVoter</parameter>
+        <parameter key="product_voter.class">AppBundle\Security\Voter\ProductVoter</parameter>
+        <parameter key="role_voter.class">AppBundle\Security\Voter\RoleVoter</parameter>
+        <parameter key="service_voter.class">AppBundle\Security\Voter\ServiceVoter</parameter>
+        <parameter key="superadmin_features_voter.class">AppBundle\Security\Voter\SuperadminFeaturesVoter</parameter>
+        <parameter key="user_voter.class">AppBundle\Security\Voter\UserVoter</parameter>
+        <parameter key="working_note_voter.class">AppBundle\Security\Voter\WorkingNoteVoter</parameter>
+    </parameters>
+
+    <services>
+        <service id="user_provider" class="AppBundle\Security\UserProvider" public="false">
+            <argument type="service" id="user_manager" />
+        </service>
+
+        <service id="account_voter" class="%account_voter.class%">
+            <tag name="security.voter" />
+        </service>
+
+        <service id="company_voter" class="%company_voter.class%">
+            <tag name="security.voter" />
+        </service>
+
+        <service id="customer_voter" class="%customer_voter.class%">
+            <tag name="security.voter" />
+        </service>
+
+        <service id="document_voter" class="%document_voter.class%">
+            <tag name="security.voter" />
+        </service>
+
+        <service id="document_template_voter" class="%document_template_voter.class%">
+            <tag name="security.voter" />
+        </service>
+
+        <service id="document_template_per_company_voter" class="%document_template_per_company_voter.class%">
+            <tag name="security.voter" />
+        </service>
+
+        <service id="invite_voter" class="%invite_voter.class%">
+            <tag name="security.voter" />
+        </service>
+
+        <service id="medium_voter" class="%medium_voter.class%">
+            <tag name="security.voter" />
+        </service>
+
+        <service id="paragraph_template_voter" class="%paragraph_template_voter.class%">
+            <tag name="security.voter" />
+        </service>
+
+        <service id="petty_cash_note_voter" class="%petty_cash_note_voter.class%">
+            <tag name="security.voter" />
+        </service>
+
+        <service id="product_voter" class="%product_voter.class%">
+            <tag name="security.voter" />
+        </service>
+
+        <service id="role_voter" class="%role_voter.class%">
+            <argument type="service" id="company_manager" />
+            <tag name="security.voter" />
+        </service>
+
+        <service id="recurrence_voter" class="%recurrence_voter.class%">
+            <tag name="security.voter" />
+        </service>
+
+        <service id="service_voter" class="%service_voter.class%">
+            <tag name="security.voter" />
+        </service>
+
+        <service id="superadmin_features_voter" class="%superadmin_features_voter.class%">
+            <tag name="security.voter" />
+        </service>
+
+        <service id="user_voter" class="%user_voter.class%">
+            <tag name="security.voter" />
+        </service>
+
+        <service id="working_note_voter" class="%working_note_voter.class%">
+            <tag name="security.voter" />
+        </service>
+
+    </services>
+</container>

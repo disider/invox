@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="currency_listener.class">AppBundle\EventListener\CurrencyListener</parameter>
+
+        <parameter key="attachable_listener.class">AppBundle\EventListener\AttachableListener</parameter>
+        <parameter key="company_listener.class">AppBundle\EventListener\CompanyListener</parameter>
+        <parameter key="document_listener.class">AppBundle\EventListener\DocumentListener</parameter>
+        <parameter key="document_row_listener.class">AppBundle\EventListener\DocumentRowListener</parameter>
+        <parameter key="invite_listener.class">AppBundle\EventListener\InviteListener</parameter>
+        <parameter key="invoice_per_note_listener.class">AppBundle\EventListener\InvoicePerNoteListener</parameter>
+        <parameter key="medium_listener.class">AppBundle\EventListener\MediumListener</parameter>
+        <parameter key="medium_uploader_listener.class">AppBundle\EventListener\MediumUploadListener</parameter>
+        <parameter key="petty_cash_note_listener.class">AppBundle\EventListener\PettyCashNoteListener</parameter>
+        <parameter key="product_listener.class">AppBundle\EventListener\ProductListener</parameter>
+        <parameter key="user_listener.class">AppBundle\EventListener\UserListener</parameter>
+        <parameter key="recurrence_listener.class">AppBundle\EventListener\RecurrenceListener</parameter>
+
+        <parameter key="security.form_authentication_listener.class">AppBundle\EventListener\FormAuthenticationListener</parameter>
+        <parameter key="security.interactive_login_listener.class">AppBundle\EventListener\LoginListener</parameter>
+        <parameter key="url_redirect_listener.class">AppBundle\EventListener\UrlRedirectListener</parameter>
+    </parameters>
+
+    <services>
+        <service id="attachable_listener" class="%attachable_listener.class%">
+            <argument type="service" id="oneup_uploader.orphanage_manager" />
+            <tag name="doctrine.event_subscriber" />
+        </service>
+
+        <service id="currency_listener" class="%currency_listener.class%">
+            <argument type="service" id="security.token_storage" />
+            <argument type="service" id="twig" />
+            <argument type="service" id="locale_formatter" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <service id="company_listener" class="%company_listener.class%" public="false">
+            <tag name="doctrine.event_subscriber" />
+        </service>
+
+        <service id="document_listener" class="%document_listener.class%" public="false">
+            <tag name="doctrine.event_subscriber" />
+        </service>
+
+        <service id="document_row_listener" class="%document_row_listener.class%" public="false">
+            <tag name="doctrine.event_subscriber" />
+        </service>
+
+        <service id="invite_listener" class="%invite_listener.class%" public="false">
+            <argument type="service" id="service_container" />
+            <tag name="doctrine.event_subscriber" />
+        </service>
+
+        <service id="invoice_per_note_listener" class="%invoice_per_note_listener.class%" public="false">
+            <tag name="doctrine.event_subscriber" />
+        </service>
+
+        <service id="medium_listener" class="%medium_listener.class%">
+            <argument type="service" id="oneup_uploader.orphanage_manager" />
+            <tag name="doctrine.event_subscriber" />
+        </service>
+
+        <service id="medium_upload_listener" class="%medium_uploader_listener.class%">
+            <argument type="service" id="oneup_uploader.orphanage_manager" />
+            <tag name="kernel.event_listener" event="oneup_uploader.post_upload" method="onPostUpload" />
+            <tag name="kernel.event_listener" event="oneup_uploader.pre_upload" method="onPreUpload" />
+        </service>
+
+        <service id="petty_cash_note_listener" class="%petty_cash_note_listener.class%" public="false">
+            <tag name="doctrine.event_subscriber" />
+        </service>
+
+        <service id="product_listener" class="%product_listener.class%" public="false">
+            <tag name="doctrine.event_subscriber" />
+        </service>
+
+        <service id="recurrence_listener" class="%recurrence_listener.class%" public="false">
+            <tag name="doctrine.event_subscriber" />
+        </service>
+
+        <service id="security.interactive_login_listener" class="%security.interactive_login_listener.class%">
+            <argument type="service" id="user_manager" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <service id="security.form_authentication_listener" class="%security.form_authentication_listener.class%">
+            <argument type="service" id="session" />
+            <argument type="service" id="translator" />
+            <argument type="service" id="router" />
+        </service>
+
+        <service id="user_listener" class="%user_listener.class%" public="false">
+            <argument type="service" id="service_container" />
+            <tag name="doctrine.event_subscriber" />
+        </service>
+
+        <service id="url_redirect_listener" class="%url_redirect_listener.class%">
+            <argument type="service" id="router"/>
+            <tag name="kernel.event_subscriber" />
+        </service>
+    </services>
+</container>

@@ -1,0 +1,11 @@
+<header>
+    <table class="document table">
+        <tr>
+            <td>
+                {% if company.hasLogoUrl %}
+                    <img src="{{ company.logoWebPath|imagine_filter('logo_thumb') }}"/>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+</header>

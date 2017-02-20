@@ -1,0 +1,165 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+    <h1>
+        {{ 'petty_cash_notes.title'|trans }}
+        <small class="pull-right">
+            <a title="{{ 'filter.show' }}" aria-expanded="false" data-toggle="collapse"
+               href="#filter">{{ icon('search') }}</a>
+        </small>
+    </h1>
+
+    {{ filter_start(filterForm) }}
+        {% include 'AppBundle:PettyCashNote:_filter.html.twig' with {'form': filterForm } %}
+    {{ filter_end(filterForm) }}
+
+    {% if pagination|length > 0 %}
+        <table id="petty-cash-notes" class="table">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'sort.type'|trans, 'note.type') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'sort.ref'|trans, 'note.ref') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'sort.date'|trans, 'note.recordedAt') }}</th>
+                <th>{{ 'sort.description'|trans }}</th>
+                <th>{{ 'sort.account'|trans }}</th>
+                <th class="text-right">{{ knp_pagination_sortable(pagination, 'sort.amount'|trans, 'note.amount') }}</th>
+                <th>&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for pettyCashNote in pagination %}
+                {% set accountFrom = pettyCashNote.accountFrom %}
+                {% set accountTo = pettyCashNote.accountTo %}
+                <tr class="petty-cash-note">
+                    <td class="type {{ pettyCashNote.type }} col-md-1">
+                        <span class="label label-{{ pettyCashNote.isOutcome ? 'danger' : pettyCashNote.isIncome ? 'success' : 'warning' }}">{{ ('petty_cash_note.type.' ~ pettyCashNote.type)|trans }}</span>
+                    </td>
+                    <td class="col-md-1">
+                        {{ format_edit_link('petty_cash_note', pettyCashNote, pettyCashNote) }}
+                        {{ format_view_link('petty_cash_note', pettyCashNote, pettyCashNote) }}
+
+                        {% if pettyCashNote.hasAttachments %}
+                            {% set attachmentsHtml %}
+                                    <ul class="list-unstyled">
+                                        {% for attachment in pettyCashNote.attachments %}
+                                            <li>
+                                                <small><a href='{{ attachment.webPath }}'>{{ attachment }}</a></small>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                            {% endset %}
+
+                            <a href="#" data-html="true" data-toggle="popover"
+                               data-content="{{ attachmentsHtml|e |raw }}">{{ fa_icon('book') }}</a>
+                        {% endif %}
+
+                    </td>
+                    <td class="col-md-1">
+                        {{ pettyCashNote.recordedAt|date('d/m/Y') }}
+                    </td>
+                    <td class="col-md-3">
+                        {{ pettyCashNote.description|truncate }}
+                    </td>
+                    <td class="col-md-2">
+                        <small>
+                            {% if accountFrom %}
+                                {{ 'account.from'|trans }}:
+                                {% if is_granted('ACCOUNT_EDIT', accountFrom) %}
+                                    {{ format_edit_link('account', accountFrom, accountFrom, { class: 'account-from' }) }}
+                                {% else %}
+                                    {{ accountFrom }}
+                                {% endif %}
+                            {% endif %}
+                            {% if pettyCashNote.isTransfer %}
+                                <br/>
+                            {% endif %}
+                            {% if accountTo %}
+                                {{ 'account.to'|trans }}:
+                                {% if is_granted('ACCOUNT_EDIT', accountTo) %}
+                                    {{ format_edit_link('account', accountTo, accountTo, { class: 'account-to', enabled: is_granted('ACCOUNT_EDIT', accountTo)}) }}
+                                {% else %}
+                                    {{ accountTo }}
+                                {% endif %}
+                            {% endif %}
+                        </small>
+                    </td>
+                    <td class="col-md-2 text-right">
+                        {% if pettyCashNote.hasInvoices %}
+                            {% set invoicesHtml %}
+                                <small>
+                                    <table>
+                                        {% for invoicePerNote in pettyCashNote.invoices %}
+                                            {% set invoice = invoicePerNote.invoice %}
+                                            <tr>
+                                                <td>{{ format_view_link('document', invoice, invoice)|replace('"', '\'') }}
+                                                    :
+                                                </td>
+                                                <td>&nbsp;{{ invoicePerNote.amount|format_currency }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                </small>
+                            {% endset %}
+                            <a href="#" data-html="true" data-toggle="popover"
+                               data-content="{{ invoicesHtml|raw }}">{{ fa_icon('book') }}</a>
+                        {% endif %}
+
+                        {{ pettyCashNote.amount | format_currency }}
+
+                    </td>
+
+                    <td class="col-md-1 text-right">
+                        {{ format_edit_icon('petty_cash_note', pettyCashNote) }}
+                        {{ format_view_icon('petty_cash_note', pettyCashNote) }}
+                        {{ format_delete_icon('petty_cash_note', pettyCashNote) }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="4">
+                    &nbsp;
+                </td>
+
+                <td colspan="2" class="text-right totals">
+                    <dl class="dl-horizontal">
+                        <dt>{{ 'fields.total_amount'|trans }}</dt>
+                        <dd>{{ totalAmount | format_currency }}</dd>
+                    </dl>
+
+                </td>
+                <td>
+                    &nbsp;
+                </td>
+            </tr>
+            </tfoot>
+
+        </table>
+
+        {{ knp_pagination_render(pagination) }}
+    {% else %}
+        <p class="empty-list">
+            {{ 'petty_cash_notes.empty_list'|trans }}
+        </p>
+    {% endif %}
+
+    {{ format_create_link('petty_cash_note') }}
+
+{% endblock main_content %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('css/filter.css') }}" rel="stylesheet" media="screen">
+{% endblock stylesheets %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('js/filter.min.js') }}"></script>
+
+    {% include 'AppBundle:Default:_filter_js.html.twig' %}
+
+    {% include 'AppBundle:Default:_delete_js.html.twig' with { message: 'petty_cash_note.delete_confirmation' } %}
+{% endblock javascripts %}

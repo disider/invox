@@ -1,0 +1,29 @@
+{% extends 'one-column.html.twig' %}
+
+{% block main_content %}
+    <div class="row">
+
+        <div class="col-md-12 col-lg-push-3 col-lg-6">
+            <h1>{{ 'contact_us.title'|trans }}</h1>
+
+            {{ form_start(form, {'action' : path('contact_us')}) }}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.subject) }}
+                    {{ form_row(form.body) }}
+                    {% if form.recaptcha is defined %}
+                        {{ form_row(form.recaptcha) }}
+                    {% endif %}
+                    <hr />
+
+                    {{ form_widget(form.submit) }}
+
+                    {{ form_rest(form) }}
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+

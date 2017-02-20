@@ -1,0 +1,7 @@
+{% block localizedNumber_widget %}
+    {% spaceless %}
+        {% set attr = attr|merge({ 'class': (attr.class|default('') ~ (' localized-number'))|trim }) %}
+
+        {{ block('form_widget_simple') }}
+    {% endspaceless %}
+{% endblock %}

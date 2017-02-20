@@ -1,0 +1,49 @@
+{% block _recurrence_direction_widget %}
+    {% spaceless %}
+        <div {{ block('widget_container_attributes') }}>
+            {% for child in form %}
+                {{ radio_row(child, {
+                    'no_form_group': true,
+                    'inline' : (attr.inline is defined and attr.inline),
+                    'label_attr': label_attr|merge({'class': 'btn btn-default btn-sm' ~ (child.vars.data ? ' active' : '') }),
+                    'no_wrapper': true,
+                }) }}
+            {% endfor %}
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _recurrence_repeats_widget %}
+    {% spaceless %}
+        <div {{ block('widget_container_attributes') }}>
+            {% for child in form %}
+                {{ radio_row(child, {
+                    'no_form_group': true,
+                    'inline' : (attr.inline is defined and attr.inline),
+                    'label_attr': label_attr|merge({'class': 'btn btn-default btn-sm' ~ (child.vars.data ? ' active' : '') }),
+                    'no_wrapper': true,
+                }) }}
+            {% endfor %}
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block documentLink_row %}
+    <div class="form-group {% if form.vars.errors|length > 0 %} has-error{% endif %}">
+
+        {{ form_label(form) }}
+        <div class="input-group">
+        <span class="input-group-addon">
+            <a href="#" class="{{ type }}-link">
+            {% if form.parent.offsetGet(linkedTo).vars.data %}
+                {{ fa_icon('link') }}
+            {% else %}
+                {{ fa_icon('search') }}
+            {% endif %}
+            </a>
+        </span>
+            {{ form_widget(form) }}
+        </div>
+        {{ form_errors(form) }}
+    </div>
+{% endblock %}

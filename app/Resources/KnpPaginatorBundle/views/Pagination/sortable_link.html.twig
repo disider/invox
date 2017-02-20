@@ -1,0 +1,3 @@
+{% set icon = options['class'] == 'sortable' ? 'sort' : options['class'] == 'asc' ? 'sort-asc' : 'sort-desc'%}
+
+<a{% for attr, value in options %} {{ attr }}="{{ value }}"{% endfor %}>{{ title }} <i class="fa fa-{{ icon }}"></i></a>

@@ -1,0 +1,20 @@
+{{ form_start(form) }}
+<div class="panel panel-default">
+    <div class="panel-body ">
+        {{ form_errors(form, { global_errors: true }) }}
+
+        {{ form_row(form.email) }}
+
+        <p class="form-control-static">
+            <a id="change_password"
+               href="{{ path('profile_change_password') }}">{{ 'user.change_password'|trans }}</a>
+        </p>
+    </div>
+</div>
+
+<div class="form-actions">
+    {{ form_widget(form.save) }}
+    {{ form_widget(form.saveAndClose) }}
+</div>
+
+{{ form_end(form) }}

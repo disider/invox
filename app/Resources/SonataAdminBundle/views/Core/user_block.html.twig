@@ -1,0 +1,7 @@
+{% block user_block %}
+    <li>
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <a role="menuitem" tabindex="-1" href="{{ path('admin_logout') }}">{{ 'menu.logout'|trans }}</a>
+        {% endif %}
+    </li>
+{% endblock user_block %}

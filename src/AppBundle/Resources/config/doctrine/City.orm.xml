@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="AppBundle\Entity\City" table="city" repository-class="AppBundle\Entity\Repository\CityRepository">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="name" column="name" type="string" length="255"/>
+
+        <one-to-many target-entity="ZipCode" field="zipCodes" mapped-by="city"/>
+
+        <many-to-one field="province" target-entity="Province" inversed-by="cities">
+            <join-column name="province_id" referenced-column-name="id" on-delete="CASCADE" nullable="false"/>
+        </many-to-one>
+    </entity>
+
+</doctrine-mapping>

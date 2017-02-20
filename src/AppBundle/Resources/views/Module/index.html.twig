@@ -1,0 +1,40 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+    <h1>{{ 'modules.title'|trans }}</h1>
+
+    <table id="modules" class="table">
+        <tr>
+            <th>{{ 'sort.name'|trans }}</th>
+            <th class="text-center">{{ 'sort.status'|trans }}</th>
+            <th>&nbsp;</th>
+        </tr>
+        {% for module in modules %}
+            <tr class="module">
+                <td class="col-md-10">
+                    {{ module|trans }}
+                </td>
+
+                <td class="col-md-1 text-center">
+                    {% if company.hasModule(module) %}
+                        <span class="label label-success">{{ 'module.enabled'|trans }}</span>
+                    {% else %}
+                        <span class="label label-danger">{{ 'module.disabled'|trans }}</span>
+                    {% endif %}
+                </td>
+
+                <td class="col-md-1 text-right">
+                    {% if company.hasModule(module) %}
+                        <a class="disable btn btn-xs btn-default"
+                           href="{{ path('module_disable', {'moduleName': module.url }) }}"
+                           title="{{ 'module.disable'|trans({'%module%': module|trans }) }}">{{ icon('times') }}</a>
+                    {% else %}
+                        <a class="enable btn btn-xs btn-default"
+                           href="{{ path('module_enable', {'moduleName': module.url }) }}"
+                           title="{{ 'module.enable'|trans({'%module%': module|trans }) }}">{{ icon('check') }}</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock main_content %}

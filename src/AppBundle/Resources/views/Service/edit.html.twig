@@ -1,0 +1,7 @@
+{% extends '::form.html.twig' %}
+
+{% block main_content %}
+    <h1>{{ 'service.edit'|trans({'%service%': form.vars.data }) }}</h1>
+
+    {% include 'AppBundle:Service:_form.html.twig' %}
+{% endblock main_content %}

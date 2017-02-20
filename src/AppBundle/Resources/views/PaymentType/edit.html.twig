@@ -1,0 +1,7 @@
+{% extends '::form.html.twig' %}
+
+{% block main_content %}
+    <h1>{{ 'payment_type.edit'|trans({'%payment_type%': form.vars.data }) }}</h1>
+
+    {% include 'AppBundle:PaymentType:_form.html.twig' %}
+{% endblock main_content %}

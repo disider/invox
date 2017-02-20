@@ -1,0 +1,120 @@
+h1 {
+  font-size: 30.8px; }
+
+h2 {
+  font-size: 25.2px; }
+
+h3 {
+  font-size: 21px; }
+
+h1, h2, h3 {
+  margin-top: 7.5px;
+  margin-bottom: 7.5px; }
+
+.dropdown-menu > li a {
+  padding: 5px 10px; }
+  .dropdown-menu > li a span {
+    margin-right: 3px; }
+.dropdown-menu > li:first-child a {
+  margin-top: 0; }
+.dropdown-menu > li:last-child a {
+  margin-bottom: 0; }
+.dropdown-menu > li:not(:first-child) a {
+  border-top: 1px solid #efefef; }
+
+nav .fa {
+  width: 15px;
+  text-align: center; }
+
+.navbar-link:focus, .navbar-link:hover {
+  text-decoration: none; }
+
+.has-error .with-errors {
+  background-color: #d9534f;
+  color: #fff;
+  padding: 1px 5px;
+  font-size: 12px;
+  margin-top: 0;
+  border-radius: 3px; }
+.has-error ul {
+  margin-bottom: 0; }
+
+label.required:after,
+span.required:after {
+  content: "*";
+  color: #d9534f;
+  margin-left: 1px; }
+label.btn.required:after,
+span.btn.required:after {
+  content: ""; }
+
+.label {
+  display: inline-block;
+  vertical-align: text-bottom;
+  padding: 0.3em 0.5em; }
+
+.status.label {
+  font-size: 13px; }
+  .status.label.label-default {
+    background-color: transparent;
+    color: #444;
+    font-weight: normal; }
+
+.totals dt {
+  font-weight: normal; }
+.totals dd {
+  font-weight: bold; }
+
+.nav-tabs .has-error a {
+  color: #d9534f; }
+
+.pagination {
+  margin: 0; }
+
+.form-group-sm .form-control,
+.input-sm {
+  padding: 5px; }
+
+.selectize-control.loading .selectize-input {
+  background: transparent url("../images/loader.gif") no-repeat scroll right center content-box;
+  background-size: contain; }
+
+.loading {
+  background: transparent url("../images/loader.gif") no-repeat scroll right center content-box;
+  background-size: contain; }
+
+span.popover-trigger {
+  cursor: pointer;
+  margin-right: 10px; }
+
+.popover-content {
+  width: 100%; }
+  .popover-content ul {
+    margin-bottom: 0; }
+    .popover-content ul li {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; }
+
+.tt-dataset .empty-list {
+  font-size: 12px;
+  margin: 0 5px; }
+
+.nav-tabs {
+  margin: 0px -15px;
+  padding: 0 15px; }
+  .nav-tabs li {
+    font-weight: bold; }
+    .nav-tabs li.active a {
+      background-color: #c3eafc; }
+      .nav-tabs li.active a:hover, .nav-tabs li.active a:focus {
+        outline: none;
+        background-color: #c3eafc; }
+
+.tab-content {
+  margin: 0px -15px 15px;
+  padding: 10px 15px;
+  background-color: #c3eafc;
+  border-bottom: 1px solid #ddd; }
+
+/*# sourceMappingURL=style.css.map */

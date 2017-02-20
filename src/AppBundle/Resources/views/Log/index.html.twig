@@ -1,0 +1,39 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+    {#{% include 'AppBundle:Default:_filter.html.twig' with { route: 'logs' } %}#}
+
+    <h1>{{ 'logs.title'|trans }}</h1>
+
+    {% if pagination|length > 0 %}
+        <table id="logs" class="table">
+            <tr>
+                <th>{{ 'sort.date'|trans }}</th>
+                <th>{{ 'sort.type'|trans }}</th>
+                <th>{{ 'sort.user'|trans }}</th>
+            </tr>
+            {% for log in pagination %}
+                <tr class="log">
+                    <td class="col-md-2">
+                        <small>{{ log.date|date('Y/m/d H:i:s') }}</small>
+                    </td>
+                    <td class="col-md-6 collapsible">
+                        <a class="collapsed" href="#log-details-{{ log.id }}" data-toggle="collapse">{{ ('log.' ~ log.action)|trans }}</a>
+                        <p id="log-details-{{ log.id }}" class="collapse">
+                            {{ log.details }}
+                        </p>
+                    </td>
+                    <td class="col-md-4">
+                        {{ log.user }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        {{ knp_pagination_render(pagination) }}
+    {% else %}
+        <p class="empty-list">
+            {{ 'logs.empty_list'|trans }}
+        </p>
+    {% endif %}
+
+{% endblock main_content %}

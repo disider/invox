@@ -1,0 +1,28 @@
+<table class="table table-striped">
+    <tr class="table-header">
+        <th>
+            <div class="col-xs-2">{{ 'sort.ref'|trans }}</div>
+            <div class="col-xs-2">{{ 'sort.date'|trans }}</div>
+            <div class="col-xs-5">{{ 'sort.account'|trans }}</div>
+            <div class="col-xs-3 text-right">{{ 'sort.amount'|trans }}</div>
+        </th>
+    </tr>
+    {% for invoicePerNote in document.pettyCashNotes %}
+        {% set pettyCashNote = invoicePerNote.note %}
+        <tr class="table-row">
+            <td>
+                <div class="col-xs-2"><a href="{{ path('petty_cash_note_edit', { 'id': pettyCashNote.id}) }}">{{ pettyCashNote.ref }}</a></div>
+                <div class="col-xs-2">{{ pettyCashNote.recordedAt|date('d/m/Y')}}</div>
+                <div class="col-xs-5">
+                    {% if pettyCashNote.isIncome %}
+                        {{ pettyCashNote.accountTo }}
+                    {% endif %}
+                    {% if pettyCashNote.isOutcome %}
+                        {{ pettyCashNote.accountFrom }}
+                    {% endif %}
+                </div>
+                <div class="col-xs-3 text-right">{{ invoicePerNote.amount | format_currency }}</div>
+            </td>
+        </tr>
+    {% endfor %}
+</table>

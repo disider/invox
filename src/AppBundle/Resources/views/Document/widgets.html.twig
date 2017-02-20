@@ -1,0 +1,245 @@
+{% block _document_type_widget %}
+    {% spaceless %}
+        <div {{ block('widget_container_attributes') }}>
+            {% for child in form %}
+                {{ radio_row(child, {
+                    'no_form_group': true,
+                    'inline' : (attr.inline is defined and attr.inline),
+                    'label_attr': label_attr|merge({'class': 'btn btn-default btn-sm' ~ (child.vars.data ? ' active' : '') }),
+                    'no_wrapper': true,
+                }) }}
+            {% endfor %}
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _document_direction_widget %}
+    {% spaceless %}
+        <div {{ block('widget_container_attributes') }}>
+            {% for child in form %}
+                {{ radio_row(child, {
+                    'no_form_group': true,
+                    'inline' : (attr.inline is defined and attr.inline),
+                    'label_attr': label_attr|merge({'class': 'btn btn-default btn-sm' ~ (child.vars.data ? ' active' : '') }),
+                    'no_wrapper': true,
+                }) }}
+            {% endfor %}
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block documentRows_widget %}
+    {% spaceless %}
+        {% if prototype is defined %}
+            {% set attr = attr|merge({'data-prototype': form_row(prototype)}) %}
+            {% set attr = attr|merge({'data-prototype-name': prototype.vars.name}) %}
+        {% endif %}
+        {% set attr = attr|merge({'data-allow-add': allow_add ? 1 : 0}) %}
+        {% set attr = attr|merge({'data-allow-remove': allow_delete ? 1 : 0 }) %}
+        {% set attr = attr|merge({'data-name-prefix': full_name}) %}
+
+        <div class="header">
+            <div class="col-xs-5"><span class="required">{{ 'fields.title'|trans }}</span></div>
+            <div class="col-xs-2"><span class="required">{{ 'fields.unit_price'|trans }}</span></div>
+            <div class="col-xs-2"><span class="required">{{ 'fields.discount_per_item'|trans }}</span></div>
+            <div class="col-xs-1"><span class="required">{{ 'fields.quantity'|trans }}</span></div>
+            <div class="col-xs-2">&nbsp;</div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        {{ block('form_widget') }}
+
+    {% endspaceless %}
+{% endblock %}
+
+{% block documentRow_widget %}
+    <div id="{{ form.vars.id }}" class="document-row">
+
+        <div class="row">
+            <div class="col-xs-5 {% if form.title.vars.errors|length > 0 %} has-error{% endif %}">
+                {% if is_granted('PRODUCT_SEARCH') or is_granted('SERVICE_SEARCH') %}
+                    {% set prepend = fa_icon('search') %}
+
+                    {% if form.vars.data %}
+                        {% if form.vars.data.hasLinkedProduct %}
+                            {% set prepend %}
+                                <a href="#" class="unlink-product">{{ 'document_row.product'|trans }}</a>
+                            {% endset %}
+                        {% endif %}
+
+                        {% if form.vars.data.hasLinkedService %}
+                            {% set prepend %}
+                                <a href="#" class="unlink-service">{{ 'document_row.service'|trans }}</a>
+                            {% endset %}
+                        {% endif %}
+                    {% endif %}
+
+                    {{ form_row(form.title, {label: false, attr: {class: 'title'}, input_group: { prepend: prepend }}) }}
+
+                    {{ form_widget(form.linkedProduct, {attr: {class: 'linked-product' }}) }}
+                    {{ form_widget(form.linkedService, {attr: {class: 'linked-service' }}) }}
+                {% else %}
+                    {{ form_row(form.title, {label: false, attr: {class: 'title'}}) }}
+                {% endif %}
+            </div>
+            <div class="col-xs-2 {% if form.unitPrice.vars.errors|length > 0 %} has-error{% endif %}">
+                {{ form_widget(form.unitPrice, {attr: {class: 'unit-price text-right'}}) }}
+                {{ form_errors(form.unitPrice) }}
+            </div>
+            <div class="col-xs-2 {% if form.discount.vars.errors|length > 0 %} has-error{% endif %}">
+                <div class="input-group">
+                    {{ form_widget(form.discountPercent) }}
+                    {{ form_widget(form.discount, {attr: {class: 'discount text-right'}}) }}
+                </div>
+                {{ form_errors(form.discount) }}
+            </div>
+            <div class="col-xs-1 {% if form.quantity.vars.errors|length > 0 %} has-error{% endif %}">
+                {{ form_widget(form.quantity, {attr: {class: 'quantity text-right'}}) }}
+                {{ form_errors(form.quantity) }}
+            </div>
+            <div class="collection-actions col-xs-2 text-right">
+                <a href="#" class="collection-up btn btn-xs btn-default"
+                   title="{{ 'actions.move_document_row_up'|trans }}">{{ fa_icon('arrow-up') }}</a>
+                <a href="#" class="collection-down btn btn-xs btn-default"
+                   title="{{ 'actions.move_document_row_down'|trans }}">{{ fa_icon('arrow-down') }}</a>
+                <a href="#" class="collection-remove btn btn-xs btn-default"
+                   title="{{ 'actions.delete_document_row'|trans }}">{{ fa_icon('trash') }}</a>
+                <a href="#" class="collection-duplicate btn btn-xs btn-default"
+                   title="{{ 'actions.copy'|trans }}">{{ fa_icon('copy') }}</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-5 {% if form.description.vars.errors|length > 0 %} has-error{% endif %}">
+                {{ form_widget(form.description, {attr: {class: 'description'}}) }}
+                {{ form_errors(form.description) }}
+            </div>
+            <div class="col-xs-2 {% if form.taxRate.vars.errors|length > 0 %} has-error{% endif %}">
+                {{ form_label(form.taxRate) }}
+                {{ form_widget(form.taxRate, {attr: {class: 'tax-rate'}}) }}
+                {{ form_errors(form.taxRate) }}
+            </div>
+            <div class="col-xs-push-3 col-xs-2">
+                {{ form_label(form.grossCost) }}
+                {{ form_widget(form.grossCost, {attr: {class: 'total text-right'}}) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block documentRows_javascript %}
+    <script type="text/template" id="taxes-template">
+        <div class="col-md-7 text-right">{{ 'document.taxes'|trans({'%currency%': currency()})|raw }}</div>
+        <div class="taxes-%amount% col-md-5 text-right">
+            {{ currency() }}&nbsp;<span>%taxesTotal%</span>
+        </div>
+    </script>
+
+    <script src="{{ asset('js/document-rows.js') }}?version={{ version }}"></script>
+    <script src="{{ asset('js/document-row.js') }}?version={{ version }}"></script>
+    <script src="{{ asset('js/discount-percent-toggle.js') }}?version={{ version }}"></script>
+
+    <script>
+        $(function () {
+            var decimalPoint = '{{ decimalPoint() }}';
+            var thousandSep = '{{ thousandSeparator() }}';
+
+            var $panel = $('#rows-panel');
+            var $rows = $('#{{ form.vars.id }}');
+
+            var $header = $panel.find('.header');
+            var $footer = $panel.find('.footer');
+            var $emptyList = $panel.find('.empty-list');
+
+            $rows.collection({
+                add: '<a href="#" class="collection-add btn btn-sm btn-primary" title="{{ 'actions.add_document_row'|trans }}">{{ 'actions.add_document_row'|trans }} </a>',
+                add_at_the_end: true,
+                allow_duplicate: true,
+                form_name: '{{ full_name }}',
+                form_prefix: '{{ id }}',
+                after_add: function ($collection, $element) {
+                    var $row = $element.find('.document-row');
+
+                    $rows.documentRows('addRow', $row, true);
+
+                    updateCollection($collection);
+                },
+                after_remove: function ($collection, $element) {
+                    updateCollection($collection);
+
+                    $rows.documentRows('updateTotals');
+                }
+            });
+
+            var options = {
+                decimalPoint: decimalPoint,
+                thousandSep: thousandSep,
+                currency: '{{ currency() }}'
+            };
+
+            {% if is_granted('PRODUCT_SEARCH') %}
+            options['productUrl'] = '{{ path('product_search') }}';
+            options['productTitle'] = '{{ 'document_row.product'|trans }}';
+            {% endif %}
+            {% if is_granted('SERVICE_SEARCH') %}
+            options['serviceUrl'] = '{{ path('service_search') }}';
+            options['serviceTitle'] = '{{ 'document_row.service'|trans }}';
+            {% endif %}
+
+            $rows.documentRows(options);
+
+            function updateCollection($collection) {
+                var $addContainer = $('.collection-add');
+
+                if ($collection.find('.document-row').length == 0) {
+                    $header.hide();
+                    $footer.hide();
+                    $emptyList.show();
+
+                    $addContainer.detach().appendTo($emptyList.find('.add-container'));
+                }
+                else {
+                    $header.show();
+                    $footer.show();
+                    $emptyList.hide();
+
+                    $addContainer.detach().appendTo($footer.find('.add-container'));
+                }
+            }
+
+            updateCollection($rows);
+        });
+    </script>
+
+    {% for child in form %}
+        {{ form_javascript(child) }}
+    {% endfor %}
+{% endblock %}
+
+{% block discountPercentToggle_widget %}
+    {% spaceless %}
+        <a href='#' class="input-group-addon discount-percent-toggle">{{ form.vars.data ? '%' : currency() }}</a>
+        {{ form_widget(form, {attr: { class: 'discount-percent hidden'}}) }}
+    {% endspaceless %}
+{% endblock %}
+
+{% block documentLink_row %}
+    <div class="form-group {% if form.vars.errors|length > 0 %} has-error{% endif %}">
+
+        {{ form_label(form) }}
+        <div class="input-group">
+        <span class="input-group-addon">
+            <a href="#" class="{{ type }}-link">
+            {% if form.parent.offsetGet(linkedTo).vars.data %}
+                {{ fa_icon('link') }}
+            {% else %}
+                {{ fa_icon('search') }}
+            {% endif %}
+            </a>
+        </span>
+            {{ form_widget(form) }}
+        </div>
+        {{ form_errors(form) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,42 @@
+<footer>
+    <table class="table">
+        <tr>
+            <td class="right">
+                <h2 class="name">{{ company.name }}</h2>
+
+                <ul class="list-unstyled">
+                    {% if company.address %}
+                        <li class="address">{{ company.address }}</li>
+                    {% endif %}
+
+                    {% if company.zipCode %}
+                        <li>
+                            {{ company.zipCode }} {{ company.city }} ({{ company.province }})
+                            &ndash;
+                            {{ company.country }}
+                        </li>
+                    {% endif %}
+                    {% if company.vatNumber %}
+                        <li class="vat-number">{{ 'company.vat_number'|trans }}: {{ company.vatNumber }}</li>
+                    {% endif %}
+                    {% if company.fiscalCode %}
+                        <li>{{ company.fiscalCode }}</li>
+                    {% endif %}
+                    {% if company.phoneNumber %}
+                        <li>
+                            {{ 'company.phone_number'|trans }}: {{ company.phoneNumber }}
+                            &ndash;
+                            {% if company.faxNumber %}
+                                {{ 'company.fax_number'|trans }}: {{ company.faxNumber }}
+                            {% endif %}
+                        </li>
+                    {% elseif company.faxNumber %}
+                        <li>
+                            {{ 'company.fax_number'|trans }}: {{ company.faxNumber }}
+                        </li>
+                    {% endif %}
+                </ul>
+            </td>
+        </tr>
+    </table>
+</footer>

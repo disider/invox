@@ -1,0 +1,48 @@
+{{ form_start(form) }}
+<div class="panel panel-default">
+    <div class="panel-body ">
+        {{ form_errors(form, { global_errors: true }) }}
+
+        {% if form.isSuperAdmin is defined %}
+            <p>
+                {{ form_widget(form.isSuperAdmin) }}
+                {{ form_label(form.isSuperAdmin) }}
+            </p>
+        {% endif %}
+
+        {% if form.enabled is defined %}
+            <p>
+                {{ form_widget(form.enabled) }}
+                {{ form_label(form.enabled) }}
+            </p>
+        {% endif %}
+
+        {% if form.ownedCompanies is defined %}
+            {{ form_row(form.ownedCompanies) }}
+        {% endif %}
+
+        {% if form.accountedCompanies is defined %}
+            {{ form_row(form.accountedCompanies) }}
+        {% endif %}
+
+        {% if form.managedCompanies is defined %}
+            {{ form_row(form.managedCompanies) }}
+        {% endif %}
+
+        {% if form.marketedCompanies is defined %}
+            {{ form_row(form.marketedCompanies) }}
+        {% endif %}
+
+        {{ form_row(form.email) }}
+
+        {{ form_row(form.password) }}
+
+    </div>
+</div>
+
+<div class="form-actions">
+    {{ form_widget(form.save) }}
+    {{ form_widget(form.saveAndClose) }}
+</div>
+
+{{ form_end(form) }}

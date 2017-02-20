@@ -1,0 +1,116 @@
+{% extends 'one-column.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="/css/launcher.css?{{ version }}" rel="stylesheet" media="screen">
+
+{% endblock %}
+
+{% block main_content %}
+    <div class="row box">
+        <div class="col-md-4 col-xs-12 short-description">
+            <div>
+                {{ 'homepage.short_description'|trans|raw }}
+            </div>
+        </div>
+
+        <div class="col-md-8 col-xs-12 slider-container">
+            <div id="slider" class="carousel slide" data-ride="carousel">
+
+                <ol class="carousel-indicators">
+                    <li data-target="#slider" data-slide-to="0" class="active"></li>
+                    <li data-target="#slider" data-slide-to="1"></li>
+                </ol>
+
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="{{ asset('images/slideshow/invox_ipad_mockup.jpg') }}" alt="mobile">
+                    </div>
+                    <div class="item">
+                        <img src="{{ asset('images/slideshow/invox_macbook-air.jpg') }}" alt="desktop">
+                    </div>
+                </div>
+
+                <a class="left carousel-control" href="#slider" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#slider" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
+            <a href="#" id="show-more" class="btn btn-launcher" type="button" data-toggle="collapse" data-target="#description" aria-expanded="false" aria-controls="description">
+                <span class="fa fa-chevron-up hidden"></span><span class="fa fa-chevron-down"></span> <span>{{ 'homepage.read_more'|trans|upper }}</span>
+            </a>
+            <a href="{{ launcher_links.demo }}" class="btn btn-launcher">{{ icon('th-large') }} <span>{{ 'homepage.live_preview'|trans|upper }}</span></a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div id="description" class="collapse">
+                <div class="well">
+                    {{ 'homepage.description'|trans|raw }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row box features">
+        <div class="col-md-4 feature main-features">
+            <div class="text-center header">
+                {{ 'homepage.main_features.title'|trans }}
+            </div>
+            <div class="content">
+                {{ 'homepage.main_features.features'|trans|raw }}
+            </div>
+        </div>
+
+        <div class="col-md-4 feature open-source">
+            <div class="text-center header">
+                {{ 'homepage.open_source.title'|trans }}
+            </div>
+            <div class="content">
+                <a href="{{ launcher_links.downlaod_code }}" class="btn btn-launcher">{{ icon('github') }} {{ 'homepage.open_source.download_github'|trans }}</a>
+                <p>
+                    {{ 'homepage.open_source.description'|trans }}
+                </p>
+                <div class="links">
+                    <a href="{{ launcher_links.wiki }}" class="">{{ icon('question-circle-o') }} <span>{{ 'homepage.open_source.wiki'|trans }}</span></a>
+                    <a href="{{ launcher_links.github_repo }}" class="">{{ icon('github') }} <span>{{ 'homepage.open_source.repository'|trans }}</span></a>
+                    <a href="{{ launcher_links.community }}" class="">{{ icon('users') }} <span>{{ 'homepage.open_source.community'|trans }}</span></a>
+                    <a href="{{ launcher_links.join_development }}" class="">{{ icon('code') }} <span>{{ 'homepage.open_source.join_development'|trans }}</span></a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-4 feature pro-install">
+            <div class="text-center header">
+                {{ 'homepage.pro_install.title'|trans }}
+            </div>
+            <div class="content">
+                <a href="{{ path('contact_us') }}" class="btn btn-pro btn-block">
+                    <img src="{{ asset('images/pro-icon.png') }}"> <span>{{ "homepage.pro_install.go_pro"|trans }}</span>
+                </a>
+                <p>{{ 'homepage.pro_install.description'|trans }}</p>
+                {{ 'homepage.pro_install.features'|trans|raw }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('js/launcher.js') }}?version={{ version }}"></script>
+
+{% endblock javascripts %}

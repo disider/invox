@@ -1,0 +1,859 @@
+# Loco yaml export: Symfony YAML object
+# Project: Invox
+# Release: Working copy
+# Locale: it-IT, Italian (Italy)
+# Tagged: messages
+# Status: Translated
+# Exported by: Neil Armstrong
+# Exported at: Fri, 13 Jan 2017 10:43:11 +0000
+---
+account:
+    create: Aggiungi un conto
+    delete: Elimina "%account%"
+    delete_confirmation: Sei sicuro di voler cancellare questo conto?
+    edit: Modifica "%account%"
+    empty_list: Nessun conto definito
+    from: Da
+    title: Conti
+    to: A
+    type:
+        bank: Banca
+        cash: Cassa
+        credit_card: Carta di credito
+        debit_card: Carta di debito
+accounts:
+    empty_list: Nessun conto definito
+    title: Conti
+actions:
+    accept: Accetta
+    add: Aggiungi
+    add_document_attachment: Aggiungi allegato
+    add_document_row: Aggiungi riga
+    add_invoice: Aggiungi fattura
+    add_paragraph: Aggiungi paragrafo
+    add_paragraph_template: Aggiungi schema di paragrafo
+    back_to_list: Torna alla lista
+    cancel: Annulla
+    close: Chiudi
+    copy: Duplica
+    delete: Elimina
+    delete_attachment: Elimina allegato
+    delete_document_row: Elimina riga
+    delete_invoice: Elimina
+    delete_logo: Elimina logo
+    delete_paragraph: Elimina paragrafo
+    edit: Modifica
+    edit_filename: 'Modifica nome file:'
+    edit_profile: Modifica il profilo
+    exit_impersonate: Esci
+    filter: Filtro
+    here: qui
+    login: Accedi
+    move_document_row_down: Muovi giù
+    move_document_row_up: Muovi su
+    move_paragraph_down: Muovi giù
+    move_paragraph_up: Muovi su
+    page_size: 'Per pagina:'
+    refuse: Rifiuta
+    register: Registrati
+    register_user: Registra utente
+    remove: Rimuovi
+    request_reset_password: Richiedi
+    reset: Reimposta
+    reset_password: Ripristina
+    retry: Riprova
+    save: Salva
+    save_and_close: Salva e chiudi
+    send: Invia
+    title: Azioni
+    upload: Carica
+    view: Mostra
+    yes: Yes
+    no: No
+    children: Paragrafi
+alert:
+    warning: Attenzione
+app:
+    name: Invox
+    welcome: Benvenuto su Invox
+change_password:
+    title: Modifica la password
+cities:
+    empty_list: Nessuna città definita
+    title: Città
+city:
+    create: Aggiungi una città
+    delete: Elimina '%city%'
+    delete_confirmation: Sei sicuro di voler eliminare questa città?
+    edit: Modifica '%city%'
+    name: Nome
+companies:
+    empty_list: Nessuna società definita.
+    title: Società
+company:
+    accountant: Commercialista
+    address_details: Indirizzo
+    contact_details: Contatti
+    create: Aggiungi una società
+    delete: Elimina "%company%"
+    delete_confirmation: Sei sicuro di voler cancellare questa società?
+    delete_invite_accountant: Annulla invito
+    deselect: Deseleziona "%company%"
+    disconnect_accountant: Scollega il commercialista
+    edit: Modifica "%company%"
+    fax_number: Fax
+    manage_accountant_for: Gestisci il commercialista per "%company%"
+    name: Nome
+    phone_number: Tel.
+    select: Seleziona "%company%"
+    settings: Impostazioni
+    vat: IVA
+    vat_number: P. IVA
+    view: Mostra "%company%"
+countries:
+    empty_list: Nessuna nazione definita
+    title: Nazioni
+country:
+    create: Aggiungi un Paese
+    delete: Elimina '%country%'
+    delete_confirmation: |
+        Sei sicuro di voler eliminare questo Paese?
+    edit: Modifica '%country%'
+    name: Nome
+credit_notes:
+    title: Note di credito
+customer:
+    add_document: Aggiungi un documento
+    address: Indirizzo
+    address_details: Indirizzo
+    contact_details: Contatti
+    create: Aggiungi una anagrafica
+    delete: Elimina "%customer%"
+    delete_confirmation: Sei sicuro di voler cancellare questa anagrafica?
+    edit: Modifica "%customer%"
+    name: Nome
+    vat_number: P. IVA
+    type:
+      customer: Cliente
+      prospect: Prospect
+      supplier: Fornitore
+customers:
+    empty_list: Nessun cliente definito
+    none_found: Nessun cliente trovato
+    title: Clienti/Fornitori
+delivery_notes:
+    title: Documenti di trasporto
+document:
+    add_new_customer: Vuoi aggiungere questa anagrafica alla rubrica?
+    changed_company_details: I dettagli della società sono modificati, clicca <a href="%url%">qui</a> per ricaricarli.
+    company: Società
+    copy: Copia "%document%"
+    create: Aggiungi un documento
+    customer: Cliente
+    delete: Elimina "%document%"
+    delete_confirmation: Sei sicuro di voler cancellare questo documento?
+    details: Dettagli
+    direction:
+        incoming: Entrata
+        outgoing: Uscita
+    discount: Sconto
+    edit: Modifica "%document%"
+    generating: In elaborazione...
+    gross_total: Totale (ivato)
+    internal_ref: '# interno'
+    net_total: Netto
+    number_line: Nr. %ref% del %issued_at%
+    paid_total: Totale pagato
+    preview_error: Il template ha alcuni errori
+    print: Stampa "%document%"
+    ref: '#'
+    rounding: Arrotondamento
+    rows: Righe
+    status:
+        none: Nessuno
+        paid: Pagato
+        unpaid: Non pagato
+    taxes: IVA <small>(%taxRate%% su %currency%&nbsp;         %netTotal%)</small>
+    type:
+        all_types: Tutti
+        credit_note: Nota di credito
+        delivery_note: Documento di trasporto
+        invoice: Fattura
+        order: Ordine
+        quote: Preventivo
+        receipt: Ricevuta
+    unpaid_total: Totale non pagato
+    view: Mostra "%document%"
+document_row:
+    gross_cost: Totale
+    net_cost: Netto
+    product: 'Prodotto:'
+    quantity: Quantità
+    service: 'Servizio:'
+    taxes: IVA
+    title: Titolo
+    unit_price: Prezzo unitario
+    vat: IVA
+document_rows:
+    empty_list: Nessuna riga definita
+document_template:
+    create: Aggiungi un template
+    delete: Elimina "%document_template%"
+    delete_confirmation: Sei sicuro di voler cancellare questo template?
+    edit: Modifica "%document_template%"
+    preview: 'Anteprima '
+    restore: Ripristina "%document_template%"
+    title: Document template
+document_template_per_company:
+    edit: Modifica "%document_template_per_company%"
+    preview: Anteprima per "%document_template_per_company%"
+    restore: Ripristina "%document_template_per_company%"
+document_templates:
+    empty_list: 'Nessun template definito '
+    title: Template
+documents:
+    empty_list: Nessun documento definito
+    none_found: Nessun documento trovato
+    title: Documenti
+error:
+    bad_credentials: Credenziali errate
+    email_already_defined: Email già registrata
+    unauthorized: Credenziali errate
+    wrong_password: Credenziali errate
+fields:
+    account: Conto
+    account_from: Conto da
+    account_to: Conto a
+    accountant: Contabile
+    accounted_companies: Società gestite contabilmente
+    action: Azione
+    additional_details: Dettagli aggiuntivi
+    address: Indirizzo
+    address_notes: Note sull'indirizzo
+    amount: Saldo
+    amount_from: Entrata
+    amount_to: Uscita
+    attachment: Allegato
+    attachments: Allegati
+    autocomplete_city: Inserisci 3 o più caratteri
+    autocomplete_customer: Inserisci 3 o più caratteri
+    autocomplete_invoice: Inserisci 3 o più caratteri
+    background_color: Colore di sfondo
+    body: Messagge
+    category: Categoria
+    change_type: Modifica tipo
+    city: Città
+    code: Codice
+    company: Società
+    content: Contenuto
+    contents: Contenuti
+    cost_centers: Centri di costo
+    country: Nazione
+    current_amount: Saldo corrente
+    current_password: Password attuale
+    current_stock: Giacenza corrente
+    customer: Cliente/Fornitore
+    days: Giorni
+    description: Descrizione
+    direction: Direzione
+    discount: Sconto
+    discount_per_item: Sconto (per unità)
+    document: Documento
+    document_types: Tipi di documento
+    email: Email
+    emails: Email
+    enabled: Abilitato?
+    enabled_in_warehouse: Attiva in magazzino
+    end_of_month: Fine mese
+    end_at: Termina il giorno
+    expired_at: Scaduto il
+    fax_number: Fax
+    file_name: Nome
+    file_url: URL
+    fiscal_code: Codice fiscale
+    font_family: Font
+    footer: Footer
+    from_date: Da
+    gross_total: Totale lordo
+    header: Header
+    header_color: Colore titolo
+    heading_color: Colore testata
+    iban: IBAN
+    id: Id
+    initial_amount: Saldo iniziale
+    initial_stock: Giacenza iniziale
+    internal_notes: Note ad uso interno
+    internal_ref: Numero interno
+    invite: Invita
+    invoice: Fattura
+    invoiced_total: Totale fatturato
+    invoices: Fatture
+    is_super_admin: Super admin
+    issued_at: Emesso il
+    language: Lingua
+    link_customer: Collega
+    linked_credit_note: Nota di credito
+    linked_invoice: Fattura
+    linked_order: Ordine
+    login: Login
+    logo: Logo
+    managed_companies: Società gestite
+    manager: Impiegato
+    marketed_companies: Commerciale delle società
+    measure_unit: Unità di misura
+    name: Nome
+    new_password: Nuova password
+    next_due_date: Scadenza
+    not_invoiced_total: Totale non fatturato
+    notes: Note
+    optional: Opzionale
+    owned_companies: Società possedute
+    owner: Titolare
+    occurrences: Occorrenze
+    paragraphs: Paragrafi
+    password: Password
+    payment_type: Tipo di pagamento
+    petty_cash_notes: Prima nota
+    phone_number: Telefono
+    placeholder:
+        content: Inserisci il tuo contenuto qui
+        description: Inserisci una descrizione
+        internal_ref: Inserisci un riferimento interno
+        ref: Inserisci un riferimento
+        title: Inserisci il titolo
+    position: Posizione
+    province: Prov.
+    quantity: Quantità
+    recorded_at: Registrato il
+    ref: Numero
+    referent: Referente
+    remember_me: Ricordami
+    roles: Ruoli
+    rounding: Arrotondamento
+    repeats: Si ripete
+    repeat_every: Ripeti ogni
+    repeat_day: Ripeti il giorno
+    repeat_for: Ripeti per
+    recurrence: Ricorrenza
+    rows: Righe
+    start_at: Inizia il giorno
+    sales_agent: Commerciale
+    self_invoice: Auto-fattura
+    show_advanced_details: Mostra dettagli avanzati
+    status: Stato
+    stock: Giacenza
+    subject: Oggetto
+    superadmin_details: Superadmin
+    table_header_background_color: Colore di sfondo dell'header delle tabelle
+    table_header_color: Colore dell'header delle tabelle
+    tables: Tabelle
+    tags: Tag
+    tax_rate: IVA
+    template: Template
+    text_color: Colore testo
+    title: Titolo
+    to_date: A
+    total: Totale
+    total_amount: Ammontare totale
+    type: Tipo
+    unit_price: Prezzo unitario
+    unlink_customer: Scollega cliente
+    unpaid_amount: Ammontare non pagato
+    upload: Carica
+    url: URL
+    use_customer_tax_rate: Usa l'IVA di default del cliente
+    username_or_email: Email
+    valid_until: Scadenza
+    vat: IVA
+    vat_number: Partita IVA
+    year: Anno
+    zip_code: CAP
+filter:
+    show: Mostra filtro
+flash:
+    account:
+        created: Conto "%account%" creato con successo.
+        deleted: Conto "%account%" eliminato con successo.
+        updated: Conto "%account%" modificato con successo.
+    city:
+        created: Città "%city%" creata con successo.
+        deleted: Città "%city%" eliminata con successo.
+        updated: Città "%city%" modificata con successo.
+    company:
+        accountant_already_connected: Commercialista già collegato
+        accountant_already_invited: Commercialista "%accountant%" già invitato.
+        accountant_disconnected: Commercialista disconnesso con successo.
+        accountant_invited: Commercialista "%accountant%" invitato con successo.
+        created: Società "%company%" creata con successo.
+        deleted: Società "%company%" eliminata con successo.
+        updated: Società "%company%" modificata con successo.
+    country:
+        created: Nazione "%country%" creata con successo.
+        deleted: Nazione "%country%" eliminata con successo.
+        updated: Nazione "%country%" modificata con successo.
+    customer:
+        created: Cliente "%customer%" creato con successo.
+        deleted: Cliente "%customer%" eliminato con successo.
+        updated: Cliente "%customer%" modificato con successo.
+    document:
+        copied: Documento "%document%" duplicato con successo.
+        created: Documento "%document%" creato con successo.
+        deleted: Documento "%document%" eliminato con successo.
+        updated: Documento "%document%" modificato con successo.
+    document_template:
+        created: Template "%document_template%" creato con successo.
+        deleted: Template "%document_template%" eliminato con successo.
+        restored: Template "%document_template%" ripristinato con successo.
+        updated: Template "%document_template%" modificato con successo.
+    invite:
+        accepted: Invito per "%company%" accettato.
+        refused: Invito per "%company%" rifiutato.
+    medium:
+        created: Medium creato con successo.
+        deleted: Medium eliminato con successo.
+        updated: Medium modificato con successo.
+    module:
+        disabled: Modulo "%module%" disabilitato con successo.
+        enabled: Modulo "%module%" abilitato con successo.
+    paragraph_template:
+        created: Template di paragrafo creato con successo.
+        deleted: Template di paragrafo eliminato con successo.
+        updated: Template di paragrafo modificato con successo.
+    password:
+        updated: Password modificata con successo.
+    payment_type:
+        created: Tipo di pagamento "%payment_type%" creato con successo.
+        deleted: Tipo di pagamento "%payment_type%" creato con successo.
+        updated: Tipo di pagamento "%payment_type%" modificato con successo.
+    petty_cash_note:
+        created: Prima nota "%petty_cash_note%" creata con successo.
+        deleted: Prima nota "%petty_cash_note%" eliminata con successo.
+        updated: Prima nota "%petty_cash_note%" modificata con successo.
+    product:
+        created: Prodotto "%product%" creato con successo.
+        deleted: Prodotto "%product%" eliminato con successo.
+        updated: Prodotto "%product%" modificato con successo.
+    profile:
+        updated: Profilo aggiornato con successo.
+    province:
+        created: Provincia "%province%" creata con successo.
+        deleted: Provincia "%province%" eliminata con successo.
+        updated: Provincia "%province%" modificata con successo.
+    registration:
+        confirmed: Il tuo account è confermato.
+    reset_password:
+        completed: La tua password è stata resettata.
+    recurrence:
+         created: Ricorrenza "%recurrence%" creata con successo.
+         deleted: Ricorrenza "%recurrence%" eliminata con successo.
+         updated: Ricorrenza "%recurrence%" modificata con successo.
+    service:
+        created: Servizio "%service%" creato con successo.
+        deleted: Servizio "%service%" eliminato con successo.
+        updated: Servizio "%service%" modificato con successo.
+    tax_rate:
+        created: Tasso "%tax_rate%" creato con successo.
+        deleted: Tasso "%tax_rate%" eliminato con successo.
+        updated: Tasso "%tax_rate%" modificato con successo.
+    user:
+        created: Utente "%user%" creato con successo.
+        deleted: Utente "%user%" eliminato con successo.
+        updated: Utente "%user%" modificato con successo.
+    warehouse_record:
+        created: Giacenza di magazzino creata con successo.
+        deleted: Giacenza di magazzino eliminata con successo.
+    working_note:
+        created: Nota di lavoro creata con successo.
+        deleted: Nota di lavoro eliminata con successo.
+        updated: Nota di lavoro modificata con successo.
+    zip_code:
+        created: CAP "%zip_code%" creato con successo.
+        deleted: CAP "%zip_code%" eliminato con successo.
+        updated: CAP "%zip_code%" modificato con successo.
+invite:
+    accept: Accetta l'invito per "%company%"
+    accepted: confermato
+    help: Sei stato invitato a gestire i conti di "%company%".
+    pending: in attesa di conferma
+    refuse: Rifiuta l'invito per "%company%"
+    show: Invito da "%company%"
+invites:
+    empty_list: Nessun invito definito
+    title: Inviti
+invoices:
+    empty_list: Nessuna fattura definita
+    expired_incoming: Fatture in ingresso scadute
+    expired_outgoing: Fatture in uscita scadute
+    title: Fatture
+locale:
+    en: Inglese
+    it: Italiano
+login:
+    already_registered: Vuoi accedere?
+    title: Accedi
+logs:
+    empty_list: Nessun log registrato.
+    title: Log
+media:
+    empty_list: Nessun allegato definito
+medium:
+    browse: Seleziona allegato
+    create: Aggiungi allegato
+    edit: Modifica allegato
+    list: Medium
+menu:
+    accounts: Conti
+    add_first_company: Aggiungi una società
+    cities: Città
+    companies: Società
+    countries: Nazioni
+    credit_notes: Note di credito
+    customers: Clienti/Fornitori
+    delivery_notes: Documenti di trasporto
+    document_templates: Template
+    documents: Documenti
+    dashboard: Home
+    invites: Inviti
+    invoices: Fatture
+    login: Accedi
+    logout: Esci
+    logs: Log
+    media: Media
+    modules: Moduli
+    my_company: La mia società
+    orders: Ordini
+    pages: Pagine
+    paragraph_templates: Schemi di paragrafo
+    payment_types: Tipi di pagamento
+    petty_cash_notes: Prima nota
+    products: Prodotti
+    provinces: Province
+    quotes: Preventivi
+    register: Registrati
+    receipts: Ricevute
+    recurrences: Ricorrenze
+    select_company: Seleziona la società
+    services: Servizi
+    settings: Impostazioni
+    superadmin: Superadmin
+    tax_rates: Tassi
+    users: Utenti
+    welcome: Benvenuto, <a class="navbar-link" href="%url%" title="%user%">%user%</a> %exit_impersonate%
+    working_notes: Note di lavoro
+    zip_codes: CAP
+module:
+    accounts: Conti
+    disable: Disabilita "%module%"
+    disabled: Disabilitato
+    enable: Abilita "%module%"
+    enabled: Abilitato
+    petty_cash_notes: Prima nota
+    products: Prodotti
+    services: Servizi
+    warehouse: Magazzino
+    recurrences: Ricorrenze
+    working_notes: Note di lavoro
+modules:
+    title: Moduli
+orders:
+    title: Ordini
+page:
+    create: Aggiungi una pagina
+    delete: Elimina "%page%"
+    delete_confirmation: Sei sicuro di voler cancellare questa pagina?
+    edit: Modifica "%page%"
+    view: Mostra "%page%"
+pages:
+    empty_list: Nessuna pagina definita
+    title: Pagine
+pagination:
+    results: Risultati da %from% a %to% su %results%
+paragraph_template:
+    create: Aggiungi nuovo schema di paragrafo
+    delete: Elimina "%paragraph_template%"
+    delete_confirmation: Sei sicuro di volere eliminare questo schema di paragrafo?
+    edit: Modifica "%paragraph_template%"
+paragraph_templates:
+    browse: Segli uno schema di paragrafo da aggiungere
+    empty_list: Non ci sono schemi di pargrafo definiti
+    title: Schemi di paragrafo
+payment_type:
+    create: Aggiungi un tipo
+    delete: '"%payment_type%" eliminato'
+    delete_confirmation: Sei sicuro di voler cancellare questo tipo di pagamento?
+    edit: Modifica "%payment_type%"
+    name: Nome
+payment_types:
+    empty_list: Nessun tipo di pagamento definito
+    title: Tipi di pagamento
+petty_cash_note:
+    create: Aggiungi una prima nota
+    delete: Elimina "%petty_cash_note%"
+    delete_confirmation: Sei sicuro di voler cancellare questa prima nota?
+    edit: Modifica "%petty_cash_note%"
+    no_transfer: Nessun trasferimento
+    transfer_to: Giroconto con %link%
+    type:
+        all_types: Tutti
+        income: Entrata
+        outcome: Uscita
+        transfer: Giroconto
+    view: Mostra "%petty_cash_note%"
+petty_cash_notes:
+    empty_list: Nessuna prima nota definita
+    title: Prima nota
+product:
+    create: Aggiungi un prodotto
+    delete: Elimina "%product%"
+    delete_confirmation: Sei sicuro di voler eliminare questo prodotto?
+    delete_warehouse_record: Elimina
+    edit: Modifica "%product%"
+    name: Nome
+    show_warehouse: Mostra magazzino
+    warehouse_not_enabled: Magazzino non attivo
+products:
+    empty_list: Nessun prodotto definito
+    title: Prodotti
+profile:
+    edit: Modifica profilo
+province:
+    create: Aggiungi una provincia
+    delete: Elimina "%province%"
+    delete_confirmation: Sei sicuro di voler eliminare questa provincia?
+    edit: Modifica "%province%"
+    name: Nome
+provinces:
+    empty_list: Nessuna provincia definita
+    title: Province
+quotes:
+    title: Preventivi
+receipts:
+    empty_list: Nessuna ricevuta definita
+    title: Ricevute
+registration:
+    check_email: Ti sei registrato con successo. Controlla la tua email, e attiva il tuo account.
+    completed: Registrazione completata.
+    login: accedi
+    message: Ora puoi cliccare su %url%.
+    not_yet_registered: Vuoi registrarti?
+    success: Registrazione avvenuta con successo
+    thank_you: Grazie!
+reset_password:
+    check_email: Hai richiesto il ripristino della password. Controlla la tua mail, e reimposta la password.
+    completed: Hai ripristinato la tua password
+    login: accedi
+    message: Ora puoi cliccare su %url%.
+    request: Hai dimenticato la password?
+    request_sent: La richiesta di ripristino password è stata inviata.
+    reset: Ripristina la password
+    thank_you: Grazie!
+role:
+    accountant: Commercialista
+    admin: Admin
+    allowed_to_switch: Può eseguire lo switch
+    clerk: Impiegato
+    owner: Titolare
+    sales: Commerciale
+    super_admin: Superadmin
+    user: Utente
+service:
+    create: Aggiungi un servizio
+    delete: Elimina "%service%"
+    delete_confirmation: Sei sicuro di voler eliminare questo servizio?
+    edit: Modifica "%service%"
+    name: Nome
+services:
+    empty_list: Nessun servizio definito
+    title: Servizi
+sort:
+    account: Conto
+    action: Azione
+    amount: Saldo
+    balance: Saldo
+    code: Codice
+    company: Società
+    current_amount: Saldo corrente
+    customer: Cliente
+    date: Data
+    delete_attachment: Elimina
+    description: Descrizione
+    document: Documento
+    email: Email
+    enabled: Abilitato?
+    initial_amount: Saldo iniziale
+    internal_ref: '# interno'
+    invoices: Fatture
+    issued_at: Data
+    load_quantity: Carico
+    name: Nome
+    purchase_price: Prezzo d'acquisto
+    quantity: Quantità
+    ref: '#'
+    role: Ruolo
+    sell_price: Prezzo di vendita
+    status: Stato
+    stock: Stock
+    tax_rate: Tasso
+    title: Titolo
+    total: Totale
+    type: Tipo
+    unit_price: Prezzo unitario
+    unload_quantity: Scarico
+    url: URL
+    user: Utente
+status:
+    all: Tutti
+    completed: Completato
+    idle: Inattivo
+    started: Iniziato
+tag:
+    add: Aggiungi
+tax_rate:
+    create: Aggiungi un tasso
+    delete: Elimina "%tax_rate%"
+    delete_confirmation: Sei sicuro di voler elimare questo tasso?
+    edit: Modifica "%tax_rate%"
+    name: Nome
+tax_rates:
+    empty_list: Nessun tasso definito
+    title: Tassi
+uploader:
+    drop_file: Trascina qui il file
+    drop_files: Trascina qui i file
+    processing_files: In processamento...
+user:
+    change_password: Modifica la password
+    create: Aggiungi un utente
+    delete: Elimina "%user%"
+    delete_confirmation: Sei sicuro di voler eliminare questo utente?
+    edit: Modifica "%user%"
+    impersonate: Impersona "%user%"
+users:
+    empty_list: Nessun utente definito
+    title: Utenti
+warehouse:
+    delete_confirmation: Sei sicuro di voler eliminare questa riga?
+    title: Magazzino per "%product%"
+welcome:
+    add_company: Clicca <a href="%url%">qui</a> per iniziare a gestire i tuoi conti, documenti e clienti.
+working_note:
+    create: Aggiungi una nota di lavoro
+    delete: Elimina "%working_note%"
+    delete_confirmation: Sei sicuro di voler eliminare questa nota di lavoro?
+    edit: Modifica"%working_note%"
+    generating: In elaborazione...
+    print: Stampa "%working_note%"
+    title:
+        show: Nota di lavoro
+        create: Aggiungi nota di lavoro
+        edit: Modifica nota di lavoro
+        list: Note di lavoro
+    view: Mostra "%working_note%"
+working_notes:
+    empty_list: Nessuna nota di lavoro definita
+    title: Note di lavoro
+zip_code:
+    create: Aggiungi un CAP
+    delete: Elimina "%zip_code%"
+    delete_confirmation: Sei sicuro di voler eliminare questo CAP?
+    edit: Modifica "%zip_code%"
+    name: Name
+zip_codes:
+    empty_list: Nessun CAP definito
+    title: CAP
+quotes:
+  title: Preventivi
+orders:
+  title: Ordini
+credit_notes:
+  title: Note di credito
+recurrence:
+  create: Crea una ricorrenza
+  edit: Modifica %recurrence%
+  delete: Elimina %recurrence%
+  delete_confirmation: Sei sicuro di volere eliminare questa ricorrenza?
+  direction:
+    incoming: Entrata
+    outgoing: Uscita
+  repeat:
+    everyday: Ogni giorno
+    every_week: Ogni settimana
+    every_month: Ogni mese
+    every_year: Ogni anno
+  repeat_for:
+    day_of_the_week: Giorno della settimana
+    day_of_the_month: Giorno del mese
+recurrences:
+  title: Ricorrenze
+  empty_list: Non ci sono ricorrenze definite
+  none_found: Nessuna ricorrenza trovata
+contact_us:
+    success: Grazie per averci contattato. La tua email sarà presa in carico dal nostro team il prima possibile.
+    title: Contattaci
+privacy:
+  title: Privacy
+  iubenda_link: //www.iubenda.com/privacy-policy/8015605
+homepage:
+  short_description: |
+    <p>
+      <strong>Invox</strong> è lo strumento <em>in cloud</em> indispensabile per una corretta contabilità aziendale. Facile ed intuitivo, è un software gestionale particolarmente adatto alle società di servizi e ai liberi professionisti che possono gestire e condividere via web i dati, con più persone e su diversi dispositivi.
+    </p>
+    <p>
+      <strong>Invox</strong> è una piattaforma <em>open source</em> ed è la chiave per avere sempre una chiara rappresentazione della situazione economico-finanziaria della propria azienda.
+    </p>
+  description: |
+    <p>
+      Più che uno strumento <strong>Invox</strong> è un <em>abile contabile</em> che ti aiuta nell’amministrazione. Puoi creare una
+      lista dei tuoi clienti e fornitori, associando a ciascuno un profilo con tutti i dati utili per la
+      fatturazione. Puoi generare ordini e preventivi relativi al cliente che ti richiede una lavorazione.
+      Quando il preventivo viene accettato dal tuo cliente, si genera l’ordine e in automatico la relativa
+      fattura in formato PDF.
+    </p>
+    <p>
+      Nella sezione “prima nota” si associano i pagamenti effettuati o ricevuti alle corrispettive fatture.
+      Grazie a questa operazione i conti corrente sono aggiornati automaticamente. A seconda delle tue
+      esigenze puoi inserire più conti bancari o carte di credito/debito da gestire separatamente. Con
+      Invox hai a disposizione uno strumento di gestione economico-finanziaria a 360°.
+    </p>
+    <p>
+      Disponibile in italiano e in inglese.
+    </p>
+  read_more: Altre info
+  live_preview: Demo
+  main_features:
+    title: Caratteristiche e funzionalità principali
+    features: |
+        <ul>
+          <li><span>Lista clienti e fornitori</span></li>
+          <li><span>Gestione prima nota, pagamenti effettuati e ricevuti</span></li>
+          <li><span>Gestione conti correnti aziendali</span></li>
+          <li><span>Gestione prodotti e servizi</span></li>
+          <li><span>Magazzino</span></li>
+          <li><span>Generazione ordini e relative fatture</span></li>
+          <li><span>Generazione preventivi</span></li>
+          <li><span>Salvataggio e stampa dei documenti in PDF</span></li>
+          <li><span>Allegati e file multimediali</span></li>
+          <li><span>Modelli di documento facilmente editabili</span></li>
+          <li><span>Condivisione con il proprio commercialista</span></li>
+          <li><span>Visualizzazione documenti scaduti</span></li>
+        </ul>
+  open_source:
+    title: Progetto Open Source
+    description: Invox Open Source è un software completo per gestire la tua contabilità gratituamente
+    download_github: Scarica su Github
+    wiki: Wiki e FAQ
+    repository: Github Repository
+    community: Community
+    join_development: Unisciti allo sviluppo
+  pro_install:
+    title: Installazione Pro
+    description: Installazione, configurazione, assistenza e il tuo spazio sul cloud. Passa alla versione Pro, con più funzionalità, senza stress e senza pensieri
+    go_pro: Invox Pro
+    features: |
+        <ul>
+          <li><span>Gestione multi-società</span></li>
+          <li><span>Installazione</span></li>
+          <li><span>Configurazione</span></li>
+          <li><span>Assistenza</span></li>
+          <li><span>Soluzione hosted</span></li>
+        </ul>

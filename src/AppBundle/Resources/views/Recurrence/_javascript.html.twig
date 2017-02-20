@@ -1,0 +1,58 @@
+<script src="{{ asset('js/document-link.js') }}?version={{ version }}"></script>
+
+<script type="text/javascript">
+    $(function () {
+        var $customerName = $('#{{ form.customerName.vars.id }}');
+        var $customer = $('#{{ form.customer.vars.id }}');
+        var $repeats = $('#{{ form.repeats.vars.id }}');
+
+
+        var $customerLink = $('.customer-link');
+
+        $customerLink.documentLink({
+            linkedTo: $customer
+        });
+
+        $customerName.autocomplete({
+            datasets: [{
+                url: '{{ path('customer_search') }}?term=',
+                field: 'customers',
+                display: function (item) {
+                    return item.name;
+                }
+            }],
+            templates: {
+                empty: '<div class="empty-list">' + '{{ 'customers.none_found'|trans }}' + '</div>'
+            },
+            afterSelect: function (event, item) {
+                $customer.val(item.id);
+
+                $customerLink.documentLink('setLink');
+            }
+        });
+
+        $repeats.find(':input').on('change', function () {
+            selectCurrentRepeats(this.value);
+        });
+
+        selectCurrentRepeats('{{ form.vars.data.repeats }}');
+
+        function selectCurrentRepeats(type) {
+//            var $repeatFor = $('.repeat-for');
+            var $repeatDays = $('.repeat-days');
+//            $repeatFor.hide();
+            $repeatDays.hide();
+
+            switch (type) {
+//                case 'every_month' :
+//                    $repeatFor.show();
+//                    break;
+                case 'every_week' :
+                    $repeatDays.show();
+                    break;
+            }
+
+        }
+
+    });
+</script>

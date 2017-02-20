@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="AppBundle\Entity\Company" table="company" repository-class="AppBundle\Entity\Repository\CompanyRepository">
+        <lifecycle-callbacks>
+            <lifecycle-callback type="postPersist" method="onUpload"/>
+            <lifecycle-callback type="postUpdate" method="onUpload"/>
+        </lifecycle-callbacks>
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="name" column="name" type="string" length="255" />
+        <field name="vatNumber" column="vat_number" type="string" length="20" />
+        <field name="fiscalCode" column="fiscal_code" type="string" length="20" nullable="true"/>
+        <field name="phoneNumber" column="phone_number" type="string" length="255" nullable="true"/>
+        <field name="faxNumber" column="fax_number" type="string" length="255" nullable="true"/>
+        <field name="address" column="address" type="text" nullable="true"/>
+        <field name="zipCode" column="zip_code" type="string" length="10" nullable="true"/>
+        <field name="city" column="city" type="string" length="255" nullable="true"/>
+        <field name="province" column="province" type="string" length="5" nullable="true"/>
+        <field name="addressNotes" column="address_notes" type="text" nullable="true" />
+        <field name="logoUrl" column="logo_url" type="string" length="255" nullable="true"/>
+
+        <field name="modules" column="modules" type="array" />
+        <field name="documentTypes" column="document_types" type="array" />
+
+        <one-to-many field="accounts" target-entity="Account" mapped-by="company">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+        <one-to-many field="customers" target-entity="Customer" mapped-by="company">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+        <one-to-many field="documents" target-entity="Document" mapped-by="company">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+        <one-to-many field="paymentTypes" target-entity="PaymentTypePerCompany" mapped-by="company">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+        <one-to-many field="pettyCashNotes" target-entity="PettyCashNote" mapped-by="company">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+        <one-to-many field="invites" target-entity="Invite" mapped-by="company">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+        <one-to-many field="products" target-entity="Product" mapped-by="company">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+        <one-to-many field="services" target-entity="Service" mapped-by="company">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+        <one-to-many field="workingNotes" target-entity="WorkingNote" mapped-by="company">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+        <one-to-many field="documentTemplates" target-entity="DocumentTemplatePerCompany" mapped-by="company" orphan-removal="true">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+        <many-to-one field="accountant" target-entity="User" inversed-by="accountedCompanies">
+            <join-column name="accountant_id" referenced-column-name="id" on-delete="SET NULL" nullable="true" />
+        </many-to-one>
+
+        <many-to-one field="owner" target-entity="User" inversed-by="ownedCompanies">
+            <join-column name="owner_id" referenced-column-name="id" on-delete="CASCADE" nullable="false" />
+        </many-to-one>
+
+        <many-to-one field="country" target-entity="Country">
+            <join-column name="country_id" referenced-column-name="id" on-delete="CASCADE" nullable="true"/>
+        </many-to-one>
+
+        <many-to-many field="managers" target-entity="User" inversed-by="managedCompanies">
+            <join-table name="company_manager">
+                <join-columns>
+                    <join-column name="company_id" referenced-column-name="id" on-delete="CASCADE" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+
+        <many-to-many field="salesAgents" target-entity="User" inversed-by="marketedCompanies">
+            <join-table name="company_marketed">
+                <join-columns>
+                    <join-column name="company_id" referenced-column-name="id" on-delete="CASCADE" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+
+    </entity>
+
+</doctrine-mapping>

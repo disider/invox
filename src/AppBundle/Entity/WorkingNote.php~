@@ -1,0 +1,83 @@
+<?php
+
+namespace AppBundle\Entity;
+
+/**
+ * WorkingNote
+ */
+class WorkingNote
+{
+    /**
+     * @var string
+     */
+    private $title;
+
+    /**
+     * @var integer
+     */
+    private $id;
+
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return WorkingNote
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    /**
+     * @var string
+     */
+    private $descriptionTest;
+
+
+    /**
+     * Set descriptionTest
+     *
+     * @param string $descriptionTest
+     *
+     * @return WorkingNote
+     */
+    public function setDescriptionTest($descriptionTest)
+    {
+        $this->descriptionTest = $descriptionTest;
+
+        return $this;
+    }
+
+    /**
+     * Get descriptionTest
+     *
+     * @return string
+     */
+    public function getDescriptionTest()
+    {
+        return $this->descriptionTest;
+    }
+}

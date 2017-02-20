@@ -1,0 +1,43 @@
+{% block uploader_widget %}
+    {% spaceless %}
+        {{ block('form_widget_simple') }}
+
+        {% set id = form.vars.id ~ '_uploader' %}
+        <div id="{{ id }}"></div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block uploader_javascript %}
+    {% spaceless %}
+        {% set id = form.vars.id ~ '_uploader' %}
+
+        {% include 'AppBundle:Form:_uploader_template.html.twig' %}
+
+        <script type="text/javascript">
+            $(function() {
+                var $fileUrl = $('#{{ form.vars.id }}');
+                var $fileName = $('#{{ form.parent.fileName.vars.id }}');
+                $fileUrl.hide();
+
+                var options = {
+                    {#debug: {{ debug ? 'true' : 'false' }},#}
+                    multiple: false,
+                    text: {
+                        fileInputTitle: '{{ 'fields.upload'|trans }}'
+                    },
+                    request: {
+                        endpoint: '{{ oneup_uploader_endpoint(endpoint) }}'
+                    },
+                    validation: {
+                        sizeLimit: 2000000 // 2MB
+                    }
+                };
+
+                $('#{{ id }}').fineUploader(options).on('complete', function(event, id, name, responseJson) {
+                    $fileName.val(responseJson.fileName);
+                    $fileUrl.val(responseJson.fileUrl);
+                });
+            });
+        </script>
+    {% endspaceless %}
+{% endblock %}

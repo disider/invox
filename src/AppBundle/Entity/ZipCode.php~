@@ -1,0 +1,61 @@
+<?php
+
+namespace AppBundle\Entity;
+use Symfony\Component\Validator\Constraints as Assert;
+
+class ZipCode
+{
+    /** @var int */
+    private $id;
+
+    /**
+     * @Assert\NotBlank(message="error.empty_code")
+     *
+     * @var string
+     */
+    private $code;
+
+    /** @var City */
+    private $city;
+
+    public static function create(City $city, $code)
+    {
+        $entity = new self();
+        $entity->city = $city;
+        $entity->code = $code;
+
+        return $entity;
+    }
+
+    public function __toString()
+    {
+        return $this->code;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    public function setCode($code)
+    {
+        $this->code = $code;
+    }
+
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+
+}

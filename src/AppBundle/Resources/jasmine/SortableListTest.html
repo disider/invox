@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sortable List Test</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+
+    <script type="text/javascript" src="lib/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="lib/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="../public/js/sortable-list.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+    <div id="menu" class="navbar navbar-default"></div>
+
+    <div class="row">
+        <div id="ul-container" class="col-md-9"></div>
+    </div>
+    <div class="row">
+        <div id="table-container" class="col-md-9"></div>
+    </div>
+</div>
+
+<script>
+    $('#menu').load('menu.html');
+
+    $('#ul-container').load('spec/javascripts/fixtures/sortable_list.html', function () {
+        $('.sortable').sortableList();
+    });
+
+    $('#table-container').load('spec/javascripts/fixtures/sortable_table.html', function () {
+        $('.sortable').sortableList({
+            itemSelector: 'tr',
+            dragHandleContainer: '.actions'
+        });
+    });
+
+</script>
+</body>
+</html>

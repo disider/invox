@@ -1,0 +1,32 @@
+{%  extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% block sonata_top_nav_menu %}
+
+{% endblock %}
+
+{% block sonata_admin_content %}
+    {{ parent() }}
+
+    <div class="row">
+        <div class="col-xs-12 admin-login">
+            <h1>{{ 'login.title'|trans }}</h1>
+
+            {{ form_start(form, { action: path('admin_login_check') }) }}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {{ form_errors(form, { global_errors: true }) }}
+
+                    {{ form_row(form._username) }}
+                    {{ form_row(form._password) }}
+
+                    {{ form_row(form._remember_me) }}
+
+                    <hr />
+
+                    {{ form_widget(form.login) }}
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock sonata_admin_content %}

@@ -1,0 +1,42 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+    <h1>{{ 'document_templates.title'|trans }}</h1>
+
+    {% if pagination|length > 0 %}
+        <table id="document-templates" class="table">
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'sort.name'|trans, 'entity.name') }}</th>
+                <th>&nbsp;</th>
+            </tr>
+            {% for documentTemplate in pagination %}
+                <tr class="document-template">
+                    <td class="col-md-3">
+                        {{ format_edit_link('document_template', documentTemplate, documentTemplate) }}
+                    </td>
+                    <td class="col-md-3 text-right">
+                        {{ format_edit_icon('document_template', documentTemplate) }}
+                        {{ format_action_icon('document_template', 'preview', 'eye', documentTemplate) }}
+                        {{ format_action_icon('document_template', 'restore', 'undo', documentTemplate) }}
+                        {{ format_delete_icon('document_template', documentTemplate) }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        {{ knp_pagination_render(pagination) }}
+    {% else %}
+        <p class="empty-list">
+            {{ 'document_templates.empty_list'|trans }}
+        </p>
+    {% endif %}
+
+    {{ format_create_link('document_template') }}
+
+{% endblock main_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'AppBundle:Default:_delete_js.html.twig' with { message: 'document_template.delete_confirmation' } %}
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+    <article class="document">
+
+        <h1>
+            {{ 'working_note.title.show'|trans }}: {{ workingNote.title }}
+
+            <small class="pull-right">
+                {{ format_edit_link('working_note', workingNote, icon('pencil')) }}
+                {{ format_action_link('working_note', 'print', icon('print'), workingNote) }}
+                {% if debug %}
+                    {% if showAsHtml %}
+                        {{ format_view_link('working_note', workingNote, icon('eye')) }}
+                    {% else %}
+                        {{ format_action_link('working_note', 'view', icon('cog'), workingNote, { routeParameters: { 'showAsHtml' : 'true' }}) }}
+                    {% endif %}
+                {% endif %}
+            </small>
+        </h1>
+
+        <div class="preview-container">
+            <iframe class="preview"
+                    src="{{ path('working_note_render', {'id': workingNote.id}, true) }}{{ showAsHtml ? '?showAsHtml=true' : '' }}"></iframe>
+            {% if not showAsHtml %}
+                <div class="loader">{{ 'working_note.generating'|trans }}</div>
+            {% endif %}
+        </div>
+    </article>
+
+{% endblock main_content %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="/css/form.css" rel="stylesheet" media="screen">
+{% endblock stylesheets %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(function () {
+            $('.preview').on('load', function () {
+                $('.preview-container .loader').hide();
+            });
+        })
+    </script>
+
+    <script src="/js/form.min.js"></script>
+
+{% endblock javascripts %}

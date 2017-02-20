@@ -1,0 +1,63 @@
+{% macro print_paragraph(paragraphs, parent, levelTagHtml) %}
+    {% for paragraph in paragraphs %}
+        {% set tagHtml = 'h' ~ (levelTagHtml > 6 ? 6 : levelTagHtml) %}
+
+        {% set index = parent ~ '.' ~  loop.index %}
+
+        <{{ tagHtml }}>
+        {% if levelTagHtml < 6 %}
+            <span>{{ index }}</span>
+        {% endif %}
+        {{ paragraph.title|upper }}
+        </{{ tagHtml }}>
+        {{ paragraph.description|raw }}
+
+        {% if paragraph.children|length > 0 %}
+            {{ _self.print_paragraph(paragraph.children, index, levelTagHtml + 1) }}
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+
+<div class="working-note">
+    <table class="table">
+        <tr>
+            <td class="col-8">
+                <h1>{{ 'working_note.title.show'|trans|upper }}</h1>
+
+                <span class="code">[{{ workingNote.code }}]</span>
+            </td>
+
+            <td class="col-4 customer">
+                {% set customer = workingNote.customer %}
+
+                <h2 class="name">{{ customer.name }}</h2>
+                <ul class="list-unstyled">
+                    {% if customer.referent %}
+                        <li class="referent">{{ 'fields.referent'|trans }}: {{ customer.referent }}</li>
+                    {% endif %}
+                    {% if customer.vatNumber %}
+                        <li class="vat-number">{{ 'fields.vat_number'|trans }}: {{ customer.vatNumber }}</li>
+                    {% endif %}
+                    {% if customer.Address %}
+                        <li class="address">{{ customer.address }}</li>
+                        <li class="address">{{ customer.zipCode }} {{ customer.city }}</li>
+                        <li class="address">{{ customer.country }}</li>
+                    {% endif %}
+
+                </ul>
+            </td>
+        </tr>
+    </table>
+
+    <h2>{{ workingNote.title|upper }}</h2>
+
+    {% for paragraph in workingNote.paragraphs %}
+        {% set index = loop.index %}
+
+        <h3><span>{{ index }}</span> {{ paragraph.title|upper }}</h3>
+        {{ paragraph.description|raw }}
+
+        {{ _self.print_paragraph(paragraph.children, index, 4) }}
+    {% endfor %}
+</div>
+

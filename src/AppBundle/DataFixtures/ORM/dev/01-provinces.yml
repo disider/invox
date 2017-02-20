@@ -1,0 +1,10 @@
+AppBundle\Entity\Province:
+    rome_province:
+        name: Rome
+        code: RM
+        country: '@italy'
+
+    milan_province:
+        name: Milan
+        code: MI
+        country: '@italy'

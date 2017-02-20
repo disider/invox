@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="AppBundle\Entity\WarehouseRecord" table="warehouse_record"
+            repository-class="AppBundle\Entity\Repository\WarehouseRecordRepository">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="loadQuantity" column="load_quantity" type="decimal" precision="16" scale="2" nullable="true"/>
+        <field name="unloadQuantity" column="unload_quantity" type="decimal" precision="16" scale="2" nullable="true"/>
+        <field name="purchasePrice" column="purchase_price" type="decimal" precision="16" scale="2" nullable="true"/>
+        <field name="sellPrice" column="sell_price" type="decimal" precision="16" scale="2" nullable="true"/>
+        <field name="date" column="date" type="date"/>
+        <field name="description" column="description" type="text" nullable="true"/>
+
+        <many-to-one field="product" target-entity="Product">
+            <join-column name="product_id" referenced-column-name="id" on-delete="CASCADE" nullable="false"/>
+        </many-to-one>
+    </entity>
+
+</doctrine-mapping>

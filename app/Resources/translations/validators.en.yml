@@ -1,0 +1,82 @@
+# Loco yaml export: Symfony YAML object
+# Project: Invox
+# Release: Working copy
+# Locale: en-US, English (USA)
+# Tagged: validators
+# Status: Translated
+# Exported by: Neil Armstrong
+# Exported at: Fri, 13 Jan 2017 10:43:10 +0000
+---
+error:
+    amount_exceeding_invoice_amount: The amount (%amount%) cannot exceed the invoice available amount (%invoiceAmount%)
+    cannot_add_incoming_invoice_if_income: Cannot link an incoming invoice to an income petty cash note
+    cannot_add_invoices_if_transfer: Cannot link invoices to a transfer petty cash note
+    cannot_add_outgoing_invoice_if_outcome: Cannot link an outgoing invoice to an outcome petty cash note
+    cannot_invite_self: Cannot invite yourself
+    cannot_transfer_to_same_account: Cannot transfer to the same account
+    email_already_registered: Email already registered
+    empty_amount: Empty amount
+    empty_body: Empty body
+    empty_city: Empty city
+    empty_code: Empty code
+    empty_content: Empty content
+    empty_country: Empty Country
+    empty_date: Empty date
+    empty_description: Empty description
+    empty_direction: Empty direction
+    empty_discount: Empty discount
+    empty_email: Empty email
+    empty_font_family: Empty font family
+    empty_footer: Empty footer
+    empty_header: Empty header
+    empty_heading_color: Empty heading color
+    empty_issued_at: Empty issue date
+    empty_name: Empty name
+    empty_new_password: Empty new password
+    empty_password: Empty password
+    empty_payment_type: Empty payment type
+    empty_position: Empty position
+    empty_price: Empty price
+    empty_province: Empty province
+    empty_ref: Empty ref
+    empty_repeat_every: Empty repeat every
+    empty_rounding: Empty rounding
+    empty_subject: Empty subject
+    empty_start_at: Empty start at
+    empty_table_header_background_color: Empty table header background color
+    empty_table_header_color: Empty table header color
+    empty_text_color: Empty text color
+    empty_title: Empty title
+    empty_unit_price: Empty unit price
+    empty_url: Empty url
+    empty_valid_until: Empty expiration date
+    empty_vat_number: Empty VAT number
+    empty_year: Empty year
+    inactive_user: Your account is not yet confirmed. Please click <a href="%url%">here</a> to send another confirmation email.
+    invalid_city: Unknown city
+    invalid_credentials: Invalid credentials
+    invalid_credit_note: Invalid credit note
+    invalid_customer: Unknown customer
+    invalid_select_customer: Select the customer/supplier of the list
+    invalid_document: Invalid document
+    invalid_document_type: Invalid document type
+    invalid_email: Invalid email
+    invalid_image_type: Invalid image type
+    invalid_invoice: Invalid invoice
+    invalid_order: Invalid order
+    invalid_price: Invalid price
+    invalid_province: Unknown province
+    invalid_quantity: Invalid quantity
+    invalid_recurrence: Invalid recurrence
+    invalid_vat_number: Invalid VAT number
+    invalid_zip_code: Unknown zip code
+    invoices_exceeding_note_amount: The invoices total amount (%invoicesAmount%) cannot exceed the note total amount (%noteAmount%)
+    module_already_enabled: Module "%module%" already enabled
+    module_not_enabled: Module "%module%" not enabled
+    no_account_selected: Please select an account
+    no_warehouse_quantities_defined: Insert a load or unload quantity
+    non_positive_amount: Amount must be greater than 0
+    not_found: Not found
+    unknown_customer_code: Unknown customer code
+    wrong_current_password: Please enter your current password
+    wrong_email: Wrong email

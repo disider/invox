@@ -1,0 +1,59 @@
+{{ form_row(form.rows) }}
+
+<div class="footer row">
+    <div class="add-container col-md-5">
+    </div>
+
+    <div class="col-md-7">
+        <div class="summary">
+            <div class="taxes row">
+                {% set vatGroupCollection = document.vatGroupCollection %}
+                {% if vatGroupCollection.hasGroups %}
+                    {% for vatGroup in vatGroupCollection.groups %}
+                        <div class="col-md-7 text-right">{{ 'document.taxes'|trans({'%taxRate%': vatGroup.taxRate, '%netTotal%': vatGroup.netTotal | format_currency }) | raw }}</div>
+                        <div class="taxes-{{ vatGroup.formatTaxRate }} col-md-5 text-right">
+                            {{ currency() }}&nbsp;<span>{{ vatGroup.taxesTotal|format_number }}</span>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="totals row">
+                <div class="col-md-7 text-right">{{ 'document.net_total'|trans }}</div>
+                <div class="col-md-5 text-right">{{ currency() }}&nbsp;<span
+                            class="net-total">{{ document.netTotal|format_number }}</span></div>
+                <div class="col-md-7 text-right">{{ form_label(form.discount) }}</div>
+                <div class="col-md-3 col-md-push-2 text-right {{ form.discount.vars.valid ? '' : 'has-error' }}">
+                    <div class="input-group">
+                        {{ form_widget(form.discountPercent) }}
+                        {{ form_widget(form.discount, { attr: {class: 'discount text-right'}}) }}
+                    </div>
+                    {{ form_errors(form.discount) }}
+                </div>
+                <div class="col-md-7 text-right">{{ form_label(form.rounding) }}</div>
+                <div class="col-md-3 col-md-push-2 text-right {{ form.rounding.vars.valid ? '' : 'has-error' }}">
+                    <div class="input-group">
+                        <span class="input-group-addon">{{ currency() }}</span>
+                        {{ form_widget(form.rounding, { attr: { class: 'rounding text-right'}}) }}
+                        {{ form_errors(form.rounding) }}
+                    </div>
+                </div>
+                <div class="highlight col-md-7 text-right">{{ 'document.gross_total'|trans }}</div>
+                <div class="highlight col-md-5 text-right">{{ currency() }}&nbsp;<span
+                            class="gross-total ">{{ document.grossTotal|format_number }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default empty-list">
+    <div class="panel-body">
+        <div class="add-container">
+        </div>
+
+        <p>
+            {{ 'document_rows.empty_list'|trans }}
+        </p>
+    </div>
+</div>

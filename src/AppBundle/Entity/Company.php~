@@ -1,0 +1,288 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+
+class Company
+{
+    /** @var int */
+    private $id;
+
+    /**
+     * @Assert\NotBlank(message="error.empty_name")
+     *
+     * @var string
+     */
+    private $name;
+
+    /** @var string */
+    private $address;
+
+    /** @var string */
+    private $vatNumber;
+
+    /**
+     * @var User
+     */
+    private $owner;
+
+    /**
+     * @var ArrayCollection
+     */
+    private $managers;
+
+    /**
+     * @var ArrayCollection
+     */
+    private $accounts;
+
+    /**
+     * @var ArrayCollection
+     */
+    private $customers;
+    
+    /**
+     * @var ArrayCollection
+     */
+    private $documents;
+
+    /**
+     * @var ArrayCollection
+     */
+    private $pettyCashNotes;
+
+    public static function create(User $owner, $name, $address, $vatNumber)
+    {
+        $entity = new self();
+        $entity->name = $name;
+        $entity->address = $address;
+        $entity->vatNumber = $vatNumber;
+
+        $owner->addOwnedCompany($entity);
+
+        return $entity;
+    }
+
+    public function __construct()
+    {
+        $this->managers = new ArrayCollection();
+        $this->accounts = new ArrayCollection();
+        $this->customers = new ArrayCollection();
+        $this->documents = new ArrayCollection();
+        $this->pettyCashNotes = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(User $owner)
+    {
+        $this->owner = $owner;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+    public function getVatNumber()
+    {
+        return $this->vatNumber;
+    }
+    public function setVatNumber($vatNumber)
+    {
+        $this->vatNumber = $vatNumber;
+    }
+
+    public function addAccount(Account $account)
+    {
+        $this->accounts->add($account);
+        $account->setCompany($this);
+    }
+
+    public function isSameAs(Company $other)
+    {
+        return $this->getId() == $other->getId();
+    }
+
+    public function addCustomer(Customer $customer)
+    {
+        $this->customers->add($customer);
+        $customer->setCompany($this);
+    }
+
+    public function hasManager(User $user)
+    {
+        /** @var User $manager */
+        foreach ($this->managers as $manager) {
+            if ($manager->isSameAs($user)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function addManager(User $manager)
+    {
+        $this->managers->add($manager);
+    }
+
+    public function removeManager(User $manager)
+    {
+        $this->managers->removeElement($manager);
+    }
+
+    public function getManagers()
+    {
+        return $this->managers;
+    }
+
+    public function setManagers($managers)
+    {
+        $this->managers = $managers;
+    }
+
+    public function getAccounts()
+    {
+        return $this->accounts;
+    }
+
+    public function setAccounts($accounts)
+    {
+        $this->accounts = $accounts;
+    }
+
+    public function getCustomers()
+    {
+        return $this->customers;
+    }
+
+    public function setCustomers($customers)
+    {
+        $this->customers = $customers;
+    }
+
+    public function getDocuments()
+    {
+        return $this->documents;
+    }
+
+    public function setDocuments($documents)
+    {
+        $this->documents = $documents;
+    }
+
+    public function getPettyCashNotes()
+    {
+        return $this->pettyCashNotes;
+    }
+
+    public function setPettyCashNotes($pettyCashNotes)
+    {
+        $this->pettyCashNotes = $pettyCashNotes;
+    }
+
+
+    /**
+     * Remove account
+     *
+     * @param \AppBundle\Entity\Account $account
+     */
+    public function removeAccount(\AppBundle\Entity\Account $account)
+    {
+        $this->accounts->removeElement($account);
+    }
+
+    /**
+     * Remove customer
+     *
+     * @param \AppBundle\Entity\Customer $customer
+     */
+    public function removeCustomer(\AppBundle\Entity\Customer $customer)
+    {
+        $this->customers->removeElement($customer);
+    }
+
+    /**
+     * Add document
+     *
+     * @param \AppBundle\Entity\Document $document
+     *
+     * @return Company
+     */
+    public function addDocument(\AppBundle\Entity\Document $document)
+    {
+        $this->documents[] = $document;
+
+        return $this;
+    }
+
+    /**
+     * Remove document
+     *
+     * @param \AppBundle\Entity\Document $document
+     */
+    public function removeDocument(\AppBundle\Entity\Document $document)
+    {
+        $this->documents->removeElement($document);
+    }
+
+    /**
+     * Add pettyCashNote
+     *
+     * @param \AppBundle\Entity\PettyCashNote $pettyCashNote
+     *
+     * @return Company
+     */
+    public function addPettyCashNote(\AppBundle\Entity\PettyCashNote $pettyCashNote)
+    {
+        $this->pettyCashNotes[] = $pettyCashNote;
+
+        return $this;
+    }
+
+    /**
+     * Remove pettyCashNote
+     *
+     * @param \AppBundle\Entity\PettyCashNote $pettyCashNote
+     */
+    public function removePettyCashNote(\AppBundle\Entity\PettyCashNote $pettyCashNote)
+    {
+        $this->pettyCashNotes->removeElement($pettyCashNote);
+    }
+}

@@ -1,0 +1,151 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: version.yml }
+
+parameters:
+    page_size: 25
+
+framework:
+    #esi:             ~
+    translator:      { fallbacks: ["%locale%"] }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    #serializer:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # handler_id set to null will use default session handler from php.ini
+        handler_id:  ~
+    fragments:       ~
+    http_method_override: true
+    assets: ~
+    php_errors:
+        log: true
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    globals:
+        version:        "%version%"
+        show_analytics: "%show_analytics%"
+        show_chat:      "%show_chat%"
+        min_page_size: 25
+        page_sizes:    [25, 50, 75, 100]
+        launcher_links: "%launcher_links%"
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   "%database_driver%"
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
+
+jms_i18n_routing:
+    default_locale: "%locale%"
+    locales: "%available_locales%"
+    strategy: prefix_except_default
+
+a2lix_translation_form:
+    locales: "%available_locales%"
+    required_locales: "%available_locales%"
+
+braincrafted_bootstrap:
+    icon_prefix: fa
+    auto_configure:
+        assetic: false
+
+liip_imagine:
+    driver: imagick
+
+    resolvers:
+       default:
+          web_path: ~
+
+    filter_sets:
+        cache: ~
+        thumb:
+            quality: 75
+            filters:
+                thumbnail: { size: [256, 256], mode: inset }
+        logo_thumb:
+            quality: 75
+            filters:
+                thumbnail: { size: [256, 256], mode: inset }
+        logo_small:
+            quality: 75
+            filters:
+                thumbnail: { size: [128, 128], mode: inset }
+        logo_tiny:
+            quality: 75
+            filters:
+                thumbnail: { size: [64, 64], mode: inset }
+
+oneup_uploader:
+    mappings:
+        medium:
+            use_orphanage: true
+            frontend: fineuploader
+            storage:
+                directory: "%kernel.root_dir%/../web"
+            namer: medium_namer
+            max_size: 2m
+        attachable:
+            use_orphanage: true
+            frontend: fineuploader
+            storage:
+                directory: "%kernel.root_dir%/../web"
+            max_size: 2m
+
+
+sonata_admin:
+    title:            Invox Admin
+#    title_logo:       /images/small_logo.png
+#    templates:
+#        layout:  AdminBundle::layout.html.twig
+    security:
+        handler:      sonata.admin.security.handler.role
+        information:
+            EDIT:     EDIT
+            LIST:     LIST
+            CREATE:   CREATE
+            VIEW:     VIEW
+            DELETE:   DELETE
+            EXPORT:   EXPORT
+            OPERATOR: OPERATOR
+            MASTER:   MASTER
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+#        sonata.admin.block.search_result:
+#            contexts: [admin]

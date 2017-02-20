@@ -1,0 +1,200 @@
+{% set lineColor = '#ccc' %}
+{% set textColor = template.textColor %}
+{% set headingColor = template.headingColor %}
+{% set tableHeaderColor = template.tableHeaderColor %}
+{% set tableHeaderBackgroundColor = template.tableHeaderBackgroundColor %}
+
+{% set fontFamily = template.fontFamily %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style type="text/css">
+        html {
+            font-size: 62.5%;
+        }
+
+        body {
+            color: {{ textColor }};
+            font-family: {{ fontFamily|raw }};
+            font-size: 12px;
+            padding-top: 10px;
+        }
+
+        h1, h2 {
+            color: {{ headingColor }};
+            margin: 6px 0;
+            padding: 0;
+        }
+
+        table {
+            border: none;
+            border-collapse: collapse;
+            vertical-align: top;
+        }
+
+        tr {
+            vertical-align: top;
+        }
+
+        th {
+            color: {{ tableHeaderColor }};
+            background-color: {{ tableHeaderBackgroundColor }};
+        }
+
+        .rows tbody td {
+            color: {{ textColor }};
+            font-size: 1.2em;
+            border-bottom: 1px solid {{ lineColor }};
+        }
+
+        th, td {
+            vertical-align: top;
+            padding: 4px;
+        }
+
+        td em {
+            font-size: 1em;
+            color: {{ tableHeaderBackgroundColor }};
+        }
+
+        h1 {
+            font-size: 2em;
+        }
+
+        h2 {
+            font-size: 1.8em;
+        }
+
+        h3 {
+            font-size: 1.5em;
+        }
+
+        p {
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .table {
+            width: 100%;
+        }
+
+        .list-unstyled {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .separator {
+            border: 0;
+            height: 0;
+            border-top: 3px solid {{ lineColor }};
+        }
+
+        .col-1 {
+            width: 8.34%;
+        }
+
+        .col-2 {
+            width: 16.67%;
+        }
+
+        .col-3 {
+            width: 25%;
+        }
+
+        .col-4 {
+            width: 33.34%;
+        }
+
+        .col-5 {
+            width: 41.67%;
+        }
+
+        .col-6 {
+            width: 50%;
+        }
+
+        .col-7 {
+            width: 58.34%;
+        }
+
+        .col-8 {
+            width: 66.67%;
+        }
+
+        .col-9 {
+            width: 75%;
+        }
+
+        .col-10 {
+            width: 83.34%;
+        }
+
+        .col-11 {
+            width: 91.67%;
+        }
+
+        .col-12 {
+            width: 100%;
+        }
+
+        .left {
+            text-align: left;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        header th,
+        header td {
+            padding: 8px 0;
+            font-size: 12px;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        section th,
+        section td {
+            font-size: 12px;
+        }
+
+        .footer {
+            border-top: 1px solid {{ lineColor }};
+        }
+
+        footer {
+            color: #9d9d9d;
+        }
+
+        .gross-total th,
+        .gross-total td {
+            font-size: 20px;
+        }
+
+        .customer, .company {
+            text-align: right;
+        }
+
+        thead { display: table-header-group }
+        tfoot { display: table-row-group }
+        tr { page-break-inside: avoid }
+    </style>
+</head>
+<body>
+
+{% block content %}
+    {{ content|raw }}
+{% endblock content %}
+
+</body>
+</html>

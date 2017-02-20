@@ -1,0 +1,27 @@
+{% extends '::form.html.twig' %}
+
+{% block main_content %}
+    <h1>
+        {{ 'document.edit'|trans({'%document%': document}) }}
+
+        {% if document.hasStatus %}
+            <span class="label label-{{ document.isUnpaid ? 'danger' : 'success' }}">{{ ('document.status.' ~ document.status) | trans }}</span>
+        {% endif %}
+
+        <small class="pull-right">
+            {{ format_view_link('document', document, icon('eye')) }}
+            {{ format_action_link('document', 'print', icon('print'), document) }}
+            {% if debug %}
+                {{ format_action_link('document', 'view', icon('cog'), document, { routeParameters: { 'showAsHtml': 'true' }}) }}
+            {% endif %}
+        </small>
+    </h1>
+
+    {% include 'AppBundle:Document:_form.html.twig' %}
+{% endblock main_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'AppBundle:Document:_javascript.html.twig' %}
+{% endblock javascripts %}

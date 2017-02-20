@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="AppBundle\Entity\Account" table="account"
+            repository-class="AppBundle\Entity\Repository\AccountRepository">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="type" column="type" type="string" length="255"/>
+        <field name="name" column="name" type="string" length="255"/>
+        <field name="initialAmount" column="initial_amount" type="decimal" precision="16" scale="2"/>
+        <field name="currentAmount" column="current_amount" type="decimal" precision="16" scale="2"/>
+        <field name="iban" column="iban" type="text" nullable="true"/>
+
+        <one-to-many target-entity="PettyCashNote" field="outgoingPettyCashNotes" mapped-by="accountFrom"/>
+        <one-to-many target-entity="PettyCashNote" field="incomingPettyCashNotes" mapped-by="accountTo"/>
+
+        <many-to-one field="company" target-entity="Company" inversed-by="accounts">
+            <join-column name="company_id" referenced-column-name="id" on-delete="CASCADE" nullable="false"/>
+        </many-to-one>
+
+    </entity>
+
+</doctrine-mapping>

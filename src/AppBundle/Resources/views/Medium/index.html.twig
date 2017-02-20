@@ -1,0 +1,46 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+
+    <h2>
+        {{ ('medium.list')|trans }}
+    </h2>
+
+    {% if pagination|length > 0 %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ 'fields.file_name'|trans }}</th>
+                <th>&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for medium in pagination %}
+                <tr class="medium">
+                    <td class="medium-name col-md-10">
+                        <a href="{{ medium.webPath }}">{{ medium }}</a>
+                    </td>
+
+                    <td class=" col-md-2 text-right">
+                        {{ format_edit_icon('medium', medium) }}
+                        {{ format_delete_icon('medium', medium) }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation pull-right">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    {% else %}
+        <p class="empty-list">
+            {{ 'media.empty_list'|trans }}
+        </p>
+    {% endif %}
+
+    {{ format_create_link('medium') }}
+
+{% endblock main_content %}
+

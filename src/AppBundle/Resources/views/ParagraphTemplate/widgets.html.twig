@@ -1,0 +1,73 @@
+{% block paragraphTemplate_widget %}
+    <div id="{{ form.vars.id }}" class="paragraph {{ level % 2 ? 'odd' : 'even' }}">
+        <div class="row">
+            <div class="col-xs-10">
+                {{ form_row(form.title) }}
+            </div>
+
+            <div class="collection-actions col-xs-2 text-right">
+                <a href="#" class="collection-up btn btn-xs btn-default" id="{{ form.vars.id ~ '_move_up' }}"
+                   title="{{ 'actions.move_paragraph_up'|trans }}">{{ fa_icon('arrow-up') }}</a>
+                <a href="#" class="collection-down btn btn-xs btn-default" id="{{ form.vars.id ~ '_move_down' }}"
+                   title="{{ 'actions.move_paragraph_down'|trans }}">{{ fa_icon('arrow-down') }}</a>
+                <a href="#" class="collection-remove btn btn-xs btn-default" id="{{ form.vars.id ~ '_delete' }}"
+                   title="{{ 'actions.delete_paragraph'|trans }}">{{ fa_icon('trash') }}</a>
+                <a href="#" class="collection-duplicate btn btn-xs btn-default" id="{{ form.vars.id ~ '_copy' }}"
+                   title="{{ 'actions.copy'|trans }}">{{ fa_icon('copy') }}</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                {{ form_row(form.description) }}
+            </div>
+        </div>
+
+        {{ form_row(form.children) }}
+    </div>
+{% endblock %}
+
+{% block paragraphs_widget %}
+    {% if prototype_id is defined %}
+        {% set attr = attr|merge({'data-prototype-id': prototype_id}) %}
+    {% elseif prototype is defined %}
+        {% set attr = attr|merge({'data-prototype': prototype}) %}
+        {% set attr = attr|merge({'data-prototype-name': prototype.vars.name}) %}
+    {% endif %}
+
+    {% set attr = attr|merge({'data-allow-add': allow_add ? 1 : 0}) %}
+    {% set attr = attr|merge({'data-allow-remove': allow_delete ? 1 : 0 }) %}
+    {% set attr = attr|merge({'data-name-prefix': full_name}) %}
+    {% set attr = attr|merge({'data-level': level} ) %}
+
+    {% set class = attr.class ~ ' ' ~ (level % 2 ? 'odd' : 'even') %}
+    {% set attr = attr|merge({'class': class} ) %}
+    
+    {{ block('form_widget') }}
+
+    <div class="actions">
+        <a class="add-placeholder btn btn-sm btn-primary" href="#">{{ 'actions.add_paragraph'|trans }}</a>
+    </div>
+{% endblock %}
+
+{% block paragraphs_javascript %}
+    {% if prototype is defined %}
+        <script src="{{ asset('js/jquery.collection.js') }}"></script>
+        <script src="{{ asset('js/paragraphs.js') }}"></script>
+
+        <script type="text/template" id="{{ prototype_id }}">
+            {{ form_row(prototype) }}
+        </script>
+
+        <script>
+            $(function () {
+                var $paragraphs = $('#{{ form.vars.id }}');
+
+                $paragraphs.paragraphs({
+                    form_name: '{{ full_name }}',
+                    form_prefix: '{{ id }}'
+                });
+            });
+        </script>
+    {% endif %}
+{% endblock %}

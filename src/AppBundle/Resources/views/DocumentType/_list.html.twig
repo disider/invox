@@ -1,0 +1,183 @@
+{% if pagination|length > 0 %}
+    <table id="documents" class="table table-striped">
+        <thead>
+        <tr>
+            <th class="col-md-2">{{ knp_pagination_sortable(pagination, 'sort.type'|trans, 'document.type') }}</th>
+            <th class="col-md-3">{{ knp_pagination_sortable(pagination, 'sort.document'|trans, 'document.ref') }}</th>
+            <th class="col-md-2">{{ knp_pagination_sortable(pagination, 'sort.customer'|trans, 'customer.name') }}</th>
+            <th class="col-md-1 text-center">{{ knp_pagination_sortable(pagination, 'sort.issued_at'|trans, 'document.issuedAt') }}</th>
+            <th class="col-md-2 text-right">{{ knp_pagination_sortable(pagination, 'sort.total'|trans, 'document.grossTotal') }}</th>
+            <th class="col-md-2">&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for document in pagination %}
+            <tr class="document {{ document.type }}">
+                <td>
+                    <span class="type label label-default">{{ ('document.type.' ~ document.type)|trans }}</span>
+                    {% if document.hasDirection %}
+                        <span class="direction label label-{{ document.direction == 'incoming' ? 'danger' : 'success' }}">{{ ('document.direction.' ~ document.direction)|trans }}</span>
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if is_granted('DOCUMENT_EDIT', document) %}
+                        <a class="ref" class="edit" href="{{ path('document_edit', {'id': document.id }) }}"
+                           title="{{ document }}">{{ document|truncate(15) }}</a>
+                    {% else %}
+                        <a class="ref" class="view" href="{{ path('document_view', {'id': document.id }) }}"
+                           title="{{ document }}">{{ document|truncate(15) }}</a>
+                    {% endif %}
+
+                    {% if document.hasAttachments %}
+                        {% set attachmentsHtml %}
+                            <ul class="list-unstyled">
+                                {% for attachment in document.attachments %}
+                                    <li>
+                                        <small>
+                                            <a href='{{ attachment.webPath }}'>{{ attachment }}</a>
+                                        </small>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endset %}
+
+                        <a href="#" data-html="true" data-toggle="popover"
+                           data-content="{{ attachmentsHtml|e|raw }}">{{ fa_icon('book') }}</a>
+                    {% endif %}
+                </td>
+                <td>
+                    <small>
+                        {% if document.hasLinkedCustomer %}
+                            <a href="{{ path('customer_edit', {'id': document.linkedCustomer.id}) }}"
+                               title="{{ document.customerName }}">{{ document.customerName|truncate(15) }}</a>
+                        {% else %}
+                            {{ document.customerName }}
+                        {% endif %}
+                    </small>
+                </td>
+                <td class="customer text-center">
+                    {{ document.issuedAt|date('d/m/y') }}
+                </td>
+                <td class="gross-total text-right">
+                    {% if document.hasStatus %}
+                        {% if document.isUnpaid %}
+                            {% set content %}
+                                <small>
+                                    <div class="text-success">
+                                        <b>{{ 'document.status.paid'|trans }}</b> &nbsp;
+                                        <span class="total-paid-amount pull-right">{{ (document.paidAmount)|format_currency }}</span>
+                                    </div>
+                                    <div class="text-danger">
+                                        <b>{{ 'document.status.unpaid'|trans }}</b> &nbsp;
+                                        <span class="total-unpaid-amount pull-right">{{ document.unpaidAmount|format_currency }}</span>
+                                    </div>
+                                </small>
+                            {% endset %}
+
+                            <a href="#" class="status popover-trigger text-danger"
+                               data-content="{{ content|e }}">
+                                {{ document.grossTotal|format_currency }}
+                            </a>
+                        {% else %}
+                            <span class="status text-success">
+                            {{ document.grossTotal|format_currency }}
+                            </span>
+                        {% endif %}
+                    {% else %}
+                        <span class="status text-muted">
+                        {{ document.grossTotal|format_currency }}
+                        </span>
+                    {% endif %}
+
+                </td>
+
+                <td class="text-right">
+                    {% set content %}
+                        <small>
+                            {% if document.title %}
+                                <div class="title">{{ document.title }}</div>
+                            {% endif %}
+                            {% if document.internalRef %}
+                                <div class="internal-ref">
+                                    ({{ 'document.internal_ref'|trans }}: {{ document.internalRef }})
+                                </div>
+                            {% endif %}
+                            {% if document.notes %}
+                                <p>{{ document.notes }}</p>
+                            {% endif %}
+                        </small>
+                    {% endset %}
+
+                    {% if document.hasInfo %}
+                        <span class="popover-trigger text-info"
+                              data-content="{{ content|e }}">{{ fa_icon('question-circle') }}</span>
+                    {% endif %}
+
+                    <div class="btn-group btn-group-xs">
+                        {% if is_granted('DOCUMENT_EDIT', document) %}
+                            {{ format_edit_icon('document', document) }}
+                        {% endif %}
+                        {{ format_action_icon('document', 'print', 'print', document) }}
+
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            {% if is_granted('DOCUMENT_DELETE', document) %}
+                                <li>
+                                    {{ format_delete_link('document', document, icon('trash') ~ 'actions.delete'|trans) }}
+                                </li>
+                            {% endif %}
+                            {% if is_granted('DOCUMENT_COPY', document) %}
+                                <li>
+                                    {{ format_action_link('document', 'copy', icon('copy') ~ 'actions.copy'|trans, document) }}
+                                </li>
+                            {% endif %}
+                            <li>
+                                {{ format_action_link('document', 'view', icon('eye') ~ 'actions.view'|trans, document) }}
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2">
+                &nbsp;
+            </td>
+
+            <td colspan="3" class="totals">
+                <dl class="dl-horizontal pull-right text-right">
+                    {% if paidTotal is defined %}
+                        <dt class="text-danger">{{ 'document.unpaid_total'|trans }}</dt>
+                        <dd class="unpaid-total text-danger">{{ (grossTotal - paidTotal) | format_currency }}</dd>
+                        <dt class="text-success">{{ 'document.paid_total'|trans }}</dt>
+                        <dd class="paid-total text-success">{{ paidTotal | format_currency }}</dd>
+                    {% endif %}
+                    <dt class="text-muted">{{ 'document.gross_total'|trans }}</dt>
+                    <dd class="total text-muted">{{ grossTotal | format_currency }}</dd>
+                </dl>
+            </td>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+
+    {{ knp_pagination_render(pagination) }}
+
+{% else %}
+    <p class="empty-list">
+        {{ 'documents.empty_list'|trans }}
+    </p>
+{% endif %}
+
+{{ format_create_link('document', { routeParameters: {'type': type }}) }}
+

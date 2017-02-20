@@ -1,0 +1,29 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+    <h1>{{ 'petty_cash_note.show'|trans({'%petty_cash_note%': pettyCashNote}) }}</h1>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <ul class="petty-cash-note panel-body list-unstyled">
+                    <li class="ref">{{ 'fields.ref'|trans }}: {{ pettyCashNote.ref }}</li>
+                    <li class="recorded-at">{{ 'fields.recorded_at'|trans }}
+                        : {{ pettyCashNote.recordedAt|date('d/m/Y') }}</li>
+                    <li class="amount">{{ 'fields.amount'|trans }}: {{ pettyCashNote.amount }}</li>
+                    {% if pettyCashNote.isOutcome %}
+                        <li class="account-from">{{ 'fields.account_from'|trans }}: {{ pettyCashNote.accountFrom }}</li>
+                    {% endif %}
+                    {% if pettyCashNote.isIncome %}
+                        <li class="account-to">{{ 'fields.account_to'|trans }}: {{ pettyCashNote.accountTo }}</li>
+                    {% endif %}
+
+                    {% for invoice in pettyCashNote.invoices %}
+                        {{ invoice }}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock main_content %}

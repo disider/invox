@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="AppBundle\Entity\PettyCashNote" table="petty_cash_note"
+            repository-class="AppBundle\Entity\Repository\PettyCashNoteRepository">
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="ref" column="ref" type="string" length="255"/>
+        <field name="type" column="type" type="string" length="255"/>
+        <field name="description" column="description" type="text" nullable="true"/>
+        <field name="amount" column="amount" type="decimal" precision="16" scale="2"/>
+        <field name="recordedAt" column="recorded_at" type="date"/>
+
+        <one-to-many field="invoices" target-entity="InvoicePerNote" mapped-by="note" orphan-removal="true" fetch="LAZY">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+        <one-to-many field="attachments" target-entity="PettyCashNoteAttachment" mapped-by="container" orphan-removal="true">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+        <many-to-one field="accountFrom" target-entity="Account" inversed-by="outgoingPettyCashNotes">
+            <join-column name="account_from_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <many-to-one field="accountTo" target-entity="Account" inversed-by="incomingPettyCashNotes">
+            <join-column name="account_to_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <many-to-one field="company" target-entity="Company" inversed-by="pettyCashNotes">
+            <join-column name="company_id" referenced-column-name="id" on-delete="CASCADE" nullable="false"/>
+        </many-to-one>
+    </entity>
+
+</doctrine-mapping>

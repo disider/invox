@@ -1,0 +1,9 @@
+{% block countryEntity_javascript %}
+    <script>
+        $(function () {
+            var $country = $('#{{ form.vars.id }}');
+
+            $country.selectize();
+        });
+    </script>
+{% endblock %}

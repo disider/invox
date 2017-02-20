@@ -1,0 +1,47 @@
+{% extends '::base.html.twig' %}
+{% block header %}
+{% endblock header %}
+
+{% block footer %}
+{% endblock footer %}
+
+{% block main_container %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                {% if pagination|length > 0 %}
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>{{ 'fields.title'|trans }}</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for paragraphTemplate in pagination %}
+                            <tr class="paragraph-template select" data-ref="{{ paragraphTemplate.id }}">
+                                <td class="title col-md-10">
+                                    <a href="{{ paragraphTemplate }}">{{ paragraphTemplate }}</a>
+                                </td>
+
+                                <td class=" col-md-2 text-right">
+                                    <a class="btn btn-xs btn-default" href="{{ paragraphTemplate }}">{{ fa_icon('crosshairs') }}</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <div class="navigation pull-right">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+
+                {% else %}
+                    <p class="empty-list">
+                        {{ 'paragraph_templates.empty_list'|trans }}
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock main_container %}

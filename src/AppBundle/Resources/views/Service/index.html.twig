@@ -1,0 +1,69 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+    <h1>{{ 'services.title'|trans }}
+        <small class="pull-right">
+            <a title="{{ 'filter.show' }}" aria-expanded="false" data-toggle="collapse"
+               href="#filter">{{ icon('search') }}</a>
+        </small>
+    </h1>
+
+    <div id="filter" class="collapse">
+        {{ form_start(filterForm, { method: 'GET'}) }}
+            <div class="well">
+                <div class="row">
+                    <div class="col-sm-3">{{ form_row(filterForm.name) }}</div>
+                    <div class="col-sm-3">{{ form_row(filterForm.code) }}</div>
+                </div>
+
+                <div class="form-actions">
+                    {{ form_widget(filterForm.filter) }}
+
+                    <a class="btn btn-default" href="{{ path('services') }}">{{ 'actions.reset'|trans }}</a>
+                </div>
+            </div>
+        {{ form_end(filterForm) }}
+    </div>
+
+    {% if pagination|length > 0 %}
+        <table id="services" class="table">
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'sort.code'|trans, 'service.code') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'sort.name'|trans, 'service.name') }}</th>
+                <th>&nbsp;</th>
+            </tr>
+            {% for service in pagination %}
+                <tr class="service">
+                    <td class="code col-md-2">
+                        {{ service.code }}
+                    </td>
+
+                    <td class="col-md-8">
+                        {{ format_edit_link('service', service, service, { class: 'name'}) }}
+                    </td>
+
+                    <td class="col-md-2 text-right">
+                        {{ format_edit_icon('service', service) }}
+                        {{ format_delete_icon('service', service) }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        {{ knp_pagination_render(pagination) }}
+    {% else %}
+        <p class="empty-list">
+            {{ 'services.empty_list'|trans }}
+        </p>
+    {% endif %}
+
+    {{ format_create_link('service') }}
+{% endblock main_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'AppBundle:Default:_filter_js.html.twig' %}
+
+    {% include 'AppBundle:Default:_delete_js.html.twig' with { message: 'service.delete_confirmation' } %}
+{% endblock javascripts %}

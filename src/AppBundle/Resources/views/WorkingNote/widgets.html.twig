@@ -1,0 +1,183 @@
+
+{% block paragraph_widget %}
+    <div id="{{ form.vars.id }}" class="paragraph {{ level % 2 ? 'odd' : 'even' }}">
+        <div class="row">
+            <div class="col-xs-10">
+                {{ form_row(form.title) }}
+
+                <span id="{{ form.vars.id }}_title_text" class="hidden"></span>
+            </div>
+
+            <div class="collection-actions col-xs-2 text-right">
+                {#<a class="collection-hide btn btn-xs btn-default" id="{{ form.vars.id }}"#}
+                {#title="{{ 'actions.hide_paragraph'|trans }}">{{ fa_icon('eye') }}</a>#}
+                <a href="#" class="collection-up btn btn-xs btn-default" id="{{ form.vars.id ~ '_move_up' }}"
+                   title="{{ 'actions.move_paragraph_up'|trans }}">{{ fa_icon('arrow-up') }}</a>
+                <a href="#" class="collection-down btn btn-xs btn-default" id="{{ form.vars.id ~ '_move_down' }}"
+                   title="{{ 'actions.move_paragraph_down'|trans }}">{{ fa_icon('arrow-down') }}</a>
+                <a href="#" class="collection-remove btn btn-xs btn-default" id="{{ form.vars.id ~ '_delete' }}"
+                   title="{{ 'actions.delete_paragraph'|trans }}">{{ fa_icon('trash') }}</a>
+                <a href="#" class="collection-duplicate btn btn-xs btn-default" id="{{ form.vars.id ~ '_copy' }}"
+                   title="{{ 'actions.copy'|trans }}">{{ fa_icon('copy') }}</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 description">
+                {{ form_row(form.description) }}
+
+                <span id="{{ form.vars.id }}_description_text" class="hidden"></span>
+            </div>
+        </div>
+
+        <p>
+            <a class="children-hide btn btn-xs btn-default" data-ref="#{{ form.vars.id }}_hide_children">
+                {{ fa_icon('eye') }} {{ 'actions.children'|trans }}
+            </a>
+        </p>
+
+        <div id="{{ form.vars.id }}_hide_children">
+            {{ form_widget(form.children) }}
+        </div>
+    </div>
+
+    {% for child in form %}
+        {{ form_widget(child) }}
+    {% endfor %}
+
+{% endblock %}
+
+{% block paragraphs_widget %}
+    {% if prototype_id is defined %}
+        {% set attr = attr|merge({'data-prototype-id': prototype_id}) %}
+    {% elseif prototype is defined %}
+        {% set attr = attr|merge({'data-prototype': prototype}) %}
+        {% set attr = attr|merge({'data-prototype-name': prototype.vars.name}) %}
+    {% endif %}
+
+    {% set attr = attr|merge({'data-allow-add': allow_add ? 1 : 0}) %}
+    {% set attr = attr|merge({'data-allow-remove': allow_delete ? 1 : 0 }) %}
+    {% set attr = attr|merge({'data-name-prefix': full_name}) %}
+    {% set attr = attr|merge({'data-level': level} ) %}
+
+    {% set class = attr.class ~ ' ' ~ (level % 2 ? 'odd' : 'even') %}
+    {% set attr = attr|merge({'class': class} ) %}
+
+    {{ block('form_widget') }}
+
+    <div class="actions">
+        <a class="add-placeholder add-paragraph btn btn-sm btn-primary" href="#">{{ 'actions.add_paragraph'|trans }}</a>
+        &nbsp;
+        <a class="select-template btn btn-sm btn-default" href="#"
+           data-toggle="modal">{{ 'actions.add_paragraph_template'|trans }}</a>
+    </div>
+
+{% endblock %}
+
+
+{% block paragraphs_javascript %}
+    {% if prototype is defined %}
+        <script src="{{ asset('js/jquery.collection.js') }}"></script>
+        <script src="{{ asset('js/paragraphs.js') }}"></script>
+
+        <script type="text/template" id="{{ prototype_id }}">
+            {{ form_row(prototype) }}
+        </script>
+
+        <script>
+            $(function () {
+                var $paragraphs = $('#{{ form.vars.id }}');
+                var url = '{{ path('paragraph_template_show', {'id': '__id__'}) }}';
+
+                $paragraphs.paragraphs({
+                    form_name: '{{ full_name }}',
+                    form_prefix: '{{ id }}'
+                });
+
+                var dollar = $;
+
+                $('.children-hide').on('click', function (event) {
+                    var ref = $(this).data('ref');
+                    $(this).children(0).toggleClass('fa-eye-slash').toggleClass('fa-eye')
+                    $(ref).toggleClass('hidden');
+                    event.stopPropagation();
+                });
+
+                $('.select-template').on('click', onSelectTemplate);
+
+                $('#workingNote_paragraphs').on('update', function (event, element) {
+                    var $selectTemplate = element.find('.select-template');
+                    $selectTemplate.on('click', onSelectTemplate);
+                });
+
+                function onSelectTemplate() {
+                    var $this = dollar(this);
+                    var parent = '{{ form.vars.id }}';
+
+                    if ($('.select-template').length > 1 && $this.parent().parent().find('.select-template').length == 1) {
+                        parent = $this.parent().parent().attr('id');
+                    }
+
+                    selectTemplateForParent('#' + parent);
+                }
+
+                function selectTemplateForParent(parent) {
+                    $.get('{{ path('paragraph_templates_browse') }}', function (html) {
+                        var $html = $(html);
+                        var $template = $('#template-selector');
+
+                        $template.find('.modal-body').html($html);
+
+                        $html.find('.select').on('click', function (event) {
+                            var getParagraphsUrl = url.replace('__id__', $(this).data('ref'));
+
+                            $.get(getParagraphsUrl, function (response) {
+                                var elements = $.parseJSON(response);
+
+                                var code = parent.replace('#workingNote_paragraphs', '');
+                                addParagraphs(elements, '', '#workingNote_paragraphs', code);
+                            });
+
+                            $template.modal('hide');
+
+                            event.preventDefault();
+                            event.stopPropagation();
+                        });
+
+                        $template.modal();
+                    });
+                }
+
+                function addParagraphs(elements, id, parent, index) {
+                    var parentId = parent;
+                    var partialElementId = parent;
+                    var $add = dollar(parentId).siblings('.actions').find('.add-paragraph');
+
+                    if (index != null && index != '') {
+                        parentId = parent + index + '_children';
+                        partialElementId = parentId;
+                        $add = dollar(parentId).parent().find('.add-paragraph');
+                    }
+
+                    var num = $(parentId + ' > div').length;
+
+                    $(elements).each(function (i, val) {
+                        $add.trigger('click');
+
+                        var el = num + i;
+
+                        var idElement = partialElementId + '_' + el;
+
+                        $(idElement + '_title').val(val.title);
+                        $(idElement + '_description').val(val.description);
+
+                        if (val.children.length > 0) {
+                            addParagraphs(val.children, id, parentId, '_' + el);
+                        }
+                    });
+                }
+
+            });
+        </script>
+    {% endif %}
+{% endblock %}

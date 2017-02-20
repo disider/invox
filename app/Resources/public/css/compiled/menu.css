@@ -1,0 +1,103 @@
+#left-menu-content > .nav {
+  font-size: 12px; }
+  #left-menu-content > .nav > li {
+    border: 1px solid #064d6d;
+    border-bottom: none; }
+    #left-menu-content > .nav > li a,
+    #left-menu-content > .nav > li a:focus {
+      background: #c3eafc;
+      outline: none; }
+    #left-menu-content > .nav > li a:hover,
+    #left-menu-content > .nav > li a:active {
+      background: #92d9f9;
+      outline: none; }
+    #left-menu-content > .nav > li:first-child {
+      border-radius: 4px 4px 0 0; }
+      #left-menu-content > .nav > li:first-child > a:hover,
+      #left-menu-content > .nav > li:first-child > a:active {
+        border-radius: 4px 4px 0 0; }
+    #left-menu-content > .nav > li:last-child {
+      border-bottom: 1px solid #064d6d;
+      border-radius: 0 0 4px 4px; }
+      #left-menu-content > .nav > li:last-child > a {
+        border-radius: 0 0 4px 4px; }
+        #left-menu-content > .nav > li:last-child > a.collapsible {
+          border-radius: 0; }
+        #left-menu-content > .nav > li:last-child > a.collapsed {
+          border-radius: 0 0 4px 4px; }
+      #left-menu-content > .nav > li:last-child .submenu > li:last-child > a {
+        border-radius: 0 0 4px 4px; }
+    #left-menu-content > .nav > li:first-child:last-child {
+      border-radius: 4px; }
+      #left-menu-content > .nav > li:first-child:last-child > a {
+        border-radius: 4px; }
+        #left-menu-content > .nav > li:first-child:last-child > a.collapsible {
+          border-radius: 4px 4px 0 0; }
+        #left-menu-content > .nav > li:first-child:last-child > a.collapsed {
+          border-radius: 4px; }
+    #left-menu-content > .nav > li .heading {
+      color: #053c55;
+      font-size: 16px; }
+      #left-menu-content > .nav > li .heading > a {
+        background-color: #62c8f6; }
+  #left-menu-content > .nav li.active > a {
+    background: #92d9f9;
+    font-weight: bold; }
+  #left-menu-content > .nav .fa {
+    font-size: 14px;
+    width: 16px;
+    text-align: center; }
+  #left-menu-content > .nav a.collapsible {
+    background: #92d9f9; }
+  #left-menu-content > .nav a.collapsed {
+    background: #c3eafc; }
+  #left-menu-content > .nav .collapse-toggle {
+    position: absolute;
+    right: 6px;
+    top: 12px; }
+#left-menu-content .submenu li {
+  border: none;
+  border-top: 1px solid #064d6d; }
+  #left-menu-content .submenu li > a {
+    padding-left: 38px;
+    background: #dbf2fd; }
+#left-menu-content .main-menu {
+  border-radius: 0; }
+  #left-menu-content .main-menu > li:first-child {
+    border-top: none;
+    border-radius: 0; }
+    #left-menu-content .main-menu > li:first-child > a {
+      border-radius: 0; }
+      #left-menu-content .main-menu > li:first-child > a:hover, #left-menu-content .main-menu > li:first-child > a:active {
+        border-radius: 0; }
+#left-menu-content .superadmin-menu {
+  margin-bottom: 20px; }
+  #left-menu-content .superadmin-menu.nav li {
+    border: 1px solid #ca8f16; }
+    #left-menu-content .superadmin-menu.nav li a {
+      background: #fcf8e3;
+      color: #8a6d3b; }
+      #left-menu-content .superadmin-menu.nav li a.heading {
+        background-color: #f2cf87;
+        color: #43351c; }
+      #left-menu-content .superadmin-menu.nav li a.collapsible {
+        border-radius: 4px 4px 0 0; }
+      #left-menu-content .superadmin-menu.nav li a.collapsed {
+        border-radius: 4px; }
+    #left-menu-content .superadmin-menu.nav li a:hover,
+    #left-menu-content .superadmin-menu.nav li a:active {
+      background-color: #f7e1b5;
+      color: #43351c; }
+    #left-menu-content .superadmin-menu.nav li.active {
+      background-color: #f7e1b5; }
+    #left-menu-content .superadmin-menu.nav li:last-child {
+      border-bottom: 1px solid #ca8f16; }
+  #left-menu-content .superadmin-menu.nav .submenu li {
+    border: none;
+    border-top: 1px solid #ca8f16; }
+    #left-menu-content .superadmin-menu.nav .submenu li a {
+      padding-left: 15px; }
+    #left-menu-content .superadmin-menu.nav .submenu li:last-child > a {
+      border-radius: 0 0 4px 4px; }
+
+/*# sourceMappingURL=menu.css.map */

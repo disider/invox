@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="it" xml:lang="it">
+<head>
+    <title>{{ 'app.name'|trans }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block stylesheets %}
+        <link href="/css/main.css?{{ version }}" rel="stylesheet" media="screen">
+    {% endblock stylesheets %}
+
+    <!-- HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries -->
+    {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
+
+    <script src="/js/jquery.min.js"></script>
+
+    <script>
+        $('html').addClass('js');
+    </script>
+</head>
+<body>
+<div id="page">
+    {% block header %}
+        <header>
+            <nav class="navbar navbar-default navbar-inverse">
+                <div class="container">
+
+                    <div class="navbar-header">
+                        <div class="navbar-brand">
+                            <a href="{{ path('homepage') }}">
+                                <img src="{{ asset('logo.png') }}" alt="{{ 'app.name'|trans }}"/>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="top-header-collapse collapse navbar-collapse" id="top-navbar-collapse">
+                        <div class="navbar-right">
+                            {{ knp_menu_render('AppBundle:MenuBuilder:userMenu', {'allow_safe_labels': true}) }}
+                        </div>
+                    </div>
+
+                </div>
+            </nav>
+        </header>
+    {% endblock header %}
+
+    {% block main_container %}
+        <div class="main-content container">
+            <div class="row">
+
+                {% block page %}
+                {% endblock page %}
+
+                <div class="push"></div>
+            </div>
+        </div>
+    {% endblock main_container %}
+
+    {% block footer %}
+        <footer class="main-footer text-center">
+            <small class="pull-left ">
+                <span class="label label-default">{{ version }}</span>
+            </small>
+
+            <a href="{{ path('privacy') }}">{{ 'privacy.title'|trans }}</a> |
+            <a href="{{ path('terms') }}">{{ 'terms.title'|trans({}, 'terms') }}</a> |
+            <a href="{{ path('contact_us') }}">{{ 'contact_us.title'|trans }}</a> |
+
+            <small>
+                &copy; <a href="http://di-side.com" target="_blank">Di-SiDE</a> {{ "now"|date('Y') }}
+            </small>
+        </footer>
+
+        {% include '::_analytics.html.twig' %}
+        {% include '::_chat.html.twig' %}
+
+    {% endblock footer %}
+</div>
+
+{% block javascripts %}
+    <script src="/js/main.min.js?{{ version }}"></script>
+{% endblock javascripts %}
+
+</body>
+</html>

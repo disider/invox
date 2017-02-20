@@ -1,0 +1,32 @@
+{{ form_row(form.invoices) }}
+
+<div class="footer row">
+    <div class="add-container col-md-7">
+    </div>
+
+    <div class="col-md-5">
+        <div class="summary">
+            <div class="totals row">
+                <div class="col-md-6 text-right">{{ 'fields.not_invoiced_total'|trans }}</div>
+                <div class="col-md-6 text-right">{{ currency() }}<span
+                            class="not-invoiced-total ">{{ pettyCashNote.notInvoicedTotal|format_number }}</span>
+                </div>
+                <div class="col-md-6 text-right">{{ 'fields.invoiced_total'|trans }}</div>
+                <div class="col-md-6 text-right">{{ currency() }}<span
+                            class="invoiced-total ">{{ pettyCashNote.invoicesTotal|format_number }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default empty-list">
+    <div class="panel-body">
+        <div class="add-container">
+        </div>
+
+        <p>
+            {{ 'invoices.empty_list'|trans }}
+        </p>
+    </div>
+</div>

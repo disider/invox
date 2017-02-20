@@ -1,0 +1,54 @@
+<!--
+  ~ This file is part of the Invox.
+  ~ (c) Di-SiDE s.r.l.
+  ~
+  ~ For the full copyright and license information, please view the LICENSE
+  ~ file that was distributed with this source code.
+  ~
+  -->
+
+<footer>
+    <table class="table">
+        <tr>
+            <td class="logo col-8">
+                &nbsp;
+            </td>
+            <td class="company col-4">
+                <h2 class="name">{{ document.companyName }}</h2>
+
+                <ul class="list-unstyled">
+                    {% if document.companyAddress %}
+                    <li class="address">{{ document.companyAddress }}</li>
+                    {% endif %}
+
+                    {% if document.companyZipCode %}
+                    <li>
+                        {{ document.companyZipCode }} {{ document.companyCity }} ({{ document.companyProvince }})
+                        &ndash;
+                        {{ document.companyCountry }}
+                    </li>
+                    {% endif %}
+                    {% if document.companyVatNumber %}
+                    <li class="vat-number">{{ 'company.vat_number'|trans }}: {{ document.companyVatNumber }}</li>
+                    {% endif %}
+                    {% if document.companyFiscalCode %}
+                    <li>{{ document.companyFiscalCode }}</li>
+                    {% endif %}
+                    {% if document.companyPhoneNumber %}
+                    <li>
+                        {{ 'company.phone_number'|trans }}: {{ document.companyPhoneNumber }}
+                        &ndash;
+                        {% if document.companyFaxNumber %}
+                        {{ 'company.fax_number'|trans }}: {{ document.companyFaxNumber }}
+                        {% endif %}
+                    </li>
+                    {% elseif document.companyFaxNumber %}
+                    <li>
+                        {{ 'company.fax_number'|trans }}: {{ document.companyFaxNumber }}
+                    </li>
+                    {% endif %}
+                </ul>
+            </td>
+        </tr>
+    </table>
+</footer>

@@ -1,0 +1,104 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+
+class City
+{
+    /** @var int */
+    private $id;
+
+    /**
+     * @Assert\NotBlank(message="error.empty_name")
+     *
+     * @var string
+     */
+    private $name;
+    
+    /** @var Province */
+    private $province;
+    
+    /** @var ArrayCollection */
+    private $zipCodes;
+
+    public static function create(Province $province, $name)
+    {
+        $entity = new self();
+        $entity->province = $province;
+        $entity->name = $name;
+
+        return $entity;
+    }
+    
+    public function __construct() 
+    {
+        $this->zipCodes = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function getProvince()
+    {
+        return $this->province;
+    }
+
+    public function setProvince($province)
+    {
+        $this->province = $province;
+    }
+
+    public function getZipCodes()
+    {
+        return $this->zipCodes;
+    }
+
+    public function setZipCodes($zipCodes)
+    {
+        $this->zipCodes = $zipCodes;
+    }
+    
+
+    /**
+     * Add zipCode
+     *
+     * @param \AppBundle\Entity\ZipCode $zipCode
+     *
+     * @return City
+     */
+    public function addZipCode(\AppBundle\Entity\ZipCode $zipCode)
+    {
+        $this->zipCodes[] = $zipCode;
+
+        return $this;
+    }
+
+    /**
+     * Remove zipCode
+     *
+     * @param \AppBundle\Entity\ZipCode $zipCode
+     */
+    public function removeZipCode(\AppBundle\Entity\ZipCode $zipCode)
+    {
+        $this->zipCodes->removeElement($zipCode);
+    }
+}

@@ -1,0 +1,6 @@
+{% extends '::one-column.html.twig' %}
+
+{% block main_content %}
+    <h1>{{ page.translation(app.request.locale).title }}</h1>
+    <p>{{ page.translation(app.request.locale).content|raw }}</p>
+{% endblock main_content %}

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="AppBundle\Entity\Document" table="document"
+            repository-class="AppBundle\Entity\Repository\DocumentRepository">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="ref" column="ref" type="string" length="255"/>
+        <field name="internalRef" column="internal_ref" type="string" length="255" nullable="true"/>
+        <field name="type" column="type" type="string" length="255"/>
+        <field name="direction" column="direction" type="string" length="10"/>
+        <field name="title" column="title" type="string" length="255" nullable="true"/>
+        <field name="content" column="content" type="text" nullable="true"/>
+
+        <field name="companyName" column="company_name" type="string" length="255" nullable="true"/>
+        <field name="companyVatNumber" column="company_vat_number" type="string" length="20" nullable="true"/>
+        <field name="companyFiscalCode" column="company_fiscal_code" type="string" length="20" nullable="true"/>
+        <field name="companyPhoneNumber" column="company_phone_number" type="string" length="255" nullable="true"/>
+        <field name="companyFaxNumber" column="company_fax_number" type="string" length="255" nullable="true"/>
+        <field name="companyAddress" column="company_address" type="text" nullable="true"/>
+        <field name="companyZipCode" column="company_zip_code" type="string" length="10" nullable="true"/>
+        <field name="companyCity" column="company_city" type="string" length="255" nullable="true"/>
+        <field name="companyProvince" column="company_province" type="string" length="5" nullable="true"/>
+        <field name="companyAddressNotes" column="company_address_notes" type="text" nullable="true" />
+        <field name="companyLogoUrl" column="company_logo_url" type="string" length="255" nullable="true"/>
+
+        <field name="customerName" column="customer_name" type="string" length="255" nullable="true"/>
+        <field name="customerVatNumber" column="customer_vat_number" type="string" length="20" nullable="true"/>
+        <field name="customerFiscalCode" column="customer_fiscal_code" type="string" length="20" nullable="true"/>
+        <field name="customerPhoneNumber" column="customer_phone_number" type="string" length="20" nullable="true"/>
+        <field name="customerFaxNumber" column="customer_fax_number" type="string" length="20" nullable="true"/>
+        <field name="customerAddress" column="customer_address" type="string" length="255" nullable="true"/>
+        <field name="customerAddressNotes" column="customer_address_notes" type="text" nullable="true"/>
+        <field name="customerZipCode" column="customer_zip_code" type="string" length="10" nullable="true"/>
+        <field name="customerCity" column="customer_city" type="string" length="255" nullable="true"/>
+        <field name="customerProvince" column="customer_province" type="string" length="5" nullable="true"/>
+
+        <field name="year" column="year" type="integer"/>
+        <field name="issuedAt" column="issued_at" type="datetime"/>
+        <field name="validUntil" column="valid_until" type="datetime" nullable="true"/>
+        <field name="netTotal" column="net_total" type="decimal" precision="16" scale="2"/>
+        <field name="taxes" column="taxes" type="decimal" precision="16" scale="2"/>
+        <field name="grossTotal" column="gross_total" type="decimal" precision="16" scale="2"/>
+        <field name="discount" column="discount" type="decimal" precision="16" scale="2"/>
+        <field name="discountPercent" column="discount_percent" type="boolean" />
+        <field name="rounding" column="rounding" type="decimal" precision="16" scale="2"/>
+        <field name="notes" column="notes" type="text" nullable="true"/>
+        <field name="showTotals" column="show_totals" type="string" length="32"/>
+        <field name="language" column="language" type="string" length="5"/>
+        <field name="status" column="status" type="string" length="255" nullable="true"/>
+        <field name="selfInvoice" column="self_invoice" type="boolean"/>
+
+        <one-to-one field="linkedInvoice" target-entity="Document">
+            <join-column name="linked_invoice_id" referenced-column-name="id" on-delete="SET NULL" nullable="true"/>
+        </one-to-one>
+
+        <one-to-one field="linkedCreditNote" target-entity="Document">
+            <join-column name="linked_credit_note_id" referenced-column-name="id" on-delete="SET NULL" nullable="true"/>
+        </one-to-one>
+
+        <one-to-many field="rows" target-entity="DocumentRow" mapped-by="document" orphan-removal="true">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+        <one-to-many field="attachments" target-entity="DocumentAttachment" mapped-by="container" orphan-removal="true">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+        <one-to-many field="pettyCashNotes" target-entity="InvoicePerNote" mapped-by="invoice">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+        <one-to-many field="linkedDocuments" target-entity="Document" mapped-by="linkedOrder">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+        <one-to-many field="costCenters" target-entity="DocumentCostCenter" mapped-by="taggable" orphan-removal="true">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+        <many-to-one field="documentTemplate" target-entity="DocumentTemplatePerCompany" inversed-by="documents">
+            <join-column name="document_template_id" referenced-column-name="id" on-delete="CASCADE" nullable="false"/>
+        </many-to-one>
+
+        <many-to-one field="company" target-entity="Company" inversed-by="documents">
+            <join-column name="company_id" referenced-column-name="id" on-delete="CASCADE" nullable="false"/>
+        </many-to-one>
+
+        <many-to-one field="companyCountry" target-entity="Country">
+            <join-column name="company_country_id" referenced-column-name="id" on-delete="CASCADE" nullable="false"/>
+        </many-to-one>
+
+        <many-to-one field="linkedCustomer" target-entity="Customer" inversed-by="documents">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+            <join-column name="linked_customer_id" referenced-column-name="id" on-delete="SET NULL" nullable="true"/>
+        </many-to-one>
+
+        <many-to-one field="linkedOrder" target-entity="Document" inversed-by="linkedDocuments">
+            <join-column name="linked_document_id" referenced-column-name="id" on-delete="SET NULL" nullable="true"/>
+        </many-to-one>
+
+        <many-to-one field="customerCountry" target-entity="Country">
+            <join-column name="customer_country_id" referenced-column-name="id" on-delete="CASCADE" nullable="false"/>
+        </many-to-one>
+
+        <many-to-one field="paymentType" target-entity="PaymentType">
+            <join-column name="payment_type_id" referenced-column-name="id" on-delete="SET NULL" nullable="true"/>
+        </many-to-one>
+
+        <many-to-one field="recurrence" target-entity="Recurrence" inversed-by="linkedDocuments">
+            <join-column name="recurrence_id" referenced-column-name="id" on-delete="SET NULL" nullable="true"/>
+        </many-to-one>
+
+    </entity>
+
+</doctrine-mapping>

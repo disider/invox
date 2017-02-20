@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="AppBundle\Entity\Paragraph" table="paragraph"
+            repository-class="AppBundle\Entity\Repository\EntityRepository">
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="title" type="string" length="255"/>
+        <field name="description" type="text" nullable="true"/>
+
+        <one-to-many field="children" target-entity="Paragraph" mapped-by="parent" orphan-removal="true">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+
+        <many-to-one field="parent" target-entity="Paragraph" inversed-by="children">
+            <join-column name="parent_id" referenced-column-name="id" on-delete="SET NULL" nullable="true"/>
+        </many-to-one>
+
+        <many-to-one field="workingNote" target-entity="WorkingNote" inversed-by="paragraphs">
+            <join-column name="working_note_id" referenced-column-name="id" on-delete="SET NULL" nullable="true"/>
+        </many-to-one>
+    </entity>
+
+</doctrine-mapping>

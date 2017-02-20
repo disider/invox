@@ -1,0 +1,82 @@
+# Loco yaml export: Symfony YAML object
+# Project: Invox
+# Release: Working copy
+# Locale: it-IT, Italian (Italy)
+# Tagged: emails
+# Status: Translated
+# Exported by: Neil Armstrong
+# Exported at: Fri, 13 Jan 2017 10:43:11 +0000
+---
+invite:
+    accountant:
+        html_body: |-
+            Gent.mo %accountant%, <br>
+            il titolare di "%company%" ha richiesto te come commercialista!<br>
+            <br>
+            Clicca <a href="%url%">qui</a> per accettare la richiesta.<br>
+            <br>
+            Buona gestione,
+            Il Team di Invox
+        subject: '[Invox] Hai una nuova richiesta'
+        txt_body: |-
+            Gent.mo %accountant%,
+            il titolare di "%company%" ha richiesto te come commercialista!
+            Clicca sul link seguente:
+            %url%
+            per accettare la richiesta.
+            Buona gestione,
+            Il Team di Invox
+registration:
+    completed:
+        html_body: |
+            Ciao %user%, <br>
+            la tua registrazione è completa!<br>
+            <br>
+            Il tuo account è attivo, e puoi iniziare a gestire i tuoi conti!<br>
+            <br>
+            Buona navigazione,<br>
+            Il team di Invox
+        subject: Benvenuto su Invox
+        txt_body: |
+            Ciao %user%,
+            la tua registrazione è completa!
+            Il tuo account è attivo, e puoi iniziare a gestire i tuoi conti!
+            Buona navigazione,
+            Il team di Invox
+    confirm:
+        html_body: |
+            Benvenuto %user%, <br>
+            la tua registrazione è quasi completa!<br>
+            <br>
+            Clicca <a href="%url%">qui</a> per attivare il tuo account, e iniziare a gestire i tuoi conti!<br>
+            <br>
+            Buona navigazione,<br>
+            Il team di Invox
+        subject: '[Invox] Attiva il tuo account!'
+        txt_body: |
+            Benvenuto %user%,
+            la tua registrazione è quasi completa!
+            Fai click sul seguente link:
+            %url%
+            per attivare il tuo account e iniziare a gestire i tuoi conti!
+            Buona navigazione,
+            Il team di Invox
+reset_password:
+    html_body: |
+        Ciao %user%,<br>
+        hai richiesto il ripristino della password!<br>
+        <br>
+        Clicca <a href="%url%">qui</a> per crearne una nuova.<br>
+        <br>
+        Buona navigazione,<br>
+        Il team di Invox
+    subject: '[Invox] Ripristina la tua password'
+    txt_body: |
+        Ciao %user%,
+        hai richiesto il ripristino della password!
+        Clicka sul link seguente per crearne una nuova:
+        %url%
+        Buona navigazione,
+        Il team di Invox
+contact_us:
+    subject: 'Richiesta di info da %from%: %subject%'

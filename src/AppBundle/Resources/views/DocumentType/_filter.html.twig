@@ -1,0 +1,52 @@
+{{ form_start(form, {method: 'GET'}) }}
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4">
+                {{ form_row(form.ref) }}
+            </div>
+            {% if form.direction is defined %}
+                <div class="col-md-2">
+                    {{ form_row(form.direction) }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_row(form.customer) }}
+            </div>
+            {% if form.costCenters is defined %}
+            <div class="col-md-4">
+                {{ form_row(form.costCenters) }}
+            </div>
+            {% endif %}
+            {% if form.status is defined %}
+                <div class="col-md-2">
+                    {{ form_row(form.status) }}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_row(form.issuedAt) }}
+            </div>
+            {% if form.validUntil is defined %}
+            <div class="col-md-6">
+                {{ form_row(form.validUntil) }}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="form-actions">
+            {{ form_widget(form.filter) }}
+
+            <a class="btn btn-default btn-sm" href="{{ path(route) }}">{{ 'actions.reset'|trans }}</a>
+
+        </div>
+    </div>
+</div>
+
+{{ form_end(form) }}
+
