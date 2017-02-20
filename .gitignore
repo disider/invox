@@ -54,3 +54,4 @@
 .sass-cache
 .rules
 .vagrant
+deploy_*.yml
