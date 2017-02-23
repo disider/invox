@@ -127,6 +127,12 @@ class WorkingNote
         return $this->paragraphs;
     }
 
+
+    public function setParagraphs($paragraphs)
+    {
+        $this->paragraphs = $paragraphs;
+    }
+
     public function getCustomer()
     {
         return $this->customer;

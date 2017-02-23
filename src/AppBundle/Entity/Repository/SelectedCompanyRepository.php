@@ -59,6 +59,20 @@ abstract class SelectedCompanyRepository extends AbstractRepository
         return $qb;
     }
 
+    protected function filterBySales($qb, $FILTER_BY_SALES)
+    {
+        $qb
+            ->leftJoin($this->getRootAlias() . '.company', 'company')
+            ->leftJoin('company.managers', 'manager')
+            ->andWhere('company.owner = :user')
+            ->orWhere('manager = :user')
+            ->setParameter('user', $user);
+
+        return $qb;
+
+    }
+
+
     protected function filterByAccountant(QueryBuilder $qb, User $user)
     {
         $qb

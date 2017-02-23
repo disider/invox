@@ -12,6 +12,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Paragraph;
 use AppBundle\Entity\Repository\WorkingNoteRepository;
+use Behat\Behat\Definition\Call\Then;
 use Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

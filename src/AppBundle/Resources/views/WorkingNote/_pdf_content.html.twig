@@ -27,6 +27,7 @@
                 <span class="code">[{{ workingNote.code }}]</span>
             </td>
 
+            {% if workingNote.customer %}
             <td class="col-4 customer">
                 {% set customer = workingNote.customer %}
 
@@ -46,6 +47,7 @@
 
                 </ul>
             </td>
+            {% endif %}
         </tr>
     </table>
 

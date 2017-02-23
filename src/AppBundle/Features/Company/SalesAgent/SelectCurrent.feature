@@ -29,7 +29,6 @@ Feature: Sales agent can select the current company
     When I visit "/companies/%companies.Acme1.id%/select"
     Then I should see the "/companies/%companies.Acme1.id%/view" link
     And I should see no "/companies/%companies.Acme2.id%/view" link
-    And I should see no "/customers" link
     And I should see no "/quotes" link
     And I should see no "/invoices" link
     And I should see no "/orders" link
@@ -37,6 +36,7 @@ Feature: Sales agent can select the current company
     And I should see no "/petty-cash-notes" link
     And I should see no "/products" link
     And I should see no "/services" link
+    And I should see the "/customers" link
     And I should see the "/paragraph-templates" link
     And I should see the "/working-notes" link
 
