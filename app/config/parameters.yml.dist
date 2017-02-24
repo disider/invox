@@ -36,3 +36,18 @@ parameters:
         github_repo: "#"
         community: "#"
         join_development: "#"
+
+    demo_mode: false
+    demo_credentials:
+       owner:
+          email: demo.owner@invox.it
+          password: ownerdemo
+       manager:
+          email: demo.manager@invox.it
+          password: managerdemo
+       accountant:
+          email: demo.accountant@invox.it
+          password: accountantdemo
+       sales_agent:
+          email: demo.sales@invox.it
+          password: salesdemo

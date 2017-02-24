@@ -143,6 +143,10 @@ customers:
     title: Clienti/Fornitori
 delivery_notes:
     title: Documenti di trasporto
+demo:
+    login:
+        welcome: Benvenuto nella demo di Invox! Puoi provare qualsiasi tipo di utente, basta che inserisci le relative credenziali ed effettui l'accesso.
+    action_not_allowed: Questa azione non è permessa nella demo
 document:
     add_new_customer: Vuoi aggiungere questa anagrafica alla rubrica?
     changed_company_details: I dettagli della società sono modificati, clicca <a href="%url%">qui</a> per ricaricarli.

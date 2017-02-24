@@ -12,6 +12,7 @@ namespace AppBundle\Features\Context;
 
 use AppBundle\Entity\Company;
 use AppBundle\Features\Mock\MailerMock;
+use AppBundle\Features\Mock\ParameterHelperMock;
 use AppBundle\Mailer\Mailer;
 use Behat\Gherkin\Node\TableNode;
 use Diside\BehatExtension\Context\AbstractContext;
@@ -35,12 +36,16 @@ class FeatureContext extends AbstractContext
     /** @var string */
     private $firewallName;
 
+    /** @var ParameterHelperMock */
+    private $parameterHelper;
+
     public function __construct($userProvider, $firewallName)
     {
         $this->userProvider = $userProvider;
         $this->firewallName = $firewallName;
 
         $this->mailer = new MailerMock();
+        $this->parameterHelper = new ParameterHelperMock(null);
 
         $this->setFilePath(__DIR__ . '/attachments');
     }
@@ -50,6 +55,7 @@ class FeatureContext extends AbstractContext
     {
         /* @var Mailer mailer */
         $this->getContainer()->mock('default_mailer', $this->mailer);
+        $this->getContainer()->mock('parameter_helper', $this->parameterHelper);
     }
 
     /** @AfterScenario */
@@ -57,6 +63,7 @@ class FeatureContext extends AbstractContext
     {
         /* @var Mailer mailer */
         $this->getContainer()->unmock('default_mailer');
+        $this->getContainer()->unmock('parameter_helper');
     }
 
     /** @BeforeScenario */
@@ -321,4 +328,11 @@ class FeatureContext extends AbstractContext
         a::assertNull($nodeElement);
     }
 
+    /**
+     * @Given /^the demo mode is enabled$/
+     */
+    public function theDemoModeIsEnabled()
+    {
+        $this->parameterHelper->setDemoMode(true);
+    }
 }

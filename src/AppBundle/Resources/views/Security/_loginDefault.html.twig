@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-md-12 col-lg-push-3 col-lg-6">
+        <h1>{{ 'login.title'|trans }}</h1>
+
+        {{ form_start(form, { 'action': path('login_check') }) }}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {{ form_errors(form, { global_errors: true }) }}
+
+                    {{ form_row(form._username) }}
+                    {{ form_row(form._password) }}
+
+                    <a class="btn btn-link pull-right"
+                       href="{{ path('reset_password_request') }}">{{ 'reset_password.request'|trans }}</a>
+
+                    {{ form_row(form._remember_me) }}
+
+                    <hr />
+
+                    {{ form_widget(form.login) }}
+
+                    {% if show_registration %}
+                        <a class="btn btn-link pull-right"
+                           href="{{ path('register') }}">{{ 'registration.not_yet_registered'|trans }}</a>
+                    {% endif %}
+
+                </div>
+            </div>
+        {{ form_end(form) }}
+    </div>
+</div>

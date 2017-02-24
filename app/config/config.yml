@@ -39,9 +39,12 @@ twig:
         version:        "%version%"
         show_analytics: "%show_analytics%"
         show_chat:      "%show_chat%"
+        show_registration:    "%show_registration%"
         min_page_size: 25
         page_sizes:    [25, 50, 75, 100]
         launcher_links: "%launcher_links%"
+        demo_mode:            "%demo_mode%"
+        demo_credentials:     "%demo_credentials%"
 
 # Doctrine Configuration
 doctrine:

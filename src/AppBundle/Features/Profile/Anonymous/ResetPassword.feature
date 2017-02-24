@@ -83,3 +83,12 @@ Feature: User can register
     When I visit "/logout"
     And I try to visit "/reset-password/reset/12345678"
     Then the response status code should be 404
+
+  Scenario: I cannot reset my password if demo mode is enabled
+    Given the demo mode is enabled
+    And there is a user:
+      | email            | password | resetPasswordToken |
+      | user@example.com | secret   | 12345678           |
+    When I visit "/reset-password"
+    Then I should be on "/"
+    And I should see "This action is not allowed in the demo"

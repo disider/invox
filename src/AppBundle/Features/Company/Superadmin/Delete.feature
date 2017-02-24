@@ -17,3 +17,12 @@ Feature: Superadmin can delete a company
     When I visit "/companies/%companies.Acme.id%/delete"
     Then I should be on "/companies"
     And I should see 0 "company"
+
+  Scenario: I cannot delete a company in demo mode
+    Given there is a company:
+      | name | owner            |
+      | Acme | user@example.com |
+    And the demo mode is enabled
+    When I visit "/companies/%companies.Acme.id%/delete"
+    Then I should be on "/companies"
+    And I should see "This action is not allowed in the demo"

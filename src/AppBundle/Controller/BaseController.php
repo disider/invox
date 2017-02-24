@@ -409,4 +409,8 @@ class BaseController extends Controller
         return $response;
     }
 
+    protected function isInDemoMode()
+    {
+        return $this->get('parameter_helper')->isInDemoMode();
+    }
 }

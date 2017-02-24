@@ -1,0 +1,13 @@
+AppBundle\Entity\DocumentTemplatePerCompany:
+    acme_template:
+        company: '@acme'
+        documentTemplate: '@default_template'
+        name: 'Default template'
+        textColor: '#434343'
+        tableHeaderBackgroundColor: '#55b63d'
+        tableHeaderColor: '#fff'
+        headingColor: '#55b63d'
+        fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif'
+        header: ''
+        content: ''
+        footer: ''

@@ -1,0 +1,43 @@
+AppBundle\Entity\Document:
+    Invoice1:
+        ref: '001'
+        company: '@acme'
+        notes: ''
+        discount: !!float 0
+        language: en
+        linkedCustomer: '@customer_apple'
+        customerName: 'Apple Computer, Inc.'
+        customerVatNumber: '12345678901'
+        customerAddress: '1 Infinite Loop'
+        customerPhoneNumber: '555111222'
+        customerFaxNumber: ''
+        customerCity: Cupertino
+        customerZipCode: '94025'
+        documentTemplate: '@acme_template'
+        customerCountry: '@country_us'
+        type: invoice
+        direction: outgoing
+        year: '2016'
+        issuedAt: '2016-01-04'
+        validUntil: '2016-01-04'
+    Invoice2:
+        ref: '002'
+        company: '@acme'
+        notes: ''
+        discount: !!float 0
+        language: en
+        linkedCustomer: '@customer_apple'
+        customerName: 'Apple Computer, Inc.'
+        customerVatNumber: '12345678901'
+        customerAddress: '1 Infinite Loop'
+        customerPhoneNumber: '555111222'
+        customerFaxNumber: ''
+        customerCity: Cupertino
+        customerZipCode: '94025'
+        documentTemplate: '@acme_template'
+        customerCountry: '@country_us'
+        type: invoice
+        direction: incoming
+        year: '2016'
+        issuedAt: '2016-02-23'
+        validUntil: '2016-02-23'

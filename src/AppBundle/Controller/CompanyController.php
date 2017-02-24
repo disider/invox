@@ -91,9 +91,12 @@ class CompanyController extends BaseController
      */
     public function deleteAction(Company $company)
     {
-        $this->getCompanyRepository()->delete($company);
-
-        $this->addFlash('success', 'flash.company.deleted', ['%company%' => $company]);
+        if ($this->isInDemoMode()){
+            $this->addFlash('danger', 'demo.action_not_allowed');
+        } else {
+            $this->getCompanyRepository()->delete($company);
+            $this->addFlash('success', 'flash.company.deleted', ['%company%' => $company]);
+        }
 
         return $this->redirectToRoute('companies');
     }
@@ -146,6 +149,13 @@ class CompanyController extends BaseController
      */
     public function accountantAction(Request $request, Company $company)
     {
+        if ($request->getMethod() == 'POST' && $this->isInDemoMode()){
+            $this->addFlash('danger', 'demo.action_not_allowed');
+            return $this->redirectToRoute('company_accountant', [
+                'id' => $company->getId(),
+            ]);
+        }
+
         return $this->processInviteForm($request, $company);
     }
 
@@ -157,6 +167,8 @@ class CompanyController extends BaseController
     {
         if(!$company->hasAccountant()) {
             $this->addFlash('danger', 'flash.company.accountant_not_connected');
+        } else if ($this->isInDemoMode()){
+            $this->addFlash('danger', 'demo.action_not_allowed');
         }
         else {
             $company->setAccountant(null);

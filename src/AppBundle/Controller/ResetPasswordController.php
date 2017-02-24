@@ -33,6 +33,11 @@ class ResetPasswordController extends BaseController
             return $this->redirectToRoute('dashboard');
         }
 
+        if ($this->isInDemoMode()) {
+            $this->addFlash('danger', 'demo.action_not_allowed');
+            return $this->redirectToRoute('homepage');
+        }
+
         $form = $this->createForm(RequestResetPasswordForm::class, null, [
             'data_class' => $this->getUserClass(),
         ]);

@@ -15,6 +15,7 @@
         <parameter key="user_manager.class">AppBundle\Entity\Manager\UserManager</parameter>
         <parameter key="user.class">AppBundle\Entity\User</parameter>
         <parameter key="csv_to_array.class">AppBundle\Helper\CsvToArray</parameter>
+        <parameter key="parameter_helper.class">AppBundle\Helper\ParameterHelper</parameter>
 
         <parameter key="mailer.emails" type="collection">
             <parameter key="no-reply">%noreply_email%</parameter>
@@ -78,6 +79,10 @@
         </service>
 
         <service id="csv_to_array" class="%csv_to_array.class%">
+        </service>
+
+        <service id="parameter_helper" class="%parameter_helper.class%">
+            <argument type="service" id="service_container"/>
         </service>
 
     </services>

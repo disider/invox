@@ -1,0 +1,1001 @@
+AppBundle\Entity\CountryTranslation:
+    country_ad_en:
+        translatable: '@country_ad'
+        name: Andorra
+        locale: en
+    country_ae_en:
+        translatable: '@country_ae'
+        name: 'United Arab Emirates'
+        locale: en
+    country_af_en:
+        translatable: '@country_af'
+        name: Afghanistan
+        locale: en
+    country_ag_en:
+        translatable: '@country_ag'
+        name: 'Antigua and Barbuda'
+        locale: en
+    country_ai_en:
+        translatable: '@country_ai'
+        name: Anguilla
+        locale: en
+    country_al_en:
+        translatable: '@country_al'
+        name: Albania
+        locale: en
+    country_am_en:
+        translatable: '@country_am'
+        name: Armenia
+        locale: en
+    country_ao_en:
+        translatable: '@country_ao'
+        name: Angola
+        locale: en
+    country_aq_en:
+        translatable: '@country_aq'
+        name: Antarctica
+        locale: en
+    country_ar_en:
+        translatable: '@country_ar'
+        name: Argentina
+        locale: en
+    country_as_en:
+        translatable: '@country_as'
+        name: 'American Samoa'
+        locale: en
+    country_at_en:
+        translatable: '@country_at'
+        name: Austria
+        locale: en
+    country_au_en:
+        translatable: '@country_au'
+        name: Australia
+        locale: en
+    country_aw_en:
+        translatable: '@country_aw'
+        name: Aruba
+        locale: en
+    country_ax_en:
+        translatable: '@country_ax'
+        name: Åland
+        locale: en
+    country_az_en:
+        translatable: '@country_az'
+        name: Azerbaijan
+        locale: en
+    country_ba_en:
+        translatable: '@country_ba'
+        name: 'Bosnia and Herzegovina'
+        locale: en
+    country_bb_en:
+        translatable: '@country_bb'
+        name: Barbados
+        locale: en
+    country_bd_en:
+        translatable: '@country_bd'
+        name: Bangladesh
+        locale: en
+    country_be_en:
+        translatable: '@country_be'
+        name: Belgium
+        locale: en
+    country_bf_en:
+        translatable: '@country_bf'
+        name: 'Burkina Faso'
+        locale: en
+    country_bg_en:
+        translatable: '@country_bg'
+        name: Bulgaria
+        locale: en
+    country_bh_en:
+        translatable: '@country_bh'
+        name: Bahrain
+        locale: en
+    country_bi_en:
+        translatable: '@country_bi'
+        name: Burundi
+        locale: en
+    country_bj_en:
+        translatable: '@country_bj'
+        name: Benin
+        locale: en
+    country_bl_en:
+        translatable: '@country_bl'
+        name: 'Saint Barthélemy'
+        locale: en
+    country_bm_en:
+        translatable: '@country_bm'
+        name: Bermuda
+        locale: en
+    country_bn_en:
+        translatable: '@country_bn'
+        name: Brunei
+        locale: en
+    country_bo_en:
+        translatable: '@country_bo'
+        name: Bolivia
+        locale: en
+    country_bq_en:
+        translatable: '@country_bq'
+        name: Bonaire
+        locale: en
+    country_br_en:
+        translatable: '@country_br'
+        name: Brazil
+        locale: en
+    country_bs_en:
+        translatable: '@country_bs'
+        name: Bahamas
+        locale: en
+    country_bt_en:
+        translatable: '@country_bt'
+        name: Bhutan
+        locale: en
+    country_bv_en:
+        translatable: '@country_bv'
+        name: 'Bouvet Island'
+        locale: en
+    country_bw_en:
+        translatable: '@country_bw'
+        name: Botswana
+        locale: en
+    country_by_en:
+        translatable: '@country_by'
+        name: Belarus
+        locale: en
+    country_bz_en:
+        translatable: '@country_bz'
+        name: Belize
+        locale: en
+    country_ca_en:
+        translatable: '@country_ca'
+        name: Canada
+        locale: en
+    country_cc_en:
+        translatable: '@country_cc'
+        name: 'Cocos [Keeling] Islands'
+        locale: en
+    country_cd_en:
+        translatable: '@country_cd'
+        name: 'Democratic Republic of the Congo'
+        locale: en
+    country_cf_en:
+        translatable: '@country_cf'
+        name: 'Central African Republic'
+        locale: en
+    country_cg_en:
+        translatable: '@country_cg'
+        name: 'Republic of the Congo'
+        locale: en
+    country_ch_en:
+        translatable: '@country_ch'
+        name: Switzerland
+        locale: en
+    country_ci_en:
+        translatable: '@country_ci'
+        name: 'Ivory Coast'
+        locale: en
+    country_ck_en:
+        translatable: '@country_ck'
+        name: 'Cook Islands'
+        locale: en
+    country_cl_en:
+        translatable: '@country_cl'
+        name: Chile
+        locale: en
+    country_cm_en:
+        translatable: '@country_cm'
+        name: Cameroon
+        locale: en
+    country_cn_en:
+        translatable: '@country_cn'
+        name: China
+        locale: en
+    country_co_en:
+        translatable: '@country_co'
+        name: Colombia
+        locale: en
+    country_cr_en:
+        translatable: '@country_cr'
+        name: 'Costa Rica'
+        locale: en
+    country_cu_en:
+        translatable: '@country_cu'
+        name: Cuba
+        locale: en
+    country_cv_en:
+        translatable: '@country_cv'
+        name: 'Cape Verde'
+        locale: en
+    country_cw_en:
+        translatable: '@country_cw'
+        name: Curacao
+        locale: en
+    country_cx_en:
+        translatable: '@country_cx'
+        name: 'Christmas Island'
+        locale: en
+    country_cy_en:
+        translatable: '@country_cy'
+        name: Cyprus
+        locale: en
+    country_cz_en:
+        translatable: '@country_cz'
+        name: 'Czech Republic'
+        locale: en
+    country_de_en:
+        translatable: '@country_de'
+        name: Germany
+        locale: en
+    country_dj_en:
+        translatable: '@country_dj'
+        name: Djibouti
+        locale: en
+    country_dk_en:
+        translatable: '@country_dk'
+        name: Denmark
+        locale: en
+    country_dm_en:
+        translatable: '@country_dm'
+        name: Dominica
+        locale: en
+    country_do_en:
+        translatable: '@country_do'
+        name: 'Dominican Republic'
+        locale: en
+    country_dz_en:
+        translatable: '@country_dz'
+        name: Algeria
+        locale: en
+    country_ec_en:
+        translatable: '@country_ec'
+        name: Ecuador
+        locale: en
+    country_ee_en:
+        translatable: '@country_ee'
+        name: Estonia
+        locale: en
+    country_eg_en:
+        translatable: '@country_eg'
+        name: Egypt
+        locale: en
+    country_eh_en:
+        translatable: '@country_eh'
+        name: 'Western Sahara'
+        locale: en
+    country_er_en:
+        translatable: '@country_er'
+        name: Eritrea
+        locale: en
+    country_es_en:
+        translatable: '@country_es'
+        name: Spain
+        locale: en
+    country_et_en:
+        translatable: '@country_et'
+        name: Ethiopia
+        locale: en
+    country_fi_en:
+        translatable: '@country_fi'
+        name: Finland
+        locale: en
+    country_fj_en:
+        translatable: '@country_fj'
+        name: Fiji
+        locale: en
+    country_fk_en:
+        translatable: '@country_fk'
+        name: 'Falkland Islands'
+        locale: en
+    country_fm_en:
+        translatable: '@country_fm'
+        name: Micronesia
+        locale: en
+    country_fo_en:
+        translatable: '@country_fo'
+        name: 'Faroe Islands'
+        locale: en
+    country_fr_en:
+        translatable: '@country_fr'
+        name: France
+        locale: en
+    country_ga_en:
+        translatable: '@country_ga'
+        name: Gabon
+        locale: en
+    country_gb_en:
+        translatable: '@country_gb'
+        name: 'United Kingdom'
+        locale: en
+    country_gd_en:
+        translatable: '@country_gd'
+        name: Grenada
+        locale: en
+    country_ge_en:
+        translatable: '@country_ge'
+        name: Georgia
+        locale: en
+    country_gf_en:
+        translatable: '@country_gf'
+        name: 'French Guiana'
+        locale: en
+    country_gg_en:
+        translatable: '@country_gg'
+        name: Guernsey
+        locale: en
+    country_gh_en:
+        translatable: '@country_gh'
+        name: Ghana
+        locale: en
+    country_gi_en:
+        translatable: '@country_gi'
+        name: Gibraltar
+        locale: en
+    country_gl_en:
+        translatable: '@country_gl'
+        name: Greenland
+        locale: en
+    country_gm_en:
+        translatable: '@country_gm'
+        name: Gambia
+        locale: en
+    country_gn_en:
+        translatable: '@country_gn'
+        name: Guinea
+        locale: en
+    country_gp_en:
+        translatable: '@country_gp'
+        name: Guadeloupe
+        locale: en
+    country_gq_en:
+        translatable: '@country_gq'
+        name: 'Equatorial Guinea'
+        locale: en
+    country_gr_en:
+        translatable: '@country_gr'
+        name: Greece
+        locale: en
+    country_gs_en:
+        translatable: '@country_gs'
+        name: 'South Georgia and the South Sandwich Islands'
+        locale: en
+    country_gt_en:
+        translatable: '@country_gt'
+        name: Guatemala
+        locale: en
+    country_gu_en:
+        translatable: '@country_gu'
+        name: Guam
+        locale: en
+    country_gw_en:
+        translatable: '@country_gw'
+        name: Guinea-Bissau
+        locale: en
+    country_gy_en:
+        translatable: '@country_gy'
+        name: Guyana
+        locale: en
+    country_hk_en:
+        translatable: '@country_hk'
+        name: 'Hong Kong'
+        locale: en
+    country_hm_en:
+        translatable: '@country_hm'
+        name: 'Heard Island and McDonald Islands'
+        locale: en
+    country_hn_en:
+        translatable: '@country_hn'
+        name: Honduras
+        locale: en
+    country_hr_en:
+        translatable: '@country_hr'
+        name: Croatia
+        locale: en
+    country_ht_en:
+        translatable: '@country_ht'
+        name: Haiti
+        locale: en
+    country_hu_en:
+        translatable: '@country_hu'
+        name: Hungary
+        locale: en
+    country_id_en:
+        translatable: '@country_id'
+        name: Indonesia
+        locale: en
+    country_ie_en:
+        translatable: '@country_ie'
+        name: Ireland
+        locale: en
+    country_il_en:
+        translatable: '@country_il'
+        name: Israel
+        locale: en
+    country_im_en:
+        translatable: '@country_im'
+        name: 'Isle of Man'
+        locale: en
+    country_in_en:
+        translatable: '@country_in'
+        name: India
+        locale: en
+    country_io_en:
+        translatable: '@country_io'
+        name: 'British Indian Ocean Territory'
+        locale: en
+    country_iq_en:
+        translatable: '@country_iq'
+        name: Iraq
+        locale: en
+    country_ir_en:
+        translatable: '@country_ir'
+        name: Iran
+        locale: en
+    country_is_en:
+        translatable: '@country_is'
+        name: Iceland
+        locale: en
+    country_it_en:
+        translatable: '@country_it'
+        name: Italy
+        locale: en
+    country_je_en:
+        translatable: '@country_je'
+        name: Jersey
+        locale: en
+    country_jm_en:
+        translatable: '@country_jm'
+        name: Jamaica
+        locale: en
+    country_jo_en:
+        translatable: '@country_jo'
+        name: Jordan
+        locale: en
+    country_jp_en:
+        translatable: '@country_jp'
+        name: Japan
+        locale: en
+    country_ke_en:
+        translatable: '@country_ke'
+        name: Kenya
+        locale: en
+    country_kg_en:
+        translatable: '@country_kg'
+        name: Kyrgyzstan
+        locale: en
+    country_kh_en:
+        translatable: '@country_kh'
+        name: Cambodia
+        locale: en
+    country_ki_en:
+        translatable: '@country_ki'
+        name: Kiribati
+        locale: en
+    country_km_en:
+        translatable: '@country_km'
+        name: Comoros
+        locale: en
+    country_kn_en:
+        translatable: '@country_kn'
+        name: 'Saint Kitts and Nevis'
+        locale: en
+    country_kp_en:
+        translatable: '@country_kp'
+        name: 'North Korea'
+        locale: en
+    country_kr_en:
+        translatable: '@country_kr'
+        name: 'South Korea'
+        locale: en
+    country_kw_en:
+        translatable: '@country_kw'
+        name: Kuwait
+        locale: en
+    country_ky_en:
+        translatable: '@country_ky'
+        name: 'Cayman Islands'
+        locale: en
+    country_kz_en:
+        translatable: '@country_kz'
+        name: Kazakhstan
+        locale: en
+    country_la_en:
+        translatable: '@country_la'
+        name: Laos
+        locale: en
+    country_lb_en:
+        translatable: '@country_lb'
+        name: Lebanon
+        locale: en
+    country_lc_en:
+        translatable: '@country_lc'
+        name: 'Saint Lucia'
+        locale: en
+    country_li_en:
+        translatable: '@country_li'
+        name: Liechtenstein
+        locale: en
+    country_lk_en:
+        translatable: '@country_lk'
+        name: 'Sri Lanka'
+        locale: en
+    country_lr_en:
+        translatable: '@country_lr'
+        name: Liberia
+        locale: en
+    country_ls_en:
+        translatable: '@country_ls'
+        name: Lesotho
+        locale: en
+    country_lt_en:
+        translatable: '@country_lt'
+        name: Lithuania
+        locale: en
+    country_lu_en:
+        translatable: '@country_lu'
+        name: Luxembourg
+        locale: en
+    country_lv_en:
+        translatable: '@country_lv'
+        name: Latvia
+        locale: en
+    country_ly_en:
+        translatable: '@country_ly'
+        name: Libya
+        locale: en
+    country_ma_en:
+        translatable: '@country_ma'
+        name: Morocco
+        locale: en
+    country_mc_en:
+        translatable: '@country_mc'
+        name: Monaco
+        locale: en
+    country_md_en:
+        translatable: '@country_md'
+        name: Moldova
+        locale: en
+    country_me_en:
+        translatable: '@country_me'
+        name: Montenegro
+        locale: en
+    country_mf_en:
+        translatable: '@country_mf'
+        name: 'Saint Martin'
+        locale: en
+    country_mg_en:
+        translatable: '@country_mg'
+        name: Madagascar
+        locale: en
+    country_mh_en:
+        translatable: '@country_mh'
+        name: 'Marshall Islands'
+        locale: en
+    country_mk_en:
+        translatable: '@country_mk'
+        name: Macedonia
+        locale: en
+    country_ml_en:
+        translatable: '@country_ml'
+        name: Mali
+        locale: en
+    country_mm_en:
+        translatable: '@country_mm'
+        name: 'Myanmar [Burma]'
+        locale: en
+    country_mn_en:
+        translatable: '@country_mn'
+        name: Mongolia
+        locale: en
+    country_mo_en:
+        translatable: '@country_mo'
+        name: Macao
+        locale: en
+    country_mp_en:
+        translatable: '@country_mp'
+        name: 'Northern Mariana Islands'
+        locale: en
+    country_mq_en:
+        translatable: '@country_mq'
+        name: Martinique
+        locale: en
+    country_mr_en:
+        translatable: '@country_mr'
+        name: Mauritania
+        locale: en
+    country_ms_en:
+        translatable: '@country_ms'
+        name: Montserrat
+        locale: en
+    country_mt_en:
+        translatable: '@country_mt'
+        name: Malta
+        locale: en
+    country_mu_en:
+        translatable: '@country_mu'
+        name: Mauritius
+        locale: en
+    country_mv_en:
+        translatable: '@country_mv'
+        name: Maldives
+        locale: en
+    country_mw_en:
+        translatable: '@country_mw'
+        name: Malawi
+        locale: en
+    country_mx_en:
+        translatable: '@country_mx'
+        name: Mexico
+        locale: en
+    country_my_en:
+        translatable: '@country_my'
+        name: Malaysia
+        locale: en
+    country_mz_en:
+        translatable: '@country_mz'
+        name: Mozambique
+        locale: en
+    country_na_en:
+        translatable: '@country_na'
+        name: Namibia
+        locale: en
+    country_nc_en:
+        translatable: '@country_nc'
+        name: 'New Caledonia'
+        locale: en
+    country_ne_en:
+        translatable: '@country_ne'
+        name: Niger
+        locale: en
+    country_nf_en:
+        translatable: '@country_nf'
+        name: 'Norfolk Island'
+        locale: en
+    country_ng_en:
+        translatable: '@country_ng'
+        name: Nigeria
+        locale: en
+    country_ni_en:
+        translatable: '@country_ni'
+        name: Nicaragua
+        locale: en
+    country_nl_en:
+        translatable: '@country_nl'
+        name: Netherlands
+        locale: en
+    country_no_en:
+        translatable: '@country_no'
+        name: Norway
+        locale: en
+    country_np_en:
+        translatable: '@country_np'
+        name: Nepal
+        locale: en
+    country_nr_en:
+        translatable: '@country_nr'
+        name: Nauru
+        locale: en
+    country_nu_en:
+        translatable: '@country_nu'
+        name: Niue
+        locale: en
+    country_nz_en:
+        translatable: '@country_nz'
+        name: 'New Zealand'
+        locale: en
+    country_om_en:
+        translatable: '@country_om'
+        name: Oman
+        locale: en
+    country_pa_en:
+        translatable: '@country_pa'
+        name: Panama
+        locale: en
+    country_pe_en:
+        translatable: '@country_pe'
+        name: Peru
+        locale: en
+    country_pf_en:
+        translatable: '@country_pf'
+        name: 'French Polynesia'
+        locale: en
+    country_pg_en:
+        translatable: '@country_pg'
+        name: 'Papua New Guinea'
+        locale: en
+    country_ph_en:
+        translatable: '@country_ph'
+        name: Philippines
+        locale: en
+    country_pk_en:
+        translatable: '@country_pk'
+        name: Pakistan
+        locale: en
+    country_pl_en:
+        translatable: '@country_pl'
+        name: Poland
+        locale: en
+    country_pm_en:
+        translatable: '@country_pm'
+        name: 'Saint Pierre and Miquelon'
+        locale: en
+    country_pn_en:
+        translatable: '@country_pn'
+        name: 'Pitcairn Islands'
+        locale: en
+    country_pr_en:
+        translatable: '@country_pr'
+        name: 'Puerto Rico'
+        locale: en
+    country_ps_en:
+        translatable: '@country_ps'
+        name: Palestine
+        locale: en
+    country_pt_en:
+        translatable: '@country_pt'
+        name: Portugal
+        locale: en
+    country_pw_en:
+        translatable: '@country_pw'
+        name: Palau
+        locale: en
+    country_py_en:
+        translatable: '@country_py'
+        name: Paraguay
+        locale: en
+    country_qa_en:
+        translatable: '@country_qa'
+        name: Qatar
+        locale: en
+    country_re_en:
+        translatable: '@country_re'
+        name: Réunion
+        locale: en
+    country_ro_en:
+        translatable: '@country_ro'
+        name: Romania
+        locale: en
+    country_rs_en:
+        translatable: '@country_rs'
+        name: Serbia
+        locale: en
+    country_ru_en:
+        translatable: '@country_ru'
+        name: Russia
+        locale: en
+    country_rw_en:
+        translatable: '@country_rw'
+        name: Rwanda
+        locale: en
+    country_sa_en:
+        translatable: '@country_sa'
+        name: 'Saudi Arabia'
+        locale: en
+    country_sb_en:
+        translatable: '@country_sb'
+        name: 'Solomon Islands'
+        locale: en
+    country_sc_en:
+        translatable: '@country_sc'
+        name: Seychelles
+        locale: en
+    country_sd_en:
+        translatable: '@country_sd'
+        name: Sudan
+        locale: en
+    country_se_en:
+        translatable: '@country_se'
+        name: Sweden
+        locale: en
+    country_sg_en:
+        translatable: '@country_sg'
+        name: Singapore
+        locale: en
+    country_sh_en:
+        translatable: '@country_sh'
+        name: 'Saint Helena'
+        locale: en
+    country_si_en:
+        translatable: '@country_si'
+        name: Slovenia
+        locale: en
+    country_sj_en:
+        translatable: '@country_sj'
+        name: 'Svalbard and Jan Mayen'
+        locale: en
+    country_sk_en:
+        translatable: '@country_sk'
+        name: Slovakia
+        locale: en
+    country_sl_en:
+        translatable: '@country_sl'
+        name: 'Sierra Leone'
+        locale: en
+    country_sm_en:
+        translatable: '@country_sm'
+        name: 'San Marino'
+        locale: en
+    country_sn_en:
+        translatable: '@country_sn'
+        name: Senegal
+        locale: en
+    country_so_en:
+        translatable: '@country_so'
+        name: Somalia
+        locale: en
+    country_sr_en:
+        translatable: '@country_sr'
+        name: Suriname
+        locale: en
+    country_ss_en:
+        translatable: '@country_ss'
+        name: 'South Sudan'
+        locale: en
+    country_st_en:
+        translatable: '@country_st'
+        name: 'São Tomé and Príncipe'
+        locale: en
+    country_sv_en:
+        translatable: '@country_sv'
+        name: 'El Salvador'
+        locale: en
+    country_sx_en:
+        translatable: '@country_sx'
+        name: 'Sint Maarten'
+        locale: en
+    country_sy_en:
+        translatable: '@country_sy'
+        name: Syria
+        locale: en
+    country_sz_en:
+        translatable: '@country_sz'
+        name: Swaziland
+        locale: en
+    country_tc_en:
+        translatable: '@country_tc'
+        name: 'Turks and Caicos Islands'
+        locale: en
+    country_td_en:
+        translatable: '@country_td'
+        name: Chad
+        locale: en
+    country_tf_en:
+        translatable: '@country_tf'
+        name: 'French Southern Territories'
+        locale: en
+    country_tg_en:
+        translatable: '@country_tg'
+        name: Togo
+        locale: en
+    country_th_en:
+        translatable: '@country_th'
+        name: Thailand
+        locale: en
+    country_tj_en:
+        translatable: '@country_tj'
+        name: Tajikistan
+        locale: en
+    country_tk_en:
+        translatable: '@country_tk'
+        name: Tokelau
+        locale: en
+    country_tl_en:
+        translatable: '@country_tl'
+        name: 'East Timor'
+        locale: en
+    country_tm_en:
+        translatable: '@country_tm'
+        name: Turkmenistan
+        locale: en
+    country_tn_en:
+        translatable: '@country_tn'
+        name: Tunisia
+        locale: en
+    country_to_en:
+        translatable: '@country_to'
+        name: Tonga
+        locale: en
+    country_tr_en:
+        translatable: '@country_tr'
+        name: Turkey
+        locale: en
+    country_tt_en:
+        translatable: '@country_tt'
+        name: 'Trinidad and Tobago'
+        locale: en
+    country_tv_en:
+        translatable: '@country_tv'
+        name: Tuvalu
+        locale: en
+    country_tw_en:
+        translatable: '@country_tw'
+        name: Taiwan
+        locale: en
+    country_tz_en:
+        translatable: '@country_tz'
+        name: Tanzania
+        locale: en
+    country_ua_en:
+        translatable: '@country_ua'
+        name: Ukraine
+        locale: en
+    country_ug_en:
+        translatable: '@country_ug'
+        name: Uganda
+        locale: en
+    country_um_en:
+        translatable: '@country_um'
+        name: 'U.S. Minor Outlying Islands'
+        locale: en
+    country_us_en:
+        translatable: '@country_us'
+        name: 'United States'
+        locale: en
+    country_uy_en:
+        translatable: '@country_uy'
+        name: Uruguay
+        locale: en
+    country_uz_en:
+        translatable: '@country_uz'
+        name: Uzbekistan
+        locale: en
+    country_va_en:
+        translatable: '@country_va'
+        name: 'Vatican City'
+        locale: en
+    country_vc_en:
+        translatable: '@country_vc'
+        name: 'Saint Vincent and the Grenadines'
+        locale: en
+    country_ve_en:
+        translatable: '@country_ve'
+        name: Venezuela
+        locale: en
+    country_vg_en:
+        translatable: '@country_vg'
+        name: 'British Virgin Islands'
+        locale: en
+    country_vi_en:
+        translatable: '@country_vi'
+        name: 'U.S. Virgin Islands'
+        locale: en
+    country_vn_en:
+        translatable: '@country_vn'
+        name: Vietnam
+        locale: en
+    country_vu_en:
+        translatable: '@country_vu'
+        name: Vanuatu
+        locale: en
+    country_wf_en:
+        translatable: '@country_wf'
+        name: 'Wallis and Futuna'
+        locale: en
+    country_ws_en:
+        translatable: '@country_ws'
+        name: Samoa
+        locale: en
+    country_xk_en:
+        translatable: '@country_xk'
+        name: Kosovo
+        locale: en
+    country_ye_en:
+        translatable: '@country_ye'
+        name: Yemen
+        locale: en
+    country_yt_en:
+        translatable: '@country_yt'
+        name: Mayotte
+        locale: en
+    country_za_en:
+        translatable: '@country_za'
+        name: 'South Africa'
+        locale: en
+    country_zm_en:
+        translatable: '@country_zm'
+        name: Zambia
+        locale: en
+    country_zw_en:
+        translatable: '@country_zw'
+        name: Zimbabwe
+        locale: en

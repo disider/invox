@@ -1,0 +1,25 @@
+AppBundle\Entity\TaxRate:
+    TaxRate0:
+        position: '0'
+        amount: '0'
+        name: 'VAT 0%'
+    TaxRate4:
+        position: '1'
+        amount: '4'
+        name: 'VAT 4%'
+    TaxRate10:
+        position: '2'
+        amount: '10'
+        name: 'VAT 10%'
+    TaxRate20:
+        position: '3'
+        amount: '20'
+        name: 'VAT 20%'
+    TaxRate21:
+        position: '4'
+        amount: '21'
+        name: 'VAT 21%'
+    TaxRate22:
+        position: '5'
+        amount: '22'
+        name: 'VAT 22%'

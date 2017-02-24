@@ -1,0 +1,49 @@
+AppBundle\Entity\TaxRateTranslation:
+    TaxRate0_it:
+        translatable: '@TaxRate0'
+        locale: 'it'
+        name: IVA 0%
+    TaxRate4_it:
+        translatable: '@TaxRate4'
+        locale: 'it'
+        name: IVA 4%
+    TaxRate10_it:
+        translatable: '@TaxRate10'
+        locale: 'it'
+        name: IVA 10%
+    TaxRate20_it:
+        translatable: '@TaxRate20'
+        locale: 'it'
+        name: IVA 20%
+    TaxRate21_it:
+        translatable: '@TaxRate21'
+        locale: 'it'
+        name: IVA 21%
+    TaxRate22_it:
+        translatable: '@TaxRate22'
+        locale: 'it'
+        name: IVA 22%
+    TaxRate0_en:
+        translatable: '@TaxRate0'
+        locale: 'en'
+        name: VAT 0%
+    TaxRate4_en:
+        translatable: '@TaxRate4'
+        locale: 'en'
+        name: VAT 4%
+    TaxRate10_en:
+        translatable: '@TaxRate10'
+        locale: 'en'
+        name: VAT 10%
+    TaxRate20_en:
+        translatable: '@TaxRate20'
+        locale: 'en'
+        name: VAT 20%
+    TaxRate21_en:
+        translatable: '@TaxRate21'
+        locale: 'en'
+        name: VAT 21%
+    TaxRate22_en:
+        translatable: '@TaxRate22'
+        locale: 'en'
+        name: VAT 22%

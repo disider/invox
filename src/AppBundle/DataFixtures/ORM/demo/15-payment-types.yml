@@ -1,0 +1,46 @@
+AppBundle\Entity\PaymentType:
+    PaymentType0:
+        name: 'In advance'
+        days: '-30'
+        position: '1'
+        endOfMonth: false
+    PaymentType1:
+        name: '30 days from invoice date'
+        days: '30'
+        position: '3'
+        endOfMonth: false
+    PaymentType2:
+        name: '30 Invoice date (end of month)'
+        days: '30'
+        position: '4'
+        endOfMonth: true
+    PaymentType3:
+        name: '60 Invoice date'
+        days: '60'
+        position: '5'
+        endOfMonth: false
+    PaymentType4:
+        name: '90 Invoice date'
+        days: '90'
+        position: '7'
+        endOfMonth: false
+    PaymentType5:
+        name: 'On delivery'
+        days: '0'
+        position: '2'
+        endOfMonth: false
+    PaymentType6:
+        name: '90 days (end of month)'
+        days: '90'
+        position: '8'
+        endOfMonth: true
+    PaymentType7:
+        name: '60 Invoice date (end of month)'
+        days: '60'
+        position: '6'
+        endOfMonth: true
+    PaymentType8:
+        name: 'Fixed date'
+        days: null
+        position: '9'
+        endOfMonth: false

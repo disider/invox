@@ -40,3 +40,9 @@ Feature: User changes his password
     And I press "Save"
     Then I should be on "/profile/change-password"
     And I should see a "Please enter your current password" error
+
+  Scenario: I cannot change my password when demo mode is enabled
+    Given the demo mode is enabled
+    When I visit "/profile/change-password"
+    Then I should be on "/dashboard"
+    And I should see "This action is not allowed in the demo"

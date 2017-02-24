@@ -143,6 +143,10 @@ customers:
     title: Customers
 delivery_notes:
     title: Delivery notes
+demo:
+    login:
+        welcome: Welcome to the Invox demo! You can try any user type, just enter the relative credentials and login.
+    action_not_allowed: This action is not allowed in the demo
 days:
     friday: Fri
     monday: Mon

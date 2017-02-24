@@ -37,6 +37,11 @@ class ProfileController extends BaseController
      */
     public function changePasswordAction(Request $request)
     {
+        if ($this->isInDemoMode()) {
+            $this->addFlash('danger', 'demo.action_not_allowed');
+            return $this->redirectToRoute('homepage');
+        }
+
         $form = $this->createForm(ChangePasswordForm::class, $this->getUser(), [
             'data_class' => $this->getUserClass(),
         ]);
