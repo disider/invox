@@ -78,4 +78,18 @@ class CustomerRepository extends SelectedCompanyRepository
 
         return $qb;
     }
+
+
+    protected function filterByManager(QueryBuilder $qb, User $user)
+    {
+        $qb
+            ->leftJoin($this->getRootAlias() . '.company', 'company')
+            ->leftJoin('company.managers', 'manager')
+            ->andWhere('company.owner = :user')
+            ->orWhere('manager = :user')
+            ->setParameter('user', $user);
+
+        return $qb;
+    }
+
 }

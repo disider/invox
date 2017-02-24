@@ -79,6 +79,11 @@ class Paragraph
         return $this->description;
     }
 
+    private function setChildren($childern)
+    {
+        $this->children = $childern;
+    }
+
     public function getChildren()
     {
         return $this->children;

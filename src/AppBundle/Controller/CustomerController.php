@@ -44,6 +44,7 @@ class CustomerController extends BaseController
         } else {
             $filters[CustomerRepository::FILTER_BY_MANAGER] = $user;
         }
+
         $filters[CustomerRepository::FILTER_BY_COMPANY] = $this->getCurrentCompany();
 
         $query = $this->getCustomerRepository()->findAllQuery($filters, $page, $pageSize);

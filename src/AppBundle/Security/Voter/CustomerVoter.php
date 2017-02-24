@@ -30,6 +30,7 @@ class CustomerVoter extends Voter
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
+        /** @var Customer $subject */
         /** @var User $user */
         $user = $token->getUser();
 
@@ -40,7 +41,7 @@ class CustomerVoter extends Voter
         }
 
         if ($attribute == self::CUSTOMER_EDIT) {
-            if ($user->canEditCustomer($subject)) {
+            if ($user->canEditCustomer($subject) || $subject->getCompany()->hasSalesAgent($user)) {
                 return true;
             }
         }

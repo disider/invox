@@ -185,8 +185,9 @@ class RoleVoter extends Voter
             case self::ACCOUNT_CREATE:
                 return (($user->isSuperadmin() && $this->hasCurrentCompany()) || ($this->canManageCurrentCompany($user) && $this->isModuleEnabled(Module::ACCOUNTS_MODULE)));
             case self::CUSTOMER_CREATE:
-            case self::DOCUMENT_CREATE:
             case self::LIST_CUSTOMERS:
+                return (($user->isSuperadmin() && $this->hasCurrentCompany()) || $this->canManageCurrentCompany($user)) || $this->isSalesAgentInCurrentCompany($user);
+            case self::DOCUMENT_CREATE:
             case self::MEDIUM_CREATE:
             case self::LIST_MEDIA:
                 return (($user->isSuperadmin() && $this->hasCurrentCompany()) || $this->canManageCurrentCompany($user));
@@ -234,6 +235,10 @@ class RoleVoter extends Voter
     private function getCurrentCompany()
     {
         return $this->companyManager->getCurrent();
+    }
+
+    private function isSalesAgentInCurrentCompany(User $user) {
+        return $this->getCurrentCompany()->hasSalesAgent($user);
     }
 
     private function canManageCurrentCompany(User $user)
