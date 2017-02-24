@@ -55,3 +55,4 @@
 .rules
 .vagrant
 deploy_*.yml
+deploy_*.retry
