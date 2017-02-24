@@ -101,7 +101,7 @@
                     $(this).children(0).toggleClass('fa-eye-slash').toggleClass('fa-eye')
                     $(ref).toggleClass('hidden');
                     event.stopPropagation();
-                });
+                }).trigger('click');
 
                 $('.select-template').on('click', onSelectTemplate);
 
