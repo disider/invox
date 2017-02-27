@@ -179,9 +179,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-ds-deploy');
 
-    grunt.config('slack.token', 'xoxb-57583577333-nqfnnV0GWWUHiBLc4TjUHx3A');
-    grunt.config('slack.channel', '#invox');
-
     grunt.registerTask('css', ['sass', 'cssmin']);
     grunt.registerTask('js', ['uglify']);
     grunt.registerTask('default', ['js', 'css', 'copy']);
