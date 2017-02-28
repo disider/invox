@@ -11,7 +11,7 @@ parameters:
     mailer_user: ~
     mailer_password: ~
 
-    locale: en
+    locale: it
     available_locales: [en, it]
     secret: ThisTokenIsNotSoSecretChangeIt
     mailer_delivery_address:
@@ -23,11 +23,15 @@ parameters:
     show_analytics: true
     show_chat: true
     show_registration: true
-
     redirect_to_login: false
 
     jms_serializer.camel_case_naming_strategy.class: JMS\Serializer\Naming\IdenticalPropertyNamingStrategy
+
     loco_api_key: loco-api-key
+
+    recaptcha:
+        public_key:  recaptcha-public-key
+        private_key: recaptcha-private-key
 
     launcher_links:
         demo: http://demo.invox.it/login

@@ -33,7 +33,8 @@ class AppKernel extends Kernel
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Oneup\UploaderBundle\OneupUploaderBundle(),
             new Webfactory\Bundle\ExceptionsBundle\WebfactoryExceptionsBundle(),
-
+            new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
+            
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
 

@@ -13,7 +13,7 @@
     </php>
 
     <testsuites>
-        <testsuite name="LemonCoffee Test Suite">
+        <testsuite name="Invox Test Suite">
             <directory>src/*Bundle/Tests</directory>
         </testsuite>
     </testsuites>
