@@ -58,19 +58,20 @@ security:
         - { path: ^/((en|it)/)?admin/login_check, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/((en|it)/)?admin/, role: ROLE_SUPER_ADMIN }
 
-        - { path: ^/(it/)?login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/(it/)?register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/(it/)?reset-password, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/(it/)?content, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/(it/)?customers, role: IS_AUTHENTICATED_REMEMBERED }
-        - { path: ^/(it/)?documents/\d+/render, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/(it/)?documents, role: IS_AUTHENTICATED_REMEMBERED }
-        - { path: ^/(it/)?quotes, role: IS_AUTHENTICATED_REMEMBERED }
-        - { path: ^/(it/)?invites/\.+/token, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/(it/)?media, role: IS_AUTHENTICATED_REMEMBERED }
-        - { path: ^/(it/)?pages, role: IS_AUTHENTICATED_REMEMBERED }
-        - { path: ^/(it/)?paragraph-templates, role: IS_AUTHENTICATED_REMEMBERED }
-        - { path: ^/(it/)?profile, role: IS_AUTHENTICATED_REMEMBERED }
-        - { path: ^/(it/)?users, role: IS_AUTHENTICATED_REMEMBERED }
-        - { path: ^/(it/)?working-notes, role: IS_AUTHENTICATED_REMEMBERED }
-        - { path: ^$(it/)?, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/((en|it)/)?login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/((en|it)/)?register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/((en|it)/)?reset-password, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/((en|it)/)?dashboard, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/((en|it)/)?content, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/((en|it)/)?customers, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/((en|it)/)?documents/\d+/render, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/((en|it)/)?documents, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/((en|it)/)?quotes, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/((en|it)/)?invites/\.+/token, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/((en|it)/)?media, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/((en|it)/)?pages, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/((en|it)/)?paragraph-templates, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/((en|it)/)?profile, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/((en|it)/)?users, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/((en|it)/)?working-notes, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^$((en|it)/)?, role: IS_AUTHENTICATED_ANONYMOUSLY }
