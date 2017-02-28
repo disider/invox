@@ -5,7 +5,7 @@
 
         {{ form_row(form.email) }}
 
-        {% if not demo_mode %}
+        {% if not enable_demo_mode %}
             <p class="form-control-static">
                 <a id="change_password"
                    href="{{ path('profile_change_password') }}">{{ 'user.change_password'|trans }}</a>

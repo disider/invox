@@ -20,10 +20,11 @@ parameters:
     info_display_name: 'Invox - Info'
     info_email: info@invox.it
 
-    show_analytics: true
-    show_chat: true
-    show_registration: true
-    redirect_to_login: false
+    enable_analytics: true
+    enable_chat: true
+    enable_registration: true
+    enable_homepage: true
+    enable_fork_me: true
 
     jms_serializer.camel_case_naming_strategy.class: JMS\Serializer\Naming\IdenticalPropertyNamingStrategy
 
@@ -40,7 +41,7 @@ parameters:
         community: "#"
         join_development: "https://github.com/disider/invox/fork"
 
-    demo_mode: false
+    enable_demo_mode: false
     demo_credentials:
        owner:
           email: demo.owner@invox.it

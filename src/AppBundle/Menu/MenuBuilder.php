@@ -65,7 +65,7 @@ class MenuBuilder implements ContainerAwareInterface
                 $menu->addChild($this->translate('menu.logout'), ['route' => 'logout']);
             }
             else {
-                if ($this->container->getParameter('show_registration')) {
+                if ($this->container->getParameter('enable_registration')) {
                     $menu->addChild($this->translate('menu.register'), ['route' => 'register']);
                 }
 

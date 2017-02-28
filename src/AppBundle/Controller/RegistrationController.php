@@ -30,7 +30,7 @@ class RegistrationController extends BaseController
      */
     public function registerAction(Request $request)
     {
-        if (!$this->getParameter('show_registration')) {
+        if (!$this->getParameter('enable_registration')) {
             return $this->redirectToRoute('dashboard');
         }
 

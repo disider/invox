@@ -1,7 +1,7 @@
 {% extends '::one-column.html.twig' %}
 
 {% block main_content %}
-    {% if demo_mode %}
+    {% if enable_demo_mode %}
         {% include 'AppBundle:Security:_loginDemo.html.twig' %}
     {% else %}
         {% include 'AppBundle:Security:_loginDefault.html.twig' %}

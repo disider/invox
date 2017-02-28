@@ -67,7 +67,7 @@ class RecurrenceTest extends EntityTest
     public function testRecurrenceIsFinished_GivenOccurrences()
     {
         /** @var Recurrence $recurrence */
-        $recurrence = $this->givenRecurrenceWithOptions(Recurrence::EVERYDAY, 1, 2);
+        $recurrence = $this->givenRecurrenceWithOptions('2017-02-27', Recurrence::EVERYDAY, 1, 2);
         $recurrence->addLinkedDocument(new Document());
         $recurrence->addLinkedDocument(new Document());
 
@@ -82,8 +82,8 @@ class RecurrenceTest extends EntityTest
     public function testRecurrenceIsFinished_GivenEndAt()
     {
         /** @var Recurrence $recurrence */
-        $recurrence = $this->givenRecurrenceWithOptions(Recurrence::EVERYDAY, 2, 2);
-        $recurrence->setEndAt(new \DateTime('+1 day'));
+        $recurrence = $this->givenRecurrenceWithOptions('2017-02-27', Recurrence::EVERYDAY, 2, 2);
+        $recurrence->setEndAt(new \DateTime('2017-02-28'));
         $recurrence->addLinkedDocument(new Document());
 
         $recurrence->calculateNextDueDate();
@@ -97,7 +97,7 @@ class RecurrenceTest extends EntityTest
     public function testCalculateNextDueDate_GivenEveryDayWithOneDocument()
     {
         /** @var Recurrence $recurrence */
-        $recurrence = $this->givenRecurrenceWithOptions(Recurrence::EVERYDAY);
+        $recurrence = $this->givenRecurrenceWithOptions('2017-02-27', Recurrence::EVERYDAY);
         $recurrence->addLinkedDocument(new Document());
 
         $recurrence->calculateNextDueDate();
@@ -111,7 +111,7 @@ class RecurrenceTest extends EntityTest
     public function testCalculateNextDueDate_GivenEveryDayWithDocuments()
     {
         /** @var Recurrence $recurrence */
-        $recurrence = $this->givenRecurrenceWithOptions(Recurrence::EVERYDAY, 2);
+        $recurrence = $this->givenRecurrenceWithOptions('2017-02-27', Recurrence::EVERYDAY, 2);
         $recurrence->addLinkedDocument(new Document());
         $recurrence->addLinkedDocument(new Document());
 
@@ -126,7 +126,7 @@ class RecurrenceTest extends EntityTest
     public function testCalculateNextDueDate_GivenEveryWeekWithOneDocument()
     {
         /** @var Recurrence $recurrence */
-        $recurrence = $this->givenRecurrenceWithOptions(Recurrence::EVERY_WEEK);
+        $recurrence = $this->givenRecurrenceWithOptions('2017-02-27', Recurrence::EVERY_WEEK);
         $recurrence->addLinkedDocument(new Document());
 
         $recurrence->calculateNextDueDate();
@@ -140,7 +140,7 @@ class RecurrenceTest extends EntityTest
     public function testCalculateNextDueDate_GivenEveryWeekWithWeekdays()
     {
         /** @var Recurrence $recurrence */
-        $recurrence = $this->givenRecurrenceWithOptions(Recurrence::EVERY_WEEK);
+        $recurrence = $this->givenRecurrenceWithOptions('2017-02-27', Recurrence::EVERY_WEEK);
         $recurrence->setRepeatOn('0100110');
 
         $recurrence->calculateNextDueDate();
@@ -166,7 +166,7 @@ class RecurrenceTest extends EntityTest
     public function testCalculateNextDueDate_GivenEveryWeekWithMoreDocuments()
     {
         /** @var Recurrence $recurrence */
-        $recurrence = $this->givenRecurrenceWithOptions(Recurrence::EVERY_WEEK, 2);
+        $recurrence = $this->givenRecurrenceWithOptions('2017-02-27', Recurrence::EVERY_WEEK, 2);
         $recurrence->setRepeatOn('0100110');
         $recurrence->addLinkedDocument(new Document());
         $recurrence->addLinkedDocument(new Document());
@@ -196,7 +196,7 @@ class RecurrenceTest extends EntityTest
     public function testCalculateNextDueDate_GivenEveryWeekWithDocuments()
     {
         /** @var Recurrence $recurrence */
-        $recurrence = $this->givenRecurrenceWithOptions(Recurrence::EVERY_WEEK, 2);
+        $recurrence = $this->givenRecurrenceWithOptions('2017-02-27', Recurrence::EVERY_WEEK, 2);
         $recurrence->addLinkedDocument(new Document());
         $recurrence->addLinkedDocument(new Document());
 
@@ -212,7 +212,7 @@ class RecurrenceTest extends EntityTest
     public function testCalculateNextDueDate_GivenEveryMonthWithOneDocument()
     {
         /** @var Recurrence $recurrence */
-        $recurrence = $this->givenRecurrenceWithOptions(Recurrence::EVERY_MONTH);
+        $recurrence = $this->givenRecurrenceWithOptions('2017-02-27', Recurrence::EVERY_MONTH);
         $recurrence->addLinkedDocument(new Document());
 
         $recurrence->calculateNextDueDate();
@@ -226,7 +226,7 @@ class RecurrenceTest extends EntityTest
     public function testCalculateNextDueDate_GivenEveryMonthWithDocuments()
     {
         /** @var Recurrence $recurrence */
-        $recurrence = $this->givenRecurrenceWithOptions(Recurrence::EVERY_MONTH, 2);
+        $recurrence = $this->givenRecurrenceWithOptions('2017-02-27', Recurrence::EVERY_MONTH, 2);
         $recurrence->addLinkedDocument(new Document());
         $recurrence->addLinkedDocument(new Document());
 
@@ -241,7 +241,7 @@ class RecurrenceTest extends EntityTest
     public function testCalculateNextDueDate_GivenEveryYearWithOneDocument()
     {
         /** @var Recurrence $recurrence */
-        $recurrence = $this->givenRecurrenceWithOptions(Recurrence::EVERY_YEAR);
+        $recurrence = $this->givenRecurrenceWithOptions('2017-02-27', Recurrence::EVERY_YEAR);
         $recurrence->addLinkedDocument(new Document());
 
         $recurrence->calculateNextDueDate();
@@ -255,7 +255,7 @@ class RecurrenceTest extends EntityTest
     public function testCalculateNextDueDate_GivenEveryYearWithDocuments()
     {
         /** @var Recurrence $recurrence */
-        $recurrence = $this->givenRecurrenceWithOptions(Recurrence::EVERY_YEAR, 2);
+        $recurrence = $this->givenRecurrenceWithOptions('2017-02-27', Recurrence::EVERY_YEAR, 2);
         $recurrence->addLinkedDocument(new Document());
         $recurrence->addLinkedDocument(new Document());
 
@@ -291,13 +291,13 @@ class RecurrenceTest extends EntityTest
     }
 
 
-    private function givenRecurrenceWithOptions($repeats, $repeatEvery = 1, $occurrences = 0)
+    private function givenRecurrenceWithOptions($date, $repeats, $repeatEvery = 1, $occurrences = 0)
     {
         $country = $this->givenCountry();
         $company = $this->givenCompany($country);
         $customer = $this->givenCustomer($company, $country);
 
-        $startAt = new \DateTime();
+        $startAt = new \DateTime($date);
         $startAt->setTime(0, 0);
 
         $recurrence = $this->givenRecurrenceWith('Content', Recurrence::OUTGOING, $startAt, $repeats, $repeatEvery, $customer, $company);
@@ -308,7 +308,7 @@ class RecurrenceTest extends EntityTest
 
     private function givenRecurrence()
     {
-        return $this->givenRecurrenceWithOptions(Recurrence::EVERYDAY, 1);
+        return $this->givenRecurrenceWithOptions('2017-02-27', Recurrence::EVERYDAY, 1);
     }
 
     private function givenRecurrenceWith($content, $direction, $startAt, $repeats, $repeatEvery, Customer $customer, Company $company)

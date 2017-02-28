@@ -19,7 +19,7 @@
 
                     {{ form_widget(form.login) }}
 
-                    {% if show_registration %}
+                    {% if enable_registration %}
                         <a class="btn btn-link pull-right"
                            href="{{ path('register') }}">{{ 'registration.not_yet_registered'|trans }}</a>
                     {% endif %}

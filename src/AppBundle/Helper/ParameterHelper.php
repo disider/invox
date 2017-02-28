@@ -18,6 +18,6 @@ class ParameterHelper
 
     public function isInDemoMode()
     {
-        return $this->container->getParameter("demo_mode");
+        return $this->container->getParameter("enable_demo_mode");
     }
 }

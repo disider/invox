@@ -35,7 +35,7 @@ class DefaultController extends BaseController
             return $this->redirectToRoute('dashboard');
         }
 
-        if ($this->getParameter('redirect_to_login')){
+        if (!$this->getParameter('enable_homepage')) {
             return $this->redirectToRoute('login');
         }
 
