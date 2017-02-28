@@ -128,8 +128,8 @@ oneup_uploader:
             max_size: 2m
 
 ewz_recaptcha:
-    public_key:  "%recaptcha.public_key%"
-    private_key: "%recaptcha.private_key%"
+    public_key:  "%recaptcha_public_key%"
+    private_key: "%recaptcha_private_key%"
     locale_key:  "%kernel.default_locale%"
 
 sonata_admin:

@@ -29,9 +29,8 @@ parameters:
 
     loco_api_key: loco-api-key
 
-    recaptcha:
-        public_key:  recaptcha-public-key
-        private_key: recaptcha-private-key
+    recaptcha_public_key:  recaptcha-public-key
+    recaptcha_private_key: recaptcha-private-key
 
     launcher_links:
         demo: http://demo.invox.it/login
