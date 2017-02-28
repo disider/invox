@@ -243,7 +243,7 @@ fields:
     autocomplete_customer: Inserisci 3 o più caratteri
     autocomplete_invoice: Inserisci 3 o più caratteri
     background_color: Colore di sfondo
-    body: Messagge
+    body: Messaggio
     category: Categoria
     change_type: Modifica tipo
     city: Città

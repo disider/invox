@@ -32,7 +32,7 @@ class ExportTranslationsCommand extends ContainerAwareCommand
     {
         $this
             ->setName('invox:translations:export')
-            ->setDescription('Export translations file from Loco')
+            ->setDescription('Export translations file to Loco')
             ->addOption('locale', 'l', InputOption::VALUE_OPTIONAL, 'The locale to export')
             ->addOption('domain', 'd', InputOption::VALUE_OPTIONAL, 'The domain to export')
             ->addOption('all', 'a', InputOption::VALUE_OPTIONAL, 'Export all');

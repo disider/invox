@@ -31,23 +31,23 @@ parameters:
 
     launcher_links:
         demo: http://demo.invox.it/login
-        downlaod_code: "#"
-        wiki: "#"
-        github_repo: "#"
+        download_code: "https://github.com/disider/invox/releases"
+        wiki: "https://github.com/disider/invox/wiki"
+        github_repo: "https://github.com/disider/invox"
         community: "#"
-        join_development: "#"
+        join_development: "https://github.com/disider/invox/fork"
 
     demo_mode: false
     demo_credentials:
        owner:
           email: demo.owner@invox.it
-          password: ownerdemo
+          password: demo
        manager:
           email: demo.manager@invox.it
-          password: managerdemo
+          password: demo
        accountant:
           email: demo.accountant@invox.it
-          password: accountantdemo
+          password: demo
        sales_agent:
           email: demo.sales@invox.it
-          password: salesdemo
+          password: demo

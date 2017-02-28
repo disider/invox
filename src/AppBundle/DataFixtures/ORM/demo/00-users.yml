@@ -1,22 +1,22 @@
 AppBundle\Entity\User:
     owner:
         email: demo.owner@invox.it
-        plainPassword: ownerdemo
+        plainPassword: demo
         enabled: true
         roles: [ROLE_OWNER]
     manager:
         email: demo.manager@invox.it
-        plainPassword: managerdemo
+        plainPassword: demo
         enabled: true
         roles: {  }
     accountant:
         email: demo.accountant@invox.it
-        plainPassword: accountantdemo
+        plainPassword: demo
         enabled: true
         roles: {  }
     salesAgent:
         email: demo.sales@invox.it
-        plainPassword: salesdemo
+        plainPassword: demo
         enabled: true
         roles: {  }
     superadmin:
