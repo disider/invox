@@ -61,8 +61,8 @@ security:
         - { path: ^/((en|it)/)?login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/((en|it)/)?register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/((en|it)/)?reset-password, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/((en|it)/)?dashboard, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/((en|it)/)?content, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/((en|it)/)?dashboard, role: IS_AUTHENTICATED_REMEMBERED }
         - { path: ^/((en|it)/)?customers, role: IS_AUTHENTICATED_REMEMBERED }
         - { path: ^/((en|it)/)?documents/\d+/render, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/((en|it)/)?documents, role: IS_AUTHENTICATED_REMEMBERED }
