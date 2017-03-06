@@ -338,6 +338,15 @@ class BaseController extends Controller
         return $this->getUser()->isAccountantFor($this->getCurrentCompany());
     }
 
+    protected function isCurrentSalesAgent()
+    {
+        if (!$this->hasCurrentCompany()) {
+            return false;
+        }
+
+        return $this->getUser()->isSalesAgentFor($this->getCurrentCompany());
+    }
+
     protected function buildFilterForm(Request $request, QueryBuilder $queryBuilder, $filterForm, $options = [])
     {
         $filterForm = $this->createForm($filterForm, null, $options);

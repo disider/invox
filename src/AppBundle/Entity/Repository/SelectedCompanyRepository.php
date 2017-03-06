@@ -18,6 +18,7 @@ abstract class SelectedCompanyRepository extends AbstractRepository
 {
     const FILTER_BY_MANAGER = 'filter_by_manager';
     const FILTER_BY_ACCOUNTANT = 'filter_by_accountant';
+    const FILTER_BY_SALES_AGENT = 'filter_by_sales_agent';
     const FILTER_BY_COMPANY = 'filter_by_company';
 
     /** @return QueryBuilder */
@@ -40,6 +41,10 @@ abstract class SelectedCompanyRepository extends AbstractRepository
             $qb = $this->filterByAccountant($qb, $filters[self::FILTER_BY_ACCOUNTANT]);
         }
 
+        if (array_key_exists(self::FILTER_BY_SALES_AGENT, $filters)) {
+            $qb = $this->filterBySales($qb, $filters[self::FILTER_BY_SALES_AGENT]);
+        }
+
         if (array_key_exists(self::FILTER_BY_COMPANY, $filters)) {
             $qb = $this->filterByCompany($qb, $filters[self::FILTER_BY_COMPANY]);
         }
@@ -59,13 +64,13 @@ abstract class SelectedCompanyRepository extends AbstractRepository
         return $qb;
     }
 
-    protected function filterBySales($qb, $FILTER_BY_SALES)
+    protected function filterBySales($qb, $user)
     {
         $qb
             ->leftJoin($this->getRootAlias() . '.company', 'company')
-            ->leftJoin('company.managers', 'manager')
+            ->leftJoin('company.salesAgents', 'salesAgents')
             ->andWhere('company.owner = :user')
-            ->orWhere('manager = :user')
+            ->orWhere('salesAgents = :user')
             ->setParameter('user', $user);
 
         return $qb;

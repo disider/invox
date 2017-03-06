@@ -41,6 +41,8 @@ class CustomerController extends BaseController
 
         if ($user->isSuperadmin()) {
             // Do not filter...
+        } elseif ($this->isCurrentSalesAgent()) {
+            $filters[CustomerRepository::FILTER_BY_SALES_AGENT] = $user;
         } else {
             $filters[CustomerRepository::FILTER_BY_MANAGER] = $user;
         }
