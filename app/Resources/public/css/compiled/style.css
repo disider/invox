@@ -120,4 +120,8 @@ span.popover-trigger {
 .demo-credentials {
   margin-top: 10px; }
 
+a.disabled {
+  pointer-events: none;
+  cursor: default; }
+
 /*# sourceMappingURL=style.css.map */
