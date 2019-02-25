@@ -12,8 +12,8 @@ namespace AppBundle\Form\Filter;
 
 use AppBundle\Entity\PettyCashNote;
 use AppBundle\Entity\Recurrence;
-use Doctrine\ORM\Query\Expr;
 use Doctrine\DBAL\Connection;
+use Doctrine\ORM\Query\Expr;
 use Lexik\Bundle\FormFilterBundle\Filter\FilterOperands;
 use Lexik\Bundle\FormFilterBundle\Filter\Form\Type\ChoiceFilterType;
 use Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType;

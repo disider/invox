@@ -11,9 +11,9 @@
 namespace AppBundle\Pagination;
 
 use AppBundle\Model\Medium;
-use Symfony\Component\Finder\Finder;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Knp\Component\Pager\Event\ItemsEvent;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Finder\Finder;
 
 class DirectorySubscriber implements EventSubscriberInterface
 {

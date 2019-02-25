@@ -10,8 +10,8 @@
 
 namespace AppBundle\Security\Voter;
 
-use AppBundle\Entity\User;
 use AppBundle\Entity\ParagraphTemplate;
+use AppBundle\Entity\User;
 use AppBundle\Model\Module;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 

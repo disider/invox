@@ -12,8 +12,8 @@ namespace AppBundle\Entity;
 
 use AppBundle\Validator\Constraints as CustomAssert;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @CustomAssert\ValidParagraphTemplate()

@@ -10,8 +10,8 @@
 
 namespace AppBundle\Form\Processor;
 
-use AppBundle\Form\UserForm;
 use AppBundle\Entity\Manager\UserManager;
+use AppBundle\Form\UserForm;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;

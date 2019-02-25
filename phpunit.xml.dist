@@ -9,12 +9,12 @@
 >
     <php>
         <ini name="error_reporting" value="-1" />
-        <server name="KERNEL_DIR" value="app/" />
+        <server name="KERNEL_CLASS" value="AppKernel" />
     </php>
 
     <testsuites>
         <testsuite name="Invox Test Suite">
-            <directory>src/*Bundle/Tests</directory>
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
 
@@ -23,7 +23,8 @@
             <directory>src</directory>
             <exclude>
                 <directory>src/*Bundle/Resources</directory>
-                <directory>src/*Bundle/Tests</directory>
+                <directory>src/*/*Bundle/Resources</directory>
+                <directory>src/*/Bundle/*Bundle/Resources</directory>
             </exclude>
         </whitelist>
     </filter>

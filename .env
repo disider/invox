@@ -1,0 +1,1 @@
+export COMPOSER_MEMORY_LIMIT=-1

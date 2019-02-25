@@ -12,9 +12,9 @@ namespace AppBundle\Form\Filter;
 
 use Lexik\Bundle\FormFilterBundle\Filter\Doctrine\ORMQuery;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class MediumFilterForm extends BaseFilterForm
 {

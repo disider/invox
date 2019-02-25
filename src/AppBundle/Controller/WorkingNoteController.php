@@ -12,15 +12,15 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Paragraph;
 use AppBundle\Entity\Repository\WorkingNoteRepository;
+use AppBundle\Entity\WorkingNote;
+use AppBundle\Form\Filter\WorkingNoteFilterForm;
+use AppBundle\Form\Processor\DefaultFormProcessor;
 use Behat\Behat\Definition\Call\Then;
 use Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator;
-use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use AppBundle\Form\Filter\WorkingNoteFilterForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use AppBundle\Form\Processor\DefaultFormProcessor;
-use AppBundle\Entity\WorkingNote;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
