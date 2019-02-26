@@ -1,9 +1,0 @@
-{% extends '::form.html.twig' %}
-
-{% block main_content %}
-    {%  set template = form.vars.data %}
-
-    <h1>{{ 'document_template.edit'|trans({'%document_template%': template}) }}</h1>
-
-    {% include 'AppBundle:DocumentTemplate:_form.html.twig' %}
-{% endblock main_content %}

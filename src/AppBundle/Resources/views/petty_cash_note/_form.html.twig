@@ -1,0 +1,85 @@
+{% form_theme form 'AppBundle:petty_cash_note:widgets.html.twig' %}
+
+
+{{ form_start(form) }}
+
+<button type="submit" class="hidden" name="pettyCashNote[save]">{{ 'actions.save' }}</button>
+
+{% if app.user.isSuperadmin %}
+    <div class="panel panel-warning">
+        <div class="panel-heading">
+            <h2 class="panel-title">{{ 'fields.superadmin_details'|trans }}</h2>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4">
+                    {{ form_row(form.company) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+<div class="panel panel-default">
+    <div class="panel-body ">
+        {{ form_errors(form, { global_errors: true }) }}
+
+        <div class="row">
+            <div class="col-md-3">
+                {{ form_row(form.ref) }}
+            </div>
+            <div class="col-md-2 text-center">
+                {{ form_row(form.recordedAt, { attr: { class: 'datepicker text-center' }}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                {{ form_row(form.accountFrom) }}
+            </div>
+            <div class="col-md-2">
+                {{ form_row(form.amount, { attr: { class: 'input-sm text-right', placeholder: 0 | number_format }}) }}
+            </div>
+            <div class="col-md-4">
+                {{ form_row(form.accountTo) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                {{ form_row(form.description) }}
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% set pettyCashNote = form.vars.data %}
+
+    {% set activePanel = 'invoices-panel' %}
+
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="{{ activePanel == 'invoices-panel' ? 'active' : '' }}">
+        <a href="#invoices-panel" aria-controls="invoices-panel" role="tab"
+           data-toggle="tab">{{ 'fields.invoices'|trans }}</a>
+    </li>
+    <li role="presentation" class="{{ activePanel == 'attachments-panel' ? 'active' : '' }}">
+        <a href="#attachments-panel" aria-controls="attachments-panel" role="tab"
+           data-toggle="tab">{{ 'fields.attachments'|trans }}</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane {{ activePanel == 'invoices-panel' ? 'active' : '' }}" id="invoices-panel">
+        {% include 'AppBundle:petty_cash_note:_invoices_form.html.twig' %}
+    </div>
+    <div role="tabpanel" class="tab-pane {{ activePanel == 'attachments-panel' ? 'active' : '' }}"
+         id="attachments-panel">
+        {{ form_row(form.attachments) }}
+    </div>
+</div>
+
+<div class="form-actions">
+    {{ form_widget(form.save) }}
+    {{ form_widget(form.saveAndClose) }}
+</div>
+
+{{ form_end(form) }}

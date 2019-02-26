@@ -1,0 +1,148 @@
+{% extends '::form.html.twig' %}
+
+{% block main_content %}
+    <h1>{{ 'warehouse.title'|trans({'%product%': product}) }}</h1>
+
+    {{ form_start(form) }}
+        {{ form_errors(form, { global_errors: true }) }}
+
+        <table id="warehouse" class="table">
+            <tr>
+                <th class="text-center">{{ 'sort.stock'|trans }}</th>
+                <th class="text-center">{{ 'sort.load_quantity'|trans }}</th>
+                <th class="text-center">{{ 'sort.unload_quantity'|trans }}</th>
+                <th class="text-center">{{ 'sort.purchase_price'|trans }}</th>
+                <th class="text-center">{{ 'sort.sell_price'|trans }}</th>
+                <th class="text-center">{{ 'sort.date'|trans }}</th>
+                <th>{{ 'sort.description'|trans }}</th>
+                <th>&nbsp;</th>
+            </tr>
+
+            <tr class="">
+                <td class="stock text-right col-md-1">
+                    &nbsp;
+                </td>
+                <td class="load-quantity col-md-1">
+                    <div class="{{ form.loadQuantity.vars.valid ? '' : 'has-error' }}">
+                        <label for="{{ form.loadQuantity.vars.id }}" class="hidden"></label>
+                        {{ form_widget(form.loadQuantity, { attr: { class: 'text-right'}}) }}
+                        {{ form_errors(form.loadQuantity) }}
+                    </div>
+                </td>
+
+                <td class="unload-quantity col-md-1">
+                    <div class="{{ form.unloadQuantity.vars.valid ? '' : 'has-error' }}">
+                        <label for="{{ form.unloadQuantity.vars.id }}" class="hidden"></label>
+                        {{ form_widget(form.unloadQuantity, { attr: { class: 'text-right'}}) }}
+                        {{ form_errors(form.unloadQuantity) }}
+                    </div>
+                </td>
+
+                <td class="col-md-2">
+                    <div class="{{ form.purchasePrice.vars.valid ? '' : 'has-error' }}">
+                        <label for="{{ form.purchasePrice.vars.id }}" class="hidden"></label>
+                        {{ form_widget(form.purchasePrice, { attr: { class: 'text-right'}}) }}
+                        {{ form_errors(form.purchasePrice) }}
+                    </div>
+                </td>
+
+                <td class="col-md-2">
+                    <div class="{{ form.sellPrice.vars.valid ? '' : 'has-error' }}">
+                        <label for="{{ form.sellPrice.vars.id }}" class="hidden"></label>
+                        {{ form_widget(form.sellPrice, { attr: { class: 'text-right'}}) }}
+                        {{ form_errors(form.sellPrice) }}
+                    </div>
+                </td>
+
+                <td class="text-center col-md-2">
+                    {{ form_widget(form.date) }}
+                    {{ form_errors(form.date) }}
+                </td>
+
+                <td class="col-md-2">
+                    {{ form_widget(form.description) }}
+                    {{ form_errors(form.description) }}
+                </td>
+
+                <td class="text-right col-md-2">
+                    {{ form_row(form.add, {attr: { class: 'btn btn-xs btn-default',  icon: 'plus'}}) }}
+                    {{ form_rest(form) }}
+                </td>
+            </tr>
+
+            {% set currentStock = product.initialStock %}
+
+            {% for record in pagination %}
+                {% set currentStock = currentStock + record.stockBalance %}
+                <tr class="record">
+                    <td class="stock text-right col-md-1">
+                        {{ currentStock | number_format }}
+                    </td>
+                    <td class="load-quantity text-right col-md-1">
+                        {{ record.loadQuantity | number_format }}
+                    </td>
+                    <td class="unload-quantity text-right col-md-1">
+                        {{ record.unloadQuantity | number_format }}
+                    </td>
+
+                    <td class="text-right col-md-2">
+                        {{ record.purchasePrice | format_currency }}
+                    </td>
+                    <td class="text-right col-md-2">
+                        {{ record.sellPrice | format_currency }}
+                    </td>
+                    <td class="text-center col-md-2">
+                        {{ record.date|date('m/d/Y') }}
+                    </td>
+                    <td class="col-md-2">
+                        {{ record.description }}
+                    </td>
+
+                    <td class="text-right col-md-2">
+                        <a class="delete btn btn-xs btn-default text-danger"
+                           href="{{ path('product_delete_warehouse_record', {'productId': product.id, 'recordId': record.id }) }}"
+                           title="{{ 'product.delete_warehouse_record'|trans }}">{{ icon('trash') }}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr>
+            <tr class="record">
+                <td class="stock text-right col-md-1">
+                    {{ product.initialStock | number_format }}
+                </td>
+                <td class="load-quantity text-right col-md-1">
+                    &ndash;
+                </td>
+
+                <td class="unload-quantity text-right col-md-1">
+                    &ndash;
+                </td>
+
+                <td class="text-right col-md-2">
+                    &ndash;
+                </td>
+                <td class="text-right col-md-2">
+                    &ndash;
+                </td>
+                <td class="text-center col-md-2">
+                    &nbsp;
+                </td>
+                <td class="col-md-2">
+                    &nbsp;
+                </td>
+                <td class="col-md-2">
+                    &nbsp;
+                </td>
+            </tr>
+        </table>
+    {{ form_end(form) }}
+
+    {{ knp_pagination_render(pagination) }}
+{% endblock main_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'AppBundle:default:_delete_js.html.twig' with { message: 'warehouse.delete_confirmation' } %}
+{% endblock javascripts %}
+

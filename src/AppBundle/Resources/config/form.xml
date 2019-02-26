@@ -43,41 +43,41 @@
     </parameters>
 
     <services>
-        <service id="account_form_processor" class="%default_authenticated_form_processor.class%">
+        <service id="account_form_processor" class="%default_authenticated_form_processor.class%" public="true">
             <argument>%account_form.class%</argument>
             <argument type="service" id="account_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="city_form_processor" class="%default_form_processor.class%">
+        <service id="city_form_processor" class="%default_form_processor.class%" public="true">
             <argument>%city_form.class%</argument>
             <argument type="service" id="city_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="company_form_processor" class="%default_authenticated_form_processor.class%">
+        <service id="company_form_processor" class="%default_authenticated_form_processor.class%" public="true">
             <argument>%company_form.class%</argument>
             <argument type="service" id="company_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="country_form_processor" class="%default_form_processor.class%">
+        <service id="country_form_processor" class="%default_form_processor.class%" public="true">
             <argument>%country_form.class%</argument>
             <argument type="service" id="country_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="customer_form_processor" class="%customer_form_processor.class%">
+        <service id="customer_form_processor" class="%customer_form_processor.class%" public="true">
             <argument type="service" id="customer_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="document_form_processor" class="%document_form_processor.class%">
+        <service id="document_form_processor" class="%document_form_processor.class%" public="true">
             <argument type="service" id="document_repository"/>
             <argument type="service" id="company_manager"/>
             <argument type="service" id="form.factory"/>
@@ -85,117 +85,117 @@
             <argument>%available_locales%</argument>
         </service>
 
-        <service id="document_template_form_processor" class="%default_form_processor.class%">
+        <service id="document_template_form_processor" class="%default_form_processor.class%" public="true">
             <argument>%document_template_form.class%</argument>
             <argument type="service" id="document_template_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="document_template_per_company_form_processor" class="%default_authenticated_form_processor.class%">
+        <service id="document_template_per_company_form_processor" class="%default_authenticated_form_processor.class%" public="true">
             <argument>%document_template_per_company_form.class%</argument>
             <argument type="service" id="document_template_per_company_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="invite_form_processor" class="%invite_form_processor.class%">
+        <service id="invite_form_processor" class="%invite_form_processor.class%" public="true">
             <argument type="service" id="invite_repository"/>
             <argument type="service" id="default_mailer"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="medium_form_processor" class="%default_form_processor.class%">
+        <service id="medium_form_processor" class="%default_form_processor.class%" public="true">
             <argument>AppBundle\Form\MediumForm</argument>
             <argument type="service" id="medium_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="page_form_processor" class="%default_form_processor.class%">
+        <service id="page_form_processor" class="%default_form_processor.class%" public="true">
             <argument>%page_form.class%</argument>
             <argument type="service" id="page_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="paragraph_template_form_processor" class="%default_form_processor.class%">
+        <service id="paragraph_template_form_processor" class="%default_form_processor.class%" public="true">
             <argument>AppBundle\Form\ParagraphTemplateForm</argument>
             <argument type="service" id="paragraph_template_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="payment_type_form_processor" class="%default_form_processor.class%">
+        <service id="payment_type_form_processor" class="%default_form_processor.class%" public="true">
             <argument>%payment_type_form.class%</argument>
             <argument type="service" id="payment_type_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="petty_cash_note_form_processor" class="%petty_cash_note_form_processor.class%">
+        <service id="petty_cash_note_form_processor" class="%petty_cash_note_form_processor.class%" public="true">
             <argument type="service" id="petty_cash_note_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="product_form_processor" class="%default_authenticated_form_processor.class%">
+        <service id="product_form_processor" class="%default_authenticated_form_processor.class%" public="true">
             <argument>%product_form.class%</argument>
             <argument type="service" id="product_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="province_form_processor" class="%default_form_processor.class%">
+        <service id="province_form_processor" class="%default_form_processor.class%" public="true">
             <argument>%province_form.class%</argument>
             <argument type="service" id="province_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="recurrence_form_processor" class="%default_form_processor.class%">
+        <service id="recurrence_form_processor" class="%default_form_processor.class%" public="true">
             <argument>%recurrence_form.class%</argument>
             <argument type="service" id="recurrence_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="service_form_processor" class="%default_authenticated_form_processor.class%">
+        <service id="service_form_processor" class="%default_authenticated_form_processor.class%" public="true">
             <argument>%service_form.class%</argument>
             <argument type="service" id="service_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="tax_rate_form_processor" class="%default_form_processor.class%">
+        <service id="tax_rate_form_processor" class="%default_form_processor.class%" public="true">
             <argument>%tax_rate_form.class%</argument>
             <argument type="service" id="tax_rate_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="user_form_processor" class="%user_form_processor.class%">
+        <service id="user_form_processor" class="%user_form_processor.class%" public="true">
             <argument type="service" id="user_manager"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="warehouse_record_form_processor" class="%default_form_processor.class%">
+        <service id="warehouse_record_form_processor" class="%default_form_processor.class%" public="true">
             <argument>%warehouse_record_form.class%</argument>
             <argument type="service" id="warehouse_record_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="working_note_form_processor" class="%default_form_processor.class%">
+        <service id="working_note_form_processor" class="%default_form_processor.class%" public="true">
             <argument>AppBundle\Form\WorkingNoteForm</argument>
             <argument type="service" id="working_note_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="zip_code_form_processor" class="%default_form_processor.class%">
+        <service id="zip_code_form_processor" class="%default_form_processor.class%" public="true">
             <argument>%zip_code_form.class%</argument>
             <argument type="service" id="zip_code_repository"/>
             <argument type="service" id="form.factory"/>
@@ -203,49 +203,49 @@
         </service>
 
 
-        <service id="attachment_file_type" class="%attachment_file_type.class%">
+        <service id="attachment_file_type" class="%attachment_file_type.class%" public="true">
             <tag name="form.type"/>
         </service>
 
-        <service id="country_entity_type" class="%country_entity_type.class%">
+        <service id="country_entity_type" class="%country_entity_type.class%" public="true">
             <argument>%locale%</argument>
             <tag name="form.type"/>
         </service>
 
-        <service id="document_row_collection_type" class="%document_row_collection_type.class%">
+        <service id="document_row_collection_type" class="%document_row_collection_type.class%" public="true">
             <argument type="service" id="locale_formatter"/>
             <tag name="form.type"/>
         </service>
 
-        <service id="document_row_type" class="%document_row_type.class%">
+        <service id="document_row_type" class="%document_row_type.class%" public="true">
             <argument type="service" id="locale_formatter"/>
             <tag name="form.type"/>
         </service>
 
-        <service id="entity_hidden_type" class="%entity_hidden_type.class%">
+        <service id="entity_hidden_type" class="%entity_hidden_type.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager"/>
             <tag name="form.type"/>
         </service>
 
-        <service id="entity_text_type" class="%entity_text_type.class%">
+        <service id="entity_text_type" class="%entity_text_type.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager"/>
             <tag name="form.type"/>
         </service>
 
-        <service id="image_file_type" class="%image_file_type.class%">
+        <service id="image_file_type" class="%image_file_type.class%" public="true">
             <tag name="form.type"/>
         </service>
 
-        <service id="invoice_collection_type" class="%invoice_collection_type.class%">
+        <service id="invoice_collection_type" class="%invoice_collection_type.class%" public="true">
             <argument type="service" id="company_manager"/>
             <tag name="form.type"/>
         </service>
 
-        <service id="invoice_per_note_type" class="%invoice_per_note_type.class%">
+        <service id="invoice_per_note_type" class="%invoice_per_note_type.class%" public="true">
             <tag name="form.type"/>
         </service>
 
-        <service id="localized_number_type" class="%localized_number_type.class%">
+        <service id="localized_number_type" class="%localized_number_type.class%" public="true">
             <argument type="service" id="locale_formatter"/>
             <tag name="form.type"/>
         </service>

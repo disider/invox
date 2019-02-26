@@ -1,0 +1,81 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+    <h1>{{ 'accounts.title'|trans }}</h1>
+
+    {% if pagination|length > 0 %}
+        <table id="accounts" class="table">
+            <thead>
+            <tr>
+                <th class="col-md-2">{{ 'sort.type'|trans }}</th>
+                <th class="col-md-2">{{ knp_pagination_sortable(pagination, 'sort.name'|trans, 'account.name') }}</th>
+                <th class="col-md-2 text-right">{{ 'sort.initial_amount'|trans }}</th>
+                <th class="col-md-2 text-right">{{ 'sort.current_amount'|trans }}</th>
+                <th class="col-md-2 text-right">{{ 'sort.balance'|trans }}</th>
+                <th class="col-md-2">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set totalInitialAmount = 0 %}
+            {% set totalCurrentAmount = 0 %}
+            {% set totalBalance = 0 %}
+
+            {% for account in pagination %}
+                {% set totalInitialAmount = totalInitialAmount + account.initialAmount %}
+                {% set totalCurrentAmount = totalCurrentAmount + account.currentAmount %}
+                {% set totalBalance = totalBalance + account.balance %}
+
+                <tr class="account">
+                    <td>
+                        <span class="type label label-default">{{ ('account.type.' ~ account.type)|trans }}</span>
+                    </td>
+                    <td>
+                        {{ format_edit_link('account', account, account, { class: 'name'}) }}
+                    </td>
+
+                    <td class="initial-amount text-right">
+                        {{ account.initialAmount|format_currency }}
+                    </td>
+
+                    <td class="current-amount text-right">
+                        {{ account.currentAmount|format_currency }}
+                    </td>
+
+                    <td class="balance text-right">
+                        {{ account.balance|format_currency }}
+                    </td>
+
+                    <td class="text-right">
+                        {{ format_edit_icon('account', account) }}
+                        {{ format_delete_icon('account', account) }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="2" class="text-right">{{ 'fields.total'|trans }}</th>
+                <th class="text-right">{{ totalInitialAmount|format_currency }}</th>
+                <th class="text-right">{{ totalCurrentAmount|format_currency }}</th>
+                <th class="text-right">{{ totalBalance|format_currency }}</th>
+                <th>&nbsp;</th>
+            </tr>
+            </tfoot>
+        </table>
+
+        {{ knp_pagination_render(pagination) }}
+    {% else %}
+        <p class="empty-list">
+            {{ 'accounts.empty_list'|trans }}
+        </p>
+    {% endif %}
+    {{ format_create_link('account') }}
+{% endblock main_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'AppBundle:default:_filter_js.html.twig' %}
+
+    {% include 'AppBundle:default:_delete_js.html.twig' with { message: 'account.delete_confirmation' } %}
+{% endblock javascripts %}

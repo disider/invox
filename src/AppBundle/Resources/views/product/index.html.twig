@@ -1,0 +1,88 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+
+    <h1>
+        {{ 'products.title'|trans }}
+
+        <small class="pull-right">
+            <a title="{{ 'filter.show' }}" aria-expanded="false" data-toggle="collapse"
+               href="#filter">{{ icon('search') }}</a>
+        </small>
+    </h1>
+
+    <div id="filter" class="collapse">
+        {{ form_start(filterForm, { method: 'GET'}) }}
+        <div class="well">
+            <div class="row">
+                <div class="col-sm-3">{{ form_row(filterForm.name) }}</div>
+                <div class="col-sm-3">{{ form_row(filterForm.code) }}</div>
+            </div>
+
+            <div class="form-actions">
+                {{ form_widget(filterForm.filter) }}
+
+                <a class="btn btn-default" href="{{ path('products') }}">{{ 'actions.reset'|trans }}</a>
+            </div>
+        </div>
+        {{ form_end(filterForm) }}
+    </div>
+
+    {% if pagination|length > 0 %}
+        <table id="products" class="table">
+            <tr>
+                <th class="code col-md-2">{{ knp_pagination_sortable(pagination, 'sort.code'|trans, 'product.code') }}</th>
+                <th class="col-md-6">{{ knp_pagination_sortable(pagination, 'sort.name'|trans, 'product.name') }}</th>
+                <th class="col-md-2 text-right">{{ 'fields.stock'|trans }}</th>
+                <th class="col-md-2">&nbsp;</th>
+            </tr>
+            {% for product in pagination %}
+                <tr class="product">
+                    <td class="code">
+                        {{ product.code }}
+                    </td>
+
+                    <td class="name">
+                        {{ format_edit_link('product', product, product, { class: 'name'}) }}
+                    </td>
+
+                    <td class="text-right">
+                        {% if is_granted('PRODUCT_SHOW_WAREHOUSE', product) and product.isEnabledInWarehouse %}
+                            {{ product.currentStock }}
+                        {% else %}
+                            --
+                        {% endif %}
+                    </td>
+
+                    <td class="text-right">
+                        {{ format_edit_icon('product', product) }}
+
+                        {% if is_granted('PRODUCT_SHOW_WAREHOUSE', product) %}
+                            {{ format_action_icon('product', 'show_warehouse', 'archive', product, {
+                                enabled: product.isEnabledInWarehouse,
+                                class: 'btn btn-xs btn-default ' ~ (product.isEnabledInWarehouse ? 'warehouse' : '')}) }}
+                        {% endif %}
+
+                        {{ format_delete_icon('product', product) }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        {{ knp_pagination_render(pagination) }}
+    {% else %}
+        <p class="empty-list">
+            {{ 'products.empty_list'|trans }}
+        </p>
+    {% endif %}
+
+    {{ format_create_link('product') }}
+{% endblock main_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'AppBundle:default:_filter_js.html.twig' %}
+
+    {% include 'AppBundle:default:_delete_js.html.twig' with { message: 'product.delete_confirmation' } %}
+{% endblock javascripts %}

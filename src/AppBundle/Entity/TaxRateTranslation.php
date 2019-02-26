@@ -22,7 +22,7 @@ class TaxRateTranslation
      *
      * @var string
      */
-    private $name;
+    private $name = '';
 
     /**
      * @var string

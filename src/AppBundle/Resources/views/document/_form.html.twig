@@ -1,0 +1,227 @@
+{% form_theme form 'AppBundle:document:widgets.html.twig' %}
+
+{{ form_start(form, { attr: { class: 'document' }}) }}
+
+{{ form_errors(form, { global_errors: true }) }}
+
+<div class="row">
+    <div class="col-md-12">
+        {{ form_widget(form.type) }}
+        {{ form_errors(form.type) }}
+    </div>
+</div>
+
+<br>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">{{ 'document.details'|trans }}</h2>
+            </div>
+            <div class="panel-body ">
+                <div class="row">
+                    <div class="direction col-md-6 {{ form.direction.vars.valid ? '' : 'has-error' }}">
+                        {{ form_row(form.direction) }}
+                    </div>
+                    <div class="self-invoice col-md-4 text-center">
+                        {{ form_row(form.selfInvoice) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form_row(form.title) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.internalRef) }}
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-4">
+                        {{ form_row(form.ref) }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form_row(form.year, { attr: { class: 'text-center'}}) }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form_row(form.issuedAt, { attr: { class: 'datepicker text-center'}}) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8 payment-type">
+                        {{ form_row(form.paymentType) }}
+                    </div>
+                    <div class="col-md-4 valid-until">
+                        {{ form_row(form.validUntil, { attr: { class: 'datepicker text-center'}}) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form_row(form.language) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.costCenters) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ form_row(form.documentTemplate) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="linked-order">
+                            {{ form_row(form.linkedOrderTitle) }}
+                            {{ form_row(form.linkedOrder) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="linked-invoice">
+                            {{ form_row(form.linkedInvoiceTitle) }}
+                            {{ form_row(form.linkedInvoice) }}
+                        </div>
+                        <div class="linked-credit-note">
+                            {{ form_row(form.linkedCreditNoteTitle) }}
+                            {{ form_row(form.linkedCreditNote) }}
+                        </div>
+                    </div>
+                </div>
+
+                {{ form_row(form.notes) }}
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading ">
+                <h2 class="panel-title">{{ 'document.customer'|trans }}</h2>
+            </div>
+            <div class="panel-body ">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ form_row(form.customerName) }}
+                        {{ form_row(form.linkedCustomer) }}
+                        {% if form.addNewCustomer is defined %}
+                            {{ form_widget(form.addNewCustomer) }}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form_row(form.customerPhoneNumber) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.customerFaxNumber) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form_row(form.customerVatNumber) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.customerFiscalCode) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        {{ form_row(form.customerCity) }}
+                    </div>
+                    <div class="col-md-2">
+                        {{ form_row(form.customerProvince, { attr: { class: 'text-center' }}) }}
+                    </div>
+                    <div class="col-md-5">
+                        {{ form_row(form.customerCountry) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">
+                        {{ form_row(form.customerAddress) }}
+                    </div>
+                    <div class="col-md-3">
+                        {{ form_row(form.customerZipCode, { attr: { class: 'text-center' }}) }}
+                    </div>
+                </div>
+
+                {{ form_row(form.customerAddressNotes) }}
+
+                <div class="linked-recurrence">
+                    {{ form_row(form.recurrenceTitle) }}
+                    {{ form_row(form.recurrence) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% set document = form.vars.data %}
+
+    {% set activePanel = 'rows-panel' %}
+
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="{{ activePanel == 'rows-panel' ? 'active' : '' }}">
+        <a href="#rows-panel" aria-controls="rows-panel" role="tab" data-toggle="tab">{{ 'fields.rows'|trans }}</a>
+    </li>
+    <li role="presentation" class="{{ activePanel == 'attachments-panel' ? 'active' : '' }}">
+        <a href="#attachments-panel" aria-controls="attachments" role="tab"
+           data-toggle="tab">{{ 'fields.attachments'|trans }}</a>
+    </li>
+    <li role="presentation" class="{{ activePanel == 'company-panel' ? 'active' : '' }}">
+        <a href="#company-panel" aria-controls="company-panel" role="tab" data-toggle="tab">
+            {% if document.haveChangedCompanyDetails and document.id %}
+                <i class="fa fa-warning text-warning"></i>
+            {% endif %}
+            {{ 'fields.company'|trans }}
+        </a>
+    </li>
+    <li role="presentation" class="{{ activePanel == 'content-panel' ? 'active' : '' }}">
+        <a href="#content-panel" aria-controls="content-panel" role="tab"
+           data-toggle="tab">{{ 'fields.content'|trans }}</a>
+    </li>
+    {% if document.hasPettyCashNotes %}
+        <li role="presentation" class="{{ activePanel == 'petty-cash-notes-panel' ? 'active' : '' }}">
+            <a href="#petty-cash-notes-panel" aria-controls="petty-cash-notes-panel" role="tab"
+               data-toggle="tab">{{ 'fields.petty_cash_notes'|trans }}</a>
+        </li>
+    {% endif %}
+</ul>
+
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane {{ activePanel == 'rows-panel' ? 'active' : '' }}" id="rows-panel">
+        {% include 'AppBundle:document:_rows_form.html.twig' %}
+    </div>
+    <div role="tabpanel" class="tab-pane {{ activePanel == 'attachments-panel' ? 'active' : '' }}"
+         id="attachments-panel">
+        {{ form_row(form.attachments) }}
+    </div>
+    <div role="tabpanel" class="tab-pane {{ activePanel == 'company-panel' ? 'active' : '' }}" id="company-panel">
+        {% include 'AppBundle:document:_company_form.html.twig' %}
+    </div>
+    <div role="tabpanel" class="tab-pane {{ activePanel == 'content-panel' ? 'active' : '' }}" id="content-panel">
+        {{ form_widget(form.content, {attr: { rows: 20 }}) }}
+        {{ form_errors(form.content) }}
+    </div>
+    {% if document.hasPettyCashNotes %}
+        <div role="tabpanel" class="tab-pane {{ activePanel == 'petty-cash-notes-panel' ? 'active' : '' }}"
+             id="petty-cash-notes-panel">
+            {% include 'AppBundle:document:_petty_cash_notes.html.twig' %}
+        </div>
+    {% endif %}
+</div>
+
+<div class="form-actions">
+    {{ form_widget(form.save) }}
+    {{ form_widget(form.saveAndClose) }}
+</div>
+
+{{ form_end(form) }}

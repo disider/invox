@@ -36,6 +36,9 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Translation\Translator;
 
+/**
+ * @method User getUser()
+ */
 class BaseController extends Controller
 {
     /** @return Mailer $mailer */
@@ -52,14 +55,6 @@ class BaseController extends Controller
     protected function getUserManager()
     {
         return $this->get('user_manager');
-    }
-
-    /**
-     * @return User
-     */
-    public function getUser()
-    {
-        return parent::getUser();
     }
 
     protected function isAuthenticated()
@@ -81,17 +76,6 @@ class BaseController extends Controller
         /* @Ignore */
 
         return $translator->trans($id, $params, $domain);
-    }
-
-    protected function addFlash($type, $id, array $params = [])
-    {
-        /** @var FlashBag $flashBag */
-        $flashBag = $this->get('session')->getFlashBag();
-
-        $flashBag->add(
-            $type,
-            $this->translate($id, $params)
-        );
     }
 
     protected function applyFiltering(Request $request, Form $filterForm)
@@ -199,17 +183,13 @@ class BaseController extends Controller
         return $this->getRepository('AppBundle:PettyCashNote');
     }
 
-    /**
-     * @return ProductRepository
-     */
+    /** @return ProductRepository */
     protected function getProductRepository()
     {
         return $this->getRepository('AppBundle:Product');
     }
 
-    /**
-     * @return TagRepository
-     */
+    /** @return TagRepository */
     protected function getProductTagRepository()
     {
         return $this->getRepository('AppBundle:ProductTag');
@@ -220,9 +200,7 @@ class BaseController extends Controller
         return $this->getRepository('AppBundle:Province');
     }
 
-    /**
-     * @return ServiceRepository
-     */
+    /** @return ServiceRepository */
     protected function getServiceRepository()
     {
         return $this->getRepository('AppBundle:Service');
@@ -233,9 +211,7 @@ class BaseController extends Controller
         return $this->getRepository('AppBundle:Recurrence');
     }
 
-    /**
-     * @return TagRepository
-     */
+    /** @return TagRepository */
     protected function getServiceTagRepository()
     {
         return $this->getRepository('AppBundle:ServiceTag');
@@ -269,17 +245,13 @@ class BaseController extends Controller
         return $this->getRepository('AppBundle:ZipCode');
     }
 
-    /**
-     * @return EntityManager
-     */
+    /** @return EntityManager */
     protected function getEntityManager()
     {
         return $this->get('doctrine.orm.entity_manager');
     }
 
-    /**
-     * @return EntityRepository
-     */
+    /** @return EntityRepository */
     protected function getRepository($name)
     {
         return $this->getEntityManager()->getRepository($name);
@@ -297,14 +269,7 @@ class BaseController extends Controller
         return $response;
     }
 
-    protected function getParameter($key)
-    {
-        return $this->container->getParameter($key);
-    }
-
-    /**
-     * @return Company
-     */
+    /** @return Company */
     protected function getCurrentCompany()
     {
         return $this->get('company_manager')->getCurrent();

@@ -1,0 +1,43 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+    <h1>{{ 'provinces.title'|trans }}</h1>
+
+    {% if pagination|length > 0 %}
+        <table id="provinces" class="table">
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'sort.name'|trans, 'entity.name') }}</th>
+                <th>&nbsp;</th>
+            </tr>
+            {% for province in pagination %}
+                <tr class="province">
+                    <td class="col-md-9">
+                        <span class="type badge">{{ province.code }}</span>
+                        {{ format_edit_link('province', province, province) }}
+                    </td>
+
+                    <td class="col-md-3 text-right">
+                        {{ format_edit_icon('province', province) }}
+                        {{ format_delete_icon('province', province) }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        {{ knp_pagination_render(pagination) }}
+    {% else %}
+        <p class="empty-list">
+            {{ 'provinces.empty_list'|trans }}
+        </p>
+    {% endif %}
+
+    {{ format_create_link('province') }}
+{% endblock main_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'AppBundle:default:_filter_js.html.twig' %}
+
+    {% include 'AppBundle:default:_delete_js.html.twig' with { message: 'province.delete_confirmation' } %}
+{% endblock javascripts %}

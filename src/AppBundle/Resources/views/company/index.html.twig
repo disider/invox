@@ -1,0 +1,52 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+    <h1>{{ 'companies.title'|trans }}</h1>
+
+    {% if pagination|length > 0 %}
+        <table id="companies" class="table">
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'sort.name'|trans, 'company.name') }}</th>
+                <th>&nbsp;</th>
+            </tr>
+
+            {% for company in pagination %}
+                <tr class="company">
+                    <td class="col-md-9">
+                        {{ format_edit_link('company', company, company, { class: 'name'}) }}
+                        {{ format_view_link('company', company, company, { class: 'name'}) }}
+                    </td>
+
+                    <td class="col-md-3 text-right">
+                        {{ format_edit_icon('company', company) }}
+                        {{ format_view_icon('company', company) }}
+                        {{ format_action_icon('company', 'accountant', 'briefcase', company) }}
+                        {% if currentCompany and company.isSameAs(currentCompany) %}
+                            {{ format_action_icon('company', 'deselect', 'crosshairs', company, { class: 'btn btn-xs btn-default active'}) }}
+                        {% else %}
+                            {{ format_action_icon('company', 'select', 'crosshairs', company) }}
+                        {% endif %}
+                        {{ format_delete_icon('company', company) }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        {{ knp_pagination_render(pagination) }}
+    {% else %}
+        <p class="empty-list">
+            {{ 'companies.empty_list'|trans }}
+        </p>
+    {% endif %}
+
+    {{ format_create_link('company') }}
+
+{% endblock main_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'AppBundle:default:_filter_js.html.twig' %}
+
+    {% include 'AppBundle:default:_delete_js.html.twig' with { message: 'company.delete_confirmation' } %}
+{% endblock javascripts %}

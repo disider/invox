@@ -1,0 +1,73 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+    <h1>
+        {{ 'recurrences.title'|trans }}
+        <small class="pull-right">
+            <a title="{{ 'filter.show' }}" aria-expanded="false" data-toggle="collapse"
+               href="#filter">{{ icon('search') }}</a>
+        </small>
+    </h1>
+
+    {{ filter_start(filterForm) }}
+    {% include 'AppBundle:recurrence:_filter.html.twig' with {'form': filterForm } %}
+    {{ filter_end(filterForm) }}
+
+    {% if pagination|length > 0 %}
+        <table id="cities" class="table">
+            <tr>
+                <th class="col-sm-1">{{ 'fields.direction'|trans }}</th>
+                <th class="col-sm-3">{{ 'fields.content'|trans }}</th>
+                <th class="col-md-2">{{ 'fields.customer'|trans }}</th>
+                <th class="col-md-2">{{ knp_pagination_sortable(pagination, 'fields.start_at'|trans, 'recurrence.startAt') }}</th>
+                <th class="col-md-2">{{ knp_pagination_sortable(pagination, 'fields.next_due_date'|trans, 'recurrence.nextDueDate') }}</th>
+                <th class="col-sm-2">&nbsp;</th>
+            </tr>
+            {% for recurrence in pagination %}
+                <tr class="recurrence">
+                    <td class="direction">
+                        <span class="{{ recurrence.direction }} label label-{{ recurrence.direction == 'incoming' ? 'danger' : 'success' }}">{{ ('recurrence.direction.' ~ recurrence.direction)|trans }}</span>
+                    </td>
+
+                    <td>
+                        {{ format_edit_link('recurrence', recurrence, recurrence, { class: 'content'}) }}
+                    </td>
+                    <td class="customer">{{ recurrence.customer }}</td>
+                    <td>{{ recurrence.startAt|date('d/m/y') }}</td>
+                    <td class="next-due-date">
+                        {% if recurrence.nextDueDate is not null %}
+                            {{ recurrence.nextDueDate|date('d/m/y') }}
+                        {% else %}
+                            {{ 'recurrence.finished'|trans }}
+                        {% endif %}
+                    </td>
+
+                    <td class="text-right">
+                        {{ format_edit_icon('recurrence', recurrence) }}
+
+                        {{ format_action_icon('document', 'create', 'book', [], { routeParameters: {'recurrenceId': recurrence.id }}) }}
+
+                        {{ format_delete_icon('recurrence', recurrence) }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        {{ knp_pagination_render(pagination) }}
+    {% else %}
+        <p class="empty-list">
+            {{ 'recurrences.empty_list'|trans }}
+        </p>
+    {% endif %}
+
+    {{ format_create_link('recurrence') }}
+
+{% endblock main_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'AppBundle:default:_filter_js.html.twig' %}
+
+    {% include 'AppBundle:default:_delete_js.html.twig' with { message: 'recurrence.delete_confirmation' } %}
+{% endblock javascripts %}

@@ -21,20 +21,21 @@ security:
             pattern:  ^/(_(profiler|wdt|error)|css|images|js)/
             security: false
 
-        admin:
-            pattern:                  ^/(en/)?admin
-            form_login:
-                provider:             user_provider
-                check_path:           admin_login_check
-                login_path:           admin_login
-                default_target_path:  sonata_admin_dashboard
-                use_referer:          true
-            logout:
-                path:                 admin_logout
-                target:               admin_login
-            anonymous:                true
-            switch_user:              true
-            logout_on_user_change:    true
+# TODO: restore sonata
+#        admin:
+#            pattern:                  ^/(en/)?admin
+#            form_login:
+#                provider:             user_provider
+#                check_path:           admin_login_check
+#                login_path:           admin_login
+#                default_target_path:  sonata_admin_dashboard
+#                use_referer:          true
+#            logout:
+#                path:                 admin_logout
+#                target:               admin_login
+#            anonymous:                true
+#            switch_user:              true
+#            logout_on_user_change:    true
 
         main:
             pattern: ^/

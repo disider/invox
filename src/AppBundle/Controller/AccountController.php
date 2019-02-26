@@ -13,7 +13,6 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Account;
 use AppBundle\Entity\Repository\AccountRepository;
 use AppBundle\Form\Processor\DefaultAuthenticatedFormProcessor;
-use AppBundle\Form\Processor\DefaultFormProcessor;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -60,7 +59,7 @@ class AccountController extends BaseController
      * @Security("is_granted('ACCOUNT_CREATE')")
      * @Template
      */
-    public function createAction(Request $request, DefaultAuthenticatedFormProcessor $processor)
+    public function createAction(Request $request)
     {
         $account = new Account();
 
@@ -70,7 +69,7 @@ class AccountController extends BaseController
             $account->setCompany($company);
         }
 
-        return $this->processForm($request, $processor, $account);
+        return $this->processForm($request, $account);
     }
 
     /**
@@ -78,9 +77,9 @@ class AccountController extends BaseController
      * @Security("is_granted('ACCOUNT_EDIT', account)")
      * @Template
      */
-    public function editAction(Request $request, DefaultAuthenticatedFormProcessor $processor, Account $account)
+    public function editAction(Request $request, Account $account)
     {
-        return $this->processForm($request, $processor, $account);
+        return $this->processForm($request, $account);
     }
 
     /**
@@ -96,8 +95,11 @@ class AccountController extends BaseController
         return $this->redirectToRoute('accounts');
     }
 
-    private function processForm(Request $request, DefaultAuthenticatedFormProcessor $processor, Account $account)
+    private function processForm(Request $request, Account $account = null)
     {
+        /** @var DefaultAuthenticatedFormProcessor $processor */
+        $processor = $this->get('account_form_processor');
+
         $processor->process($request, $account);
 
         if ($processor->isValid()) {

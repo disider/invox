@@ -12,9 +12,9 @@
     </parameters>
 
     <services>
-        <!--<service id="twig.extension.text" class="Twig_Extensions_Extension_Text">-->
-            <!--<tag name="twig.extension"/>-->
-        <!--</service>-->
+        <service id="twig.extension.text" class="Twig_Extensions_Extension_Text">
+            <tag name="twig.extension"/>
+        </service>
 
         <service id="twig.form_extension" class="%twig.form_extension.class%">
             <tag name="twig.extension"/>

@@ -1,0 +1,72 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+
+    <h1>
+        {{ 'paragraph_templates.title'|trans }}
+
+        <small class="pull-right">
+            <a title="{{ 'filter.show' }}" aria-expanded="false" data-toggle="collapse"
+               href="#filter">{{ icon('search') }}</a>
+        </small>
+    </h1>
+
+    <div id="filter" class="collapse">
+        {{ form_start(filterForm, { method: 'GET'}) }}
+        <div class="well">
+            <div class="row">
+                <div class="col-sm-3">{{ form_row(filterForm.title) }}</div>
+            </div>
+
+            <div class="form-actions">
+                {{ form_widget(filterForm.filter) }}
+
+                <a class="btn btn-default" href="{{ path('paragraph_templates') }}">{{ 'actions.reset'|trans }}</a>
+            </div>
+        </div>
+        {{ form_end(filterForm) }}
+    </div>
+
+    {% if pagination|length > 0 %}
+        <table id="paragraph-templates" class="table">
+            <thead>
+            <tr>
+                <th class="col-md-10">{{ 'fields.title'|trans }}</th>
+                <th class="col-md-2">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for paragraphTemplate in pagination %}
+                <tr class="paragraph-template">
+
+                    <td class="title">
+                        {{ format_edit_link('paragraph_template', paragraphTemplate, paragraphTemplate) }}
+                    </td>
+
+                    <td class="text-right">
+                        {{ format_edit_icon('paragraph_template', paragraphTemplate) }}
+                        {{ format_delete_icon('paragraph_template', paragraphTemplate) }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {{ knp_pagination_render(pagination) }}
+    {% else %}
+        <p class="empty-list">
+            {{ 'paragraph_templates.empty_list'|trans }}
+        </p>
+    {% endif %}
+
+    {{ format_create_link('paragraph_template') }}
+
+{% endblock main_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'AppBundle:default:_filter_js.html.twig' %}
+
+    {% include 'AppBundle:default:_delete_js.html.twig' with { message: 'paragraph_template.delete_confirmation' } %}
+{% endblock javascripts %}

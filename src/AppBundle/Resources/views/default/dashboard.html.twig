@@ -1,0 +1,26 @@
+{% extends 'two-columns.html.twig' %}
+
+{% block main_content %}
+    {% if currentCompany is defined %}
+        <h1>{{ currentCompany }}</h1>
+
+        <hr />
+
+        <h3>{{ 'invoices.expired_incoming'|trans }}</h3>
+        {% include 'AppBundle:invoice:_list.html.twig' with { 'invoices': incomingInvoices } %}
+
+        <hr />
+
+        <h3>{{ 'invoices.expired_outgoing'|trans }}</h3>
+        {% include 'AppBundle:invoice:_list.html.twig' with { 'invoices': outgoingInvoices } %}
+    {% else %}
+        <h1>{{ 'app.welcome'|trans }}</h1>
+
+        {% if is_granted('ADD_FIRST_COMPANY') %}
+            <p>
+                {{ 'welcome.add_company'|trans({'%url%': path('company_create')})|raw }}
+            </p>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}

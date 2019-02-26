@@ -1,0 +1,56 @@
+{% form_theme form 'AppBundle:working_note:widgets.html.twig' 'AppBundle:document:widgets.html.twig' %}
+
+{{ form_start(form) }}
+
+<div class="panel panel-default">
+    <div class="panel-body ">
+        {{ form_errors(form, { global_errors: true }) }}
+
+        <div class="row">
+            <div class="col-md-4">
+                {{ form_row(form.code) }}
+            </div>
+            <div class="col-md-4">
+                {{ form_row(form.customerName) }}
+                {{ form_row(form.customer) }}
+            </div>
+            <div class="col-md-12">
+                {{ form_row(form.title) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% set activePanel = 'paragraphs-panel' %}
+
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="{{ activePanel == 'paragraphs-panel' ? 'active' : '' }}">
+        <a href="#paragraphs-panel" aria-controls="rows-panel" role="tab"
+           data-toggle="tab">{{ 'fields.paragraphs'|trans }}</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane {{ activePanel == 'paragraphs-panel' ? 'active' : '' }}" id="paragraphs-panel">
+        {{ form_widget(form.paragraphs) }}
+    </div>
+</div>
+
+<div class="form-actions">
+    {{ form_widget(form.save) }}
+    {{ form_widget(form.saveAndClose) }}
+</div>
+
+<div class="modal fade" id="template-selector" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{ 'paragraph_templates.browse'|trans }}</h4>
+            </div>
+            <div class="modal-body"></div>
+        </div>
+    </div>
+</div>
+
+{{ form_end(form) }}

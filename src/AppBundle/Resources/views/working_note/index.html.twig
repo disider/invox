@@ -1,0 +1,95 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+
+    <h1>
+        {{ 'working_notes.title'|trans }}
+
+        <small class="pull-right">
+            <a title="{{ 'filter.show' }}" aria-expanded="false" data-toggle="collapse"
+               href="#filter">{{ icon('search') }}</a>
+        </small>
+    </h1>
+
+    <div id="filter" class="collapse">
+        {{ form_start(filterForm, { method: 'GET'}) }}
+        <div class="well">
+            <div class="row">
+                <div class="col-sm-3">{{ form_row(filterForm.title) }}</div>
+                <div class="col-sm-3">{{ form_row(filterForm.code) }}</div>
+            </div>
+
+            <div class="form-actions">
+                {{ form_widget(filterForm.filter) }}
+
+                <a class="btn btn-default" href="{{ path('working_notes') }}">{{ 'actions.reset'|trans }}</a>
+            </div>
+        </div>
+        {{ form_end(filterForm) }}
+    </div>
+
+    {% if pagination|length > 0 %}
+        <table id="working-notes" class="table">
+            <thead>
+            <tr>
+                <th class="col-md-8">{{ 'fields.title'|trans }}</th>
+                <th class="col-md-2 text-center">{{ 'fields.code'|trans }}</th>
+                <th class="col-md-2">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for workingNote in pagination %}
+                <tr class="working-note">
+                    <td class="title">
+                        {{ format_edit_link('working_note', workingNote, workingNote) }}
+                    </td>
+
+                    <td class="code text-center">{{ workingNote.code }}</td>
+
+                    <td class="text-right">
+                        <div class=" btn-group btn-group-xs">
+                            {{ format_edit_icon('working_note', workingNote) }}
+
+                            {{ format_action_icon('working_note', 'print', 'print', workingNote) }}
+
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                {% if is_granted('WORKING_NOTE_DELETE', workingNote) %}
+                                    <li>
+                                        {{ format_delete_link('working_note', workingNote, icon('trash') ~ 'actions.delete'|trans) }}
+                                    </li>
+                                {% endif %}
+                                <li>
+                                    {{ format_action_link('working_note', 'view', icon('eye') ~ 'actions.view'|trans, workingNote) }}
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {{ knp_pagination_render(pagination) }}
+    {% else %}
+        <p class="empty-list">
+            {{ 'working_notes.empty_list'|trans }}
+        </p>
+    {% endif %}
+
+    {{ format_create_link('working_note') }}
+
+{% endblock main_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'AppBundle:default:_filter_js.html.twig' %}
+
+    {% include 'AppBundle:default:_delete_js.html.twig' with { message: 'working_note.delete_confirmation' } %}
+{% endblock javascripts %}

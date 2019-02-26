@@ -1,0 +1,87 @@
+{% block collection_uploader_widget %}
+    {% spaceless %}
+        {{ block('form_widget') }}
+
+        {% set attachmentsId = form.vars.id %}
+
+        {% set id = form.vars.id ~ '_uploader' %}
+
+        <div id="{{ id }}"></div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block collection_uploader_javascript %}
+    {% spaceless %}
+        {% include 'AppBundle:form:_collection_uploader_template.html.twig' %}
+
+        {% set attachmentsId = form.vars.id %}
+        {% set id = form.vars.id ~ '_uploader' %}
+
+        <script type="text/javascript">
+            var $attachments = $('#{{ attachmentsId }}');
+
+            $(function () {
+                $attachments.data('index', $attachments.find('.attachment').length);
+                $attachments.find('.delete').each(function () {
+                    var $delete = $(this);
+
+                    $delete.on('click', function (event) {
+                        var $row = $delete.parent('.attachment');
+                        $row.remove();
+
+                        event.stopPropagation();
+                        event.preventDefault();
+                    });
+                });
+
+                var options = {
+                    {#debug: {{ debug ? 'true' : 'false' }},#}
+                    text: {
+                        fileInputTitle: '{{ 'fields.upload'|trans }}'
+                    },
+                    request: {
+                        endpoint: '{{ oneup_uploader_endpoint(endpoint) }}'
+                    },
+                    multiple: {{ multiple ? 'true' : 'false' }},
+                    listElement: $attachments,
+                    template: 'qq-template',
+                    validation: {
+                        sizeLimit: 2000000 // 2MB
+                    }
+                };
+
+                var $uploader = $('#{{ id }}');
+
+                $uploader.fineUploader(options).on('complete', function (event, id, name, responseJson) {
+                    addRow(id, responseJson);
+                });
+
+                function addRow(id, file) {
+                    var index = $attachments.data('index');
+                    var $newRow = $('.qq-file-id-' + id);
+
+                    var html = $newRow.html();
+
+                    html = html.replace(/__name__/g, index);
+                    html = html.replace(/__fileName__/g, file.fileName);
+                    html = html.replace(/__filePath__/g, file.filePath);
+                    html = html.replace(/__fileUrl__/g, file.fileUrl);
+
+                    $attachments.data('index', index + 1);
+
+                    $newRow.html(html);
+
+                    var $delete = $newRow.find('.delete');
+
+                    $delete.on('click', function (event) {
+                        $newRow.remove();
+
+                        event.stopPropagation();
+                        event.preventDefault();
+                    });
+                }
+            });
+
+        </script>
+    {% endspaceless %}
+{% endblock %}

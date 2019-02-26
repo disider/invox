@@ -104,6 +104,7 @@ class PageController extends BaseController
 
         return [
             'form' => $form->createView(),
+            'page' => $page,
         ];
     }
 }

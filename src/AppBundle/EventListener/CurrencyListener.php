@@ -43,7 +43,7 @@ class CurrencyListener implements EventSubscriberInterface
         }
 
         /** @var \Twig_Extension_Core $core */
-        $core = $this->twigEnvironment->getExtension('core');
+        $core = $this->twigEnvironment->getExtension(\Twig_Extension_Core::class);
 
         $defaults = $this->localeFormatter->getDefaults();
         $decimal = $defaults[0];

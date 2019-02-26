@@ -13,7 +13,17 @@ AppBundle\Entity\TaxRateTranslation:
         name: VAT 22%
         translatable: '@vat_22'
 
+    vat_22_it:
+        locale: it
+        name: IVA 22%
+        translatable: '@vat_22'
+
     vat_10_en:
         locale: en
         name: VAT 10%
+        translatable: '@vat_10'
+
+    vat_10_it:
+        locale: it
+        name: IVA 10%
         translatable: '@vat_10'

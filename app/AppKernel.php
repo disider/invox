@@ -34,13 +34,12 @@ class AppKernel extends Kernel
             new Webfactory\Bundle\ExceptionsBundle\WebfactoryExceptionsBundle(),
             new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
             
-            new Sonata\CoreBundle\SonataCoreBundle(),
-            new Sonata\BlockBundle\SonataBlockBundle(),
+//            new Sonata\CoreBundle\SonataCoreBundle(),
+//            new Sonata\BlockBundle\SonataBlockBundle(),
+//            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+//            new Sonata\AdminBundle\SonataAdminBundle(),
 
-            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
-            new Sonata\AdminBundle\SonataAdminBundle(),
-
-            new AdminBundle\AdminBundle(),
+//            new AdminBundle\AdminBundle(),
             new AppBundle\AppBundle(),
         );
 

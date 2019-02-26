@@ -1,0 +1,45 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+    <h1>{{ 'cities.title'|trans }}</h1>
+
+    {% if pagination|length > 0 %}
+        <table id="cities" class="table">
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'sort.name'|trans, 'city.name') }}</th>
+                <th>&nbsp;</th>
+            </tr>
+            {% for city in pagination %}
+                <tr class="city">
+                    <td class="col-md-9">
+                        <span class="type badge">{{ city.province.code }}</span>
+
+                        {{ format_edit_link('city', city, city, { class: 'name'}) }}
+                    </td>
+
+                    <td class="col-md-3 text-right">
+                        {{ format_edit_icon('city', city) }}
+                        {{ format_delete_icon('city', city) }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        {{ knp_pagination_render(pagination) }}
+    {% else %}
+        <p class="empty-list">
+            {{ 'cities.empty_list'|trans }}
+        </p>
+    {% endif %}
+
+    {{ format_create_link('city') }}
+
+{% endblock main_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'AppBundle:default:_filter_js.html.twig' %}
+
+    {% include 'AppBundle:default:_delete_js.html.twig' with { message: 'city.delete_confirmation' } %}
+{% endblock javascripts %}

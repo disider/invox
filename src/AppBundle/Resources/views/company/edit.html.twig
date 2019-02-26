@@ -1,0 +1,13 @@
+{% extends '::form.html.twig' %}
+
+{% block main_content %}
+    <h1>{{ 'company.edit'|trans({'%company%': form.vars.data }) }}</h1>
+
+    {% include 'AppBundle:company:_form.html.twig' %}
+{% endblock main_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {%  include 'AppBundle:zip_code:_typeahead.html.twig' %}
+{% endblock javascripts %}

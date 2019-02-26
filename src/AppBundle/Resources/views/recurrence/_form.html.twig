@@ -1,0 +1,72 @@
+{% form_theme form 'AppBundle:recurrence:widgets.html.twig' %}
+
+{{ form_start(form, { attr: { class: 'recurrence' }}) }}
+
+{{ form_errors(form, { global_errors: true }) }}
+
+<div class="panel panel-default">
+    <div class="panel-body ">
+        {{ form_errors(form, { global_errors: true }) }}
+
+        <div class="row">
+            <div class="direction col-md-6 {{ form.direction.vars.valid ? '' : 'has-error' }}">
+                {{ form_widget(form.direction) }}
+                {{ form_errors(form.direction) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                {{ form_row(form.customerName) }}
+                {{ form_row(form.customer) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_row(form.content) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_row(form.startAt) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_row(form.amount) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="repeats col-md-12 {{ form.repeats.vars.valid ? '' : 'has-error' }}">
+                {{ form_widget(form.repeats) }}
+                {{ form_errors(form.repeats) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                {{ form_row(form.repeatEvery) }}
+            </div>
+
+            {#<div class="col-md-4 repeat-for">#}
+                {#{{ form_row(form.repeatFor) }}#}
+            {#</div>#}
+
+            <div class="col-md-6 repeat-days">
+                {{ form_row(form.repeatDays) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                {{ form_row(form.occurrences) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_row(form.endAt) }}
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="form-actions">
+    {{ form_widget(form.save) }}
+    {{ form_widget(form.saveAndClose) }}
+
+</div>
+
+{{ form_end(form) }}

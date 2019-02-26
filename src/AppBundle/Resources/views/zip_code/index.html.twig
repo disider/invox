@@ -1,0 +1,45 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+    <h1>{{ 'zip_codes.title'|trans }}</h1>
+
+    {% if pagination|length > 0 %}
+        <table id="zip-codes" class="table">
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'sort.code'|trans, 'zipCode.code') }}</th>
+                <th>&nbsp;</th>
+            </tr>
+            {% for zipCode in pagination %}
+                <tr class="zip-code">
+                    <td class="col-md-9">
+                        <span class="type badge">{{ zipCode.city.name }}</span>
+
+                        {{ format_edit_link('zip_code', zipCode, zipCode) }}
+                    </td>
+
+                    <td class="col-md-3 text-right">
+
+                        {{ format_edit_icon('zip_code', zipCode) }}
+                        {{ format_delete_icon('zip_code', zipCode) }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        {{ knp_pagination_render(pagination) }}
+    {% else %}
+        <p class="empty-list">
+            {{ 'zip_codes.empty_list'|trans }}
+        </p>
+    {% endif %}
+
+    {{ format_create_link('zip_code') }}
+{% endblock main_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'AppBundle:default:_filter_js.html.twig' %}
+
+    {% include 'AppBundle:default:_delete_js.html.twig' with { message: 'zip_code.delete_confirmation' } %}
+{% endblock javascripts %}

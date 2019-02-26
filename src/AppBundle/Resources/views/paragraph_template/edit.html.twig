@@ -1,0 +1,9 @@
+{% extends '::form.html.twig' %}
+
+{% block main_content %}
+    <h1> {{ 'paragraph_template.edit'|trans({'%paragraph_template%': form.vars.data }) }}</h1>
+
+    {% include 'AppBundle:paragraph_template:_form.html.twig' %}
+
+{% endblock main_content %}
+

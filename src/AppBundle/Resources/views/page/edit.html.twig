@@ -1,0 +1,7 @@
+{% extends '::form.html.twig' %}
+
+{% block main_content %}
+    <h1>{{ 'page.edit'|trans({'%page%': page }) }}</h1>
+
+    {% include 'AppBundle:page:_form.html.twig' %}
+{% endblock main_content %}

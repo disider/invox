@@ -1,8 +1,0 @@
-{% extends '::form.html.twig' %}
-
-{% block main_content %}
-    {% set account = form.vars.data %}
-    <h1>{{ 'account.edit'|trans({'%account%': account }) }}</h1>
-
-    {% include 'AppBundle:Account:_form.html.twig' %}
-{% endblock main_content %}

@@ -5,6 +5,8 @@ imports:
 
 parameters:
     page_size: 25
+    # TODO: check whether to remove after upgrading to 4.x
+    container.dumper.inline_class_loader: true
 
 framework:
     #esi:             ~
@@ -132,27 +134,36 @@ ewz_recaptcha:
     private_key: "%recaptcha_private_key%"
     locale_key:  "%kernel.default_locale%"
 
-sonata_admin:
-    title:            Invox Admin
-#    title_logo:       /images/small_logo.png
-#    templates:
-#        layout:  AdminBundle::layout.html.twig
-    security:
-        handler:      sonata.admin.security.handler.role
-        information:
-            EDIT:     EDIT
-            LIST:     LIST
-            CREATE:   CREATE
-            VIEW:     VIEW
-            DELETE:   DELETE
-            EXPORT:   EXPORT
-            OPERATOR: OPERATOR
-            MASTER:   MASTER
 
-sonata_block:
-    default_contexts: [cms]
-    blocks:
-        sonata.admin.block.admin_list:
-            contexts: [admin]
-#        sonata.admin.block.search_result:
+# TODO: restore sonata
+#sonata_admin:
+#    title:            Invox Admin
+#    security:
+#        handler:      sonata.admin.security.handler.role
+#        information:
+#            EDIT:     EDIT
+#            LIST:     LIST
+#            CREATE:   CREATE
+#            VIEW:     VIEW
+#            DELETE:   DELETE
+#            EXPORT:   EXPORT
+#            OPERATOR: OPERATOR
+#            MASTER:   MASTER
+#
+#sonata_block:
+#    default_contexts: [cms]
+#    blocks:
+#        sonata.admin.block.admin_list:
 #            contexts: [admin]
+
+# TODO: remove once migration to 4.x is completed
+sensio_framework_extra:
+    router:
+        annotations: false
+
+# TODO: restore sonata
+# # TODO: remove once migration to 4.x is completed
+#sonata_core:
+#    form:
+#        mapping:
+#            enabled: false

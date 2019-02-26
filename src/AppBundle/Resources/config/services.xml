@@ -30,7 +30,7 @@
     </parameters>
 
     <services>
-        <service id="company_manager" class="%company_manager.class%">
+        <service id="company_manager" class="%company_manager.class%" public="true">
             <argument type="service" id="company_repository"/>
             <argument type="service" id="security.token_storage"/>
             <argument type="service" id="session"/>
@@ -54,16 +54,16 @@
             <argument>%kernel.cache_dir%</argument>
         </service>
 
-        <service id="locale_formatter" class="%locale_formatter.class%">
+        <service id="locale_formatter" class="%locale_formatter.class%" public="true">
             <argument type="service" id="translator.default"/>
             <argument>%locale%</argument>
         </service>
 
-        <service id="protocol_generator" class="%protocol_generator.class%">
+        <service id="protocol_generator" class="%protocol_generator.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager"/>
         </service>
 
-        <service id="places_manager" class="%places_manager.class%">
+        <service id="places_manager" class="%places_manager.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager"/>
         </service>
 

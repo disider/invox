@@ -1,0 +1,82 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+    <h1>
+        {{ 'customers.title'|trans }}
+
+        <small class="pull-right">
+            <a title="{{ 'filter.show' }}" aria-expanded="false" data-toggle="collapse"
+               href="#filter">{{ icon('search') }}</a>
+        </small>
+    </h1>
+
+    {{ filter_start(filterForm) }}
+    {% include 'AppBundle:customer:_filter.html.twig' with {'form': filterForm } %}
+    {{ filter_end(filterForm) }}
+
+    {% if pagination|length > 0 %}
+        <table id="customers" class="table">
+            <tr>
+                <th>{{ 'fields.type'|trans }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'sort.name'|trans, 'customer.name') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'sort.email'|trans, 'customer.email') }}</th>
+                <th>&nbsp;</th>
+            </tr>
+
+            {% for customer in pagination %}
+                <tr class="customer">
+                    <td class="col-md-1">
+
+                        {% if customer.isCustomer %}
+                            <span class="label label-default">{{ 'customer.type.customer'|trans }}</span>
+                        {% elseif customer.isProspect %}
+                            <span class="label label-default">{{ 'customer.type.prospect'|trans }}</span>
+                        {% endif %}
+
+                        {% if customer.isSupplier %}
+                            <span class="label label-default">{{ 'customer.type.supplier'|trans }}</span>
+                        {% endif %}
+
+                    </td>
+
+                    <td class="col-md-3">
+                        {{ format_edit_link('customer', customer, customer, { class: 'name'}) }}
+                    </td>
+                    <td class="email col-md-5">
+                        {% if customer.referent %}
+                            <em>{{ customer.referent }}</em>
+                            ({{ customer.email }})
+                        {% else %}
+                            {{ customer.email }}
+                        {% endif %}
+
+                    </td>
+                    <td class="col-md-3 text-right">
+                        {{ format_edit_icon('customer', customer) }}
+
+                        {{ format_action_icon('document', 'create', 'book', [], { routeParameters: {'customerId': customer.id }}) }}
+
+                        {{ format_delete_icon('customer', customer) }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        {{ knp_pagination_render(pagination) }}
+    {% else %}
+        <p class="empty-list">
+            {{ 'customers.empty_list'|trans }}
+        </p>
+    {% endif %}
+
+
+    {{ format_create_link('customer') }}
+
+{% endblock main_content %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'AppBundle:default:_delete_js.html.twig' with { message: 'customer.delete_confirmation' } %}
+{% endblock %}

@@ -79,5 +79,5 @@ reset_password:
         The Invox Team
 contact_us:
     subject: 'Info request from %from%: %subject%'
-    html_body: %body%
-    txt_body: %body%
+    html_body: '%body%'
+    txt_body: '%body%'

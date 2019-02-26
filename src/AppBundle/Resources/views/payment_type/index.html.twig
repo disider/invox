@@ -1,0 +1,52 @@
+{% extends '::two-columns.html.twig' %}
+
+{% block main_content %}
+    <h1>{{ 'payment_types.title'|trans }}</h1>
+
+    {% if pagination|length > 0 %}
+        <table id="payment-types" class="table">
+            <tr>
+                <th class="col-md-8">{{ 'sort.name'|trans }}</th>
+                <th class="col-md-1 text-right">{{ 'fields.days'|trans }}</th>
+                <th class="col-md-1 text-center">{{ 'fields.end_of_month'|trans }}</th>
+                <th class="col-md-2">&nbsp;</th>
+            </tr>
+            {% for paymentType in pagination %}
+                <tr class="payment-type">
+                    <td>
+                        {{ format_edit_link('payment_type', paymentType, paymentType) }}
+                    </td>
+
+                    <td class="text-right">
+                        {{ paymentType.days > 0 ? paymentType.days : ''}}
+                    </td>
+
+                    <td class="text-center">
+                        {{ fa_icon(paymentType.endOfMonth ? 'check' : 'times') }}
+                    </td>
+
+                    <td class="text-right">
+                        {{ format_edit_icon('payment_type', paymentType) }}
+                        {{ format_delete_icon('payment_type', paymentType) }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        {{ knp_pagination_render(pagination) }}
+    {% else %}
+        <p class="empty-list">
+            {{ 'payment_types.empty_list'|trans }}
+        </p>
+    {% endif %}
+
+    {{ format_create_link('payment_type') }}
+{% endblock main_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'AppBundle:default:_filter_js.html.twig' %}
+
+    {% include 'AppBundle:default:_delete_js.html.twig' with { message: 'payment_type.delete_confirmation' } %}
+{% endblock javascripts %}
