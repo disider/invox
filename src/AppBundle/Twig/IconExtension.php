@@ -10,20 +10,17 @@
 
 namespace AppBundle\Twig;
 
-use Twig_Extension;
-use Twig_SimpleFunction;
-
-class IconExtension extends Twig_Extension
+class IconExtension extends \Twig_Extension
 {
     public function getFunctions()
     {
         return [
-            new Twig_SimpleFunction('fa_icon', [$this, 'showIcon'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction('fa_icon', [$this, 'showIcon'], ['is_safe' => ['html']]),
         ];
     }
 
     public function showIcon($icon, $class = '')
     {
-        return sprintf('<span class="fa fa-%s %s"></span>', $icon, $class ? 'fa-'.$class : '');
+        return sprintf('<span class="fa fa-%s %s"></span>', $icon, $class ? 'fa-' . $class : '');
     }
 }

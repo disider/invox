@@ -17,7 +17,10 @@ use Symfony\Component\Form\FormView;
 
 class LocalizedType extends AbstractType
 {
-    /** @var LocaleFormatter */
+    /**
+     * @var LocaleFormatter
+     * @deprecated move to custom option
+     */
     protected $localeFormatter;
 
     public function __construct(LocaleFormatter $localeFormatter)
@@ -31,7 +34,4 @@ class LocalizedType extends AbstractType
         $view->vars['decimalPoint'] = $defaults[1];
         $view->vars['thousandSeparator'] = $defaults[2];
     }
-
-
-
 }

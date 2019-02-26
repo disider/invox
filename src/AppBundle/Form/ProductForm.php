@@ -12,7 +12,6 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\Product;
 use AppBundle\Entity\ProductAttachment;
-use AppBundle\Entity\User;
 use AppBundle\Form\Type\AttachmentType;
 use AppBundle\Form\Type\CollectionUploaderType;
 use AppBundle\Form\Type\LocalizedNumberType;
@@ -21,7 +20,6 @@ use AppBundle\Model\Module;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;

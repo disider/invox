@@ -19,7 +19,7 @@ use AppBundle\Form\Processor\InviteFormProcessor;
 use AppBundle\Generator\TokenGenerator;
 use AppBundle\Model\Module;
 use AppBundle\Model\UserInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
@@ -66,13 +66,13 @@ class CompanyController extends BaseController
      * @Security("is_granted('COMPANY_CREATE')")
      * @Template
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, DefaultAuthenticatedFormProcessor $processor)
     {
         $template = $this->getDocumentTemplateRepository()->findAll();
 
         $company = Company::createEmpty($this->getUser(), $template);
 
-        return $this->processForm($request, $company);
+        return $this->processForm($request, $processor, $company);
     }
 
     /**
@@ -80,9 +80,9 @@ class CompanyController extends BaseController
      * @Security("is_granted('COMPANY_EDIT', company)")
      * @Template
      */
-    public function editAction(Request $request, Company $company)
+    public function editAction(Request $request, DefaultAuthenticatedFormProcessor $processor, Company $company)
     {
-        return $this->processForm($request, $company);
+        return $this->processForm($request, $processor, $company);
     }
 
     /**
@@ -147,7 +147,7 @@ class CompanyController extends BaseController
      * @Route("/{id}/accountant", name="company_accountant")
      * @Template
      */
-    public function accountantAction(Request $request, Company $company)
+    public function accountantAction(Request $request, InviteFormProcessor $processor, Company $company)
     {
         if ($request->getMethod() == 'POST' && $this->isInDemoMode()){
             $this->addFlash('danger', 'demo.action_not_allowed');
@@ -156,7 +156,7 @@ class CompanyController extends BaseController
             ]);
         }
 
-        return $this->processInviteForm($request, $company);
+        return $this->processInviteForm($request, $processor, $company);
     }
 
     /**
@@ -181,11 +181,8 @@ class CompanyController extends BaseController
         ]);
     }
 
-    private function processForm(Request $request, Company $company)
+    private function processForm(Request $request, DefaultAuthenticatedFormProcessor $processor, Company $company)
     {
-        /** @var DefaultAuthenticatedFormProcessor $processor */
-        $processor = $this->get('company_form_processor');
-
         $processor->process($request, $company);
 
         if ($processor->isValid()) {
@@ -214,11 +211,8 @@ class CompanyController extends BaseController
         ];
     }
 
-    private function processInviteForm(Request $request, Company $company)
+    private function processInviteForm(Request $request, InviteFormProcessor $processor, Company $company)
     {
-        /** @var InviteFormProcessor $processor */
-        $processor = $this->get('invite_form_processor');
-
         $invite = Invite::create($company, $this->getUser(), TokenGenerator::generateToken());
         $processor->process($request, $invite);
 

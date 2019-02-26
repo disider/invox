@@ -10,17 +10,13 @@
 
 namespace AppBundle\Twig;
 
-use Doctrine\Common\Util\Inflector;
 use Symfony\Bridge\Twig\Extension\RoutingExtension as BaseRoutingExtension;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Translation\TranslatorInterface;
-use Twig_Extension;
-use Twig_SimpleFunction;
 
-class RoutingExtension extends Twig_Extension
+class RoutingExtension extends \Twig_Extension
 {
     /**
      * @var BaseRoutingExtension $core
@@ -47,34 +43,34 @@ class RoutingExtension extends Twig_Extension
     public function getFunctions()
     {
         return [
-            new Twig_SimpleFunction('granted_path', [$this, 'getPath'], [
+            new \Twig_SimpleFunction('granted_path', [$this, 'getPath'], [
                 'is_safe_callback' => [$this, 'isUrlGenerationSafe'],
             ]),
-            new Twig_SimpleFunction('format_create_link', [$this, 'formatCreateLink'], [
+            new \Twig_SimpleFunction('format_create_link', [$this, 'formatCreateLink'], [
                 'is_safe' => ['html'],
             ]),
-            new Twig_SimpleFunction('format_edit_link', [$this, 'formatEditLink'], [
+            new \Twig_SimpleFunction('format_edit_link', [$this, 'formatEditLink'], [
                 'is_safe' => ['html'],
             ]),
-            new Twig_SimpleFunction('format_delete_link', [$this, 'formatDeleteLink'], [
+            new \Twig_SimpleFunction('format_delete_link', [$this, 'formatDeleteLink'], [
                 'is_safe' => ['html'],
             ]),
-            new Twig_SimpleFunction('format_view_link', [$this, 'formatViewLink'], [
+            new \Twig_SimpleFunction('format_view_link', [$this, 'formatViewLink'], [
                 'is_safe' => ['html'],
             ]),
-            new Twig_SimpleFunction('format_edit_icon', [$this, 'formatEditIcon'], [
+            new \Twig_SimpleFunction('format_edit_icon', [$this, 'formatEditIcon'], [
                 'is_safe' => ['html'],
             ]),
-            new Twig_SimpleFunction('format_view_icon', [$this, 'formatViewIcon'], [
+            new \Twig_SimpleFunction('format_view_icon', [$this, 'formatViewIcon'], [
                 'is_safe' => ['html'],
             ]),
-            new Twig_SimpleFunction('format_delete_icon', [$this, 'formatDeleteIcon'], [
+            new \Twig_SimpleFunction('format_delete_icon', [$this, 'formatDeleteIcon'], [
                 'is_safe' => ['html'],
             ]),
-            new Twig_SimpleFunction('format_action_icon', [$this, 'formatActionIcon'], [
+            new \Twig_SimpleFunction('format_action_icon', [$this, 'formatActionIcon'], [
                 'is_safe' => ['html'],
             ]),
-            new Twig_SimpleFunction('format_action_link', [$this, 'formatActionLink'], [
+            new \Twig_SimpleFunction('format_action_link', [$this, 'formatActionLink'], [
                 'is_safe' => ['html'],
             ]),
         ];

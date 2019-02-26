@@ -12,11 +12,8 @@ namespace AppBundle\Twig;
 
 use AppBundle\Model\LocaleFormatter;
 use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
-use Twig_Extension;
-use Twig_SimpleFilter;
-use Twig_SimpleFunction;
 
-class FormatExtension extends Twig_Extension
+class FormatExtension extends \Twig_Extension
 {
     /** @var \Twig_Extension_Core $core */
     private $core;
@@ -28,40 +25,38 @@ class FormatExtension extends Twig_Extension
 
     public function __construct(\Twig_Environment $twigEnvironment, LocaleFormatter $localeFormatter)
     {
-        $this->core = $twigEnvironment->getExtension('core');
+        $this->core = $twigEnvironment->getExtension(\Twig_Extension_Core::class);
         $this->localeFormatter = $localeFormatter;
     }
 
     public function getFunctions()
     {
         return [
-            new Twig_SimpleFunction('currency', [$this, 'getCurrency'], [
-                'is_safe' => ['html'],
-            ]),
-            new Twig_SimpleFunction('decimalPosition', [$this, 'getDecimalPosition']),
-            new Twig_SimpleFunction('decimalPoint', [$this, 'getDecimalPoint']),
-            new Twig_SimpleFunction('thousandSeparator', [$this, 'getThousandSeparator']),
-            new Twig_SimpleFunction('filter_start', null, ['node_class' => 'Symfony\Bridge\Twig\Node\RenderBlockNode', 'is_safe' => ['html']]),
-            new Twig_SimpleFunction('filter_end', null, ['node_class' => 'Symfony\Bridge\Twig\Node\RenderBlockNode', 'is_safe' => ['html']]),
+            new \Twig_SimpleFunction('currency', [$this, 'getCurrency'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction('decimalPosition', [$this, 'getDecimalPosition']),
+            new \Twig_SimpleFunction('decimalPoint', [$this, 'getDecimalPoint']),
+            new \Twig_SimpleFunction('thousandSeparator', [$this, 'getThousandSeparator']),
+            new \Twig_SimpleFunction('filter_start', null, ['node_class' => 'Symfony\Bridge\Twig\Node\RenderBlockNode', 'is_safe' => ['html']]),
+            new \Twig_SimpleFunction('filter_end', null, ['node_class' => 'Symfony\Bridge\Twig\Node\RenderBlockNode', 'is_safe' => ['html']]),
         ];
     }
 
     public function getFilters()
     {
         return [
-            new Twig_SimpleFilter('format_currency', [$this, 'formatCurrency'], [
+            new \Twig_SimpleFilter('format_currency', [$this, 'formatCurrency'], [
                 'pre_escape' => 'html',
                 'is_safe' => ['html'],
             ]),
-            new Twig_SimpleFilter('format_number', [$this, 'formatNumber'], [
+            new \Twig_SimpleFilter('format_number', [$this, 'formatNumber'], [
                 'pre_escape' => 'html',
                 'is_safe' => ['html'],
             ]),
-            new Twig_SimpleFilter('format_tax_rate', [$this, 'formatTaxRate'], [
+            new \Twig_SimpleFilter('format_tax_rate', [$this, 'formatTaxRate'], [
                 'pre_escape' => 'html',
                 'is_safe' => ['html'],
             ]),
-            new Twig_SimpleFilter('format_sort', [$this, 'formatSort']),
+            new \Twig_SimpleFilter('format_sort', [$this, 'formatSort']),
         ];
     }
 

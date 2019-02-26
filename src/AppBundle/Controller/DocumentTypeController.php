@@ -13,7 +13,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Repository\DocumentRepository;
 use AppBundle\Form\Filter\DocumentFilterForm;
 use AppBundle\Model\DocumentType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;

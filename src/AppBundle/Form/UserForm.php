@@ -11,7 +11,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\User;
-use Genemu\Bundle\FormBundle\Form\Core\Type\PlainType;
+use AppBundle\Form\Type\PlainType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;

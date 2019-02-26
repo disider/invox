@@ -63,7 +63,7 @@
             <argument type="service" id="doctrine.orm.entity_manager"/>
         </service>
 
-        <service id="places_manager" class="%places_manager.class%" public="true">
+        <service id="places_manager" class="%places_manager.class%">
             <argument type="service" id="doctrine.orm.entity_manager"/>
         </service>
 
@@ -72,7 +72,7 @@
             <tag name="form.type" alias="user_registration"/>
         </service>
 
-        <service id="user_manager" class="%user_manager.class%" public="true">
+        <service id="user_manager" class="%user_manager.class%">
             <argument type="service" id="security.encoder_factory"/>
             <argument type="service" id="doctrine.orm.entity_manager"/>
             <argument>%user.class%</argument>

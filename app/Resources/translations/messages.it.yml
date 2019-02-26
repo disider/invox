@@ -765,12 +765,6 @@ zip_code:
 zip_codes:
     empty_list: Nessun CAP definito
     title: CAP
-quotes:
-  title: Preventivi
-orders:
-  title: Ordini
-credit_notes:
-  title: Note di credito
 recurrence:
   create: Crea una ricorrenza
   edit: Modifica %recurrence%

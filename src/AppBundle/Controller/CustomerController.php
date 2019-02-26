@@ -15,7 +15,7 @@ use AppBundle\Entity\Repository\CustomerRepository;
 use AppBundle\Form\Filter\CustomerFilterForm;
 use AppBundle\Form\Processor\CustomerFormProcessor;
 use AppBundle\Model\Language;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;

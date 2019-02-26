@@ -6,10 +6,6 @@
     {{ parent() }}
 
     <link href="{{ asset('css/form.css') }}?{{ version }}" rel="stylesheet" media="screen">
-
-    {# this cannot be added since it ruins the form javascript #}
-    {# I wonder how this happens #}
-    {#{{ form_stylesheet(form) }}#}
 {% endblock stylesheets %}
 
 {% block javascripts %}
@@ -38,6 +34,4 @@
         });
 
     </script>
-
-    {{ form_javascript(form) }}
 {% endblock javascripts %}

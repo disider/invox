@@ -10,8 +10,6 @@
 
 namespace AppBundle\Twig;
 
-use Twig_SimpleFunction;
-
 class GlobalExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
     /**
@@ -27,7 +25,7 @@ class GlobalExtension extends \Twig_Extension implements \Twig_Extension_Globals
     public function getFunctions()
     {
         return [
-            new Twig_SimpleFunction('novalidate', [$this, 'getNoValidate'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction('novalidate', [$this, 'getNoValidate'], ['is_safe' => ['html']]),
         ];
     }
 

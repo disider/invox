@@ -764,16 +764,6 @@ working_note:
 working_notes:
     empty_list: No working notes defined
     title: Working notes
-paragraph_templates:
-    title: Paragraph templates
-    empty_list: No paragraph templates defined
-    browse: Browse paragraph templates
-quotes:
-  title: Quotes
-orders:
-  title: Orders
-credit_notes:
-  title: Credits notes
 recurrence:
   create: Create recurrence
   edit: Edit %recurrence%

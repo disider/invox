@@ -19,6 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Valid;
 
 class PaymentTypeForm extends AbstractType
 {
@@ -63,7 +64,7 @@ class PaymentTypeForm extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => PaymentType::class,
-            'cascade_validation' => true,
+            'constraints' => new Valid(),
         ]);
     }
 

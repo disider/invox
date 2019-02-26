@@ -15,7 +15,7 @@ use AppBundle\Entity\Service;
 use AppBundle\Form\Filter\ServiceFilterForm;
 use AppBundle\Form\Processor\DefaultFormProcessor;
 use AppBundle\Model\Module;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;

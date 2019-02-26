@@ -14,7 +14,7 @@ use AppBundle\Entity\PettyCashNote;
 use AppBundle\Entity\Repository\PettyCashNoteRepository;
 use AppBundle\Form\Filter\PettyCashNoteFilterForm;
 use AppBundle\Form\Processor\DefaultFormProcessor;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;

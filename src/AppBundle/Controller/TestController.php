@@ -19,7 +19,7 @@ use LegacyBundle\Entity\Country;
 use LegacyBundle\Entity\Coupon;
 use LegacyBundle\Entity\Repository\DefaultRepository;
 use LegacyBundle\Entity\User;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 

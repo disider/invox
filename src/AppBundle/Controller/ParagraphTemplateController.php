@@ -15,7 +15,7 @@ use AppBundle\Entity\Repository\ParagraphTemplateRepository;
 use AppBundle\Form\Filter\ParagraphTemplateFilterForm;
 use AppBundle\Form\Processor\DefaultFormProcessor;
 use JMS\Serializer\Serializer;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -116,7 +116,7 @@ class ParagraphTemplateController extends BaseController
         /** @var Serializer $serializer */
         $serializer = $this->get('serializer');
 
-        return new JsonResponse($serializer->serialize($paragraphTemplate, 'json'));
+        return $this->json($serializer->serialize($paragraphTemplate, 'json'));
     }
 
     /**

@@ -10,7 +10,6 @@
 
 namespace AppBundle\Form;
 
-use AppBundle\EventListener\FormAuthenticationListener;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -18,7 +17,6 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class LoginForm extends AbstractType
@@ -46,12 +44,10 @@ class LoginForm extends AbstractType
     {
         $resolver->setRequired('authentication_listener');
 
-        $resolver->setDefaults(
-            [
-                'csrf_field_name' => '_csrf_token',
-                'intention' => 'authenticate',
-                'target_path' => '',
-            ]
-        );
+        $resolver->setDefaults([
+            'csrf_field_name' => '_csrf_token',
+            'intention' => 'authenticate',
+            'target_path' => '',
+        ]);
     }
 }

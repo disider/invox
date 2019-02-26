@@ -10,7 +10,7 @@
 
 namespace AppBundle\Form;
 
-use Genemu\Bundle\FormBundle\Form\Core\Type\PlainType;
+use AppBundle\Form\Type\PlainType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -41,10 +41,8 @@ class ProfileForm extends BaseForm
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefaults(
-            [
-                'validation_groups' => ['edit_profile'],
-            ]
-        );
+        $resolver->setDefaults([
+            'validation_groups' => ['edit_profile'],
+        ]);
     }
 }

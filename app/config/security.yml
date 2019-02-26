@@ -34,6 +34,7 @@ security:
                 target:               admin_login
             anonymous:                true
             switch_user:              true
+            logout_on_user_change:    true
 
         main:
             pattern: ^/
@@ -52,6 +53,7 @@ security:
                 target:   login
             anonymous:    true
             switch_user:  true
+            logout_on_user_change:    true
 
     access_control:
         - { path: ^/((en|it)/)?admin/login, role: IS_AUTHENTICATED_ANONYMOUSLY }

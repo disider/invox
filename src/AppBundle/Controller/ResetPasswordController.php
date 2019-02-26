@@ -14,7 +14,7 @@ use AppBundle\Entity\User;
 use AppBundle\Form\RequestResetPasswordForm;
 use AppBundle\Form\ResetPasswordForm;
 use AppBundle\Generator\TokenGenerator;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 

@@ -17,7 +17,7 @@ use AppBundle\Form\Filter\WorkingNoteFilterForm;
 use AppBundle\Form\Processor\DefaultFormProcessor;
 use Behat\Behat\Definition\Call\Then;
 use Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
