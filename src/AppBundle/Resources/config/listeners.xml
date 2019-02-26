@@ -81,12 +81,12 @@
             <tag name="doctrine.event_subscriber" />
         </service>
 
-        <service id="security.interactive_login_listener" class="%security.interactive_login_listener.class%">
+        <service id="security.interactive_login_listener" class="%security.interactive_login_listener.class%" public="true">
             <argument type="service" id="user_manager" />
             <tag name="kernel.event_subscriber" />
         </service>
 
-        <service id="security.form_authentication_listener" class="%security.form_authentication_listener.class%">
+        <service id="security.form_authentication_listener" class="%security.form_authentication_listener.class%" public="true">
             <argument type="service" id="session" />
             <argument type="service" id="translator" />
             <argument type="service" id="router" />

@@ -11,7 +11,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\User;
-use AppBundle\Form\Type\PlainType;
+use AppBundle\Form\Type\PlainTextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -102,7 +102,7 @@ class UserForm extends AbstractType
                     $form->add('email', TextType::class, ['label' => 'fields.email']);
                 }
                 else {
-                    $form->add('email', PlainType::class, [
+                    $form->add('email', PlainTextType::class, [
                         'label' => 'fields.email',
                     ]);
                 }

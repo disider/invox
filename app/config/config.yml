@@ -47,7 +47,8 @@ twig:
         launcher_links: "%launcher_links%"
         enable_demo_mode:            "%enable_demo_mode%"
         demo_credentials:     "%demo_credentials%"
-
+    form_themes:
+        - 'fields.html.twig'
 # Doctrine Configuration
 doctrine:
     dbal:

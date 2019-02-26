@@ -30,7 +30,7 @@ class TestController extends BaseController
 {
     /**
      * @Route("/emails/confirm-registration", name="test_confirm_registration_email")
-     * @Template("AppBundle:Default:testEmail.html.twig")
+     * @Template("AppBundle:default:test_email.html.twig")
      */
     public function confirmRegistrationEmailAction()
     {
@@ -49,7 +49,7 @@ class TestController extends BaseController
 
     /**
      * @Route("/emails/registration-completed", name="test_registration_completed_email")
-     * @Template("AppBundle:Default:testEmail.html.twig")
+     * @Template("AppBundle:default:test_email.html.twig")
      */
     public function registrationCompletedEmailAction()
     {
@@ -67,7 +67,7 @@ class TestController extends BaseController
 
     /**
      * @Route("/emails/reset-password", name="test_reset_password_email")
-     * @Template("AppBundle:Default:testEmail.html.twig")
+     * @Template("AppBundle:default:test_email.html.twig")
      */
     public function resetPasswordEmailAction()
     {
@@ -86,7 +86,7 @@ class TestController extends BaseController
 
     /**
      * @Route("/emails/invite-accountant", name="test_invite_accountant_email")
-     * @Template("AppBundle:Default:testEmail.html.twig")
+     * @Template("AppBundle:default:test_email.html.twig")
      */
     public function inviteAccountantEmailAction()
     {

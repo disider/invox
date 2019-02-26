@@ -79,7 +79,6 @@ class InviteFormProcessor extends AbstractFormProcessor
 
             if ($this->isValid()) {
                 $this->invite = $form->getData();
-                
                 if($this->inviteRepository->findOneByEmail($this->invite->getEmail())) {
                     $this->hasSentInvite = false;                    
                 }

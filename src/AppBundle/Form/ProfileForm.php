@@ -10,7 +10,7 @@
 
 namespace AppBundle\Form;
 
-use AppBundle\Form\Type\PlainType;
+use AppBundle\Form\Type\PlainTextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,7 +19,7 @@ class ProfileForm extends BaseForm
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('email', PlainType::class, ['label' => 'fields.email']);
+        $builder->add('email', PlainTextType::class, ['label' => 'fields.email']);
 
         $builder->add('save', SubmitType::class, ['label' => 'actions.save']);
         $builder->add(

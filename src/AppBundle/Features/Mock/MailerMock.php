@@ -37,6 +37,7 @@ class MailerMock implements Mailer
 
     public function sendInviteAccountantEmailTo(Invite $invite)
     {
+        die;
         $this->registerMail('invite_accountant', $invite->getEmail());
     }
 

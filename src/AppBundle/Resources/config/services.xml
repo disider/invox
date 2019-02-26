@@ -72,7 +72,7 @@
             <tag name="form.type" alias="user_registration"/>
         </service>
 
-        <service id="user_manager" class="%user_manager.class%">
+        <service id="user_manager" class="%user_manager.class%" public="true">
             <argument type="service" id="security.encoder_factory"/>
             <argument type="service" id="doctrine.orm.entity_manager"/>
             <argument>%user.class%</argument>

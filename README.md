@@ -1,14 +1,14 @@
 # Invox
 
-## Descrizione 
+## Description 
 **Invox** è lo strumento *in cloud* indispensabile per una corretta contabilità aziendale.
 Facile ed intuitivo, è un software gestionale particolarmente adatto alle società di servizi e ai liberi professionisti che possono gestire e condividere via web i dati, con più persone e su diversi dispositivi.
 
 **Invox** è una piattaforma *open source* ed è la chiave per avere sempre una chiara rappresentazione della situazione economico-finanziaria della propria azienda.
 
-## Deploy locale tramite Vagrant
+## Local deployment with Vagrant
 
-### Requisiti
+### Requisites
 Invox può essere installato in locale utilizzando la stessa configurazione usata lato server.
 
 In caso si voglia installare su macchina virtuale, nel progetto è presente una configurazione di [Vagrant](https://www.vagrantup.com/). 
@@ -57,8 +57,17 @@ Alla fine del processo sarà richiesta la compilazione dei parametri del progett
 I parametri del progetto Symfony sono contenuti nel file `{project-dir}/app/config/parameters.yml` e possono essere modificati in qualsiasi momento.
 
 ### Creazione database
-Lanciando il comando `php {project-dir}/bin/console doctrine:database:create` verrà creato il database.
-Successivamente, eseguendo `php {project-dir}/bin/console doctrine:schema:create` saranno create le tabelle al suo interno. 
+Lanciando il comando 
+
+    php {project-dir}/bin/console doctrine:database:create
+
+verrà creato il database.
+
+Successivamente, eseguendo
+
+    php {project-dir}/bin/console doctrine:schema:create
+
+saranno create le tabelle al suo interno. 
 
 > Di default Symfony creerà il database per l'ambiente di sviluppo (dev). Per cambiare ambiente aggiungete ai comandi il parametro -e {environment-name} (es. -e prod).
 > Gli ambienti disponibili su Invox sono dev, test, stage e prod. Per ulteriori informazioni sugli ambienti in Symfony consultare la [documentazione](https://Symfony.com/doc/current/configuration/environments.html).
@@ -67,6 +76,20 @@ Successivamente, eseguendo `php {project-dir}/bin/console doctrine:schema:create
 
 > Per ulteriori informazioni sui comandi della console di Symfony consultare la [documentazione](http://Symfony.com/doc/current/components/console.html)
 
-### (Opzionale) Caricamento fixture 
+### (Optional) Loading fixture 
 Invox mette a disposizione alcune fixture di esempio utili per lo sviluppo. 
 Per caricarle basta lanciare il comando `php {project-dir}/bin/console hautelook:fixtures:load`.
+
+### Executing tests
+
+To run unit tests, execute
+
+    vendor/bin/simple-phpunit
+    
+To run behavior tests, run PhantomJS in a terminal shell
+
+    phantomjs --web-driver=4444 --disk-cache=false
+    
+then run the tests
+
+    vendor/bin/behat 

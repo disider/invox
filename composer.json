@@ -76,12 +76,14 @@
     "twbs/bootstrap": "^4.3",
     "twig/extensions": "^1.5",
     "webfactory/exceptions-bundle": "^4.4",
-    "doctrine/annotations": "^1.4"
+    "doctrine/annotations": "^1.4",
+    "jonnyw/php-phantomjs": "^4.6"
   },
   "require-dev": {
     "sensio/generator-bundle": "^3.0",
     "symfony/phpunit-bridge": "^3.0",
     "symfony/web-server-bundle": "^3.4",
+    "phpunit/phpunit": "^5.7",
 
     "behat/behat": "^3.5",
     "behat/mink": "^1.7",
@@ -102,7 +104,8 @@
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
+      "PhantomInstaller\\Installer::installPhantomJS"
     ],
     "post-install-cmd": [
       "@symfony-scripts"

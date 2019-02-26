@@ -126,10 +126,10 @@ class DocumentTemplatePerCompanyController extends BaseController
                 'content' => $this->renderSection($document, 'content')
             ];
 
-            return $this->render('AppBundle:DocumentTemplatePerCompany:render.html.twig', $params);
+            return $this->render('AppBundle:document_template_per_company:render.html.twig', $params);
         }
         catch(\Exception $exc) {
-            return $this->render('AppBundle:Document:previewError.html.twig', ['exception' => $exc]);
+            return $this->render('AppBundle:document:preview_error.html.twig', ['exception' => $exc]);
         }
     }
 

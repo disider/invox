@@ -155,9 +155,9 @@ class WorkingNoteController extends BaseController
                     'footer' => $footer,
                     'showAsHtml' => $showAsHtml];
 
-                return $this->render('AppBundle:WorkingNote:render.html.twig', $params);
+                return $this->render('AppBundle:working_note:render.html.twig', $params);
             } catch (\Exception $exc) {
-                return $this->render('AppBundle:Document:previewError.html.twig', ['exception' => $exc]);
+                return $this->render('AppBundle:document:preview_error.html.twig', ['exception' => $exc]);
             }
         }
 
@@ -181,7 +181,7 @@ class WorkingNoteController extends BaseController
     {
         $options['company'] = $this->getCurrentCompany();
 
-        return $this->renderView('AppBundle:WorkingNote:_pdf_' . $partial . '.html.twig', $options);
+        return $this->renderView('AppBundle:working_note:_pdf_' . $partial . '.html.twig', $options);
     }
 
     private function formatFileName(WorkingNote $workingNote)
@@ -192,7 +192,7 @@ class WorkingNoteController extends BaseController
     private function renderPdfLayout($content)
     {
         return $this->renderView(
-            'AppBundle:WorkingNote:pdf_layout.html.twig', [
+            'AppBundle:working_note:pdf_layout.html.twig', [
                 'content' => $content
             ]
         );

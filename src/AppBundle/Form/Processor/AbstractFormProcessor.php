@@ -79,6 +79,8 @@ abstract class AbstractFormProcessor
     protected function getAuthenticatedUser()
     {
         $token = $this->tokenStorage->getToken();
+
+        /** @var User $user */
         $user = $token->getUser();
 
         return $user;

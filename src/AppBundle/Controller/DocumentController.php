@@ -267,9 +267,9 @@ class DocumentController extends BaseController
                     'showAsHtml' => $showAsHtml,
                 ];
 
-                return $this->render('AppBundle:Document:render.html.twig', $params);
+                return $this->render('AppBundle:document:render.html.twig', $params);
             } catch (\Exception $exc) {
-                return $this->render('AppBundle:Document:previewError.html.twig', ['exception' => $exc]);
+                return $this->render('AppBundle:document:preview_error.html.twig', ['exception' => $exc]);
             }
         }
 
@@ -306,7 +306,7 @@ class DocumentController extends BaseController
 
     private function renderPdfLayout(Document $document, $partial)
     {
-        return $this->renderView('AppBundle:Document:pdf_layout.html.twig', [
+        return $this->renderView('AppBundle:document:pdf_layout.html.twig', [
             'template' => $document->getDocumentTemplate(),
             'content' => $this->renderSection($document, $partial),
         ]);

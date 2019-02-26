@@ -15,7 +15,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PlainType extends AbstractType
+class PlainTextType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -76,4 +76,10 @@ class PlainType extends AbstractType
         }
         $view->vars['value'] = (string)$value;
     }
+
+    public function getBlockPrefix()
+    {
+        return 'plain_text';
+    }
+
 }

@@ -1,0 +1,6 @@
+{% block plain_text_widget %}
+    <div {{ block('container_attributes') }}>
+        <p class="btn btn-default" {{ block('widget_attributes') }}>{{ value|escape }}</p>
+    </div>
+{% endblock %}
+
