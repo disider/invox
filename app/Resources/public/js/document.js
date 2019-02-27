@@ -76,7 +76,7 @@
         });
 
         $element.on(pluginName + '.movingRow', function (ev) {
-            (ev.direction == 'up') ? sortableList.moveUp(ev.position): sortableList.moveDown(ev.position);
+            (ev.direction === 'up') ? sortableList.moveUp(ev.position): sortableList.moveDown(ev.position);
         });
 
         $element.removeClass('initial-view');

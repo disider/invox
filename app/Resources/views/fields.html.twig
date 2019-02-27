@@ -4,3 +4,15 @@
     </div>
 {% endblock %}
 
+{% block form_javascript %}
+    {% spaceless %}
+        {% for child in form %}
+            {{ form_javascript(child) }}
+        {% endfor %}
+    {% endspaceless %}
+{% endblock form_javascript %}
+
+
+{% block field_javascript "" %}
+
+{% block button_javascript "" %}

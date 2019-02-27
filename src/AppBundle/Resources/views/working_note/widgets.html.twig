@@ -132,10 +132,12 @@
                             var getParagraphsUrl = url.replace('__id__', $(this).data('ref'));
 
                             $.get(getParagraphsUrl, function (response) {
-                                var elements = $.parseJSON(response);
+                                var elements = response;
 
                                 var code = parent.replace('#workingNote_paragraphs', '');
                                 addParagraphs(elements, '', '#workingNote_paragraphs', code);
+                            }).fail(function(error) {
+                                console.error(error.responseText);
                             });
 
                             $template.modal('hide');

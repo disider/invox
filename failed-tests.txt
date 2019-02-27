@@ -1,45 +1,4 @@
-    src/AppBundle/Features/Company/Owner/InviteAccountant.feature:21
-    src/AppBundle/Features/Customer/User/AddAttachment.feature:20
-    src/AppBundle/Features/Customer/User/AddAttachment.feature:30
-    src/AppBundle/Features/Customer/User/DeleteAttachment.feature:22
-    src/AppBundle/Features/Customer/User/DeleteAttachment.feature:30
-    src/AppBundle/Features/Document/User/AddAttachment.feature:24
-    src/AppBundle/Features/Document/User/AddAttachment.feature:35
-    src/AppBundle/Features/Document/User/DeleteAttachment.feature:25
-    src/AppBundle/Features/Document/User/DeleteAttachment.feature:34
-    src/AppBundle/Features/Document/User/HandleRows.feature:35
-    src/AppBundle/Features/Document/User/HandleRows.feature:40
-    src/AppBundle/Features/Document/User/HandleRows.feature:45
-    src/AppBundle/Features/Document/User/HandleRows.feature:61
-    src/AppBundle/Features/Document/User/LinkProduct.feature:44
-    src/AppBundle/Features/Document/User/LinkProduct.feature:75
-    src/AppBundle/Features/Document/User/LinkService.feature:41
-    src/AppBundle/Features/Document/User/LinkService.feature:73
-    src/AppBundle/Features/ParagraphTemplate/User/HandleParagraphs.feature:24
-    src/AppBundle/Features/ParagraphTemplate/User/HandleParagraphs.feature:36
-    src/AppBundle/Features/ParagraphTemplate/User/HandleParagraphs.feature:51
-    src/AppBundle/Features/ParagraphTemplate/User/HandleParagraphs.feature:60
-    src/AppBundle/Features/PettyCashNote/Owner/AddAttachment.feature:20
-    src/AppBundle/Features/PettyCashNote/Owner/AddAttachment.feature:31
-    src/AppBundle/Features/PettyCashNote/Owner/AddLinkedInvoice.feature:39
-    src/AppBundle/Features/PettyCashNote/Owner/AddLinkedInvoice.feature:64
-    src/AppBundle/Features/PettyCashNote/Owner/AddLinkedInvoice.feature:79
-    src/AppBundle/Features/PettyCashNote/Owner/DeleteAttachment.feature:25
-    src/AppBundle/Features/PettyCashNote/Owner/DeleteAttachment.feature:34
-    src/AppBundle/Features/PettyCashNote/Owner/DeleteLinkedInvoices.feature:38
-    src/AppBundle/Features/PettyCashNote/Owner/UpdateLinkedInvoices.feature:54
-    src/AppBundle/Features/PettyCashNote/Owner/UpdateLinkedInvoices.feature:65
-    src/AppBundle/Features/PettyCashNote/Owner/UpdateLinkedInvoices.feature:81
-    src/AppBundle/Features/PettyCashNote/Owner/UpdateLinkedInvoices.feature:92
-    src/AppBundle/Features/PettyCashNote/Owner/UpdateLinkedInvoices.feature:100
-    src/AppBundle/Features/Product/User/AddAttachment.feature:17
-    src/AppBundle/Features/Product/User/AddAttachment.feature:26
-    src/AppBundle/Features/Product/User/DeleteAttachment.feature:19
-    src/AppBundle/Features/Product/User/DeleteAttachment.feature:27
-    src/AppBundle/Features/WorkingNote/User/HandleParagraphs.feature:26
-    src/AppBundle/Features/WorkingNote/User/HandleParagraphs.feature:34
-    src/AppBundle/Features/WorkingNote/User/HandleParagraphs.feature:41
-    src/AppBundle/Features/WorkingNote/User/HandleParagraphs.feature:50
-    src/AppBundle/Features/WorkingNote/User/ImportParagraphTemplate.feature:29
-    src/AppBundle/Features/WorkingNote/User/ImportParagraphTemplate.feature:39
-    src/AppBundle/Features/WorkingNote/User/ImportParagraphTemplate.feature:55
+src/AppBundle/Features/Company/Owner/InviteAccountant.feature:21
+src/AppBundle/Features/WorkingNote/User/ImportParagraphTemplate.feature:29
+src/AppBundle/Features/WorkingNote/User/ImportParagraphTemplate.feature:39
+src/AppBundle/Features/WorkingNote/User/ImportParagraphTemplate.feature:55

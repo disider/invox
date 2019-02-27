@@ -113,10 +113,7 @@ class ParagraphTemplateController extends BaseController
      */
     public function showAction(ParagraphTemplate $paragraphTemplate)
     {
-        /** @var Serializer $serializer */
-        $serializer = $this->get('serializer');
-
-        return $this->json($serializer->serialize($paragraphTemplate, 'json'));
+        return $this->serialize($paragraphTemplate);
     }
 
     /**

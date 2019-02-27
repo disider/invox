@@ -417,11 +417,7 @@
                     var id = tmp.html(code).find('[id]').first().attr('id');
                     tmp.empty();
 
-                    console.log(id);
-                    // console.log(container.find('#' + id).length);
-
                     if (container.find('#' + id).length === 0) {
-                        console.log('found');
                         if (isDuplicate) {
                             putFieldValuesInDom(elements.eq(index));
                             var oldHtml = $("<div/>").append(elements.eq(index).clone()).html();
