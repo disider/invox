@@ -126,4 +126,9 @@ class WorkingNoteFormProcessor extends AbstractFormProcessor
             $this->getRepository()->save($row);
         }
     }
+
+    protected function getFormOptions()
+    {
+        return [];
+    }
 }

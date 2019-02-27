@@ -4,80 +4,42 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <parameters>
-        <parameter key="customer_form_processor.class">AppBundle\Form\Processor\CustomerFormProcessor</parameter>
-        <parameter key="default_authenticated_form_processor.class">AppBundle\Form\Processor\DefaultAuthenticatedFormProcessor</parameter>
-        <parameter key="default_form_processor.class">AppBundle\Form\Processor\DefaultFormProcessor</parameter>
-        <parameter key="document_form_processor.class">AppBundle\Form\Processor\DocumentFormProcessor</parameter>
-        <parameter key="invite_form_processor.class">AppBundle\Form\Processor\InviteFormProcessor</parameter>
-        <parameter key="petty_cash_note_form_processor.class">AppBundle\Form\Processor\PettyCashNoteFormProcessor</parameter>
-        <parameter key="user_form_processor.class">AppBundle\Form\Processor\UserFormProcessor</parameter>
-
-        <parameter key="attachment_file_type.class">AppBundle\Form\Type\AttachmentFileType</parameter>
-        <parameter key="country_entity_type.class">AppBundle\Form\Type\CountryEntityType</parameter>
-        <parameter key="document_row_collection_type.class">AppBundle\Form\Type\DocumentRowCollectionType</parameter>
-        <parameter key="document_row_type.class">AppBundle\Form\Type\DocumentRowType</parameter>
-        <parameter key="invoice_collection_type.class">AppBundle\Form\Type\InvoiceCollectionType</parameter>
-        <parameter key="invoice_per_note_type.class">AppBundle\Form\Type\InvoicePerNoteType</parameter>
-        <parameter key="entity_hidden_type.class">AppBundle\Form\Type\EntityHiddenType</parameter>
-        <parameter key="entity_text_type.class">AppBundle\Form\Type\EntityTextType</parameter>
-        <parameter key="localized_number_type.class">AppBundle\Form\Type\LocalizedNumberType</parameter>
-        <parameter key="image_file_type.class">AppBundle\Form\Type\ImageFileType</parameter>
-
-        <parameter key="account_form.class">AppBundle\Form\AccountForm</parameter>
-        <parameter key="city_form.class">AppBundle\Form\CityForm</parameter>
-        <parameter key="company_form.class">AppBundle\Form\CompanyForm</parameter>
-        <parameter key="country_form.class">AppBundle\Form\CountryForm</parameter>
-        <parameter key="document_template_form.class">AppBundle\Form\DocumentTemplateForm</parameter>
-        <parameter key="document_template_per_company_form.class">AppBundle\Form\DocumentTemplatePerCompanyForm</parameter>
-        <parameter key="invite_form.class">AppBundle\Form\InviteForm</parameter>
-        <parameter key="page_form.class">AppBundle\Form\PageForm</parameter>
-        <parameter key="payment_type_form.class">AppBundle\Form\PaymentTypeForm</parameter>
-        <parameter key="product_form.class">AppBundle\Form\ProductForm</parameter>
-        <parameter key="province_form.class">AppBundle\Form\ProvinceForm</parameter>
-        <parameter key="recurrence_form.class">AppBundle\Form\RecurrenceForm</parameter>
-        <parameter key="service_form.class">AppBundle\Form\ServiceForm</parameter>
-        <parameter key="tax_rate_form.class">AppBundle\Form\TaxRateForm</parameter>
-        <parameter key="warehouse_record_form.class">AppBundle\Form\WarehouseRecordForm</parameter>
-        <parameter key="zip_code_form.class">AppBundle\Form\ZipCodeForm</parameter>
-    </parameters>
-
     <services>
-        <service id="account_form_processor" class="%default_authenticated_form_processor.class%" public="true">
-            <argument>%account_form.class%</argument>
-            <argument type="service" id="account_repository"/>
-            <argument type="service" id="form.factory"/>
-            <argument type="service" id="security.token_storage"/>
-        </service>
+        <!--<service id="account_form_processor" class="AppBundle\Form\Processor\DefaultAuthenticatedFormProcessor" public="true">-->
+            <!--<argument>AppBundle\Form\AccountForm</argument>-->
+            <!--<argument type="service" id="account_repository"/>-->
+            <!--<argument type="service" id="form.factory"/>-->
+            <!--<argument type="service" id="security.token_storage"/>-->
+        <!--</service>-->
 
-        <service id="city_form_processor" class="%default_form_processor.class%" public="true">
-            <argument>%city_form.class%</argument>
+        <service id="city_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
+            <argument>AppBundle\Form\CityForm</argument>
             <argument type="service" id="city_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="company_form_processor" class="%default_authenticated_form_processor.class%" public="true">
-            <argument>%company_form.class%</argument>
+        <service id="company_form_processor" class="AppBundle\Form\Processor\DefaultAuthenticatedFormProcessor" public="true">
+            <argument>AppBundle\Form\CompanyForm</argument>
             <argument type="service" id="company_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="country_form_processor" class="%default_form_processor.class%" public="true">
-            <argument>%country_form.class%</argument>
+        <service id="country_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
+            <argument>AppBundle\Form\CountryForm</argument>
             <argument type="service" id="country_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="customer_form_processor" class="%customer_form_processor.class%" public="true">
+        <service id="customer_form_processor" class="AppBundle\Form\Processor\CustomerFormProcessor" public="true">
             <argument type="service" id="customer_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="document_form_processor" class="%document_form_processor.class%" public="true">
+        <service id="document_form_processor" class="AppBundle\Form\Processor\DocumentFormProcessor" public="true">
             <argument type="service" id="document_repository"/>
             <argument type="service" id="company_manager"/>
             <argument type="service" id="form.factory"/>
@@ -85,167 +47,167 @@
             <argument>%available_locales%</argument>
         </service>
 
-        <service id="document_template_form_processor" class="%default_form_processor.class%" public="true">
-            <argument>%document_template_form.class%</argument>
+        <service id="document_template_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
+            <argument>AppBundle\Form\DocumentTemplateForm</argument>
             <argument type="service" id="document_template_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="document_template_per_company_form_processor" class="%default_authenticated_form_processor.class%" public="true">
-            <argument>%document_template_per_company_form.class%</argument>
+        <service id="document_template_per_company_form_processor" class="AppBundle\Form\Processor\DefaultAuthenticatedFormProcessor" public="true">
+            <argument>AppBundle\Form\DocumentTemplatePerCompanyForm</argument>
             <argument type="service" id="document_template_per_company_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="invite_form_processor" class="%invite_form_processor.class%" public="true">
+        <service id="invite_form_processor" class="AppBundle\Form\Processor\InviteFormProcessor" public="true">
             <argument type="service" id="invite_repository"/>
             <argument type="service" id="default_mailer"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="medium_form_processor" class="%default_form_processor.class%" public="true">
+        <service id="medium_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
             <argument>AppBundle\Form\MediumForm</argument>
             <argument type="service" id="medium_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="page_form_processor" class="%default_form_processor.class%" public="true">
-            <argument>%page_form.class%</argument>
+        <service id="page_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
+            <argument>AppBundle\Form\PageForm</argument>
             <argument type="service" id="page_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="paragraph_template_form_processor" class="%default_form_processor.class%" public="true">
+        <service id="paragraph_template_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
             <argument>AppBundle\Form\ParagraphTemplateForm</argument>
             <argument type="service" id="paragraph_template_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="payment_type_form_processor" class="%default_form_processor.class%" public="true">
-            <argument>%payment_type_form.class%</argument>
+        <service id="payment_type_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
+            <argument>AppBundle\Form\PaymentTypeForm</argument>
             <argument type="service" id="payment_type_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="petty_cash_note_form_processor" class="%petty_cash_note_form_processor.class%" public="true">
+        <service id="petty_cash_note_form_processor" class="AppBundle\Form\Processor\PettyCashNoteFormProcessor" public="true">
             <argument type="service" id="petty_cash_note_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="product_form_processor" class="%default_authenticated_form_processor.class%" public="true">
-            <argument>%product_form.class%</argument>
+        <service id="product_form_processor" class="AppBundle\Form\Processor\DefaultAuthenticatedFormProcessor" public="true">
+            <argument>AppBundle\Form\ProductForm</argument>
             <argument type="service" id="product_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="province_form_processor" class="%default_form_processor.class%" public="true">
-            <argument>%province_form.class%</argument>
+        <service id="province_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
+            <argument>AppBundle\Form\ProvinceForm</argument>
             <argument type="service" id="province_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="recurrence_form_processor" class="%default_form_processor.class%" public="true">
-            <argument>%recurrence_form.class%</argument>
+        <service id="recurrence_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
+            <argument>AppBundle\Form\RecurrenceForm</argument>
             <argument type="service" id="recurrence_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="service_form_processor" class="%default_authenticated_form_processor.class%" public="true">
-            <argument>%service_form.class%</argument>
+        <service id="service_form_processor" class="AppBundle\Form\Processor\DefaultAuthenticatedFormProcessor" public="true">
+            <argument>AppBundle\Form\ServiceForm</argument>
             <argument type="service" id="service_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="tax_rate_form_processor" class="%default_form_processor.class%" public="true">
-            <argument>%tax_rate_form.class%</argument>
+        <service id="tax_rate_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
+            <argument>AppBundle\Form\TaxRateForm</argument>
             <argument type="service" id="tax_rate_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="user_form_processor" class="%user_form_processor.class%" public="true">
+        <service id="user_form_processor" class="AppBundle\Form\Processor\UserFormProcessor" public="true">
             <argument type="service" id="user_manager"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="warehouse_record_form_processor" class="%default_form_processor.class%" public="true">
-            <argument>%warehouse_record_form.class%</argument>
+        <service id="warehouse_record_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
+            <argument>AppBundle\Form\WarehouseRecordForm</argument>
             <argument type="service" id="warehouse_record_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="working_note_form_processor" class="%default_form_processor.class%" public="true">
+        <service id="working_note_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
             <argument>AppBundle\Form\WorkingNoteForm</argument>
             <argument type="service" id="working_note_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="zip_code_form_processor" class="%default_form_processor.class%" public="true">
-            <argument>%zip_code_form.class%</argument>
+        <service id="zip_code_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
+            <argument>AppBundle\Form\ZipCodeForm</argument>
             <argument type="service" id="zip_code_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
 
 
-        <service id="attachment_file_type" class="%attachment_file_type.class%" public="true">
+        <service id="attachment_file_type" class="AppBundle\Form\Type\AttachmentFileType" public="true">
             <tag name="form.type"/>
         </service>
 
-        <service id="country_entity_type" class="%country_entity_type.class%" public="true">
+        <service id="country_entity_type" class="AppBundle\Form\Type\CountryEntityType" public="true">
             <argument>%locale%</argument>
             <tag name="form.type"/>
         </service>
 
-        <service id="document_row_collection_type" class="%document_row_collection_type.class%" public="true">
+        <service id="document_row_collection_type" class="AppBundle\Form\Type\DocumentRowCollectionType" public="true">
             <argument type="service" id="locale_formatter"/>
             <tag name="form.type"/>
         </service>
 
-        <service id="document_row_type" class="%document_row_type.class%" public="true">
+        <service id="document_row_type" class="AppBundle\Form\Type\DocumentRowType" public="true">
             <argument type="service" id="locale_formatter"/>
             <tag name="form.type"/>
         </service>
 
-        <service id="entity_hidden_type" class="%entity_hidden_type.class%" public="true">
+        <service id="entity_hidden_type" class="AppBundle\Form\Type\EntityHiddenType" public="true">
             <argument type="service" id="doctrine.orm.entity_manager"/>
             <tag name="form.type"/>
         </service>
 
-        <service id="entity_text_type" class="%entity_text_type.class%" public="true">
+        <service id="entity_text_type" class="AppBundle\Form\Type\EntityTextType" public="true">
             <argument type="service" id="doctrine.orm.entity_manager"/>
             <tag name="form.type"/>
         </service>
 
-        <service id="image_file_type" class="%image_file_type.class%" public="true">
+        <service id="image_file_type" class="AppBundle\Form\Type\ImageFileType" public="true">
             <tag name="form.type"/>
         </service>
 
-        <service id="invoice_collection_type" class="%invoice_collection_type.class%" public="true">
+        <service id="invoice_collection_type" class="AppBundle\Form\Type\InvoiceCollectionType" public="true">
             <argument type="service" id="company_manager"/>
             <tag name="form.type"/>
         </service>
 
-        <service id="invoice_per_note_type" class="%invoice_per_note_type.class%" public="true">
+        <service id="invoice_per_note_type" class="AppBundle\Form\Type\InvoicePerNoteType" public="true">
             <tag name="form.type"/>
         </service>
 
-        <service id="localized_number_type" class="%localized_number_type.class%" public="true">
+        <service id="localized_number_type" class="AppBundle\Form\Type\LocalizedNumberType" public="true">
             <argument type="service" id="locale_formatter"/>
             <tag name="form.type"/>
         </service>

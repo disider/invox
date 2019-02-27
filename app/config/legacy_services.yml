@@ -1,0 +1,70 @@
+parameters:
+  mailer.emails:
+      no-reply: '%noreply_email%'
+      info: '%info_email%'
+
+  mailer.display_names:
+    no-reply: '%noreply_display_name%'
+    info: '%info_display_name%'
+
+services:
+  company_manager:
+    class: AppBundle\Entity\Manager\CompanyManager
+    arguments:
+      - '@company_repository'
+      - '@security.token_storage'
+      - '@session'
+
+  default_mailer:
+    class: AppBundle\Mailer\DefaultMailer
+    arguments:
+      - '@templating'
+      - '@router'
+      - '@swiftmailer.mailer'
+      - '@translator'
+      - '%mailer.display_names%'
+      - '%mailer.emails%'
+
+  directory_subscriber:
+    class: AppBundle\Pagination\DirectorySubscriber
+    tags: { name: 'knp_paginator.subscriber' }
+
+  document_builder:
+    class: AppBundle\Builder\DocumentBuilder
+    arguments:
+      - '@twig'
+      - '%kernel.cache_dir%'
+
+  locale_formatter:
+    class: AppBundle\Model\LocaleFormatter
+    arguments:
+      - '@translator.default'
+      - '%locale%'
+
+  protocol_generator:
+    class: AppBundle\Helper\ProtocolGenerator
+    arguments:
+      - '@doctrine.orm.entity_manager'
+
+  places_manager:
+    class: AppBundle\Helper\PlacesManager
+    arguments:
+      - '@doctrine.orm.entity_manager'
+
+  registration.form.type:
+    class: AppBundle\Form\RegistrationForm
+    arguments:
+      - '@doctrine.orm.entity_manager'
+    tags: { name: 'form.type', alias: 'user_registration' }
+
+  user_manager: '@AppBundle\Entity\Manager\UserManager'
+
+  csv_to_array:
+    class: AppBundle\Helper\CsvToArray
+
+  parameter_helper:
+    class: AppBundle\Helper\ParameterHelper
+    arguments:
+      - '@service_container'
+
+#  account_repository: '@AppBundle\Repository\AccountRepository'

@@ -8,7 +8,7 @@
  *
  */
 
-namespace AppBundle\Entity\Repository;
+namespace AppBundle\Repository;
 
 use AppBundle\Entity\Company;
 use AppBundle\Entity\User;

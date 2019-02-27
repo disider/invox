@@ -6,7 +6,7 @@
     <parameters>
         <parameter key="default_entity_repository.class">AppBundle\Entity\EntityRepository</parameter>
 
-        <parameter key="account_repository.class">AppBundle\Entity\AccountRepository</parameter>
+        <!--<parameter key="account_repository.class">AppBundle\Entity\AccountRepository</parameter>-->
         <parameter key="city_repository.class">AppBundle\Entity\CityRepository</parameter>
         <parameter key="company_repository.class">AppBundle\Entity\CompanyRepository</parameter>
         <parameter key="country_repository.class">AppBundle\Entity\CountryRepository</parameter>
@@ -24,10 +24,10 @@
     </parameters>
 
     <services>
-        <service id="account_repository" class="%account_repository.class%">
-            <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle:Account</argument>
-        </service>
+        <!--<service id="account_repository" class="%account_repository.class%">-->
+            <!--<factory service="doctrine.orm.default_entity_manager" method="getRepository"/>-->
+            <!--<argument>AppBundle:Account</argument>-->
+        <!--</service>-->
 
         <service id="city_repository" class="%city_repository.class%">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>

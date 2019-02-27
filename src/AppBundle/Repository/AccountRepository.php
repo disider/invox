@@ -8,11 +8,11 @@
  *
  */
 
-namespace AppBundle\Entity\Repository;
+namespace AppBundle\Repository;
 
+use AppBundle\Entity\Account;
 use AppBundle\Entity\Company;
-use AppBundle\Entity\User;
-use Doctrine\ORM\QueryBuilder;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class AccountRepository extends SelectedCompanyRepository
 {
@@ -20,6 +20,11 @@ class AccountRepository extends SelectedCompanyRepository
 
     const FILTER_BY_MANAGER = 'filter_by_manager';
     const FILTER_BY_COMPANY = 'filter_by_company';
+
+    public function __construct(RegistryInterface $registry)
+    {
+        parent::__construct($registry, Account::class);
+    }
 
     protected function getRootAlias()
     {
