@@ -10,30 +10,13 @@
 
 namespace AppBundle\Entity\Repository;
 
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\ManagerRegistry;
 
-abstract class AbstractRepository extends EntityRepository implements ServiceEntityRepositoryInterface
+abstract class AbstractRepository extends EntityRepository
 {
     abstract protected function getRootAlias();
-
-
-    public function __construct(ManagerRegistry $registry, $entityClass)
-    {
-        $manager = $registry->getManagerForClass($entityClass);
-
-        if ($manager === null) {
-            throw new \LogicException(sprintf(
-                'Could not find the entity manager for class "%s". Check your Doctrine configuration to make sure it is configured to load this entity’s metadata.',
-                $entityClass
-            ));
-        }
-
-        parent::__construct($manager, $manager->getClassMetadata($entityClass));
-    }
-
 
     public function findLast()
     {

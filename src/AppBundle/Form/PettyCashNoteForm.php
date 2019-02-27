@@ -10,13 +10,14 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Company;
 use AppBundle\Entity\PettyCashNote;
 use AppBundle\Entity\PettyCashNoteAttachment;
-use AppBundle\Entity\Repository\AccountRepository;
 use AppBundle\Form\Type\AttachmentType;
 use AppBundle\Form\Type\CollectionUploaderType;
 use AppBundle\Form\Type\InvoiceCollectionType;
 use AppBundle\Form\Type\LocalizedNumberType;
+use AppBundle\Repository\AccountRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -37,7 +38,7 @@ class PettyCashNoteForm extends AbstractType
 
         if ($user->isSuperadmin()) {
             $builder->add('company', EntityType::class, [
-                'class' => 'AppBundle:Company',
+                'class' => Company::class,
                 'label' => 'fields.company',
             ]);
         }

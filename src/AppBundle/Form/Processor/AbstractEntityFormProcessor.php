@@ -25,7 +25,7 @@ abstract class AbstractEntityFormProcessor extends AbstractFormProcessor
 
     private $data;
 
-    public function __construct(AbstractRepository $repository, FormFactoryInterface $formFactory, TokenStorageInterface $tokenStorage)
+    public function __construct($repository, FormFactoryInterface $formFactory, TokenStorageInterface $tokenStorage)
     {
         parent::__construct($formFactory, $tokenStorage);
 

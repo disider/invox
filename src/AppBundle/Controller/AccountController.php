@@ -11,12 +11,12 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Account;
-use AppBundle\Form\Processor\DefaultAuthenticatedFormProcessor;
+use AppBundle\Form\Processor\AccountFormProcessor;
 use AppBundle\Repository\AccountRepository;
-use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/accounts")
@@ -40,8 +40,7 @@ class AccountController extends BaseController
 
         if ($user->isSuperadmin()) {
             // Do not filter...
-        }
-        else {
+        } else {
             $filters[AccountRepository::FILTER_BY_MANAGER] = $user;
         }
 
@@ -59,7 +58,7 @@ class AccountController extends BaseController
      * @Security("is_granted('ACCOUNT_CREATE')")
      * @Template
      */
-    public function createAction(Request $request, DefaultAuthenticatedFormProcessor $processor)
+    public function createAction(Request $request, AccountFormProcessor $processor)
     {
         $account = new Account();
 
@@ -77,7 +76,7 @@ class AccountController extends BaseController
      * @Security("is_granted('ACCOUNT_EDIT', account)")
      * @Template
      */
-    public function editAction(Request $request, DefaultAuthenticatedFormProcessor $processor, Account $account)
+    public function editAction(Request $request, AccountFormProcessor $processor, Account $account)
     {
         return $this->processForm($request, $processor, $account);
     }
@@ -95,7 +94,7 @@ class AccountController extends BaseController
         return $this->redirectToRoute('accounts');
     }
 
-    private function processForm(Request $request, DefaultAuthenticatedFormProcessor $processor, Account $account)
+    private function processForm(Request $request, AccountFormProcessor $processor, Account $account)
     {
         $processor->process($request, $account);
 
@@ -104,7 +103,7 @@ class AccountController extends BaseController
                 '%account%' => $processor->getData()
             ]);
 
-            if ($processor->isRedirectingTo(DefaultAuthenticatedFormProcessor::REDIRECT_TO_LIST)) {
+            if ($processor->isRedirectingTo(AccountFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('accounts');
             }
 
