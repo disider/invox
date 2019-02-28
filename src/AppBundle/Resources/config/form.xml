@@ -12,13 +12,6 @@
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="page_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
-            <argument>AppBundle\Form\PageForm</argument>
-            <argument type="service" id="page_repository"/>
-            <argument type="service" id="form.factory"/>
-            <argument type="service" id="security.token_storage"/>
-        </service>
-
         <service id="paragraph_template_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
             <argument>AppBundle\Form\ParagraphTemplateForm</argument>
             <argument type="service" id="paragraph_template_repository"/>

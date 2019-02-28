@@ -12,7 +12,6 @@ namespace AppBundle\Repository;
 
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Medium;
-use AppBundle\Entity\User;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 

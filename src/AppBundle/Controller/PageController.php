@@ -12,6 +12,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Page;
 use AppBundle\Form\Processor\DefaultFormProcessor;
+use AppBundle\Form\Processor\PageFormProcessor;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -54,18 +55,18 @@ class PageController extends BaseController
      * @Route("/pages/new", name="page_create")
      * @Template
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, PageFormProcessor $processor)
     {
-        return $this->processForm($request);
+        return $this->processForm($request, $processor);
     }
 
     /**
      * @Route("/pages/{id}/edit", name="page_edit")
      * @Template
      */
-    public function editAction(Request $request, Page $page)
+    public function editAction(Request $request, PageFormProcessor $processor, Page $page)
     {
-        return $this->processForm($request, $page);
+        return $this->processForm($request, $processor, $page);
     }
 
     /**
@@ -80,18 +81,15 @@ class PageController extends BaseController
         return $this->redirectToRoute('pages');
     }
 
-    private function processForm(Request $request, Page $page = null)
+    private function processForm(Request $request, PageFormProcessor $processor, Page $page = null)
     {
-        /** @var DefaultFormProcessor $processor */
-        $processor = $this->get('page_form_processor');
-
         $processor->process($request, $page);
 
         if ($processor->isValid()) {
             $this->addFlash('success', $processor->isNew() ? 'flash.page.created' : 'flash.page.updated',
                 ['%page%' => $processor->getData()]);
 
-            if ($processor->isRedirectingTo(DefaultFormProcessor::REDIRECT_TO_LIST)) {
+            if ($processor->isRedirectingTo(PageFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('pages');
             }
 
