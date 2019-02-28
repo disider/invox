@@ -42,9 +42,7 @@ class RegistrationController extends BaseController
         $user = new User();
         $user->setEmail($email);
 
-        $form = $this->createForm(RegistrationForm::class, $user, [
-            'data_class' => $this->getUserClass(),
-        ]);
+        $form = $this->createForm(RegistrationForm::class, $user);
 
         if ($request->isMethod(Request::METHOD_POST)) {
             $form->handleRequest($request);

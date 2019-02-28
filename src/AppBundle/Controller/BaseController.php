@@ -47,11 +47,6 @@ class BaseController extends Controller
         return $this->get('default_mailer');
     }
 
-    protected function getUserClass()
-    {
-        return $this->getParameter('user.class');
-    }
-
     protected function getUserManager()
     {
         return $this->get('user_manager');

@@ -62,7 +62,7 @@ abstract class AbstractFormProcessor
 
     public function isValid()
     {
-        return $this->getForm()->isSubmitted() && $this->getForm()->isValid();
+        return $this->form->isSubmitted() && $this->form->isValid();
     }
 
     public function isNew()

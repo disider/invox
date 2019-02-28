@@ -10,11 +10,8 @@
 
 namespace AppBundle\Form\Type;
 
-use AppBundle\Entity\Attachable;
+use AppBundle\Form\Transformer\TagTransformer;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\DataTransformerInterface;
-use Symfony\Component\Form\Exception\TransformationFailedException;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
@@ -33,7 +30,6 @@ class TagType extends AbstractType
         $view->vars['route'] = $options['route'];
         $view->vars['collection'] = $options['collection'];
     }
-
 
     public function getParent()
     {
@@ -54,24 +50,5 @@ class TagType extends AbstractType
         $resolver->setRequired([
             'route',
         ]);
-    }
-
-}
-
-class TagTransformer implements DataTransformerInterface
-{
-
-    public function transform($value)
-    {
-        if(!$value) {
-            return [];
-        }
-
-        return implode(',', $value->toArray());
-    }
-
-    public function reverseTransform($value)
-    {
-        return $value;
     }
 }

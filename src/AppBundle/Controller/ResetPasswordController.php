@@ -38,9 +38,7 @@ class ResetPasswordController extends BaseController
             return $this->redirectToRoute('homepage');
         }
 
-        $form = $this->createForm(RequestResetPasswordForm::class, null, [
-            'data_class' => $this->getUserClass(),
-        ]);
+        $form = $this->createForm(RequestResetPasswordForm::class);
 
         if ($request->isMethod(Request::METHOD_POST)) {
             $form->handleRequest($request);
@@ -100,9 +98,7 @@ class ResetPasswordController extends BaseController
             throw $this->createNotFoundException(sprintf('User not found for reset token: %s', $token));
         }
 
-        $form = $this->createForm(ResetPasswordForm::class, $user, [
-            'data_class' => $this->getUserClass(),
-        ]);
+        $form = $this->createForm(ResetPasswordForm::class, $user);
 
         if ($request->isMethod(Request::METHOD_POST)) {
             $form->handleRequest($request);

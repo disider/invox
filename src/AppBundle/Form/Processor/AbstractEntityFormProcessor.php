@@ -11,6 +11,7 @@
 namespace AppBundle\Form\Processor;
 
 use AppBundle\Entity\Repository\AbstractRepository;
+use AppBundle\Repository\AbstractRepositoryInterface;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +26,7 @@ abstract class AbstractEntityFormProcessor extends AbstractFormProcessor
 
     private $data;
 
-    public function __construct($repository, FormFactoryInterface $formFactory, TokenStorageInterface $tokenStorage)
+    public function __construct(AbstractRepositoryInterface $repository, FormFactoryInterface $formFactory, TokenStorageInterface $tokenStorage)
     {
         parent::__construct($formFactory, $tokenStorage);
 
@@ -34,19 +35,17 @@ abstract class AbstractEntityFormProcessor extends AbstractFormProcessor
 
     protected function handleRequest(Request $request)
     {
-        if ($request->isMethod('POST')) {
-            /** @var Form $form */
-            $form = $this->getForm();
+        /** @var Form $form */
+        $form = $this->getForm();
 
-            $form->handleRequest($request);
+        $form->handleRequest($request);
 
-            if($this->isValid()) {
-                $this->data = $form->getData();
+        if($this->isValid()) {
+            $this->data = $form->getData();
 
-                $this->repository->save($this->data);
+            $this->repository->save($this->data);
 
-                $this->evaluateRedirect();
-            }
+            $this->evaluateRedirect();
         }
     }
 

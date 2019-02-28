@@ -10,8 +10,7 @@
 
 namespace AppBundle\Form\Processor;
 
-use AppBundle\Entity\Repository\AbstractRepository;
-use AppBundle\Form\AccountForm;
+use AppBundle\Repository\AbstractRepositoryInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
@@ -19,7 +18,7 @@ class DefaultAuthenticatedFormProcessor extends AbstractEntityFormProcessor
 {
     private $formClass;
 
-    public function __construct($formClass, $repository, FormFactoryInterface $formFactory, TokenStorageInterface $tokenStorage)
+    public function __construct($formClass, AbstractRepositoryInterface $repository, FormFactoryInterface $formFactory, TokenStorageInterface $tokenStorage)
     {
         parent::__construct($repository, $formFactory, $tokenStorage);
 

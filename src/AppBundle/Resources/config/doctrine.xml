@@ -3,140 +3,110 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <parameters>
-        <parameter key="default_entity_repository.class">AppBundle\Entity\EntityRepository</parameter>
-
-        <!--<parameter key="account_repository.class">AppBundle\Entity\AccountRepository</parameter>-->
-        <parameter key="city_repository.class">AppBundle\Entity\CityRepository</parameter>
-        <parameter key="company_repository.class">AppBundle\Entity\CompanyRepository</parameter>
-        <parameter key="country_repository.class">AppBundle\Entity\CountryRepository</parameter>
-        <parameter key="customer_repository.class">AppBundle\Entity\CustomerRepository</parameter>
-        <parameter key="document_repository.class">AppBundle\Entity\DocumentRepository</parameter>
-        <parameter key="document_template_per_company_repository.class">AppBundle\Entity\DocumentTemplatePerCompanyRepository</parameter>
-        <parameter key="paragraph_template_repository.class">AppBundle\Entity\ParagraphTemplateRepository</parameter>
-        <parameter key="petty_cash_note_repository.class">AppBundle\Entity\PettyCashNoteRepository</parameter>
-        <parameter key="product_repository.class">AppBundle\Entity\ProductRepository</parameter>
-        <parameter key="recurrence_repository.class">AppBundle\Entity\RecurrenceRepository</parameter>
-        <parameter key="service_repository.class">AppBundle\Entity\ServiceRepository</parameter>
-        <parameter key="warehouse_record_repository.class">AppBundle\Entity\WarehouseRecordRepository</parameter>
-        <parameter key="working_note_repository.class">AppBundle\Entity\WorkingNoteRepository</parameter>
-        <parameter key="zip_code_repository.class">AppBundle\Entity\ZipCodeRepository</parameter>
-    </parameters>
-
     <services>
-        <!--<service id="account_repository" class="%account_repository.class%">-->
-            <!--<factory service="doctrine.orm.default_entity_manager" method="getRepository"/>-->
-            <!--<argument>AppBundle:Account</argument>-->
-        <!--</service>-->
-
-        <service id="city_repository" class="%city_repository.class%">
+        <service id="company_repository" class="AppBundle\Entity\Repository\CompanyRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle:City</argument>
+            <argument>AppBundle\Entity\Company</argument>
         </service>
 
-        <service id="company_repository" class="%company_repository.class%">
+        <service id="country_repository" class="AppBundle\Entity\Repository\CountryRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle:Company</argument>
+            <argument>AppBundle\Entity\Country</argument>
         </service>
 
-        <service id="country_repository" class="%country_repository.class%">
+        <service id="customer_repository" class="AppBundle\Entity\Repository\CustomerRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle:Country</argument>
+            <argument>AppBundle\Entity\Customer</argument>
         </service>
 
-        <service id="customer_repository" class="%customer_repository.class%">
+        <service id="document_repository" class="AppBundle\Entity\Repository\DocumentRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle:Customer</argument>
+            <argument>AppBundle\Entity\Document</argument>
         </service>
 
-        <service id="document_repository" class="%document_repository.class%">
+        <service id="document_template_repository" class="AppBundle\Entity\Repository\EntityRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle:Document</argument>
+            <argument>AppBundle\Entity\DocumentTemplate</argument>
         </service>
 
-        <service id="document_template_repository" class="%default_entity_repository.class%">
+        <service id="document_template_per_company_repository" class="AppBundle\Entity\Repository\DocumentTemplatePerCompanyRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle:DocumentTemplate</argument>
+            <argument>AppBundle\Entity\DocumentTemplatePerCompany</argument>
         </service>
 
-        <service id="document_template_per_company_repository" class="%document_template_per_company_repository.class%">
+        <service id="invite_repository" class="AppBundle\Entity\Repository\EntityRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle:DocumentTemplatePerCompany</argument>
+            <argument>AppBundle\Entity\Invite</argument>
         </service>
 
-        <service id="invite_repository" class="%default_entity_repository.class%">
+        <service id="medium_repository" class="AppBundle\Entity\Repository\EntityRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle:Invite</argument>
+            <argument>AppBundle\Entity\Medium</argument>
         </service>
 
-        <service id="medium_repository" class="%default_entity_repository.class%">
+        <service id="page_repository" class="AppBundle\Entity\Repository\EntityRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle:Medium</argument>
+            <argument>AppBundle\Entity\Page</argument>
         </service>
 
-        <service id="page_repository" class="%default_entity_repository.class%">
+        <service id="paragraph_template_repository" class="AppBundle\Entity\Repository\ParagraphTemplateRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle:Page</argument>
+            <argument>AppBundle\Entity\ParagraphTemplate</argument>
         </service>
 
-        <service id="paragraph_template_repository" class="%paragraph_template_repository.class%">
+        <service id="payment_type_repository" class="AppBundle\Entity\Repository\EntityRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle:ParagraphTemplate</argument>
+            <argument>AppBundle\Entity\PaymentType</argument>
         </service>
 
-        <service id="payment_type_repository" class="%default_entity_repository.class%">
+        <service id="petty_cash_note_repository" class="AppBundle\Entity\Repository\PettyCashNoteRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle:PaymentType</argument>
+            <argument>AppBundle\Entity\PettyCashNote</argument>
         </service>
 
-        <service id="petty_cash_note_repository" class="%petty_cash_note_repository.class%">
+        <service id="product_repository" class="AppBundle\Entity\Repository\ProductRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle:PettyCashNote</argument>
+            <argument>AppBundle\Entity\Product</argument>
         </service>
 
-        <service id="product_repository" class="%product_repository.class%">
+        <service id="province_repository" class="AppBundle\Entity\Repository\EntityRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle:Product</argument>
+            <argument>AppBundle\Entity\Province</argument>
         </service>
 
-        <service id="province_repository" class="%default_entity_repository.class%">
+        <service id="recurrence_repository" class="AppBundle\Entity\Repository\RecurrenceRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle:Province</argument>
+            <argument>AppBundle\Entity\Recurrence</argument>
         </service>
 
-        <service id="recurrence_repository" class="%recurrence_repository.class%">
+        <service id="service_repository" class="AppBundle\Entity\Repository\ServiceRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle:Recurrence</argument>
+            <argument>AppBundle\Entity\Service</argument>
         </service>
 
-        <service id="service_repository" class="%service_repository.class%">
+        <service id="tax_rate_repository" class="AppBundle\Entity\Repository\EntityRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle:Service</argument>
+            <argument>AppBundle\Entity\TaxRate</argument>
         </service>
 
-        <service id="tax_rate_repository" class="%default_entity_repository.class%">
+        <service id="user_repository" class="AppBundle\Entity\Repository\EntityRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle:TaxRate</argument>
+            <argument>AppBundle\Entity\User</argument>
         </service>
 
-        <service id="user_repository" class="%default_entity_repository.class%">
+        <service id="warehouse_record_repository" class="AppBundle\Entity\Repository\WarehouseRecordRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle:User</argument>
+            <argument>AppBundle\Entity\WarehouseRecord</argument>
         </service>
 
-        <service id="warehouse_record_repository" class="%warehouse_record_repository.class%">
+        <service id="working_note_repository" class="AppBundle\Entity\Repository\WorkingNoteRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle:WarehouseRecord</argument>
+            <argument>AppBundle\Entity\WorkingNote</argument>
         </service>
 
-        <service id="working_note_repository" class="%working_note_repository.class%">
+        <service id="zip_code_repository" class="AppBundle\Entity\Repository\ZipCodeRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle:WorkingNote</argument>
-        </service>
-
-        <service id="zip_code_repository" class="%zip_code_repository.class%">
-            <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle:ZipCode</argument>
+            <argument>AppBundle\Entity\ZipCode</argument>
         </service>
     </services>
 

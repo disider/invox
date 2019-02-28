@@ -14,7 +14,7 @@ security:
 
     providers:
         user_provider:
-            id: user_provider
+            id: AppBundle\Security\UserProvider
 
     firewalls:
         dev:

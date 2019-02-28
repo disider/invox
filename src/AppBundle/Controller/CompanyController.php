@@ -13,6 +13,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Invite;
 use AppBundle\Entity\Repository\CompanyRepository;
+use AppBundle\Form\Processor\CompanyFormProcessor;
 use AppBundle\Form\Processor\DefaultAuthenticatedFormProcessor;
 use AppBundle\Form\Processor\DefaultFormProcessor;
 use AppBundle\Form\Processor\InviteFormProcessor;
@@ -66,13 +67,13 @@ class CompanyController extends BaseController
      * @Security("is_granted('COMPANY_CREATE')")
      * @Template
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, CompanyFormProcessor $processor)
     {
         $template = $this->getDocumentTemplateRepository()->findAll();
 
         $company = Company::createEmpty($this->getUser(), $template);
 
-        return $this->processForm($request, $company);
+        return $this->processForm($request, $processor, $company);
     }
 
     /**
@@ -80,9 +81,9 @@ class CompanyController extends BaseController
      * @Security("is_granted('COMPANY_EDIT', company)")
      * @Template
      */
-    public function editAction(Request $request, Company $company)
+    public function editAction(Request $request, CompanyFormProcessor $processor, Company $company)
     {
-        return $this->processForm($request, $company);
+        return $this->processForm($request, $processor, $company);
     }
 
     /**
@@ -181,18 +182,15 @@ class CompanyController extends BaseController
         ]);
     }
 
-    private function processForm(Request $request, Company $company)
+    private function processForm(Request $request, CompanyFormProcessor $processor, Company $company)
     {
-        /** @var DefaultAuthenticatedFormProcessor $processor */
-        $processor = $this->get('company_form_processor');
-
         $processor->process($request, $company);
 
         if ($processor->isValid()) {
             $this->addFlash('success', $processor->isNew() ? 'flash.company.created' : 'flash.company.updated',
                 ['%company%' => $processor->getData()]);
 
-            if ($processor->isRedirectingTo(DefaultAuthenticatedFormProcessor::REDIRECT_TO_LIST)) {
+            if ($processor->isRedirectingTo(CompanyFormProcessor::REDIRECT_TO_LIST)) {
                 $user = $this->getUser();
 
                 if($user->canManageMultipleCompanies()) {

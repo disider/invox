@@ -11,11 +11,12 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\City;
+use AppBundle\Form\Processor\CityFormProcessor;
 use AppBundle\Form\Processor\DefaultFormProcessor;
-use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/cities")
@@ -47,11 +48,11 @@ class CityController extends BaseController
      * @Security("is_granted('CITY_CREATE')")
      * @Template
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, CityFormProcessor $processor)
     {
         $city = new City();
 
-        return $this->processForm($request, $city);
+        return $this->processForm($request, $processor, $city);
     }
 
     /**
@@ -59,9 +60,9 @@ class CityController extends BaseController
      * @Security("is_granted('CITY_EDIT', city)")
      * @Template
      */
-    public function editAction(Request $request, City $city)
+    public function editAction(Request $request, CityFormProcessor $processor, City $city)
     {
-        return $this->processForm($request, $city);
+        return $this->processForm($request, $processor, $city);
     }
 
     /**
@@ -91,24 +92,22 @@ class CityController extends BaseController
         ]);
     }
 
-    private function processForm(Request $request, City $city = null)
+    private function processForm(Request $request, CityFormProcessor $processor, City $city)
     {
-        /** @var DefaultFormProcessor $processor */
-        $processor = $this->get('city_form_processor');
-
         $processor->process($request, $city);
 
         if ($processor->isValid()) {
-            $this->addFlash('success', $processor->isNew() ? 'flash.city.created' : 'flash.city.updated',
-                ['%city%' => $processor->getData()]);
+            $this->addFlash('success', $processor->isNew() ? 'flash.city.created' : 'flash.city.updated', [
+                '%city%' => $processor->getData()
+            ]);
 
-            if ($processor->isRedirectingTo(DefaultFormProcessor::REDIRECT_TO_LIST)) {
+            if ($processor->isRedirectingTo(CityFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('cities');
             }
 
             return $this->redirectToRoute('city_edit', [
-                    'id' => $processor->getData()->getId(),]
-            );
+                'id' => $processor->getData()->getId(),
+            ]);
         }
 
         $form = $processor->getForm();

@@ -10,15 +10,15 @@
 
 namespace AppBundle\Form\Processor;
 
-use AppBundle\Form\AccountForm;
-use AppBundle\Repository\AccountRepository;
+use AppBundle\Form\CompanyForm;
+use AppBundle\Repository\CompanyRepository;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-class AccountFormProcessor extends DefaultAuthenticatedFormProcessor
+class CompanyFormProcessor extends DefaultAuthenticatedFormProcessor
 {
-    public function __construct(AccountRepository $repository, FormFactoryInterface $formFactory, TokenStorageInterface $tokenStorage)
+    public function __construct(CompanyRepository $repository, FormFactoryInterface $formFactory, TokenStorageInterface $tokenStorage)
     {
-        parent::__construct(AccountForm::class, $repository, $formFactory, $tokenStorage);
+        parent::__construct(CompanyForm::class, $repository, $formFactory, $tokenStorage);
     }
 }

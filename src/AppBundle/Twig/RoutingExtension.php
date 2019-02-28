@@ -12,7 +12,7 @@ namespace AppBundle\Twig;
 
 use Symfony\Bridge\Twig\Extension\RoutingExtension as BaseRoutingExtension;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Translation\TranslatorInterface;
 
@@ -24,7 +24,7 @@ class RoutingExtension extends \Twig_Extension
     private $generator;
 
     /**
-     * @var AuthorizationChecker
+     * @var AuthorizationCheckerInterface
      */
     private $authorizationChecker;
 
@@ -33,7 +33,7 @@ class RoutingExtension extends \Twig_Extension
      */
     private $translator;
 
-    public function __construct(UrlGeneratorInterface $generator, AuthorizationChecker $authorizationChecker, TranslatorInterface $translator)
+    public function __construct(UrlGeneratorInterface $generator, AuthorizationCheckerInterface $authorizationChecker, TranslatorInterface $translator)
     {
         $this->authorizationChecker = $authorizationChecker;
         $this->generator = $generator;

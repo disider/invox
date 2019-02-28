@@ -11,14 +11,13 @@
 namespace AppBundle\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
-use Doctrine\Common\Persistence\ManagerRegistry;
 
-abstract class AbstractRepository extends EntityRepository implements ServiceEntityRepositoryInterface
+abstract class AbstractRepository extends EntityRepository implements AbstractRepositoryInterface, ServiceEntityRepositoryInterface
 {
     abstract protected function getRootAlias();
-
 
     public function __construct(ManagerRegistry $registry, $entityClass)
     {
@@ -33,7 +32,6 @@ abstract class AbstractRepository extends EntityRepository implements ServiceEnt
 
         parent::__construct($manager, $manager->getClassMetadata($entityClass));
     }
-
 
     public function findLast()
     {

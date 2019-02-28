@@ -26,9 +26,9 @@ class AppExtension extends Extension
         $loader->load('doctrine.xml');
         $loader->load('form.xml');
         $loader->load('listeners.xml');
-        $loader->load('security.xml');
+//        $loader->load('security.xml');
 //        $loader->load('services.xml');
-        $loader->load('twig.xml');
+//        $loader->load('twig.xml');
         $loader->load('uploader.xml');
 //        $loader->load('validation.xml');
         $loader->load('validators.xml');

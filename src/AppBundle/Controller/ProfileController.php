@@ -43,7 +43,7 @@ class ProfileController extends BaseController
         }
 
         $form = $this->createForm(ChangePasswordForm::class, $this->getUser(), [
-            'data_class' => $this->getUserClass(),
+            'data_class' => User::class,
         ]);
 
         if ($request->isMethod(Request::METHOD_POST)) {
@@ -72,9 +72,7 @@ class ProfileController extends BaseController
     {
         $user = $this->getUser();
 
-        $form = $this->createForm(ProfileForm::class, $user, [
-            'data_class' => $this->getUserClass(),
-        ]);
+        $form = $this->createForm(ProfileForm::class, $user);
 
         if ($request->isMethod(Request::METHOD_POST)) {
             $form->handleRequest($request);

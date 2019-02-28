@@ -4,69 +4,55 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <parameters>
-        <parameter key="valid_customer_validator.class">AppBundle\Validator\Constraints\ValidCustomerValidator</parameter>
-        <parameter key="valid_document_validator.class">AppBundle\Validator\Constraints\ValidDocumentValidator</parameter>
-        <parameter key="valid_invite_validator.class">AppBundle\Validator\Constraints\ValidInviteValidator</parameter>
-        <parameter key="valid_invoice_per_note_validator.class">AppBundle\Validator\Constraints\ValidInvoicePerNoteValidator</parameter>
-        <parameter key="valid_linked_documents_validator.class">AppBundle\Validator\Constraints\ValidLinkedDocumentsValidator</parameter>
-        <parameter key="valid_paragraph_template_validator.class">AppBundle\Validator\Constraints\ValidParagraphTemplateValidator</parameter>
-        <parameter key="valid_petty_cash_note_validator.class">AppBundle\Validator\Constraints\ValidPettyCashNoteValidator</parameter>
-        <parameter key="valid_user_validator.class">AppBundle\Validator\Constraints\ValidUserValidator</parameter>
-        <parameter key="valid_warehouse_record_validator.class">AppBundle\Validator\Constraints\ValidWarehouseRecordValidator</parameter>
-        <parameter key="valid_recurrence_validator.class">AppBundle\Validator\Constraints\ValidRecurrenceValidator</parameter>
-        <parameter key="valid_linked_recurrence_validator.class">AppBundle\Validator\Constraints\ValidLinkedRecurrenceValidator</parameter>
-    </parameters>
-
     <services>
-        <service id="valid_customer_validator" class="%valid_customer_validator.class%">
+        <service id="valid_customer_validator" class="AppBundle\Validator\Constraints\ValidCustomerValidator">
             <argument type="service" id="customer_repository"/>
             <tag name="validator.constraint_validator" alias="valid_customer"/>
         </service>
 
-        <service id="valid_document_validator" class="%valid_document_validator.class%">
+        <service id="valid_document_validator" class="AppBundle\Validator\Constraints\ValidDocumentValidator">
             <tag name="validator.constraint_validator" alias="valid_document"/>
         </service>
 
-        <service id="valid_invite_validator" class="%valid_invite_validator.class%">
+        <service id="valid_invite_validator" class="AppBundle\Validator\Constraints\ValidInviteValidator">
             <argument type="service" id="security.token_storage"/>
             <tag name="validator.constraint_validator" alias="valid_invite"/>
         </service>
 
-        <service id="valid_invoice_per_note_validator" class="%valid_invoice_per_note_validator.class%">
+        <service id="valid_invoice_per_note_validator" class="AppBundle\Validator\Constraints\ValidInvoicePerNoteValidator">
             <argument type="service" id="locale_formatter"/>
             <tag name="validator.constraint_validator" alias="valid_invoice_per_note"/>
         </service>
 
-        <service id="valid_linked_documents_validator" class="%valid_linked_documents_validator.class%">
+        <service id="valid_linked_documents_validator" class="AppBundle\Validator\Constraints\ValidLinkedDocumentsValidator">
             <tag name="validator.constraint_validator" alias="valid_linked_documents"/>
         </service>
 
-        <service id="valid_paragraph_template_validator" class="%valid_paragraph_template_validator.class%">
+        <service id="valid_paragraph_template_validator" class="AppBundle\Validator\Constraints\ValidParagraphTemplateValidator">
             <tag name="validator.constraint_validator" alias="valid_paragraph_template"/>
         </service>
 
-        <service id="valid_petty_cash_note_validator" class="%valid_petty_cash_note_validator.class%">
+        <service id="valid_petty_cash_note_validator" class="AppBundle\Validator\Constraints\ValidPettyCashNoteValidator">
             <argument type="service" id="locale_formatter"/>
             <tag name="validator.constraint_validator" alias="valid_petty_cash_note"/>
         </service>
 
-        <service id="valid_user_validator" class="%valid_user_validator.class%">
+        <service id="valid_user_validator" class="AppBundle\Validator\Constraints\ValidUserValidator">
             <argument type="service" id="user_repository"/>
             <argument type="service" id="router" />
             <tag name="validator.constraint_validator" alias="valid_user"/>
         </service>
 
-        <service id="valid_warehouse_record_validator" class="%valid_warehouse_record_validator.class%">
+        <service id="valid_warehouse_record_validator" class="AppBundle\Validator\Constraints\ValidWarehouseRecordValidator">
             <tag name="validator.constraint_validator" alias="valid_warehouse_record"/>
         </service>
 
-        <service id="valid_recurrence_validator" class="%valid_recurrence_validator.class%">
+        <service id="valid_recurrence_validator" class="AppBundle\Validator\Constraints\ValidRecurrenceValidator">
             <argument type="service" id="customer_repository"/>
             <tag name="validator.constraint_validator" alias="valid_recurrence"/>
         </service>
 
-        <service id="valid_linked_recurrence_validator" class="%valid_linked_recurrence_validator.class%">
+        <service id="valid_linked_recurrence_validator" class="AppBundle\Validator\Constraints\ValidLinkedRecurrenceValidator">
             <tag name="validator.constraint_validator" alias="valid_linked_recurrence"/>
         </service>
 

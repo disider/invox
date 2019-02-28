@@ -42,3 +42,6 @@ services:
       - '@security.encoder_factory'
       - '@doctrine.orm.entity_manager'
       - 'AppBundle\Entity\User'
+
+  Twig_Extensions_Extension_Text:
+    class: Twig_Extensions_Extension_Text

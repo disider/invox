@@ -12,6 +12,7 @@ namespace AppBundle\Twig;
 
 use AppBundle\Model\LocaleFormatter;
 use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
+use Twig_Environment;
 
 class FormatExtension extends \Twig_Extension
 {
@@ -23,7 +24,7 @@ class FormatExtension extends \Twig_Extension
      */
     private $localeFormatter;
 
-    public function __construct(\Twig_Environment $twigEnvironment, LocaleFormatter $localeFormatter)
+    public function __construct(Twig_Environment $twigEnvironment, LocaleFormatter $localeFormatter)
     {
         $this->core = $twigEnvironment->getExtension(\Twig_Extension_Core::class);
         $this->localeFormatter = $localeFormatter;

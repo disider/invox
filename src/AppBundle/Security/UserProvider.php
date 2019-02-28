@@ -50,7 +50,7 @@ class UserProvider implements UserProviderInterface
      *
      * @param string $username
      *
-     * @return UserInterface|null
+     * @return SecurityUserInterface|null
      */
     protected function findUser($username)
     {

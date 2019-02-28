@@ -83,9 +83,9 @@ cities:
     title: Città
 city:
     create: Aggiungi una città
-    delete: Elimina '%city%'
+    delete: Elimina "%city%"
     delete_confirmation: Sei sicuro di voler eliminare questa città?
-    edit: Modifica '%city%'
+    edit: Modifica "%city%"
     name: Nome
 companies:
     empty_list: Nessuna società definita.
@@ -115,10 +115,10 @@ countries:
     title: Nazioni
 country:
     create: Aggiungi un Paese
-    delete: Elimina '%country%'
+    delete: Elimina "%country%"
     delete_confirmation: |
         Sei sicuro di voler eliminare questo Paese?
-    edit: Modifica '%country%'
+    edit: Modifica "%country%"
     name: Nome
 credit_notes:
     title: Note di credito

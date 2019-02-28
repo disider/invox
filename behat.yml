@@ -5,7 +5,7 @@ default:
             bundle: AppBundle
             contexts:
               - AppBundle\Features\Context\FeatureContext:
-                    userProvider: user_provider
+                    userProvider: AppBundle\Security\UserProvider
                     firewallName: main
 
               - AppBundle\Features\Context\AccountContext

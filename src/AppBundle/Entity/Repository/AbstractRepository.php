@@ -10,11 +10,11 @@
 
 namespace AppBundle\Entity\Repository;
 
+use AppBundle\Repository\AbstractRepositoryInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
-use Symfony\Bridge\Doctrine\ManagerRegistry;
 
-abstract class AbstractRepository extends EntityRepository
+abstract class AbstractRepository extends EntityRepository implements AbstractRepositoryInterface
 {
     abstract protected function getRootAlias();
 

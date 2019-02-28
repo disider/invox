@@ -10,9 +10,9 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Form\Transformer\DayOfWeekTransformer;
 use AppBundle\Helper\WeekdayHelper;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -55,7 +55,6 @@ class WeekdaysType extends AbstractType
         return $days;
     }
 
-
     public function getParent()
     {
         return ChoiceType::class;
@@ -64,35 +63,5 @@ class WeekdaysType extends AbstractType
     public function getBlockPrefix()
     {
         return 'weekdays';
-    }
-}
-
-class DayOfWeekTransformer implements DataTransformerInterface
-{
-
-    public function transform($value)
-    {
-        if (empty($value))
-            return [];
-
-        $days = [];
-        for ($i = 0; $i < 7; $i++) {
-            if ($value[$i] != '0') {
-                $days[] = $i;
-            }
-        }
-
-        return $days;
-    }
-
-    public function reverseTransform($values)
-    {
-        $weekdays = '0000000';
-
-        foreach ($values as $value) {
-            $weekdays[$value] = '1';
-        }
-
-        return $weekdays;
     }
 }

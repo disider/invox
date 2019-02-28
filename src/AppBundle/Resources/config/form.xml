@@ -5,27 +5,6 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <!--<service id="account_form_processor" class="AppBundle\Form\Processor\DefaultAuthenticatedFormProcessor" public="true">-->
-            <!--<argument>AppBundle\Form\AccountForm</argument>-->
-            <!--<argument type="service" id="account_repository"/>-->
-            <!--<argument type="service" id="form.factory"/>-->
-            <!--<argument type="service" id="security.token_storage"/>-->
-        <!--</service>-->
-
-        <service id="city_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
-            <argument>AppBundle\Form\CityForm</argument>
-            <argument type="service" id="city_repository"/>
-            <argument type="service" id="form.factory"/>
-            <argument type="service" id="security.token_storage"/>
-        </service>
-
-        <service id="company_form_processor" class="AppBundle\Form\Processor\DefaultAuthenticatedFormProcessor" public="true">
-            <argument>AppBundle\Form\CompanyForm</argument>
-            <argument type="service" id="company_repository"/>
-            <argument type="service" id="form.factory"/>
-            <argument type="service" id="security.token_storage"/>
-        </service>
-
         <service id="country_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
             <argument>AppBundle\Form\CountryForm</argument>
             <argument type="service" id="country_repository"/>

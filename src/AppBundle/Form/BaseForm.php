@@ -10,6 +10,7 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,6 +18,8 @@ abstract class BaseForm extends AbstractType
 {
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setRequired('data_class');
+        $resolver->setDefaults([
+            'data_class' => User::class
+        ]);
     }
 }
