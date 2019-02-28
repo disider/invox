@@ -11,12 +11,12 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Medium;
-use AppBundle\Entity\Repository\MediumRepository;
-use AppBundle\Form\Processor\DefaultFormProcessor;
-use Symfony\Component\Routing\Annotation\Route;
+use AppBundle\Form\Processor\MediumFormProcessor;
+use AppBundle\Repository\MediumRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/media")
@@ -74,21 +74,21 @@ class MediumController extends BaseController
      * @Route("/new", name="medium_create")
      * @Template
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, MediumFormProcessor $processor)
     {
         $medium = new Medium();
         $medium->setContainer($this->getCurrentCompany());
 
-        return $this->processForm($request, $medium);
+        return $this->processForm($request, $processor, $medium);
     }
 
     /**
      * @Route("/{id}/edit", name="medium_edit")
      * @Template
      */
-    public function editAction(Request $request, Medium $medium)
+    public function editAction(Request $request, MediumFormProcessor $processor, Medium $medium)
     {
-        return $this->processForm($request, $medium);
+        return $this->processForm($request, $processor, $medium);
     }
 
     /**
@@ -97,7 +97,7 @@ class MediumController extends BaseController
     public function deleteAction(Medium $medium)
     {
         $this->delete($medium);
-        
+
         @unlink($medium->getPath());
 
         $this->addFlash('success', 'flash.medium.deleted');
@@ -105,18 +105,15 @@ class MediumController extends BaseController
         return $this->redirectToRoute('media');
     }
 
-    private function processForm(Request $request, Medium $medium = null)
+    private function processForm(Request $request, MediumFormProcessor $processor, Medium $medium)
     {
-        /** @var DefaultFormProcessor $processor */
-        $processor = $this->get('medium_form_processor');
-
         $processor->process($request, $medium);
 
         if ($processor->isValid()) {
             $this->addFlash('success', $processor->isNew() ? 'flash.medium.created' : 'flash.medium.updated',
                 ['%medium%' => $processor->getData()]);
 
-            if ($processor->isRedirectingTo(DefaultFormProcessor::REDIRECT_TO_LIST)) {
+            if ($processor->isRedirectingTo(MediumFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('media');
             }
 

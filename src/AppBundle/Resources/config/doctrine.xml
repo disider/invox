@@ -9,11 +9,6 @@
             <argument>AppBundle\Entity\Invite</argument>
         </service>
 
-        <service id="medium_repository" class="AppBundle\Entity\Repository\EntityRepository">
-            <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle\Entity\Medium</argument>
-        </service>
-
         <service id="page_repository" class="AppBundle\Entity\Repository\EntityRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
             <argument>AppBundle\Entity\Page</argument>

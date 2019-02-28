@@ -5,7 +5,7 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="AppBundle\Entity\DocumentTemplatePerCompany" table="document_template_per_company"
-            repository-class="AppBundle\Entity\Repository\DocumentTemplatePerCompanyRepository">
+            repository-class="AppBundle\Repository\DocumentTemplatePerCompanyRepository">
 
         <one-to-many field="documents" target-entity="Document" mapped-by="documentTemplate" />
 

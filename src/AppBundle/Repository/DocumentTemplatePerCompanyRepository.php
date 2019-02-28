@@ -11,13 +11,20 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Company;
+use AppBundle\Entity\DocumentTemplatePerCompany;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class DocumentTemplatePerCompanyRepository extends AbstractRepository
 {
     const ROOT_ALIAS = 'template';
 
     const FILTER_BY_COMPANY = 'filter_by_company';
+
+    public function __construct(RegistryInterface $registry)
+    {
+        parent::__construct($registry, DocumentTemplatePerCompany::class);
+    }
 
     protected function getRootAlias()
     {

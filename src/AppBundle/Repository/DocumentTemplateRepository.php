@@ -15,7 +15,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class DocumentTemplateRepository extends AbstractRepository
 {
-    const ROOT_ALIAS = 'document_template';
+    const ROOT_ALIAS = 'template';
 
     public function __construct(RegistryInterface $registry)
     {

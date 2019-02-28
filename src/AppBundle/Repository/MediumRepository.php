@@ -8,17 +8,25 @@
  *
  */
 
-namespace AppBundle\Entity\Repository;
+namespace AppBundle\Repository;
 
 use AppBundle\Entity\Company;
+use AppBundle\Entity\Medium;
 use AppBundle\Entity\User;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class MediumRepository extends AbstractRepository
 {
     const ROOT_ALIAS = 'medium';
+
     const FILTER_BY_MIME_TYPE = 'filter_by_mime_type';
     const FILTER_BY_COMPANY = 'filter_by_company';
+
+    public function __construct(RegistryInterface $registry)
+    {
+        parent::__construct($registry, Medium::class);
+    }
 
     protected function getRootAlias()
     {

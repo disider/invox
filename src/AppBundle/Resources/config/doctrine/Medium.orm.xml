@@ -5,7 +5,7 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="AppBundle\Entity\Medium" table="medium"
-            repository-class="AppBundle\Entity\Repository\MediumRepository">
+            repository-class="AppBundle\Repository\MediumRepository">
 
         <many-to-one field="container" target-entity="Company">
             <join-column name="container_id" referenced-column-name="id" on-delete="CASCADE" nullable="false"/>
