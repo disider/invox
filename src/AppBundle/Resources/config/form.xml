@@ -5,13 +5,6 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="document_template_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
-            <argument>AppBundle\Form\DocumentTemplateForm</argument>
-            <argument type="service" id="document_template_repository"/>
-            <argument type="service" id="form.factory"/>
-            <argument type="service" id="security.token_storage"/>
-        </service>
-
         <service id="document_template_per_company_form_processor" class="AppBundle\Form\Processor\DefaultAuthenticatedFormProcessor" public="true">
             <argument>AppBundle\Form\DocumentTemplatePerCompanyForm</argument>
             <argument type="service" id="document_template_per_company_repository"/>

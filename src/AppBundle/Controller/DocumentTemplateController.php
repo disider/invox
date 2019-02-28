@@ -19,6 +19,7 @@ use AppBundle\Entity\DocumentTemplatePerCompany;
 use AppBundle\Entity\Page;
 use AppBundle\Entity\TaxRate;
 use AppBundle\Form\Processor\DefaultFormProcessor;
+use AppBundle\Form\Processor\DocumentTemplateFormProcessor;
 use AppBundle\Model\DocumentType;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -53,18 +54,18 @@ class DocumentTemplateController extends BaseController
      * @Route("/new", name="document_template_create")
      * @Template
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, DocumentTemplateFormProcessor $processor)
     {
-        return $this->processForm($request);
+        return $this->processForm($request, $processor);
     }
 
     /**
      * @Route("/{id}/edit", name="document_template_edit")
      * @Template
      */
-    public function editAction(Request $request, DocumentTemplate $documentTemplate)
+    public function editAction(Request $request, DocumentTemplateFormProcessor $processor, DocumentTemplate $documentTemplate)
     {
-        return $this->processForm($request, $documentTemplate);
+        return $this->processForm($request, $processor, $documentTemplate);
     }
 
     /**
@@ -147,11 +148,8 @@ class DocumentTemplateController extends BaseController
     }
 
 
-    private function processForm(Request $request, DocumentTemplate $documentTemplate = null)
+    private function processForm(Request $request, DocumentTemplateFormProcessor $processor, DocumentTemplate $documentTemplate = null)
     {
-        /** @var DefaultFormProcessor $processor */
-        $processor = $this->get('document_template_form_processor');
-
         $processor->process($request, $documentTemplate);
 
         if ($processor->isValid()) {

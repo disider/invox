@@ -4,11 +4,6 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="document_template_repository" class="AppBundle\Entity\Repository\EntityRepository">
-            <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle\Entity\DocumentTemplate</argument>
-        </service>
-
         <service id="document_template_per_company_repository" class="AppBundle\Entity\Repository\DocumentTemplatePerCompanyRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
             <argument>AppBundle\Entity\DocumentTemplatePerCompany</argument>
