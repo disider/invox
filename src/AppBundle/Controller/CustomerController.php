@@ -11,14 +11,14 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Customer;
-use AppBundle\Entity\Repository\CustomerRepository;
 use AppBundle\Form\Filter\CustomerFilterForm;
 use AppBundle\Form\Processor\CustomerFormProcessor;
 use AppBundle\Model\Language;
-use Symfony\Component\Routing\Annotation\Route;
+use AppBundle\Repository\CustomerRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/customers")
@@ -65,13 +65,13 @@ class CustomerController extends BaseController
      * @Security("is_granted('CUSTOMER_CREATE')")
      * @Template
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, CustomerFormProcessor $processor)
     {
         $customer = new Customer();
         $customer->setCompany($this->getCurrentCompany());
         $customer->setLanguage(Language::ITALIAN);
 
-        return $this->processForm($request, $customer);
+        return $this->processForm($request, $processor, $customer);
     }
 
     /**
@@ -79,9 +79,9 @@ class CustomerController extends BaseController
      * @Security("is_granted('CUSTOMER_EDIT', customer)")
      * @Template
      */
-    public function editAction(Request $request, Customer $customer)
+    public function editAction(Request $request, CustomerFormProcessor $processor, Customer $customer)
     {
-        return $this->processForm($request, $customer);
+        return $this->processForm($request, $processor, $customer);
     }
 
     /**
@@ -111,11 +111,8 @@ class CustomerController extends BaseController
         ]);
     }
 
-    private function processForm(Request $request, Customer $customer)
+    private function processForm(Request $request, CustomerFormProcessor $processor, Customer $customer)
     {
-        /** @var CustomerFormProcessor $processor */
-        $processor = $this->get('customer_form_processor');
-
         $processor->process($request, $customer);
 
         if ($processor->isValid()) {

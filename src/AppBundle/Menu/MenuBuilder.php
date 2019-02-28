@@ -11,6 +11,7 @@
 namespace AppBundle\Menu;
 
 use AppBundle\Entity\Company;
+use AppBundle\Entity\Manager\CompanyManager;
 use AppBundle\Entity\User;
 use AppBundle\Security\Voter\CompanyVoter;
 use AppBundle\Security\Voter\RoleVoter;
@@ -349,12 +350,12 @@ class MenuBuilder implements ContainerAwareInterface
 
     private function getCurrentCompany()
     {
-        return $this->container->get('company_manager')->getCurrent();
+        return $this->container->get(CompanyManager::class)->getCurrent();
     }
 
     private function hasCurrentCompany()
     {
-        return $this->container->get('company_manager')->hasCurrent();
+        return $this->container->get(CompanyManager::class)->hasCurrent();
     }
 
     /**

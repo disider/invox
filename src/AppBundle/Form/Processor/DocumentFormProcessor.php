@@ -12,9 +12,8 @@ namespace AppBundle\Form\Processor;
 
 use AppBundle\Entity\Document;
 use AppBundle\Entity\Manager\CompanyManager;
-use AppBundle\Entity\Repository\DocumentRepository;
-use AppBundle\Entity\Repository\DocumentTemplatePerCompanyRepository;
 use AppBundle\Form\DocumentForm;
+use AppBundle\Repository\DocumentRepository;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;

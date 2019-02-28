@@ -12,8 +12,8 @@ namespace AppBundle\Form\Processor;
 
 use AppBundle\Entity\Customer;
 use AppBundle\Entity\Document;
-use AppBundle\Entity\Repository\CustomerRepository;
-use AppBundle\Entity\Repository\DocumentRepository;
+use AppBundle\Repository\CustomerRepository;
+use AppBundle\Repository\DocumentRepository;
 use AppBundle\Form\DocumentForm;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;

@@ -6,7 +6,7 @@
 
     <services>
         <service id="valid_customer_validator" class="AppBundle\Validator\Constraints\ValidCustomerValidator">
-            <argument type="service" id="customer_repository"/>
+            <argument type="service" id="AppBundle\Repository\CustomerRepository"/>
             <tag name="validator.constraint_validator" alias="valid_customer"/>
         </service>
 
@@ -47,10 +47,10 @@
             <tag name="validator.constraint_validator" alias="valid_warehouse_record"/>
         </service>
 
-        <service id="valid_recurrence_validator" class="AppBundle\Validator\Constraints\ValidRecurrenceValidator">
-            <argument type="service" id="customer_repository"/>
-            <tag name="validator.constraint_validator" alias="valid_recurrence"/>
-        </service>
+        <!--<service id="valid_recurrence_validator" class="AppBundle\Validator\Constraints\ValidRecurrenceValidator">-->
+            <!--<argument type="service" id="AppBundle\Repository\CustomerRepository"/>-->
+            <!--<tag name="validator.constraint_validator" alias="valid_recurrence"/>-->
+        <!--</service>-->
 
         <service id="valid_linked_recurrence_validator" class="AppBundle\Validator\Constraints\ValidLinkedRecurrenceValidator">
             <tag name="validator.constraint_validator" alias="valid_linked_recurrence"/>

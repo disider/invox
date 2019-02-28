@@ -11,7 +11,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\InvoicePerNote;
-use AppBundle\Entity\Repository\DocumentRepository;
+use AppBundle\Repository\DocumentRepository;
 use AppBundle\Form\Type\LocalizedNumberType;
 use PhpParser\Node\Stmt\Else_;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;

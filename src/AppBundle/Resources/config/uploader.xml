@@ -5,7 +5,7 @@
 
     <services>
         <service id="medium_namer" class="AppBundle\Uploader\MediumNamer">
-            <argument type="service" id="company_manager" />
+            <argument type="service" id="AppBundle\Entity\Manager\CompanyManager" />
         </service>
     </services>
 </container>

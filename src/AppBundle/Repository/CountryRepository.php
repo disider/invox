@@ -8,15 +8,19 @@
  *
  */
 
-namespace AppBundle\Entity\Repository;
+namespace AppBundle\Repository;
 
-use AppBundle\Entity\Company;
-use AppBundle\Entity\User;
-use Doctrine\ORM\QueryBuilder;
+use AppBundle\Entity\Country;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class CountryRepository extends AbstractRepository
 {
     const ROOT_ALIAS = 'country';
+
+    public function __construct(RegistryInterface $registry)
+    {
+        parent::__construct($registry, Country::class);
+    }
 
     public function findOrderedByLocale($locale)
     {
@@ -24,8 +28,7 @@ class CountryRepository extends AbstractRepository
             ->leftJoin('country.translations', 'translation')
             ->where('translation.locale = :locale')
             ->orderBy('translation.name', 'asc')
-            ->setParameter('locale', $locale)
-            ;
+            ->setParameter('locale', $locale);
     }
 
     protected function getRootAlias()

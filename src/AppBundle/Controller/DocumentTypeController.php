@@ -10,7 +10,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Repository\DocumentRepository;
+use AppBundle\Repository\DocumentRepository;
 use AppBundle\Form\Filter\DocumentFilterForm;
 use AppBundle\Model\DocumentType;
 use Symfony\Component\Routing\Annotation\Route;

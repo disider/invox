@@ -15,8 +15,8 @@
 //use AppBundle\Entity\Document;
 //use AppBundle\Entity\DocumentRow;
 //use AppBundle\Model\DocumentType;
-//use AppBundle\Entity\Repository\CustomerRepository;
-//use AppBundle\Entity\Repository\DocumentRepository;
+//use AppBundle\Repository\CustomerRepository;
+//use AppBundle\Repository\DocumentRepository;
 //use AppBundle\Entity\User;
 //use AppBundle\Helper\ProtocolGenerator;
 //

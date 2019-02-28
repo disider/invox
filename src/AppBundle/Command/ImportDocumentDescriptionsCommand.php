@@ -13,13 +13,27 @@ namespace AppBundle\Command;
 use AppBundle\Entity\Document;
 use AppBundle\Entity\DocumentRow;
 use AppBundle\Model\DocumentType;
+use AppBundle\Repository\DocumentRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Yaml\Yaml;
 
-class ImportDocumentDescriptionsCommand extends ContainerAwareCommand
+class ImportDocumentDescriptionsCommand extends Command
 {
+    private $documentRepository;
+    private $em;
+
+    public function __construct(DocumentRepository $documentRepository, EntityManagerInterface $em)
+    {
+        parent::__construct();
+
+        $this->documentRepository = $documentRepository;
+        $this->em = $em;
+    }
+
     protected function configure()
     {
         $this
@@ -58,9 +72,6 @@ class ImportDocumentDescriptionsCommand extends ContainerAwareCommand
 
     protected function updateDocuments($documents, OutputInterface $output)
     {
-        $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
-        $repo = $this->getContainer()->get('document_repository');
-
         foreach ($documents as $record) {
             $ref = $record['ref'];
             $type = $record['type'];
@@ -70,7 +81,7 @@ class ImportDocumentDescriptionsCommand extends ContainerAwareCommand
             $customerName = $record['customerName'];
 
             /** @var Document $document */
-            $document = $repo->findOneBy([
+            $document = $this->documentRepository->findOneBy([
                 'ref' => $ref,
                 'year' => $year,
                 'direction' => $direction,
@@ -82,7 +93,7 @@ class ImportDocumentDescriptionsCommand extends ContainerAwareCommand
                 $output->writeln(sprintf('Searching for %s for %s/%s (%s), %s', $type, $ref, $year, $direction, $customerName));
 
                 /** @var Document $document */
-                $document = $repo->findOneBy([
+                $document = $this->documentRepository->findOneBy([
                     'ref' => $ref,
                     'year' => $year,
                     'direction' => 'none',
@@ -108,11 +119,11 @@ class ImportDocumentDescriptionsCommand extends ContainerAwareCommand
             /** @var DocumentRow $row */
             foreach ($rows as $i => $row) {
                 $row->setDescription($record['descriptions'][$i]);
-                $em->persist($row);
+                $this->em->persist($row);
             }
         }
 
-        $em->flush();
+        $this->em->flush();
     }
 
     protected function updateDescriptions($rows, $documents)

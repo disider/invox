@@ -11,7 +11,7 @@
 namespace AppBundle\Form\Type;
 
 use AppBundle\Entity\Country;
-use AppBundle\Entity\Repository\CountryRepository;
+use AppBundle\Repository\CountryRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;

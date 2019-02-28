@@ -13,7 +13,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Document;
 use AppBundle\Entity\Recurrence;
-use AppBundle\Entity\Repository\DocumentRepository;
+use AppBundle\Repository\DocumentRepository;
 use AppBundle\Form\Processor\DocumentFormProcessor;
 use AppBundle\Model\DocumentType;
 use Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator;
@@ -34,7 +34,7 @@ class DocumentController extends BaseController
      * @Security("is_granted('DOCUMENT_CREATE')")
      * @Template
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, DocumentFormProcessor $processor)
     {
         $company = $this->getCurrentCompany();
 
@@ -58,7 +58,7 @@ class DocumentController extends BaseController
         $this->applyCustomer($request, $company, $document);
         $this->applyRecurrence($request, $company, $document);
 
-        return $this->processForm($request, $document);
+        return $this->processForm($request, $processor, $document);
     }
 
     /**
@@ -66,9 +66,9 @@ class DocumentController extends BaseController
      * @Security("is_granted('DOCUMENT_EDIT', document)")
      * @Template
      */
-    public function editAction(Request $request, Document $document)
+    public function editAction(Request $request, DocumentFormProcessor $processor, Document $document)
     {
-        return $this->processForm($request, $document);
+        return $this->processForm($request, $processor, $document);
     }
 
     /**
@@ -219,11 +219,8 @@ class DocumentController extends BaseController
         ]);
     }
 
-    private function processForm(Request $request, Document $document)
+    private function processForm(Request $request, DocumentFormProcessor $processor, Document $document)
     {
-        /** @var DocumentFormProcessor $processor */
-        $processor = $this->get('document_form_processor');
-
         $processor->process($request, $document);
 
         if ($processor->isValid() && $processor->isSaving()) {

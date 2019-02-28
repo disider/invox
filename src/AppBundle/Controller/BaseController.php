@@ -11,9 +11,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Company;
-use AppBundle\Entity\Repository\CityRepository;
-use AppBundle\Entity\Repository\CustomerRepository;
-use AppBundle\Entity\Repository\DocumentRepository;
+use AppBundle\Entity\Manager\CompanyManager;
 use AppBundle\Entity\Repository\EntityRepository;
 use AppBundle\Entity\Repository\PettyCashNoteRepository;
 use AppBundle\Entity\Repository\ProductRepository;
@@ -26,13 +24,15 @@ use AppBundle\Entity\User;
 use AppBundle\Mailer\Mailer;
 use AppBundle\Model\Module;
 use AppBundle\Problem\JsonProblem;
+use AppBundle\Repository\CityRepository;
+use AppBundle\Repository\CustomerRepository;
+use AppBundle\Repository\DocumentRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Translation\Translator;
 
@@ -41,6 +41,14 @@ use Symfony\Component\Translation\Translator;
  */
 class BaseController extends Controller
 {
+    /** @var CompanyManager */
+    private $companyManager;
+
+    public function __construct(CompanyManager $companyManager)
+    {
+        $this->companyManager = $companyManager;
+    }
+
     /** @return Mailer $mailer */
     protected function getMailer()
     {
@@ -267,17 +275,17 @@ class BaseController extends Controller
     /** @return Company */
     protected function getCurrentCompany()
     {
-        return $this->get('company_manager')->getCurrent();
+        return $this->companyManager->getCurrent();
     }
 
     protected function hasCurrentCompany()
     {
-        return $this->get('company_manager')->hasCurrent();
+        return $this->companyManager->hasCurrent();
     }
 
     protected function setCurrentCompany(Company $company = null)
     {
-        $this->get('company_manager')->setCurrent($company);
+        $this->companyManager->setCurrent($company);
     }
 
     protected function canManageCurrentCompany()
@@ -330,8 +338,7 @@ class BaseController extends Controller
                 'defaultSortFieldName' => $sortField,
                 'defaultSortDirection' => $sortDirection
             ];
-        }
-        else {
+        } else {
             $options = [];
         }
 

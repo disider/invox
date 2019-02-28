@@ -10,7 +10,7 @@
 
 namespace AppBundle\Form\Processor;
 
-use AppBundle\Entity\Repository\DocumentRepository;
+use AppBundle\Repository\DocumentRepository;
 use AppBundle\Entity\Repository\PettyCashNoteRepository;
 use AppBundle\Form\PettyCashNoteForm;
 use Symfony\Component\Form\FormFactoryInterface;

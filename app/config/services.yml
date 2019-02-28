@@ -45,3 +45,6 @@ services:
 
   Twig_Extensions_Extension_Text:
     class: Twig_Extensions_Extension_Text
+
+  AppBundle\Form\Processor\DocumentFormProcessor:
+    $availableLocales: '%available_locales%'

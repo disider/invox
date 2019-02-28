@@ -88,7 +88,7 @@ To run unit tests, execute
     
 To run behavior tests, run PhantomJS in a terminal shell
 
-    phantomjs --web-driver=4444 --disk-cache=false
+    vendor/bin/phantomjs --web-driver=4444 --disk-cache=false
     
 then run the tests
 

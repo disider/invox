@@ -15,7 +15,7 @@ use AppBundle\Entity\Document;
 use AppBundle\Entity\DocumentAttachment;
 use AppBundle\Entity\PaymentType;
 use AppBundle\Entity\Recurrence;
-use AppBundle\Entity\Repository\CustomerRepository;
+use AppBundle\Repository\CustomerRepository;
 use AppBundle\Form\Type\AttachmentType;
 use AppBundle\Form\Type\CollectionUploaderType;
 use AppBundle\Form\Type\CountryEntityType;

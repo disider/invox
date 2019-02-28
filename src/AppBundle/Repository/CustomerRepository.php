@@ -8,17 +8,24 @@
  *
  */
 
-namespace AppBundle\Entity\Repository;
+namespace AppBundle\Repository;
 
 use AppBundle\Entity\Company;
+use AppBundle\Entity\Customer;
 use AppBundle\Entity\User;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class CustomerRepository extends SelectedCompanyRepository
 {
     const ROOT_ALIAS = 'customer';
 
     const FILTER_BY_MANAGER = 'filter_by_manager';
+
+    public function __construct(RegistryInterface $registry)
+    {
+        parent::__construct($registry, Customer::class);
+    }
 
     public function generateNextCode(Company $company)
     {
@@ -28,10 +35,9 @@ class CustomerRepository extends SelectedCompanyRepository
             ->orderBy('c.code', 'DESC')
             ->setParameter('company', $company)
             ->getQuery()
-            ->getScalarResult()
-        ;
+            ->getScalarResult();
 
-        if(count($codes) > 0) {
+        if (count($codes) > 0) {
             $code = $codes[0]['code'];
             return ++$code;
         }
@@ -78,7 +84,6 @@ class CustomerRepository extends SelectedCompanyRepository
 
         return $qb;
     }
-
 
     protected function filterByManager(QueryBuilder $qb, User $user)
     {

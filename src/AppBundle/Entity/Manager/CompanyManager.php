@@ -11,9 +11,9 @@
 namespace AppBundle\Entity\Manager;
 
 use AppBundle\Entity\Company;
-use AppBundle\Repository\CompanyRepository;
 use AppBundle\Entity\User;
-use Symfony\Component\HttpFoundation\Session\Session;
+use AppBundle\Repository\CompanyRepository;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class CompanyManager
@@ -39,7 +39,7 @@ class CompanyManager
      */
     private $currentCompany;
 
-    public function __construct(CompanyRepository $companyRepository, TokenStorageInterface $tokenStorage, Session $session)
+    public function __construct(CompanyRepository $companyRepository, TokenStorageInterface $tokenStorage, SessionInterface $session)
     {
         $this->tokenStorage = $tokenStorage;
         $this->session = $session;
@@ -50,7 +50,7 @@ class CompanyManager
     {
         $user = $this->getUser();
 
-        if(!($user->isAccountant() || $user->isManagingSingleCompany() || $user->canManageMultipleCompanies() || $user->isSalesAgent())) {
+        if (!($user->isAccountant() || $user->isManagingSingleCompany() || $user->canManageMultipleCompanies() || $user->isSalesAgent())) {
             throw new \LogicException('Cannot get current company if user is not managing companies');
         }
 
@@ -69,7 +69,7 @@ class CompanyManager
     {
         $user = $this->getUser();
 
-        if(!$user instanceof User) {
+        if (!$user instanceof User) {
             return false;
         }
 
@@ -77,7 +77,7 @@ class CompanyManager
             return true;
         }
 
-        if(!$this->session->has(self::CURRENT_COMPANY)) {
+        if (!$this->session->has(self::CURRENT_COMPANY)) {
             return false;
         }
 
@@ -85,7 +85,7 @@ class CompanyManager
 
         $this->currentCompany = $this->companyRepository->findOneById($companyId);
 
-        if(!$this->currentCompany) {
+        if (!$this->currentCompany) {
             $this->session->remove(self::CURRENT_COMPANY);
             return false;
         }

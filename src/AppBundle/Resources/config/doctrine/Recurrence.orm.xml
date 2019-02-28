@@ -31,8 +31,8 @@
             <join-column name="company_id" referenced-column-name="id" on-delete="CASCADE" nullable="false"/>
         </many-to-one>
 
-        <many-to-one field="customer" target-entity="Customer" inversed-by="recurrences">
-            <join-column name="customer_id" referenced-column-name="id" on-delete="SET NULL" nullable="true"/>
+        <many-to-one field="customer" target-entity="Customer">
+            <join-column name="customer_id" referenced-column-name="id" on-delete="SET NULL"/>
         </many-to-one>
     </entity>
 

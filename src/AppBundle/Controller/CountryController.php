@@ -11,6 +11,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Country;
+use AppBundle\Form\Processor\CountryFormProcessor;
 use AppBundle\Form\Processor\DefaultFormProcessor;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -47,11 +48,11 @@ class CountryController extends BaseController
      * @Security("is_granted('COUNTRY_CREATE')")
      * @Template
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, CountryFormProcessor $processor)
     {
         $country = new Country();
 
-        return $this->processForm($request, $country);
+        return $this->processForm($request, $processor, $country);
     }
 
     /**
@@ -59,9 +60,9 @@ class CountryController extends BaseController
      * @Security("is_granted('COUNTRY_EDIT', country)")
      * @Template
      */
-    public function editAction(Request $request, Country $country)
+    public function editAction(Request $request, CountryFormProcessor $processor, Country $country)
     {
-        return $this->processForm($request, $country);
+        return $this->processForm($request, $processor, $country);
     }
 
     /**
@@ -77,11 +78,8 @@ class CountryController extends BaseController
         return $this->redirectToRoute('countries');
     }
 
-    private function processForm(Request $request, Country $country = null)
+    private function processForm(Request $request, CountryFormProcessor $processor, Country $country)
     {
-        /** @var DefaultFormProcessor $processor */
-        $processor = $this->get('country_form_processor');
-
         $processor->process($request, $country);
 
         if ($processor->isValid()) {

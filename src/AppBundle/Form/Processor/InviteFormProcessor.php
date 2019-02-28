@@ -13,7 +13,7 @@ namespace AppBundle\Form\Processor;
 use AppBundle\Entity\Customer;
 use AppBundle\Entity\Document;
 use AppBundle\Entity\Invite;
-use AppBundle\Entity\Repository\CustomerRepository;
+use AppBundle\Repository\CustomerRepository;
 use AppBundle\Entity\Repository\EntityRepository;
 use AppBundle\Form\InviteForm;
 use AppBundle\Mailer\Mailer;

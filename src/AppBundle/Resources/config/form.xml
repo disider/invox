@@ -5,27 +5,6 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="country_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
-            <argument>AppBundle\Form\CountryForm</argument>
-            <argument type="service" id="country_repository"/>
-            <argument type="service" id="form.factory"/>
-            <argument type="service" id="security.token_storage"/>
-        </service>
-
-        <service id="customer_form_processor" class="AppBundle\Form\Processor\CustomerFormProcessor" public="true">
-            <argument type="service" id="customer_repository"/>
-            <argument type="service" id="form.factory"/>
-            <argument type="service" id="security.token_storage"/>
-        </service>
-
-        <service id="document_form_processor" class="AppBundle\Form\Processor\DocumentFormProcessor" public="true">
-            <argument type="service" id="document_repository"/>
-            <argument type="service" id="company_manager"/>
-            <argument type="service" id="form.factory"/>
-            <argument type="service" id="security.token_storage"/>
-            <argument>%available_locales%</argument>
-        </service>
-
         <service id="document_template_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
             <argument>AppBundle\Form\DocumentTemplateForm</argument>
             <argument type="service" id="document_template_repository"/>
@@ -178,7 +157,7 @@
         </service>
 
         <service id="invoice_collection_type" class="AppBundle\Form\Type\InvoiceCollectionType" public="true">
-            <argument type="service" id="company_manager"/>
+            <argument type="service" id="AppBundle\Entity\Manager\CompanyManager"/>
             <tag name="form.type"/>
         </service>
 

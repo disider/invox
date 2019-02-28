@@ -8,13 +8,14 @@
  *
  */
 
-namespace AppBundle\Entity\Repository;
+namespace AppBundle\Repository;
 
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Document;
 use AppBundle\Entity\InvoicePerNote;
 use AppBundle\Model\DocumentType;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class DocumentRepository extends ProtocolRepository
 {
@@ -23,6 +24,11 @@ class DocumentRepository extends ProtocolRepository
     const FILTER_BY_TYPE = 'filter_by_type';
     const FILTER_BY_DIRECTION = 'filter_by_direction';
     const FILTER_BY_STATUS = 'filter_by_status';
+
+    public function __construct(RegistryInterface $registry)
+    {
+        parent::__construct($registry, Document::class);
+    }
 
     public function findCostCenters($filters)
     {

@@ -8,10 +8,9 @@ parameters:
     info: '%info_display_name%'
 
 services:
-  company_manager:
-    class: AppBundle\Entity\Manager\CompanyManager
+  AppBundle\Entity\Manager\CompanyManager:
     arguments:
-      - '@company_repository'
+      - '@AppBundle\Repository\CompanyRepository'
       - '@security.token_storage'
       - '@session'
 
@@ -66,5 +65,3 @@ services:
     class: AppBundle\Helper\ParameterHelper
     arguments:
       - '@service_container'
-
-#  account_repository: '@AppBundle\Repository\AccountRepository'

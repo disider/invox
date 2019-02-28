@@ -11,7 +11,7 @@
 namespace AppBundle\Validator\Constraints;
 
 use AppBundle\Entity\Document;
-use AppBundle\Entity\Repository\CustomerRepository;
+use AppBundle\Repository\CustomerRepository;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 

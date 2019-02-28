@@ -12,7 +12,7 @@
 //namespace Tests\AppBundle\Entity\Repository;
 //
 //use AppBundle\Entity\Customer;
-//use AppBundle\Entity\Repository\CustomerRepository;
+//use AppBundle\Repository\CustomerRepository;
 //
 //class CustomerRepositoryTest extends BaseUserRepositoryTest
 //{
