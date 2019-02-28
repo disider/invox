@@ -10,15 +10,15 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Repository\ServiceRepository;
 use AppBundle\Entity\Service;
 use AppBundle\Form\Filter\ServiceFilterForm;
-use AppBundle\Form\Processor\DefaultFormProcessor;
+use AppBundle\Form\Processor\ServiceFormProcessor;
 use AppBundle\Model\Module;
-use Symfony\Component\Routing\Annotation\Route;
+use AppBundle\Repository\ServiceRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/services")
@@ -63,7 +63,7 @@ class ServiceController extends BaseController
      * @Security("is_granted('SERVICE_CREATE')")
      * @Template
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, ServiceFormProcessor $processor)
     {
         $service = new Service();
 
@@ -73,7 +73,7 @@ class ServiceController extends BaseController
             $service->setCompany($company);
         }
 
-        return $this->processForm($request, $service);
+        return $this->processForm($request, $processor, $service);
     }
 
     /**
@@ -81,9 +81,9 @@ class ServiceController extends BaseController
      * @Security("is_granted('SERVICE_EDIT', service)")
      * @Template
      */
-    public function editAction(Request $request, Service $service)
+    public function editAction(Request $request, ServiceFormProcessor $processor, Service $service)
     {
-        return $this->processForm($request, $service);
+        return $this->processForm($request, $processor, $service);
     }
 
     /**
@@ -104,7 +104,7 @@ class ServiceController extends BaseController
      */
     public function searchAction(Request $request)
     {
-        if(!$this->isModuleEnabled(Module::SERVICES_MODULE)) {
+        if (!$this->isModuleEnabled(Module::SERVICES_MODULE)) {
             return $this->createJsonProblem('Module not enabled', 400);
         }
 
@@ -137,18 +137,15 @@ class ServiceController extends BaseController
         ]);
     }
 
-    private function processForm(Request $request, Service $service = null)
+    private function processForm(Request $request, ServiceFormProcessor $processor, Service $service = null)
     {
-        /** @var DefaultFormProcessor $processor */
-        $processor = $this->get('service_form_processor');
-
         $processor->process($request, $service);
 
         if ($processor->isValid()) {
             $this->addFlash('success', $processor->isNew() ? 'flash.service.created' : 'flash.service.updated',
                 ['%service%' => $processor->getData()]);
 
-            if ($processor->isRedirectingTo(DefaultFormProcessor::REDIRECT_TO_LIST)) {
+            if ($processor->isRedirectingTo(ServiceFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('services');
             }
 

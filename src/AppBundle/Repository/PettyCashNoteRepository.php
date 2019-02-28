@@ -8,11 +8,11 @@
  *
  */
 
-namespace AppBundle\Entity\Repository;
+namespace AppBundle\Repository;
 
-use AppBundle\Entity\Company;
-use AppBundle\Entity\User;
+use AppBundle\Entity\PettyCashNote;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class PettyCashNoteRepository extends ProtocolRepository
 {
@@ -22,11 +22,21 @@ class PettyCashNoteRepository extends ProtocolRepository
     const FILTER_BY_ACCOUNTANT = 'filter_by_accountant';
     const FILTER_BY_COMPANY = 'filter_by_company';
 
+    public function __construct(RegistryInterface $registry)
+    {
+        parent::__construct($registry, PettyCashNote::class);
+    }
+
+    protected function getRootAlias()
+    {
+        return self::ROOT_ALIAS;
+    }
+
     public function getTotalAmount(QueryBuilder $query)
     {
         $aliases = $query->getAllAliases();
 
-        if(!array_search('invoicePerNote', $aliases)) {
+        if (!array_search('invoicePerNote', $aliases)) {
             $query->leftJoin('note.invoices', 'invoicePerNote');
         }
 
@@ -34,11 +44,6 @@ class PettyCashNoteRepository extends ProtocolRepository
             ->select('SUM(invoicePerNote.amount)')
             ->getQuery()
             ->getSingleScalarResult();
-    }
-
-    protected function getRootAlias()
-    {
-        return self::ROOT_ALIAS;
     }
 
     /** @return QueryBuilder */

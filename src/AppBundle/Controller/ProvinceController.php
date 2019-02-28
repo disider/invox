@@ -12,10 +12,11 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Province;
 use AppBundle\Form\Processor\DefaultFormProcessor;
-use Symfony\Component\Routing\Annotation\Route;
+use AppBundle\Form\Processor\ProvinceFormProcessor;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/provinces")
@@ -47,11 +48,11 @@ class ProvinceController extends BaseController
      * @Security("is_granted('PROVINCE_CREATE')")
      * @Template
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, ProvinceFormProcessor $processor)
     {
         $province = new Province();
 
-        return $this->processForm($request, $province);
+        return $this->processForm($request, $processor, $province);
     }
 
     /**
@@ -59,9 +60,9 @@ class ProvinceController extends BaseController
      * @Security("is_granted('PROVINCE_EDIT', province)")
      * @Template
      */
-    public function editAction(Request $request, Province $province)
+    public function editAction(Request $request, ProvinceFormProcessor $processor, Province $province)
     {
-        return $this->processForm($request, $province);
+        return $this->processForm($request, $processor, $province);
     }
 
     /**
@@ -77,18 +78,15 @@ class ProvinceController extends BaseController
         return $this->redirectToRoute('provinces');
     }
 
-    private function processForm(Request $request, Province $province = null)
+    private function processForm(Request $request, ProvinceFormProcessor $processor, Province $province)
     {
-        /** @var DefaultFormProcessor $processor */
-        $processor = $this->get('province_form_processor');
-
         $processor->process($request, $province);
 
         if ($processor->isValid()) {
             $this->addFlash('success', $processor->isNew() ? 'flash.province.created' : 'flash.province.updated',
                 ['%province%' => $processor->getData()]);
 
-            if ($processor->isRedirectingTo(DefaultFormProcessor::REDIRECT_TO_LIST)) {
+            if ($processor->isRedirectingTo(ProvinceFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('provinces');
             }
 

@@ -122,7 +122,7 @@ oneup_uploader:
             frontend: fineuploader
             storage:
                 directory: "%kernel.root_dir%/../web"
-            namer: medium_namer
+            namer: AppBundle\Uploader\MediumNamer
             max_size: 2m
         attachable:
             use_orphanage: true

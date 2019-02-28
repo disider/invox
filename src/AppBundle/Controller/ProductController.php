@@ -11,7 +11,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Product;
-use AppBundle\Entity\Repository\ProductRepository;
+use AppBundle\Form\Processor\ProductFormProcessor;
+use AppBundle\Repository\ProductRepository;
 use AppBundle\Entity\Repository\WarehouseRecordRepository;
 use AppBundle\Entity\WarehouseRecord;
 use AppBundle\Form\Filter\ProductFilterForm;
@@ -67,7 +68,7 @@ class ProductController extends BaseController
      * @Security("is_granted('PRODUCT_CREATE')")
      * @Template
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, ProductFormProcessor $processor)
     {
         $product = new Product();
 
@@ -77,7 +78,7 @@ class ProductController extends BaseController
             $product->setCompany($company);
         }
 
-        return $this->processForm($request, $product);
+        return $this->processForm($request, $processor, $product);
     }
 
     /**
@@ -85,9 +86,9 @@ class ProductController extends BaseController
      * @Security("is_granted('PRODUCT_EDIT', product)")
      * @Template
      */
-    public function editAction(Request $request, Product $product)
+    public function editAction(Request $request, ProductFormProcessor $processor, Product $product)
     {
-        return $this->processForm($request, $product);
+        return $this->processForm($request, $processor, $product);
     }
 
     /**
@@ -183,18 +184,15 @@ class ProductController extends BaseController
         ]);
     }
 
-    private function processForm(Request $request, Product $product = null)
+    private function processForm(Request $request, ProductFormProcessor $processor, Product $product = null)
     {
-        /** @var DefaultFormProcessor $processor */
-        $processor = $this->get('product_form_processor');
-
         $processor->process($request, $product);
 
         if ($processor->isValid()) {
             $this->addFlash('success', $processor->isNew() ? 'flash.product.created' : 'flash.product.updated',
                 ['%product%' => $processor->getData()]);
 
-            if ($processor->isRedirectingTo(DefaultFormProcessor::REDIRECT_TO_LIST)) {
+            if ($processor->isRedirectingTo(ProductFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('products');
             }
 

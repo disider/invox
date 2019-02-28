@@ -29,7 +29,7 @@ class AppExtension extends Extension
 //        $loader->load('security.xml');
 //        $loader->load('services.xml');
 //        $loader->load('twig.xml');
-        $loader->load('uploader.xml');
+//        $loader->load('uploader.xml');
 //        $loader->load('validation.xml');
         $loader->load('validators.xml');
     }

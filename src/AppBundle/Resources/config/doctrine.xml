@@ -9,29 +9,9 @@
             <argument>AppBundle\Entity\Invite</argument>
         </service>
 
-        <service id="petty_cash_note_repository" class="AppBundle\Entity\Repository\PettyCashNoteRepository">
-            <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle\Entity\PettyCashNote</argument>
-        </service>
-
-        <service id="product_repository" class="AppBundle\Entity\Repository\ProductRepository">
-            <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle\Entity\Product</argument>
-        </service>
-
-        <service id="province_repository" class="AppBundle\Entity\Repository\EntityRepository">
-            <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle\Entity\Province</argument>
-        </service>
-
         <service id="recurrence_repository" class="AppBundle\Entity\Repository\RecurrenceRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
             <argument>AppBundle\Entity\Recurrence</argument>
-        </service>
-
-        <service id="service_repository" class="AppBundle\Entity\Repository\ServiceRepository">
-            <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle\Entity\Service</argument>
         </service>
 
         <service id="tax_rate_repository" class="AppBundle\Entity\Repository\EntityRepository">
@@ -52,11 +32,6 @@
         <service id="working_note_repository" class="AppBundle\Entity\Repository\WorkingNoteRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
             <argument>AppBundle\Entity\WorkingNote</argument>
-        </service>
-
-        <service id="zip_code_repository" class="AppBundle\Entity\Repository\ZipCodeRepository">
-            <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle\Entity\ZipCode</argument>
         </service>
     </services>
 

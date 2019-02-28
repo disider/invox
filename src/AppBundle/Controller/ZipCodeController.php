@@ -12,10 +12,11 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\ZipCode;
 use AppBundle\Form\Processor\DefaultFormProcessor;
-use Symfony\Component\Routing\Annotation\Route;
+use AppBundle\Form\Processor\ZipCodeFormProcessor;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/zip-codes")
@@ -36,7 +37,7 @@ class ZipCodeController extends BaseController
         $query = $this->getZipCodeRepository()->findAllQuery([]);
 
         $pagination = $this->paginate($query, $page, $pageSize, 'zipCode.code', 'asc');
-        
+
         return [
             'pagination' => $pagination,
         ];
@@ -47,11 +48,11 @@ class ZipCodeController extends BaseController
      * @Security("is_granted('ZIP_CODE_CREATE')")
      * @Template
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, ZipCodeFormProcessor $processor)
     {
         $zipCode = new ZipCode();
 
-        return $this->processForm($request, $zipCode);
+        return $this->processForm($request, $processor, $zipCode);
     }
 
     /**
@@ -59,9 +60,9 @@ class ZipCodeController extends BaseController
      * @Security("is_granted('ZIP_CODE_EDIT', zipCode)")
      * @Template
      */
-    public function editAction(Request $request, ZipCode $zipCode)
+    public function editAction(Request $request, ZipCodeFormProcessor $processor, ZipCode $zipCode)
     {
-        return $this->processForm($request, $zipCode);
+        return $this->processForm($request, $processor, $zipCode);
     }
 
     /**
@@ -90,12 +91,9 @@ class ZipCodeController extends BaseController
             'zipCodes' => $zipCodes,
         ]);
     }
-    
-    private function processForm(Request $request, ZipCode $zipCode)
-    {
-        /** @var DefaultFormProcessor $processor */
-        $processor = $this->get('zip_code_form_processor');
 
+    private function processForm(Request $request, ZipCodeFormProcessor $processor, ZipCode $zipCode)
+    {
         $processor->process($request, $zipCode);
 
         if ($processor->isValid()) {

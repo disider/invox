@@ -8,17 +8,24 @@
  *
  */
 
-namespace AppBundle\Entity\Repository;
+namespace AppBundle\Repository;
 
 use AppBundle\Entity\Company;
+use AppBundle\Entity\Service;
 use AppBundle\Entity\User;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class ServiceRepository extends AbstractRepository
 {
     const ROOT_ALIAS = 'service';
 
     const FILTER_BY_MANAGER = 'filter_by_manager';
+
+    public function __construct(RegistryInterface $registry)
+    {
+        parent::__construct($registry, Service::class);
+    }
 
     protected function getRootAlias()
     {

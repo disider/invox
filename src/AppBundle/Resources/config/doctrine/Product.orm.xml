@@ -5,7 +5,7 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="AppBundle\Entity\Product" table="product"
-            repository-class="AppBundle\Entity\Repository\ProductRepository">
+            repository-class="AppBundle\Repository\ProductRepository">
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>

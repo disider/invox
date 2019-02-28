@@ -10,26 +10,16 @@
 
 namespace AppBundle\Form\Processor;
 
-use AppBundle\Repository\DocumentRepository;
-use AppBundle\Entity\Repository\PettyCashNoteRepository;
 use AppBundle\Form\PettyCashNoteForm;
+use AppBundle\Repository\PettyCashNoteRepository;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-class PettyCashNoteFormProcessor extends AbstractEntityFormProcessor
+class PettyCashNoteFormProcessor extends DefaultAuthenticatedFormProcessor
 {
-    protected function getFormClass()
+    public function __construct(PettyCashNoteRepository $repository, FormFactoryInterface $formFactory, TokenStorageInterface $tokenStorage)
     {
-        return PettyCashNoteForm::class;
-    }
-
-    protected function evaluateRedirect()
-    {
-        $this->setRedirectTo(
-            $this->isButtonClicked(
-                'saveAndClose'
-            ) ? self::REDIRECT_TO_LIST : null
-        );
+        parent::__construct(PettyCashNoteForm::class, $repository, $formFactory, $tokenStorage);
     }
 
     public function isValid()
@@ -39,12 +29,5 @@ class PettyCashNoteFormProcessor extends AbstractEntityFormProcessor
         }
 
         return false;
-    }
-
-    protected function getFormOptions()
-    {
-        return [
-            'user' => $this->getAuthenticatedUser(),
-        ];
     }
 }

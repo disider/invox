@@ -11,7 +11,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\PettyCashNote;
-use AppBundle\Entity\Repository\PettyCashNoteRepository;
+use AppBundle\Form\Processor\PettyCashNoteFormProcessor;
+use AppBundle\Repository\PettyCashNoteRepository;
 use AppBundle\Form\Filter\PettyCashNoteFilterForm;
 use AppBundle\Form\Processor\DefaultFormProcessor;
 use Symfony\Component\Routing\Annotation\Route;
@@ -67,7 +68,7 @@ class PettyCashNoteController extends BaseController
      * @Security("is_granted('PETTY_CASH_NOTE_CREATE')")
      * @Template
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, PettyCashNoteFormProcessor $processor)
     {
         if(!$this->canManageCurrentCompany()) {
             throw $this->createAccessDeniedException('Cannot manage petty cash for ' . $this->getCurrentCompany());
@@ -82,7 +83,7 @@ class PettyCashNoteController extends BaseController
 
         $pettyCashNote = PettyCashNote::createEmpty($ref, $this->getCurrentCompany());
 
-        return $this->processForm($request, $pettyCashNote);
+        return $this->processForm($request, $processor, $pettyCashNote);
     }
 
     /**
@@ -90,9 +91,9 @@ class PettyCashNoteController extends BaseController
      * @Security("is_granted('PETTY_CASH_NOTE_EDIT', pettyCashNote)")
      * @Template
      */
-    public function editAction(Request $request, PettyCashNote $pettyCashNote)
+    public function editAction(Request $request, PettyCashNoteFormProcessor $processor, PettyCashNote $pettyCashNote)
     {
-        return $this->processForm($request, $pettyCashNote);
+        return $this->processForm($request, $processor, $pettyCashNote);
     }
 
     /**
@@ -120,18 +121,15 @@ class PettyCashNoteController extends BaseController
         ];
     }
 
-    private function processForm(Request $request, PettyCashNote $pettyCashNote = null)
+    private function processForm(Request $request, PettyCashNoteFormProcessor $processor, PettyCashNote $pettyCashNote)
     {
-        /** @var DefaultFormProcessor $processor */
-        $processor = $this->get('petty_cash_note_form_processor');
-
         $processor->process($request, $pettyCashNote);
 
         if ($processor->isValid()) {
             $this->addFlash('success', $processor->isNew() ? 'flash.petty_cash_note.created' : 'flash.petty_cash_note.updated',
                 ['%petty_cash_note%' => $processor->getData()]);
 
-            if ($processor->isRedirectingTo(DefaultFormProcessor::REDIRECT_TO_LIST)) {
+            if ($processor->isRedirectingTo(PettyCashNoteFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('petty_cash_notes');
             }
 

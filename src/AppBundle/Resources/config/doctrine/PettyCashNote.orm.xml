@@ -5,7 +5,7 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="AppBundle\Entity\PettyCashNote" table="petty_cash_note"
-            repository-class="AppBundle\Entity\Repository\PettyCashNoteRepository">
+            repository-class="AppBundle\Repository\PettyCashNoteRepository">
 
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>

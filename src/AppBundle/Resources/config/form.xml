@@ -12,36 +12,9 @@
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="petty_cash_note_form_processor" class="AppBundle\Form\Processor\PettyCashNoteFormProcessor" public="true">
-            <argument type="service" id="petty_cash_note_repository"/>
-            <argument type="service" id="form.factory"/>
-            <argument type="service" id="security.token_storage"/>
-        </service>
-
-        <service id="product_form_processor" class="AppBundle\Form\Processor\DefaultAuthenticatedFormProcessor" public="true">
-            <argument>AppBundle\Form\ProductForm</argument>
-            <argument type="service" id="product_repository"/>
-            <argument type="service" id="form.factory"/>
-            <argument type="service" id="security.token_storage"/>
-        </service>
-
-        <service id="province_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
-            <argument>AppBundle\Form\ProvinceForm</argument>
-            <argument type="service" id="province_repository"/>
-            <argument type="service" id="form.factory"/>
-            <argument type="service" id="security.token_storage"/>
-        </service>
-
         <service id="recurrence_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
             <argument>AppBundle\Form\RecurrenceForm</argument>
             <argument type="service" id="recurrence_repository"/>
-            <argument type="service" id="form.factory"/>
-            <argument type="service" id="security.token_storage"/>
-        </service>
-
-        <service id="service_form_processor" class="AppBundle\Form\Processor\DefaultAuthenticatedFormProcessor" public="true">
-            <argument>AppBundle\Form\ServiceForm</argument>
-            <argument type="service" id="service_repository"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
@@ -72,14 +45,6 @@
             <argument type="service" id="form.factory"/>
             <argument type="service" id="security.token_storage"/>
         </service>
-
-        <service id="zip_code_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
-            <argument>AppBundle\Form\ZipCodeForm</argument>
-            <argument type="service" id="zip_code_repository"/>
-            <argument type="service" id="form.factory"/>
-            <argument type="service" id="security.token_storage"/>
-        </service>
-
 
         <service id="attachment_file_type" class="AppBundle\Form\Type\AttachmentFileType" public="true">
             <tag name="form.type"/>

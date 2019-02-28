@@ -8,17 +8,24 @@
  *
  */
 
-namespace AppBundle\Entity\Repository;
+namespace AppBundle\Repository;
 
 use AppBundle\Entity\Company;
+use AppBundle\Entity\Product;
 use AppBundle\Entity\User;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class ProductRepository extends AbstractRepository
 {
     const ROOT_ALIAS = 'product';
 
     const FILTER_BY_MANAGER = 'filter_by_manager';
+
+    public function __construct(RegistryInterface $registry)
+    {
+        parent::__construct($registry, Product::class);
+    }
 
     protected function getRootAlias()
     {
