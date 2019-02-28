@@ -11,15 +11,14 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\ParagraphTemplate;
-use AppBundle\Entity\Repository\ParagraphTemplateRepository;
 use AppBundle\Form\Filter\ParagraphTemplateFilterForm;
 use AppBundle\Form\Processor\DefaultFormProcessor;
-use JMS\Serializer\Serializer;
-use Symfony\Component\Routing\Annotation\Route;
+use AppBundle\Form\Processor\ParagraphTemplateFormProcessor;
+use AppBundle\Repository\ParagraphTemplateRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/paragraph-templates")
@@ -95,7 +94,7 @@ class ParagraphTemplateController extends BaseController
      * @Security("is_granted('PARAGRAPH_TEMPLATE_CREATE')")
      * @Template
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, ParagraphTemplateFormProcessor $processor)
     {
         $paragraphTemplate = new ParagraphTemplate();
 
@@ -105,7 +104,7 @@ class ParagraphTemplateController extends BaseController
             $paragraphTemplate->setCompany($company);
         }
 
-        return $this->processForm($request, $paragraphTemplate);
+        return $this->processForm($request, $processor, $paragraphTemplate);
     }
 
     /**
@@ -121,9 +120,9 @@ class ParagraphTemplateController extends BaseController
      * @Security("is_granted('PARAGRAPH_TEMPLATE_EDIT', paragraphTemplate)")
      * @Template
      */
-    public function editAction(Request $request, ParagraphTemplate $paragraphTemplate)
+    public function editAction(Request $request, ParagraphTemplateFormProcessor $processor, ParagraphTemplate $paragraphTemplate)
     {
-        return $this->processForm($request, $paragraphTemplate);
+        return $this->processForm($request, $processor, $paragraphTemplate);
     }
 
     /**
@@ -138,17 +137,14 @@ class ParagraphTemplateController extends BaseController
         return $this->redirectToRoute('paragraph_templates');
     }
 
-    protected function processForm(Request $request, ParagraphTemplate $paragraphTemplate = null)
+    protected function processForm(Request $request, ParagraphTemplateFormProcessor $processor, ParagraphTemplate $paragraphTemplate)
     {
-        /** @var DefaultFormProcessor $processor */
-        $processor = $this->get('paragraph_template_form_processor');
-
         $processor->process($request, $paragraphTemplate);
 
         if ($processor->isValid()) {
             $this->addFlash('success', $processor->isNew() ? 'flash.paragraph_template.created' : 'flash.paragraph_template.updated');
 
-            if ($processor->isRedirectingTo(DefaultFormProcessor::REDIRECT_TO_LIST))
+            if ($processor->isRedirectingTo(ParagraphTemplateFormProcessor::REDIRECT_TO_LIST))
                 return $this->redirectToRoute('paragraph_templates');
 
             return $this->redirectToRoute('paragraph_template_edit', ['id' => $processor->getData()->getId()]);

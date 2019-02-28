@@ -8,12 +8,12 @@
  *
  */
 
-namespace AppBundle\Entity\Repository;
+namespace AppBundle\Repository;
 
-use AppBundle\Entity\Company;
 use AppBundle\Entity\ParagraphTemplate;
 use AppBundle\Entity\User;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class ParagraphTemplateRepository extends AbstractRepository
 {
@@ -21,6 +21,11 @@ class ParagraphTemplateRepository extends AbstractRepository
 
     const FILTER_BY_MANAGER = 'filter_by_manager';
     const FILTER_BY_SALES_AGENT = 'filter_by_sales_manager';
+
+    public function __construct(RegistryInterface $registry)
+    {
+        parent::__construct($registry, ParagraphTemplate::class);
+    }
 
     protected function getRootAlias()
     {
@@ -51,8 +56,7 @@ class ParagraphTemplateRepository extends AbstractRepository
     {
         $qb->leftJoin('company.salesAgents', 'salesAgents')
             ->orWhere('salesAgents = :salesAgent')
-            ->setParameter('salesAgent', $salesAgent->getId());
-        ;
+            ->setParameter('salesAgent', $salesAgent->getId());;
         return $qb;
     }
 

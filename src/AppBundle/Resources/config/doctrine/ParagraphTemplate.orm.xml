@@ -5,7 +5,7 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="AppBundle\Entity\ParagraphTemplate" table="paragraph_template"
-            repository-class="AppBundle\Entity\Repository\ParagraphTemplateRepository">
+            repository-class="AppBundle\Repository\ParagraphTemplateRepository">
 
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
