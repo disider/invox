@@ -12,6 +12,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\PaymentType;
 use AppBundle\Form\Processor\DefaultFormProcessor;
+use AppBundle\Form\Processor\PaymentTypeFormProcessor;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -47,13 +48,13 @@ class PaymentTypeController extends BaseController
      * @Security("is_granted('PAYMENT_TYPE_CREATE')")
      * @Template
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, PaymentTypeFormProcessor $processor)
     {
         $position = $this->getPaymentTypeRepository()->countAll();
 
         $paymentType = PaymentType::createEmpty($position);
 
-        return $this->processForm($request, $paymentType);
+        return $this->processForm($request, $processor, $paymentType);
     }
 
     /**
@@ -61,9 +62,9 @@ class PaymentTypeController extends BaseController
      * @Security("is_granted('PAYMENT_TYPE_EDIT', paymentType)")
      * @Template
      */
-    public function editAction(Request $request, PaymentType $paymentType)
+    public function editAction(Request $request, PaymentTypeFormProcessor $processor, PaymentType $paymentType)
     {
-        return $this->processForm($request, $paymentType);
+        return $this->processForm($request, $processor, $paymentType);
     }
 
     /**
@@ -81,11 +82,8 @@ class PaymentTypeController extends BaseController
         return $this->redirectToRoute('payment_types');
     }
 
-    private function processForm(Request $request, PaymentType $paymentType)
+    private function processForm(Request $request, PaymentTypeFormProcessor $processor, PaymentType $paymentType)
     {
-        /** @var DefaultFormProcessor $processor */
-        $processor = $this->get('payment_type_form_processor');
-
         $processor->process($request, $paymentType);
 
         if ($processor->isValid()) {

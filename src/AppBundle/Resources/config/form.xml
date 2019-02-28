@@ -12,13 +12,6 @@
             <argument type="service" id="security.token_storage"/>
         </service>
 
-        <service id="payment_type_form_processor" class="AppBundle\Form\Processor\DefaultFormProcessor" public="true">
-            <argument>AppBundle\Form\PaymentTypeForm</argument>
-            <argument type="service" id="payment_type_repository"/>
-            <argument type="service" id="form.factory"/>
-            <argument type="service" id="security.token_storage"/>
-        </service>
-
         <service id="petty_cash_note_form_processor" class="AppBundle\Form\Processor\PettyCashNoteFormProcessor" public="true">
             <argument type="service" id="petty_cash_note_repository"/>
             <argument type="service" id="form.factory"/>

@@ -9,11 +9,6 @@
             <argument>AppBundle\Entity\Invite</argument>
         </service>
 
-        <service id="payment_type_repository" class="AppBundle\Entity\Repository\EntityRepository">
-            <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
-            <argument>AppBundle\Entity\PaymentType</argument>
-        </service>
-
         <service id="petty_cash_note_repository" class="AppBundle\Entity\Repository\PettyCashNoteRepository">
             <factory service="doctrine.orm.default_entity_manager" method="getRepository"/>
             <argument>AppBundle\Entity\PettyCashNote</argument>

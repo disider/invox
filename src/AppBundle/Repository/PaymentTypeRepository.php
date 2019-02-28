@@ -10,16 +10,16 @@
 
 namespace AppBundle\Repository;
 
-use AppBundle\Entity\Page;
+use AppBundle\Entity\PaymentType;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-class PageRepository extends AbstractRepository
+class PaymentTypeRepository extends AbstractRepository
 {
-    const ROOT_ALIAS = 'page';
+    const ROOT_ALIAS = 'payment_type';
 
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Page::class);
+        parent::__construct($registry, PaymentType::class);
     }
 
     protected function getRootAlias()
