@@ -8,11 +8,9 @@
  *
  */
 
-namespace AppBundle\Entity\Repository;
+namespace AppBundle\Repository;
 
 use AppBundle\Entity\Company;
-use AppBundle\Entity\User;
-use AppBundle\Model\DocumentType;
 use Doctrine\ORM\QueryBuilder;
 
 class DocumentTemplatePerCompanyRepository extends AbstractRepository
@@ -20,7 +18,6 @@ class DocumentTemplatePerCompanyRepository extends AbstractRepository
     const ROOT_ALIAS = 'template';
 
     const FILTER_BY_COMPANY = 'filter_by_company';
-
 
     protected function getRootAlias()
     {

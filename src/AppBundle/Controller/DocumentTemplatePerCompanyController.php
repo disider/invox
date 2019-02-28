@@ -11,19 +11,16 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Company;
-use AppBundle\Entity\Customer;
 use AppBundle\Entity\Document;
-use AppBundle\Entity\DocumentRow;
 use AppBundle\Entity\DocumentTemplatePerCompany;
-use AppBundle\Entity\Repository\DocumentTemplatePerCompanyRepository;
-use AppBundle\Entity\TaxRate;
 use AppBundle\Form\Processor\DefaultFormProcessor;
-use AppBundle\Model\DocumentType;
+use AppBundle\Form\Processor\DocumentTemplatePerCompanyFormProcessor;
+use AppBundle\Repository\DocumentTemplatePerCompanyRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/companies/{companyId}/document-templates")
@@ -61,9 +58,9 @@ class DocumentTemplatePerCompanyController extends BaseController
      * @ParamConverter("documentTemplate", class="AppBundle:DocumentTemplatePerCompany", options={"id" = "id"})
      * @Template
      */
-    public function editAction(Request $request, DocumentTemplatePerCompany $documentTemplate)
+    public function editAction(Request $request, DocumentTemplatePerCompanyFormProcessor $processor, DocumentTemplatePerCompany $documentTemplate)
     {
-        return $this->processForm($request, $documentTemplate);
+        return $this->processForm($request, $processor, $documentTemplate);
     }
 
     /**
@@ -127,8 +124,7 @@ class DocumentTemplatePerCompanyController extends BaseController
             ];
 
             return $this->render('AppBundle:document_template_per_company:render.html.twig', $params);
-        }
-        catch(\Exception $exc) {
+        } catch (\Exception $exc) {
             return $this->render('AppBundle:document:preview_error.html.twig', ['exception' => $exc]);
         }
     }
@@ -140,12 +136,8 @@ class DocumentTemplatePerCompanyController extends BaseController
         return $documentBuilder->build($document, $section);
     }
 
-
-    private function processForm(Request $request, DocumentTemplatePerCompany $documentTemplate = null)
+    private function processForm(Request $request, DocumentTemplatePerCompanyFormProcessor $processor, DocumentTemplatePerCompany $documentTemplate = null)
     {
-        /** @var DefaultFormProcessor $processor */
-        $processor = $this->get('document_template_per_company_form_processor');
-
         $processor->process($request, $documentTemplate);
 
         if ($processor->isValid()) {
