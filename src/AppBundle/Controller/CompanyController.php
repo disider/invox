@@ -12,18 +12,14 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Invite;
-use AppBundle\Entity\Repository\CompanyRepository;
 use AppBundle\Form\Processor\CompanyFormProcessor;
-use AppBundle\Form\Processor\DefaultAuthenticatedFormProcessor;
-use AppBundle\Form\Processor\DefaultFormProcessor;
 use AppBundle\Form\Processor\InviteFormProcessor;
 use AppBundle\Generator\TokenGenerator;
-use AppBundle\Model\Module;
-use AppBundle\Model\UserInterface;
-use Symfony\Component\Routing\Annotation\Route;
+use AppBundle\Repository\CompanyRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/companies")
@@ -92,7 +88,7 @@ class CompanyController extends BaseController
      */
     public function deleteAction(Company $company)
     {
-        if ($this->isInDemoMode()){
+        if ($this->isInDemoMode()) {
             $this->addFlash('danger', 'demo.action_not_allowed');
         } else {
             $this->getCompanyRepository()->delete($company);
@@ -150,7 +146,7 @@ class CompanyController extends BaseController
      */
     public function accountantAction(Request $request, Company $company)
     {
-        if ($request->getMethod() == 'POST' && $this->isInDemoMode()){
+        if ($request->getMethod() == 'POST' && $this->isInDemoMode()) {
             $this->addFlash('danger', 'demo.action_not_allowed');
             return $this->redirectToRoute('company_accountant', [
                 'id' => $company->getId(),
@@ -166,12 +162,11 @@ class CompanyController extends BaseController
      */
     public function disconnectAccountantAction(Company $company)
     {
-        if(!$company->hasAccountant()) {
+        if (!$company->hasAccountant()) {
             $this->addFlash('danger', 'flash.company.accountant_not_connected');
-        } else if ($this->isInDemoMode()){
+        } else if ($this->isInDemoMode()) {
             $this->addFlash('danger', 'demo.action_not_allowed');
-        }
-        else {
+        } else {
             $company->setAccountant(null);
             $this->save($company);
             $this->addFlash('success', 'flash.company.accountant_disconnected');
@@ -193,7 +188,7 @@ class CompanyController extends BaseController
             if ($processor->isRedirectingTo(CompanyFormProcessor::REDIRECT_TO_LIST)) {
                 $user = $this->getUser();
 
-                if($user->canManageMultipleCompanies()) {
+                if ($user->canManageMultipleCompanies()) {
                     return $this->redirectToRoute('companies');
                 }
 
@@ -223,10 +218,9 @@ class CompanyController extends BaseController
         if ($processor->isValid()) {
             $invite = $processor->getInvite();
 
-            if($processor->hasSentInvite()) {
+            if ($processor->hasSentInvite()) {
                 $this->addFlash('success', 'flash.company.accountant_invited', ['%accountant%' => $invite->getEmail()]);
-            }
-            else {
+            } else {
                 $this->addFlash('info', 'flash.company.accountant_already_invited', ['%accountant%' => $invite->getEmail()]);
             }
 

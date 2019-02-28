@@ -11,7 +11,7 @@
 namespace AppBundle\Entity\Manager;
 
 use AppBundle\Entity\Company;
-use AppBundle\Entity\Repository\CompanyRepository;
+use AppBundle\Repository\CompanyRepository;
 use AppBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;

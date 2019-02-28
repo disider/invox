@@ -26,4 +26,13 @@ class CityRepository extends AbstractRepository
     {
         return self::ROOT_ALIAS;
     }
+
+    public function search($term)
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.name like :term')
+            ->setParameter('term', '%' . $term . '%')
+            ->getQuery()
+            ->execute();
+    }
 }

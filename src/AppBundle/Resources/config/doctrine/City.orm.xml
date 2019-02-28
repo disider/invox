@@ -4,7 +4,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="AppBundle\Entity\City" table="city" repository-class="AppBundle\Entity\Repository\CityRepository">
+    <entity name="AppBundle\Entity\City" table="city" repository-class="AppBundle\Repository\CityRepository">
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
