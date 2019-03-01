@@ -41,8 +41,7 @@ class ImportCountriesCommand extends ContainerAwareCommand
 
         $path = sprintf('%s/../src/AppBundle/DataFixtures/ORM/%s',
             $container->getParameter('kernel.root_dir'),
-            $container->getParameter('kernel.environment'))
-        ;
+            $container->getParameter('kernel.environment'));
 
         $this->importCountryCodes($path, $output);
 
@@ -62,7 +61,7 @@ class ImportCountriesCommand extends ContainerAwareCommand
 
         $codes = [];
 
-        foreach($records['geonames'] as $record) {
+        foreach ($records['geonames'] as $record) {
             $countryCode = $record['countryCode'];
             $codes['country_' . strtolower($countryCode)] = [
                 'code' => $countryCode
@@ -84,7 +83,7 @@ class ImportCountriesCommand extends ContainerAwareCommand
 
         $translations = [];
 
-        foreach($records['geonames'] as $record) {
+        foreach ($records['geonames'] as $record) {
             $countryName = $record['countryName'];
             $code = strtolower($record['countryCode']);
             $translations[sprintf('country_%s_%s', $code, $locale)] = [

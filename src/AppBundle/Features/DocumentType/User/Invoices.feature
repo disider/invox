@@ -38,8 +38,8 @@ Feature: User lists his invoices
       | I01      | Product 1 | 100       |
     When I visit "/invoices"
     Then I should see the "document" rows:
-      | type    | ref    |
-      | Invoice | I01    |
+      | type    | ref             |
+      | Invoice | I01             |
       | Invoice | I02/%date('y')% |
     And I should see the "document.0" row details:
       | direction | Incoming |

@@ -10,13 +10,13 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Repository\DocumentRepository;
 use AppBundle\Form\Filter\DocumentFilterForm;
 use AppBundle\Model\DocumentType;
-use Symfony\Component\Routing\Annotation\Route;
+use AppBundle\Repository\DocumentRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 class DocumentTypeController extends BaseController
 {
@@ -91,11 +91,9 @@ class DocumentTypeController extends BaseController
 
         if ($user->isSuperadmin()) {
             // Do not filter...
-        }
-        elseif ($this->isCurrentAccountant()) {
+        } elseif ($this->isCurrentAccountant()) {
             $filters[DocumentRepository::FILTER_BY_ACCOUNTANT] = $user;
-        }
-        else {
+        } else {
             $filters[DocumentRepository::FILTER_BY_MANAGER] = $user;
         }
 

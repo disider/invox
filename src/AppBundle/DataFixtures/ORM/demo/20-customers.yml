@@ -1,57 +1,57 @@
 AppBundle\Entity\Customer:
-    customer_google:
-        name: 'Google, Inc.'
-        address: '1600 Amphitheatre Parkway'
-        city: 'Mountain View'
-        country: '@country_us'
-        email: google@fake.com
-        faxNumber: ''
-        phoneNumber: '555111222'
-        fiscalCode: null
-        referent: 'Eric Schmidt'
-        vatNumber: '12312313212'
-        zipCode: '94043'
-        company: '@acme'
-        language: en
-    customer_facebook:
-        name: 'Facebook, Inc.'
-        address: '1 Hacker Way'
-        city: 'Menlo Park'
-        country: '@country_us'
-        email: facebook@fake.com
-        faxNumber: ''
-        phoneNumber: '555111222'
-        fiscalCode: null
-        referent: 'Mark Zuckerberg'
-        vatNumber: '12312313212'
-        zipCode: '94025'
-        company: '@acme'
-        language: en
-    customer_apple:
-        name: 'Apple Computer, Inc.'
-        address: '1 Infinite Loop'
-        city: Cupertino
-        country: '@country_us'
-        email: apple@fake.com
-        faxNumber: ''
-        phoneNumber: '555111222'
-        fiscalCode: null
-        referent: 'Tim Cook'
-        vatNumber: '12312313212'
-        zipCode: '94014'
-        company: '@acme'
-        language: en
-    customer_microsoft:
-        name: 'Microsoft, Inc.'
-        address: 'Microsoft Corporation One Microsoft Way '
-        city: Redmond
-        country: '@country_us'
-        email: microsoft@fake.com
-        faxNumber: ''
-        phoneNumber: '555111222'
-        fiscalCode: null
-        referent: 'Satya Nadella'
-        vatNumber: '12312313212'
-        zipCode: '98000'
-        company: '@acme'
-        language: en
+  customer_google:
+    name: 'Google, Inc.'
+    address: '1600 Amphitheatre Parkway'
+    city: 'Mountain View'
+    country: '@country_us'
+    email: google@fake.com
+    faxNumber: ''
+    phoneNumber: '555111222'
+    fiscalCode: null
+    referent: 'Eric Schmidt'
+    vatNumber: '12312313212'
+    zipCode: '94043'
+    company: '@acme'
+    language: en
+  customer_facebook:
+    name: 'Facebook, Inc.'
+    address: '1 Hacker Way'
+    city: 'Menlo Park'
+    country: '@country_us'
+    email: facebook@fake.com
+    faxNumber: ''
+    phoneNumber: '555111222'
+    fiscalCode: null
+    referent: 'Mark Zuckerberg'
+    vatNumber: '12312313212'
+    zipCode: '94025'
+    company: '@acme'
+    language: en
+  customer_apple:
+    name: 'Apple Computer, Inc.'
+    address: '1 Infinite Loop'
+    city: Cupertino
+    country: '@country_us'
+    email: apple@fake.com
+    faxNumber: ''
+    phoneNumber: '555111222'
+    fiscalCode: null
+    referent: 'Tim Cook'
+    vatNumber: '12312313212'
+    zipCode: '94014'
+    company: '@acme'
+    language: en
+  customer_microsoft:
+    name: 'Microsoft, Inc.'
+    address: 'Microsoft Corporation One Microsoft Way '
+    city: Redmond
+    country: '@country_us'
+    email: microsoft@fake.com
+    faxNumber: ''
+    phoneNumber: '555111222'
+    fiscalCode: null
+    referent: 'Satya Nadella'
+    vatNumber: '12312313212'
+    zipCode: '98000'
+    company: '@acme'
+    language: en

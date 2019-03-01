@@ -1,12 +1,10 @@
 <?php
 
-
 namespace AppBundle\Helper;
-
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class ParameterHelper
+class ParameterHelper implements ParameterHelperInterface
 {
     /** @var ContainerInterface */
     private $container;
@@ -18,6 +16,6 @@ class ParameterHelper
 
     public function isInDemoMode()
     {
-        return $this->container->getParameter("enable_demo_mode");
+        return $this->container->getParameter('enable_demo_mode');
     }
 }

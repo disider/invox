@@ -95,5 +95,4 @@ class Country
         $this->provinces->add($province);
     }
 
-
 }

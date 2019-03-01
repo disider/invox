@@ -15,7 +15,6 @@ use AppBundle\Repository\AbstractRepositoryInterface;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
@@ -40,7 +39,7 @@ abstract class AbstractEntityFormProcessor extends AbstractFormProcessor
 
         $form->handleRequest($request);
 
-        if($this->isValid()) {
+        if ($this->isValid()) {
             $this->data = $form->getData();
 
             $this->repository->save($this->data);

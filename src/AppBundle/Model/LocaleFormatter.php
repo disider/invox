@@ -10,18 +10,18 @@
 
 namespace AppBundle\Model;
 
-use Symfony\Component\Translation\Translator;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class LocaleFormatter
 {
-
-    private $locale;
     /**
-     * @var Translator
+     * @var TranslatorInterface
      */
     private $translator;
 
-    public function __construct(Translator $translator, $locale)
+    private $locale;
+
+    public function __construct(TranslatorInterface $translator, $locale)
     {
         $this->locale = $locale;
         $this->translator = $translator;

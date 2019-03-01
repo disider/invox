@@ -1,39 +1,39 @@
 AppBundle\Entity\Document:
-    Order1:
-        ref: '001'
-        company: '@acme'
-        notes: ''
-        discount: !!float 0
-        language: en
-        linkedCustomer: '@customer_facebook'
-        customerName: 'Facebook, Inc.'
-        customerVatNumber: '12345678901'
-        customerAddress: '1 Hacker Way'
-        customerPhoneNumber: '555111222'
-        customerFaxNumber: ''
-        customerCity: 'Menlo Park'
-        customerZipCode: '94025'
-        documentTemplate: '@acme_template'
-        customerCountry: '@country_us'
-        type: order
-        year: '2015'
-        issuedAt: '2015-05-01'
-    Order2:
-        ref: '002'
-        company: '@acme'
-        notes: ''
-        discount: !!float 10
-        language: en
-        linkedCustomer: '@customer_apple'
-        customerName: 'Apple Computer, Inc.'
-        customerVatNumber: '12345678901'
-        customerAddress: '1 Infinite Loop'
-        customerPhoneNumber: '555111222'
-        customerFaxNumber: ''
-        customerCity: Cupertino
-        customerZipCode: '94025'
-        documentTemplate: '@acme_template'
-        customerCountry: '@country_us'
-        type: order
-        year: '2016'
-        issuedAt: '2015-9-20'
+  Order1:
+    ref: '001'
+    company: '@acme'
+    notes: ''
+    discount: !!float 0
+    language: en
+    linkedCustomer: '@customer_facebook'
+    customerName: 'Facebook, Inc.'
+    customerVatNumber: '12345678901'
+    customerAddress: '1 Hacker Way'
+    customerPhoneNumber: '555111222'
+    customerFaxNumber: ''
+    customerCity: 'Menlo Park'
+    customerZipCode: '94025'
+    documentTemplate: '@acme_template'
+    customerCountry: '@country_us'
+    type: order
+    year: '2015'
+    issuedAt: '2015-05-01'
+  Order2:
+    ref: '002'
+    company: '@acme'
+    notes: ''
+    discount: !!float 10
+    language: en
+    linkedCustomer: '@customer_apple'
+    customerName: 'Apple Computer, Inc.'
+    customerVatNumber: '12345678901'
+    customerAddress: '1 Infinite Loop'
+    customerPhoneNumber: '555111222'
+    customerFaxNumber: ''
+    customerCity: Cupertino
+    customerZipCode: '94025'
+    documentTemplate: '@acme_template'
+    customerCountry: '@country_us'
+    type: order
+    year: '2016'
+    issuedAt: '2015-9-20'

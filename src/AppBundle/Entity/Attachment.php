@@ -10,9 +10,7 @@
 
 namespace AppBundle\Entity;
 
-use AppBundle\Validator\Constraints as AppAssert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Validator\Constraints as Assert;
 
 class Attachment
 {
@@ -96,7 +94,7 @@ class Attachment
 
     public function setDeleted($deleted)
     {
-        if($deleted) {
+        if ($deleted) {
             $this->deleted = $deleted;
             $this->fileName = null;
             $this->getUploadable()->removeAttachment($this);
@@ -139,7 +137,7 @@ class Attachment
 
         $newFileUrl = sha1(uniqid(mt_rand(), true)) . '.' . $ext;
 
-        copy($this->getUploadRootDir(). '/' . $this->fileUrl, $this->getUploadRootDir() . '/' . $newFileUrl);
+        copy($this->getUploadRootDir() . '/' . $this->fileUrl, $this->getUploadRootDir() . '/' . $newFileUrl);
 
         $this->fileUrl = $newFileUrl;
     }

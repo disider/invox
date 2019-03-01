@@ -23,15 +23,15 @@ class ValidLinkedDocumentsValidator extends ConstraintValidator
      */
     public function validate($document, Constraint $constraint)
     {
-        if($document->hasLinkedOrder()) {
+        if ($document->hasLinkedOrder()) {
             $this->validateLinkedDocument($document, $document->getLinkedOrder(), DocumentType::ORDER, 'linkedOrder', 'invalid_order');
         }
 
-        if($document->hasLinkedCreditNote()) {
+        if ($document->hasLinkedCreditNote()) {
             $this->validateLinkedDocument($document, $document->getLinkedCreditNote(), DocumentType::CREDIT_NOTE, 'linkedCreditNote', 'invalid_credit_note');
         }
 
-        if($document->hasLinkedInvoice()) {
+        if ($document->hasLinkedInvoice()) {
             $this->validateLinkedDocument($document, $document->getLinkedInvoice(), DocumentType::INVOICE, 'linkedInvoice', 'invalid_invoice');
         }
     }

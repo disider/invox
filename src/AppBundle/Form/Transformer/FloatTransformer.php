@@ -31,7 +31,7 @@ class FloatTransformer implements DataTransformerInterface
      */
     public function transform($value)
     {
-        if($value === null)
+        if ($value === null)
             return null;
 
         return $this->localeFormatter->format($value);
@@ -44,7 +44,7 @@ class FloatTransformer implements DataTransformerInterface
      */
     public function reverseTransform($value)
     {
-        if(empty($value))
+        if (empty($value))
             return null;
 
         $defaults = $this->localeFormatter->getDefaults();
@@ -55,7 +55,7 @@ class FloatTransformer implements DataTransformerInterface
         $value = str_replace($thousandSep, '', $value);
         $value = str_replace('#', '.', $value);
 
-        if(!is_numeric($value)) {
+        if (!is_numeric($value)) {
             throw new TransformationFailedException('Cannot convert value to number');
         }
 

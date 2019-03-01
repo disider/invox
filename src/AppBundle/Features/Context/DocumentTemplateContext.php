@@ -74,7 +74,7 @@ class DocumentTemplateContext extends BaseMinkContext
 
         $path = __DIR__ . $filename;
 
-        if(is_file($path)) {
+        if (is_file($path)) {
             return file_get_contents($path);
         }
 

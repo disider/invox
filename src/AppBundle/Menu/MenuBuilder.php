@@ -44,8 +44,7 @@ class MenuBuilder implements ContainerAwareInterface
 
                 if ($this->canShowSelectedCompany()) {
                     $this->addCurrentCompanyMenu($menu);
-                }
-                else {
+                } else {
                     if ($user->isOwner() && $user->hasOwnedCompanies()) {
                         $this->addCompanyMenu($menu, $this->getCurrentCompany(), 'company_edit');
                     }
@@ -64,8 +63,7 @@ class MenuBuilder implements ContainerAwareInterface
                 $welcome->setExtra('safe_label', true);
 
                 $menu->addChild($this->translate('menu.logout'), ['route' => 'logout']);
-            }
-            else {
+            } else {
                 if ($this->container->getParameter('enable_registration')) {
                     $menu->addChild($this->translate('menu.register'), ['route' => 'register']);
                 }
@@ -257,8 +255,7 @@ class MenuBuilder implements ContainerAwareInterface
                     return $this->addChild($menu, $route, $title, $isCurrent, $extraParams);
                 }
             }
-        }
-        elseif ($role == null || $this->isGranted($role, $roleParams)) {
+        } elseif ($role == null || $this->isGranted($role, $roleParams)) {
             return $this->addChild($menu, $route, $title, $isCurrent, $extraParams);
         }
 

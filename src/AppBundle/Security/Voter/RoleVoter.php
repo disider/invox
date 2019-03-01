@@ -237,7 +237,8 @@ class RoleVoter extends Voter
         return $this->companyManager->getCurrent();
     }
 
-    private function isSalesAgentInCurrentCompany(User $user) {
+    private function isSalesAgentInCurrentCompany(User $user)
+    {
         return $this->getCurrentCompany()->hasSalesAgent($user);
     }
 

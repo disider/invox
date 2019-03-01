@@ -11,7 +11,6 @@
 namespace AppBundle\Validator\Constraints;
 
 use AppBundle\Entity\Invite;
-use AppBundle\Entity\PettyCashNote;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -35,7 +34,7 @@ class ValidInviteValidator extends ConstraintValidator
     public function validate($invoicePerNote, Constraint $constraint)
     {
         $user = $this->tokenStorage->getToken()->getUser();
-        
+
         if ($invoicePerNote->getEmail() == $user->getEmail()) {
             $this->context->buildViolation('error.cannot_invite_self')
                 ->atPath('email')

@@ -1,33 +1,33 @@
 AppBundle\Entity\Country:
-    austria:
-        code: AT
-    italy:
-        code: IT
-    uk:
-        code: UK
+  austria:
+    code: AT
+  italy:
+    code: IT
+  uk:
+    code: UK
 
 AppBundle\Entity\CountryTranslation:
-    austria_it:
-        translatable: '@austria'
-        locale: 'it'
-        name: Austria
-    austria_en:
-        translatable: '@austria'
-        locale: 'en'
-        name: Austria
-    italy_it:
-        translatable: '@italy'
-        locale: 'it'
-        name: Italia
-    italy_en:
-        translatable: '@italy'
-        locale: 'en'
-        name: Italy
-    uk_it:
-        translatable: '@uk'
-        locale: 'it'
-        name: Regno Unito
-    uk_en:
-        translatable: '@uk'
-        locale: 'en'
-        name: United Kingdom
+  austria_it:
+    translatable: '@austria'
+    locale: 'it'
+    name: Austria
+  austria_en:
+    translatable: '@austria'
+    locale: 'en'
+    name: Austria
+  italy_it:
+    translatable: '@italy'
+    locale: 'it'
+    name: Italia
+  italy_en:
+    translatable: '@italy'
+    locale: 'en'
+    name: Italy
+  uk_it:
+    translatable: '@uk'
+    locale: 'it'
+    name: Regno Unito
+  uk_en:
+    translatable: '@uk'
+    locale: 'en'
+    name: United Kingdom

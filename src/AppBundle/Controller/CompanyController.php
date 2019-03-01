@@ -144,7 +144,7 @@ class CompanyController extends BaseController
      * @Route("/{id}/accountant", name="company_accountant")
      * @Template
      */
-    public function accountantAction(Request $request, Company $company)
+    public function accountantAction(Request $request, InviteFormProcessor $processor, Company $company)
     {
         if ($request->getMethod() == 'POST' && $this->isInDemoMode()) {
             $this->addFlash('danger', 'demo.action_not_allowed');
@@ -153,7 +153,7 @@ class CompanyController extends BaseController
             ]);
         }
 
-        return $this->processInviteForm($request, $company);
+        return $this->processInviteForm($request, $processor, $company);
     }
 
     /**
@@ -207,11 +207,8 @@ class CompanyController extends BaseController
         ];
     }
 
-    private function processInviteForm(Request $request, Company $company)
+    private function processInviteForm(Request $request, InviteFormProcessor $processor, Company $company)
     {
-        /** @var InviteFormProcessor $processor */
-        $processor = $this->get('invite_form_processor');
-
         $invite = Invite::create($company, $this->getUser(), TokenGenerator::generateToken());
         $processor->process($request, $invite);
 

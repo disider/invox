@@ -1,8 +1,8 @@
 AppBundle\Entity\WarehouseRecord:
-    warehouse_record_1:
-        product: '@warehouse_product_1'
-        loadQuantity: 100
-        unloadQuantity: 10
-        purchasePrice: 10
-        sellPrice: 20
-        date: '2015-01-01'
+  warehouse_record_1:
+    product: '@warehouse_product_1'
+    loadQuantity: 100
+    unloadQuantity: 10
+    purchasePrice: 10
+    sellPrice: 20
+    date: '2015-01-01'

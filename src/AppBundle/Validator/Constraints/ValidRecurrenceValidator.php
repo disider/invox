@@ -10,7 +10,6 @@
 
 namespace AppBundle\Validator\Constraints;
 
-use AppBundle\Entity\Document;
 use AppBundle\Entity\Recurrence;
 use AppBundle\Repository\CustomerRepository;
 use Symfony\Component\Validator\Constraint;

@@ -16,7 +16,6 @@ use AppBundle\Entity\User;
 use AppBundle\Model\DocumentType;
 use AppBundle\Model\Module;
 use Behat\Gherkin\Node\TableNode;
-use Doctrine\Common\Collections\ArrayCollection;
 
 class CompanyContext extends BaseMinkContext
 {

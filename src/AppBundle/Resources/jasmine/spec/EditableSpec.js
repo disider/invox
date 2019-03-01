@@ -49,7 +49,7 @@ describe('Editable', function () {
         expect(dom).toContainHtml('<span class="fa fa-close editable-cancel" />');
     });
 
-    it ('input toggle is shown', function () {
+    it('input toggle is shown', function () {
         expect($row).not.toHaveClass('editing');
         expect($toggle).toEqual('button');
         expect($toggle).not.toHaveClass('hidden');
@@ -86,7 +86,7 @@ describe('Editable', function () {
         expect($controls).not.toHaveClass('hidden');
     });
 
-    it ('when toggle is clicked, title is shown and focused', function () {
+    it('when toggle is clicked, title is shown and focused', function () {
         $toggle.trigger('click');
 
         expect($row.find('.editable-wrapper')).toHaveClass('editing');
@@ -95,7 +95,7 @@ describe('Editable', function () {
         expect($input).toBeFocused();
     });
 
-    it ('when toggle is clicked, shown event is triggerd', function () {
+    it('when toggle is clicked, shown event is triggerd', function () {
         $toggle.trigger('click');
 
         expect($row.find('.editable-wrapper')).toHaveClass('editing');
@@ -104,7 +104,7 @@ describe('Editable', function () {
         expect($input).toBeFocused();
     });
 
-    it ('when title editing is canceled, restore toggle', function () {
+    it('when title editing is canceled, restore toggle', function () {
         var $cancelBtn = $controls.find('.editable-cancel');
 
         var originalTitle = $placeholder.val();
@@ -119,13 +119,13 @@ describe('Editable', function () {
         expectTitle($input, $placeholder, originalTitle);
     });
 
-    it ('when editing title and ESC is pressed, restore toggle', function () {
+    it('when editing title and ESC is pressed, restore toggle', function () {
         var originalTitle = $placeholder.val();
 
         $toggle.trigger('click');
         $input.val('new title');
 
-        var e = $.Event('keydown', { which: 27});
+        var e = $.Event('keydown', {which: 27});
         $input.trigger(e);
 
         expect($toggle).not.toHaveClass('hidden');
@@ -134,7 +134,7 @@ describe('Editable', function () {
         expectTitle($input, $placeholder, originalTitle);
     });
 
-    it ('when title is saved, update toggle and keep text', function () {
+    it('when title is saved, update toggle and keep text', function () {
         var $saveBtn = $controls.find('.editable-save');
 
         var newTitle = 'new title';
@@ -149,13 +149,13 @@ describe('Editable', function () {
         expectTitle($input, $placeholder, newTitle);
     });
 
-    it ('when editing title and ENTER is pressed, update toggle and keep text', function () {
+    it('when editing title and ENTER is pressed, update toggle and keep text', function () {
         var newTitle = 'new title';
 
         $toggle.trigger('click');
         $input.val(newTitle);
 
-        var e = $.Event('keydown', { which: 13});
+        var e = $.Event('keydown', {which: 13});
         $input.trigger(e);
 
         expect($toggle).not.toHaveClass('hidden');
@@ -164,13 +164,13 @@ describe('Editable', function () {
         expectTitle($input, $placeholder, newTitle);
     });
 
-    it ('when key is pressed, key pressed event is triggered', function () {
+    it('when key is pressed, key pressed event is triggered', function () {
         var triggered = false;
-        dom.on('editable.keyPressed', function() {
+        dom.on('editable.keyPressed', function () {
             triggered = true;
         });
 
-        $input.trigger('keydown', { which: 13});
+        $input.trigger('keydown', {which: 13});
 
         expect(triggered).toBeTruthy();
     });
@@ -242,7 +242,7 @@ describe('Editable', function () {
         expect($input).toHaveValue('12345678');
     });
 
-    describe('with two items', function() {
+    describe('with two items', function () {
         var $firstRow;
         var $secondRow;
 
@@ -255,7 +255,7 @@ describe('Editable', function () {
         var $firstToggle;
         var $secondToggle;
 
-        beforeEach(function() {
+        beforeEach(function () {
             $firstRow = dom.find('li:nth-child(1)');
             $secondRow = dom.find('li:nth-child(2)');
 
@@ -269,7 +269,7 @@ describe('Editable', function () {
             $secondToggle = $secondRow.find('.editable-toggle');
         });
 
-        it ('when editing a title, and focus is lost, first toggle is restored', function () {
+        it('when editing a title, and focus is lost, first toggle is restored', function () {
             $firstToggle.trigger('click');
             $secondToggle.trigger('click');
 
@@ -277,9 +277,9 @@ describe('Editable', function () {
             expect($secondActions).not.toHaveClass('hidden');
         });
 
-        it ('when editing, trigger showingControls event', function () {
+        it('when editing, trigger showingControls event', function () {
             var triggered = false;
-            $firstRow.on('editable.showingControls', function() {
+            $firstRow.on('editable.showingControls', function () {
                 triggered = true;
             });
 
@@ -288,9 +288,9 @@ describe('Editable', function () {
             expect(triggered).toBeTruthy();
         });
 
-        it ('when editing an empty title, and focus is lost, keep text and trigger input_changed event', function () {
+        it('when editing an empty title, and focus is lost, keep text and trigger input_changed event', function () {
             var triggered = false;
-            $firstRow.on('editable.inputChanged', function() {
+            $firstRow.on('editable.inputChanged', function () {
                 triggered = true;
             });
 
@@ -310,9 +310,9 @@ describe('Editable', function () {
             expect(triggered).toBeTruthy();
         });
 
-        it ('when editing an empty title with an empty title, and focus is lost, do not trigger input_changed event', function () {
+        it('when editing an empty title with an empty title, and focus is lost, do not trigger input_changed event', function () {
             var triggered = false;
-            $firstRow.on('editable.inputChanged', function() {
+            $firstRow.on('editable.inputChanged', function () {
                 triggered = true;
             });
 
@@ -326,9 +326,9 @@ describe('Editable', function () {
             expect(triggered).toBeFalsy();
         });
 
-        it ('focus_lost event is triggered', function () {
+        it('focus_lost event is triggered', function () {
             var triggered = false;
-            dom.on('editable.focusLost', function() {
+            dom.on('editable.focusLost', function () {
                 triggered = true;
             });
 
@@ -400,7 +400,7 @@ describe('Editable', function () {
 
         $toggle.trigger('click');
 
-        var left = ($wrapper.width() - $controls.width())/2;
+        var left = ($wrapper.width() - $controls.width()) / 2;
         var top = -($controls.height() + 3);
 
         expect($wrapper).toHaveCss({'position': 'relative'});

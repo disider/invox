@@ -11,8 +11,10 @@
         {% set pettyCashNote = invoicePerNote.note %}
         <tr class="table-row">
             <td>
-                <div class="col-xs-2"><a href="{{ path('petty_cash_note_edit', { 'id': pettyCashNote.id}) }}">{{ pettyCashNote.ref }}</a></div>
-                <div class="col-xs-2">{{ pettyCashNote.recordedAt|date('d/m/Y')}}</div>
+                <div class="col-xs-2"><a
+                            href="{{ path('petty_cash_note_edit', { 'id': pettyCashNote.id}) }}">{{ pettyCashNote.ref }}</a>
+                </div>
+                <div class="col-xs-2">{{ pettyCashNote.recordedAt|date('d/m/Y') }}</div>
                 <div class="col-xs-5">
                     {% if pettyCashNote.isIncome %}
                         {{ pettyCashNote.accountTo }}

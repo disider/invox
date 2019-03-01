@@ -14,11 +14,13 @@ class MigrationVersions
 {
     protected $version;
 
-    public function getVersion() {
+    public function getVersion()
+    {
         return $this->version;
     }
 
-    public function setVersion($version) {
+    public function setVersion($version)
+    {
         $this->version = $version;
     }
 } 

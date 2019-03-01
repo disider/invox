@@ -26,7 +26,7 @@
         <field name="companyZipCode" column="company_zip_code" type="string" length="10" nullable="true"/>
         <field name="companyCity" column="company_city" type="string" length="255" nullable="true"/>
         <field name="companyProvince" column="company_province" type="string" length="5" nullable="true"/>
-        <field name="companyAddressNotes" column="company_address_notes" type="text" nullable="true" />
+        <field name="companyAddressNotes" column="company_address_notes" type="text" nullable="true"/>
         <field name="companyLogoUrl" column="company_logo_url" type="string" length="255" nullable="true"/>
 
         <field name="customerName" column="customer_name" type="string" length="255" nullable="true"/>
@@ -47,7 +47,7 @@
         <field name="taxes" column="taxes" type="decimal" precision="16" scale="2"/>
         <field name="grossTotal" column="gross_total" type="decimal" precision="16" scale="2"/>
         <field name="discount" column="discount" type="decimal" precision="16" scale="2"/>
-        <field name="discountPercent" column="discount_percent" type="boolean" />
+        <field name="discountPercent" column="discount_percent" type="boolean"/>
         <field name="rounding" column="rounding" type="decimal" precision="16" scale="2"/>
         <field name="notes" column="notes" type="text" nullable="true"/>
         <field name="showTotals" column="show_totals" type="string" length="32"/>

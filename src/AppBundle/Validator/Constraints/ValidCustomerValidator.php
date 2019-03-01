@@ -37,18 +37,17 @@ class ValidCustomerValidator extends ConstraintValidator
         $customerName = $document->getCustomerName();
 
         if (!($document->hasLinkedCustomer())) {
-            if(!trim($customerName)) {
+            if (!trim($customerName)) {
                 $this->context->buildViolation($constraint->emptyNameMessage)
                     ->atPath('customerName')
                     ->addViolation();
             }
 
-            if(!trim($vatNumber)) {
+            if (!trim($vatNumber)) {
                 $this->context->buildViolation($constraint->emptyVatNumberMessage)
                     ->atPath('customerVatNumber')
                     ->addViolation();
-            }
-            else if(!preg_match('/[0-9]{11}/', $vatNumber)) {
+            } else if (!preg_match('/[0-9]{11}/', $vatNumber)) {
                 $this->context->buildViolation($constraint->invalidVatNumberMessage)
                     ->atPath('customerVatNumber')
                     ->addViolation();

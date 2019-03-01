@@ -35,8 +35,8 @@ class ProductContext extends BaseMinkContext
             );
 
             $taxRateAmount = $this->getFloatValue($values, 'taxRate');
-            
-            if($taxRateAmount) {
+
+            if ($taxRateAmount) {
                 $taxRate = $this->getTaxRateRepository()->findOneByAmount($taxRateAmount);
 
                 if (!$taxRate) {

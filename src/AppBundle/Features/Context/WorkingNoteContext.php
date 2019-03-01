@@ -75,5 +75,4 @@ class WorkingNoteContext extends BaseMinkContext
         return $paragraph;
     }
 
-
 }

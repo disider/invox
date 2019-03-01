@@ -14,7 +14,6 @@ use AppBundle\Entity\Service;
 use AppBundle\Entity\User;
 use AppBundle\Model\Module;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class ServiceVoter extends BaseVoter
 {
@@ -24,8 +23,8 @@ class ServiceVoter extends BaseVoter
     protected function supports($attribute, $subject)
     {
         return $subject instanceof Service && in_array($attribute, [
-            self::SERVICE_DELETE,
-            self::SERVICE_EDIT,
+                self::SERVICE_DELETE,
+                self::SERVICE_EDIT,
             ]);
     }
 

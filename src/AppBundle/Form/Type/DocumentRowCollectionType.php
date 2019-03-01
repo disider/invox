@@ -29,10 +29,10 @@ class DocumentRowCollectionType extends LocalizedType
             'prototype' => true,
             'prototype_data' => new DocumentRow(),
             'delete_empty' => true,
-            'attr'         => [
+            'attr' => [
                 'class' => 'collection',
             ],
-            'entry_options'=> [
+            'entry_options' => [
                 'label' => false,
             ]
         ]);

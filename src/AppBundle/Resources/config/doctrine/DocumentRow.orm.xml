@@ -16,7 +16,7 @@
         <field name="unitPrice" column="unit_price" type="decimal" precision="16" scale="2"/>
         <field name="quantity" column="quantity" type="decimal" precision="16" scale="2"/>
         <field name="discount" column="discount" type="decimal" precision="16" scale="2"/>
-        <field name="discountPercent" column="discount_percent" type="boolean" />
+        <field name="discountPercent" column="discount_percent" type="boolean"/>
         <field name="netCost" column="net_cost" type="decimal" precision="16" scale="2"/>
         <field name="taxes" column="taxes" type="decimal" precision="16" scale="2"/>
         <field name="grossCost" column="gross_cost" type="decimal" precision="16" scale="2"/>

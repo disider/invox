@@ -1,5 +1,5 @@
 AppBundle\Entity\WorkingNote:
-    working_note_{1..10}:
-        company: '@acme'
-        title: WorkingNote<current()>
-        code: W0<current()>
+  working_note_{1..10}:
+    company: '@acme'
+    title: WorkingNote<current()>
+    code: W0<current()>

@@ -13,8 +13,8 @@ namespace AppBundle\Entity;
 use AppBundle\Validator\Constraints as CustomAssert;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/** 
- * @CustomAssert\ValidInvite 
+/**
+ * @CustomAssert\ValidInvite
  */
 class Invite
 {
@@ -92,7 +92,7 @@ class Invite
     public function setReceiver(User $receiver = null)
     {
         $this->receiver = $receiver;
-        if($receiver) {
+        if ($receiver) {
             $receiver->addReceivedInvite($this);
         }
     }
@@ -121,6 +121,5 @@ class Invite
     {
         return $this->email;
     }
-
 
 }

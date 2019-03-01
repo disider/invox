@@ -16,7 +16,6 @@ use AppBundle\Form\Type\DocumentLinkType;
 use AppBundle\Form\Type\EntityTextType;
 use AppBundle\Form\Type\ParagraphCollectionType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;

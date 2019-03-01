@@ -11,14 +11,13 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\PettyCashNote;
+use AppBundle\Form\Filter\PettyCashNoteFilterForm;
 use AppBundle\Form\Processor\PettyCashNoteFormProcessor;
 use AppBundle\Repository\PettyCashNoteRepository;
-use AppBundle\Form\Filter\PettyCashNoteFilterForm;
-use AppBundle\Form\Processor\DefaultFormProcessor;
-use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/petty-cash-notes")
@@ -41,7 +40,7 @@ class PettyCashNoteController extends BaseController
 
         if ($user->isSuperadmin()) {
             // Do not filter...
-        } elseif($this->isCurrentAccountant()) {
+        } elseif ($this->isCurrentAccountant()) {
             $filters[PettyCashNoteRepository::FILTER_BY_ACCOUNTANT] = $user;
         } else {
             $filters[PettyCashNoteRepository::FILTER_BY_MANAGER] = $user;
@@ -51,9 +50,9 @@ class PettyCashNoteController extends BaseController
         $query = $this->getPettyCashNoteRepository()->findAllQuery($filters, $page, $pageSize);
 
         $filterForm = $this->buildFilterForm($request, $query, PettyCashNoteFilterForm::class);
-        
+
         $pagination = $this->paginate($query, $page, $pageSize, 'note.recordedAt', 'desc');
-        
+
         $totalAmount = $this->getPettyCashNoteRepository()->getTotalAmount($query);
 
         return [
@@ -70,7 +69,7 @@ class PettyCashNoteController extends BaseController
      */
     public function createAction(Request $request, PettyCashNoteFormProcessor $processor)
     {
-        if(!$this->canManageCurrentCompany()) {
+        if (!$this->canManageCurrentCompany()) {
             throw $this->createAccessDeniedException('Cannot manage petty cash for ' . $this->getCurrentCompany());
         }
 
@@ -79,7 +78,6 @@ class PettyCashNoteController extends BaseController
         $ref = $this->getCurrentCompany()
             ? $protocolGenerator->generate('AppBundle:PettyCashNote', $this->getCurrentCompany(), date('Y'))
             : 1;
-
 
         $pettyCashNote = PettyCashNote::createEmpty($ref, $this->getCurrentCompany());
 

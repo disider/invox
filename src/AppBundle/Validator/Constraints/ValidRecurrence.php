@@ -23,10 +23,4 @@ class ValidRecurrence extends Constraint
     {
         return self::CLASS_CONSTRAINT;
     }
-
-    public function validatedBy()
-    {
-        return 'valid_recurrence';
-    }
-
 }

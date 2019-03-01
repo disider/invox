@@ -11,12 +11,11 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Page;
-use AppBundle\Form\Processor\DefaultFormProcessor;
 use AppBundle\Form\Processor\PageFormProcessor;
-use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Security("is_granted('ROLE_SUPER_ADMIN')")

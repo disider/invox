@@ -14,7 +14,6 @@ use AppBundle\Entity\Product;
 use AppBundle\Entity\WarehouseRecord;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Doctrine\ORM\Event\PostFlushEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
 
@@ -37,16 +36,16 @@ class ProductListener implements EventSubscriber
             /** @var WarehouseRecord $object */
 
             $object->getProduct()->updateStock($object->getStockBalance());
-        }
-        else if($object instanceof Product) {
+        } else if ($object instanceof Product) {
             $object->setCurrentStock($object->getInitialStock());
         }
     }
 
-    public function preUpdate(PreUpdateEventArgs $args) {
+    public function preUpdate(PreUpdateEventArgs $args)
+    {
         $object = $args->getObject();
 
-        if(!$object instanceof Product) {
+        if (!$object instanceof Product) {
             return;
         }
 
@@ -56,7 +55,7 @@ class ProductListener implements EventSubscriber
 
             $object->setCurrentStock($object->getCurrentStock() + $newStock - $oldStock);
         }
-        
+
         // We are doing a update, so we must force Doctrine to update the
         // changeset in case we changed something above
         $em = $args->getEntityManager();

@@ -1,10 +1,11 @@
 {% extends '::two-columns.html.twig' %}
 
 {% block main_content %}
-<h1>{{ 'document_template.preview'|trans }}</h1>
+    <h1>{{ 'document_template.preview'|trans }}</h1>
 
     <div class="preview-container">
-        <iframe class="preview" src="{{ path('document_template_per_company_render', {'companyId': documentTemplate.company.id, 'id': documentTemplate.id}, true) }}"></iframe>
+        <iframe class="preview"
+                src="{{ path('document_template_per_company_render', {'companyId': documentTemplate.company.id, 'id': documentTemplate.id}, true) }}"></iframe>
     </div>
 
 {% endblock main_content %}

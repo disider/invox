@@ -10,7 +10,6 @@
 
 namespace AppBundle\Features\Context;
 
-use AppBundle\Entity\Paragraph;
 use AppBundle\Entity\ParagraphTemplate;
 use Behat\Gherkin\Node\TableNode;
 
@@ -52,11 +51,11 @@ class ParagraphTemplateContext extends BaseMinkContext
         $paragraph->setTitle($title);
         $paragraph->setDescription($description);
 
-        if($company) {
+        if ($company) {
             $paragraph->setCompany($company);
         }
 
-        if($parent) {
+        if ($parent) {
             $paragraph->setParent($parent);
         }
 
@@ -88,6 +87,5 @@ class ParagraphTemplateContext extends BaseMinkContext
 
         return $paragraph;
     }
-
 
 }

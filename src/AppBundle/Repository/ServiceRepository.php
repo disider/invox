@@ -72,7 +72,7 @@ class ServiceRepository extends AbstractRepository
         if (array_key_exists(self::FILTER_BY_MANAGER, $filters)) {
             $qb = $this->filterByManager($qb, $filters[self::FILTER_BY_MANAGER]);
         }
-        
+
         return $qb;
     }
 

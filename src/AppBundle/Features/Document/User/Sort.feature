@@ -32,6 +32,6 @@ Feature: User filters his documents
     Then I should see the "/invoices?sort=document.ref&direction=asc&page=1" link
     And I should see the "/invoices?sort=document.issuedAt&direction=asc&page=1" link
     And I should see the "document" rows:
-      | type    | ref    |
+      | type    | ref             |
       | Invoice | I01/%date('y')% |
       | Invoice | I02/%date('y')% |

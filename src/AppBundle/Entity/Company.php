@@ -203,7 +203,7 @@ class Company extends AttachmentContainer
         $entity->addModule(new Module(Module::PETTY_CASH_NOTES_MODULE));
         $entity->setDocumentTypes(DocumentType::getAll());
 
-        foreach($templates as $template) {
+        foreach ($templates as $template) {
             $entity->addDocumentTemplate($template);
         }
 
@@ -495,8 +495,7 @@ class Company extends AttachmentContainer
             $filename = sha1(uniqid(mt_rand(), true));
 
             $this->logoUrl = $filename . '.' . $this->logo->guessExtension();
-        }
-        else {
+        } else {
 //            $this->logoToDelete = $this->logoUrl;
             $this->logoUrl = null;
         }

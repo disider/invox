@@ -1,12 +1,10 @@
 <?php
 
+namespace AppBundle\Features\Fake;
 
-namespace AppBundle\Features\Mock;
+use AppBundle\Helper\ParameterHelperInterface;
 
-
-use AppBundle\Helper\ParameterHelper;
-
-class ParameterHelperMock extends ParameterHelper
+class FakeParameterHelper implements ParameterHelperInterface
 {
     private $isInDemoMode = false;
 

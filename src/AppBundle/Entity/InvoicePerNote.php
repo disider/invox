@@ -116,7 +116,8 @@ class InvoicePerNote
     /**
      * @JMS\VirtualProperty()
      */
-    public function getNoteId() {
+    public function getNoteId()
+    {
         return $this->getNote()->getId();
     }
 

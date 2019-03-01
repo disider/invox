@@ -5,7 +5,7 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="AppBundle\Entity\ProductTag" table="product_tag"
-            repository-class="AppBundle\Entity\Repository\TagRepository">
+            repository-class="AppBundle\Repository\ProductTagRepository">
 
         <many-to-one field="taggable" target-entity="Product" inversed-by="tags">
             <join-column name="product_id" referenced-column-name="id" on-delete="CASCADE" nullable="false"/>

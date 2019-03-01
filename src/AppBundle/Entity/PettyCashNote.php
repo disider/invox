@@ -229,7 +229,6 @@ class PettyCashNote extends AttachmentContainer
         return count($this->invoices) > 0;
     }
 
-
     public function getInvoicesTotal()
     {
         $total = 0;

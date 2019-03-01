@@ -39,7 +39,7 @@ class Province
 
     /**
      * @Assert\NotBlank(message="error.empty_country")
-     * @var Country 
+     * @var Country
      */
     private $country;
 

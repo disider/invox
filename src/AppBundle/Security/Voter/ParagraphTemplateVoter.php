@@ -23,8 +23,8 @@ class ParagraphTemplateVoter extends BaseVoter
     protected function supports($attribute, $subject)
     {
         return $subject instanceof ParagraphTemplate && in_array($attribute, [
-            self::PARAGRAPH_TEMPLATE_DELETE,
-            self::PARAGRAPH_TEMPLATE_EDIT,
+                self::PARAGRAPH_TEMPLATE_DELETE,
+                self::PARAGRAPH_TEMPLATE_EDIT,
             ]);
     }
 

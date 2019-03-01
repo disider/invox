@@ -10,7 +10,6 @@
 
 namespace AppBundle\EventListener;
 
-use AppBundle\Entity\Document;
 use AppBundle\Entity\Medium;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;

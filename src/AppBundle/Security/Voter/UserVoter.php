@@ -23,9 +23,9 @@ class UserVoter extends Voter
     protected function supports($attribute, $subject)
     {
         return $subject instanceof User && in_array($attribute, [
-            self::USER_IMPERSONATE,
-            self::USER_DELETE,
-            self::USER_EDIT
+                self::USER_IMPERSONATE,
+                self::USER_DELETE,
+                self::USER_EDIT
             ]);
     }
 

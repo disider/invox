@@ -6,7 +6,7 @@
 
     <entity name="AppBundle\Entity\MigrationVersions" table="migration_versions">
 
-        <id name="version"  type="string" length="255"  column="version" />
+        <id name="version" type="string" length="255" column="version"/>
 
     </entity>
 </doctrine-mapping>

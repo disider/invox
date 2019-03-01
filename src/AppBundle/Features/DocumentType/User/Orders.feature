@@ -17,7 +17,7 @@ Feature: User lists his orders
       | Customer1 | customer1@example.com | Acme    |
       | Customer2 | customer2@example.com | Bros    |
     And I am logged as "user1@example.com"
-    
+
   Scenario: I can add new orders
     When I visit "/orders"
     Then I should see the "/documents/new?type=order" link

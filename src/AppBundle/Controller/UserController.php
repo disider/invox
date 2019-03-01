@@ -10,13 +10,13 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Repository\UserRepository;
 use AppBundle\Entity\User;
 use AppBundle\Form\Processor\UserFormProcessor;
-use Symfony\Component\Routing\Annotation\Route;
+use AppBundle\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/users")
@@ -56,7 +56,7 @@ class UserController extends BaseController
      * @Security("is_granted('USER_CREATE')")
      * @Template
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, UserFormProcessor $processor)
     {
         $user = new User();
 
@@ -66,7 +66,7 @@ class UserController extends BaseController
             $user->addManagedCompany($company);
         }
 
-        return $this->processForm($request, $user);
+        return $this->processForm($request, $processor, $user);
     }
 
     /**
@@ -76,9 +76,9 @@ class UserController extends BaseController
      *
      * NOTE: cannot use "user" as variable since it's overwritten by Symfony
      */
-    public function editAction(Request $request, User $user)
+    public function editAction(Request $request, UserFormProcessor $processor, User $user)
     {
-        return $this->processForm($request, $user);
+        return $this->processForm($request, $processor, $user);
     }
 
     /**
@@ -102,11 +102,8 @@ class UserController extends BaseController
         return $this->redirectToRoute('users');
     }
 
-    private function processForm(Request $request, User $user)
+    private function processForm(Request $request, UserFormProcessor $processor, User $user)
     {
-        /** @var UserFormProcessor $processor */
-        $processor = $this->get('user_form_processor');
-
         $processor->process($request, $user);
 
         if ($processor->isValid()) {

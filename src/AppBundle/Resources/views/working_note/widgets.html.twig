@@ -1,4 +1,3 @@
-
 {% block paragraph_widget %}
     <div id="{{ form.vars.id }}" class="paragraph {{ level % 2 ? 'odd' : 'even' }}">
         <div class="row">
@@ -136,7 +135,7 @@
 
                                 var code = parent.replace('#workingNote_paragraphs', '');
                                 addParagraphs(elements, '', '#workingNote_paragraphs', code);
-                            }).fail(function(error) {
+                            }).fail(function (error) {
                                 console.error(error.responseText);
                             });
 

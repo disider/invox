@@ -174,12 +174,12 @@ class Account
         $amount = 0;
 
         /** @var PettyCashNote $note */
-        foreach($this->incomingPettyCashNotes as $note) {
+        foreach ($this->incomingPettyCashNotes as $note) {
             $amount += $note->getAmount();
         }
 
         /** @var PettyCashNote $note */
-        foreach($this->outgoingPettyCashNotes as $note) {
+        foreach ($this->outgoingPettyCashNotes as $note) {
             $amount -= $note->getAmount();
         }
 

@@ -1,28 +1,28 @@
 AppBundle\Entity\DocumentRow:
-    InvoiceRow0:
-        document: '@Invoice1'
-        title: 'Consult'
-        description: 'Posse appellantur ne quo. Pri nostro impedit in, nonumy albucius postulant in nam, te modo assum quodsi per.'
-        unitPrice: 2500.00
-        quantity: !!float 1
-        taxRate: '@TaxRate21'
-        discount: !!float 0
-        position: 0
-    InvoiceRow1:
-        document: '@Invoice2'
-        title: 'iMac purchase'
-        description: 'Ea causae sapientem est, eu vis tritani deserunt. Nam ea quem blandit liberavisse, at vix probatus gloriatur.'
-        unitPrice: 2249.99
-        quantity: !!float 2
-        taxRate: '@TaxRate21'
-        discount: !!float 0
-        position: 0
-    InvoiceRow1:
-        document: '@Invoice2'
-        title: 'MacBook Pro purchase'
-        description: 'Ei vel decore ubique labitur, diceret voluptua duo ad. Stet solum sonet in mea. In nisl nostrum vix.'
-        unitPrice: 1999.99
-        quantity: !!float 3
-        taxRate: '@TaxRate21'
-        discount: !!float 0
-        position: 0
+  InvoiceRow0:
+    document: '@Invoice1'
+    title: 'Consult'
+    description: 'Posse appellantur ne quo. Pri nostro impedit in, nonumy albucius postulant in nam, te modo assum quodsi per.'
+    unitPrice: 2500.00
+    quantity: !!float 1
+    taxRate: '@TaxRate21'
+    discount: !!float 0
+    position: 0
+  InvoiceRow1:
+    document: '@Invoice2'
+    title: 'iMac purchase'
+    description: 'Ea causae sapientem est, eu vis tritani deserunt. Nam ea quem blandit liberavisse, at vix probatus gloriatur.'
+    unitPrice: 2249.99
+    quantity: !!float 2
+    taxRate: '@TaxRate21'
+    discount: !!float 0
+    position: 0
+  InvoiceRow1:
+    document: '@Invoice2'
+    title: 'MacBook Pro purchase'
+    description: 'Ei vel decore ubique labitur, diceret voluptua duo ad. Stet solum sonet in mea. In nisl nostrum vix.'
+    unitPrice: 1999.99
+    quantity: !!float 3
+    taxRate: '@TaxRate21'
+    discount: !!float 0
+    position: 0

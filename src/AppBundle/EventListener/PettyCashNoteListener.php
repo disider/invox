@@ -11,7 +11,6 @@
 namespace AppBundle\EventListener;
 
 use AppBundle\Entity\Account;
-use AppBundle\Entity\InvoicePerNote;
 use AppBundle\Entity\PettyCashNote;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
@@ -42,7 +41,7 @@ class PettyCashNoteListener implements EventSubscriber
         }
 
         $object->updateType();
-        
+
         $this->updateAccount(-$object->getAmount(), $object->getAccountFrom());
         $this->updateAccount($object->getAmount(), $object->getAccountTo());
     }

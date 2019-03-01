@@ -4,12 +4,12 @@
     {% if currentCompany is defined %}
         <h1>{{ currentCompany }}</h1>
 
-        <hr />
+        <hr/>
 
         <h3>{{ 'invoices.expired_incoming'|trans }}</h3>
         {% include 'AppBundle:invoice:_list.html.twig' with { 'invoices': incomingInvoices } %}
 
-        <hr />
+        <hr/>
 
         <h3>{{ 'invoices.expired_outgoing'|trans }}</h3>
         {% include 'AppBundle:invoice:_list.html.twig' with { 'invoices': outgoingInvoices } %}

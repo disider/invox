@@ -26,11 +26,11 @@ class DocumentVoter extends Voter
     protected function supports($attribute, $subject)
     {
         return $subject instanceof Document && in_array($attribute, [
-            self::DOCUMENT_COPY,
-            self::DOCUMENT_DELETE,
-            self::DOCUMENT_EDIT,
-            self::DOCUMENT_PRINT,
-            self::DOCUMENT_VIEW,
+                self::DOCUMENT_COPY,
+                self::DOCUMENT_DELETE,
+                self::DOCUMENT_EDIT,
+                self::DOCUMENT_PRINT,
+                self::DOCUMENT_VIEW,
             ]);
     }
 
@@ -42,7 +42,7 @@ class DocumentVoter extends Voter
             return false;
 
         /** @var User $user */
-        switch($attribute) {
+        switch ($attribute) {
             case self::DOCUMENT_COPY:
             case self::DOCUMENT_DELETE:
             case self::DOCUMENT_EDIT:
@@ -52,7 +52,6 @@ class DocumentVoter extends Voter
             case self::DOCUMENT_VIEW:
                 return $user->canManageDocument($subject) || $user->isAccountantFor($subject->getCompany());
         }
-
 
         return $user->canManageDocument($subject);
     }

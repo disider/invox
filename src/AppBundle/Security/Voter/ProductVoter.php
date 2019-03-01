@@ -10,12 +10,10 @@
 
 namespace AppBundle\Security\Voter;
 
-use AppBundle\Entity\Company;
 use AppBundle\Entity\Product;
 use AppBundle\Entity\User;
 use AppBundle\Model\Module;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class ProductVoter extends BaseVoter
 {
@@ -26,9 +24,9 @@ class ProductVoter extends BaseVoter
     protected function supports($attribute, $subject)
     {
         return $subject instanceof Product && in_array($attribute, [
-            self::PRODUCT_DELETE,
-            self::PRODUCT_EDIT,
-            self::PRODUCT_SHOW_WAREHOUSE,
+                self::PRODUCT_DELETE,
+                self::PRODUCT_EDIT,
+                self::PRODUCT_SHOW_WAREHOUSE,
             ]);
     }
 
@@ -41,13 +39,13 @@ class ProductVoter extends BaseVoter
             return false;
         }
 
-        switch($attribute) {
+        switch ($attribute) {
             case self::PRODUCT_DELETE:
             case self::PRODUCT_EDIT:
                 return ($user->ownsProduct($subject) && $this->isModuleEnabled($subject->getCompany(), Module::PRODUCTS_MODULE));
             case self::PRODUCT_SHOW_WAREHOUSE:
                 return ($user->ownsProduct($subject) && $this->isModuleEnabled($subject->getCompany(), Module::WAREHOUSE_MODULE));
-            }
+        }
 
         return false;
     }

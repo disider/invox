@@ -1,19 +1,19 @@
 AppBundle\Entity\DocumentRow:
-    QuoteRow1:
-        document: '@Quote1'
-        title: 'First'
-        description: 'Ut mucius euripidis mel. No graece accusamus ius. Labore probatus at sed, ei mel veri modus, tritani integre interesset ei vim. Duo elit aeque consulatu ea, semper platonem cu ius.'
-        unitPrice: !!float 1200
-        quantity: !!float 1
-        taxRate: '@TaxRate21'
-        discount: !!float 0
-        position: 0
-    QuoteRow2:
-        document: '@Quote1'
-        title: 'Second'
-        description: 'Vero modus prompta sed ut, usu no purto accumsan dissentiet.'
-        unitPrice: !!float 2000
-        quantity: !!float 2
-        taxRate: '@TaxRate21'
-        discount: !!float 0
-        position: 0
+  QuoteRow1:
+    document: '@Quote1'
+    title: 'First'
+    description: 'Ut mucius euripidis mel. No graece accusamus ius. Labore probatus at sed, ei mel veri modus, tritani integre interesset ei vim. Duo elit aeque consulatu ea, semper platonem cu ius.'
+    unitPrice: !!float 1200
+    quantity: !!float 1
+    taxRate: '@TaxRate21'
+    discount: !!float 0
+    position: 0
+  QuoteRow2:
+    document: '@Quote1'
+    title: 'Second'
+    description: 'Vero modus prompta sed ut, usu no purto accumsan dissentiet.'
+    unitPrice: !!float 2000
+    quantity: !!float 2
+    taxRate: '@TaxRate21'
+    discount: !!float 0
+    position: 0

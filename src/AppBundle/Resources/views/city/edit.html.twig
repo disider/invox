@@ -1,7 +1,7 @@
 {% extends '::form.html.twig' %}
 
 {% block main_content %}
-    {%  set city = form.vars.data %}
+    {% set city = form.vars.data %}
     <h1>{{ 'city.edit'|trans({'%city%': city }) }}</h1>
 
     {% include 'AppBundle:city:_form.html.twig' %}

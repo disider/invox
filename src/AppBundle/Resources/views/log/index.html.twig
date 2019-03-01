@@ -16,7 +16,8 @@
                         <small>{{ log.date|date('Y/m/d H:i:s') }}</small>
                     </td>
                     <td class="col-md-6 collapsible">
-                        <a class="collapsed" href="#log-details-{{ log.id }}" data-toggle="collapse">{{ ('log.' ~ log.action)|trans }}</a>
+                        <a class="collapsed" href="#log-details-{{ log.id }}"
+                           data-toggle="collapse">{{ ('log.' ~ log.action)|trans }}</a>
                         <p id="log-details-{{ log.id }}" class="collapse">
                             {{ log.details }}
                         </p>

@@ -10,10 +10,6 @@
 
 namespace AppBundle\Helper;
 
-use AppBundle\Validator\Constraints as CustomAssert;
-use JMS\Serializer\Annotation as Serializer;
-use Symfony\Component\Validator\Constraints as Assert;
-
 class WeekdayHelper
 {
     const MONDAY = 'monday';

@@ -20,7 +20,7 @@ describe('SortableList', function () {
         expect(dom.data('sortable-item')).not.toBeNull();
     });
 
-    it ('shows handle with mouse over', function () {
+    it('shows handle with mouse over', function () {
         var $row = dom.find('li:first-child');
         var $dragHandler = $row.find('.drag-handle');
 
@@ -29,7 +29,7 @@ describe('SortableList', function () {
         expect($dragHandler).not.toHaveClass('invisible');
     });
 
-    it ('hides actions with mouse out', function () {
+    it('hides actions with mouse out', function () {
         var $row = dom.find('li:first-child');
         var $dragHandler = $row.find('.drag-handle');
 
@@ -39,12 +39,12 @@ describe('SortableList', function () {
         expect($dragHandler).toHaveClass('invisible');
     });
 
-    it ('drag handle added event is triggered', function () {
+    it('drag handle added event is triggered', function () {
         var count = 0;
 
         dom.data('plugin_sortableList', null);
 
-        dom.on('sortableList.dragHandleAdded', function() {
+        dom.on('sortableList.dragHandleAdded', function () {
             count++;
         });
 
@@ -53,31 +53,31 @@ describe('SortableList', function () {
         expect(count).toEqual(3);
     });
 
-    it ('when moving item up, items are swapped', function () {
+    it('when moving item up, items are swapped', function () {
         plugin.moveUp(2);
 
         expect(dom.find('li:nth-child(1) .title')).toHaveText('Item 2');
         expect(dom.find('li:nth-child(2) .title')).toHaveText('Item 1');
     });
 
-    it ('when moving item up and items is first, nothing changed', function () {
+    it('when moving item up and items is first, nothing changed', function () {
         plugin.moveUp(1);
 
         expect(dom.find('li:nth-child(1) .title')).toHaveText('Item 1');
         expect(dom.find('li:nth-child(2) .title')).toHaveText('Item 2');
     });
 
-    it ('when moving item down, items are swapped', function () {
+    it('when moving item down, items are swapped', function () {
         plugin.moveDown(1);
 
         expect(dom.find('li:nth-child(1) .title')).toHaveText('Item 2');
         expect(dom.find('li:nth-child(2) .title')).toHaveText('Item 1');
     });
 
-    it ('item updated event is triggered', function () {
+    it('item updated event is triggered', function () {
         var count = 0;
 
-        dom.on('sortableList.itemUpdated', function() {
+        dom.on('sortableList.itemUpdated', function () {
             count++;
         });
 
@@ -87,10 +87,10 @@ describe('SortableList', function () {
         expect(count).toEqual(6);
     });
 
-    it ('list updated event is triggered', function () {
+    it('list updated event is triggered', function () {
         var triggered = false;
 
-        dom.on('sortableList.listUpdated', function() {
+        dom.on('sortableList.listUpdated', function () {
             triggered = true
         });
 

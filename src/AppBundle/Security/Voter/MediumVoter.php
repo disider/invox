@@ -23,8 +23,8 @@ class MediumVoter extends Voter
     protected function supports($attribute, $subject)
     {
         return $subject instanceof Medium && in_array($attribute, [
-            self::MEDIUM_DELETE,
-            self::MEDIUM_EDIT
+                self::MEDIUM_DELETE,
+                self::MEDIUM_EDIT
             ]);
     }
 

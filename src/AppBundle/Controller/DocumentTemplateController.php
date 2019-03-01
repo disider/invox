@@ -11,20 +11,15 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Company;
-use AppBundle\Entity\Customer;
 use AppBundle\Entity\Document;
-use AppBundle\Entity\DocumentRow;
 use AppBundle\Entity\DocumentTemplate;
 use AppBundle\Entity\DocumentTemplatePerCompany;
-use AppBundle\Entity\Page;
-use AppBundle\Entity\TaxRate;
-use AppBundle\Form\Processor\DefaultFormProcessor;
 use AppBundle\Form\Processor\DocumentTemplateFormProcessor;
-use AppBundle\Model\DocumentType;
-use Symfony\Component\Routing\Annotation\Route;
+use AppBundle\Repository\DocumentTemplateRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/document-templates")
@@ -36,14 +31,14 @@ class DocumentTemplateController extends BaseController
      * @Route("", name="document_templates")
      * @Template
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, DocumentTemplateRepository $repository)
     {
         $page = $this->getPage($request);
         $pageSize = $this->getPageSize($request);
 
-        $query = $this->getDocumentTemplateRepository()->findAllQuery([]);
+        $query = $repository->findAllQuery([]);
 
-        $pagination = $this->paginate($query, $page, $pageSize, 'entity.name', 'asc');
+        $pagination = $this->paginate($query, $page, $pageSize, 'template.name', 'asc');
 
         return [
             'pagination' => $pagination,
@@ -75,7 +70,7 @@ class DocumentTemplateController extends BaseController
     {
         $this->delete($documentTemplate);
         $this->addFlash('success', 'flash.document_template.deleted', ['%document_template%' => $documentTemplate]);
-        
+
         return $this->redirectToRoute('document_templates');
     }
 
@@ -87,7 +82,7 @@ class DocumentTemplateController extends BaseController
         $templates = $this->getDocumentTemplatePerCompanyRepository()->findBy(['documentTemplate' => $documentTemplate]);
 
         /** @var DocumentTemplatePerCompany $template */
-        foreach($templates as $template) {
+        foreach ($templates as $template) {
             $template->copyDocumentTemplateDetails();
             $this->save($template);
         }
@@ -134,8 +129,7 @@ class DocumentTemplateController extends BaseController
             ];
 
             return $this->render('AppBundle:document_template_per_company:render.html.twig', $params);
-        }
-        catch(\Exception $exc) {
+        } catch (\Exception $exc) {
             return $this->render('AppBundle:document:preview_error.html.twig', ['exception' => $exc]);
         }
     }
@@ -147,7 +141,6 @@ class DocumentTemplateController extends BaseController
         return $documentBuilder->build($document, $section);
     }
 
-
     private function processForm(Request $request, DocumentTemplateFormProcessor $processor, DocumentTemplate $documentTemplate = null)
     {
         $processor->process($request, $documentTemplate);
@@ -158,7 +151,7 @@ class DocumentTemplateController extends BaseController
                 'flash.document_template.updated',
                 ['%document_template%' => $processor->getData()->getName()]);
 
-            if ($processor->isRedirectingTo(DefaultFormProcessor::REDIRECT_TO_LIST)) {
+            if ($processor->isRedirectingTo(DocumentTemplateFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('document_templates');
             }
 

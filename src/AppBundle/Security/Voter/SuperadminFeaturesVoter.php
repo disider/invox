@@ -44,22 +44,22 @@ class SuperadminFeaturesVoter extends Voter
     protected function supports($attribute, $subject)
     {
         return ($this->isSubjectSupported($subject)) && in_array($attribute, [
-            self::CITY_DELETE,
-            self::CITY_EDIT,
-            self::COUNTRY_DELETE,
-            self::COUNTRY_EDIT,
-            self::DOCUMENT_TEMPLATE_DELETE,
-            self::DOCUMENT_TEMPLATE_EDIT,
-            self::PAGE_DELETE,
-            self::PAGE_EDIT,
-            self::PAYMENT_TYPE_DELETE,
-            self::PAYMENT_TYPE_EDIT,
-            self::PROVINCE_DELETE,
-            self::PROVINCE_EDIT,
-            self::TAX_RATE_DELETE,
-            self::TAX_RATE_EDIT,
-            self::ZIP_CODE_DELETE,
-            self::ZIP_CODE_EDIT,
+                self::CITY_DELETE,
+                self::CITY_EDIT,
+                self::COUNTRY_DELETE,
+                self::COUNTRY_EDIT,
+                self::DOCUMENT_TEMPLATE_DELETE,
+                self::DOCUMENT_TEMPLATE_EDIT,
+                self::PAGE_DELETE,
+                self::PAGE_EDIT,
+                self::PAYMENT_TYPE_DELETE,
+                self::PAYMENT_TYPE_EDIT,
+                self::PROVINCE_DELETE,
+                self::PROVINCE_EDIT,
+                self::TAX_RATE_DELETE,
+                self::TAX_RATE_EDIT,
+                self::ZIP_CODE_DELETE,
+                self::ZIP_CODE_EDIT,
             ]);
     }
 
@@ -79,12 +79,12 @@ class SuperadminFeaturesVoter extends Voter
     private function isSubjectSupported($subject)
     {
         return $subject instanceof City
-        || $subject instanceof Country
-        || $subject instanceof DocumentTemplate
-        || $subject instanceof Page
-        || $subject instanceof PaymentType
-        || $subject instanceof Province
-        || $subject instanceof TaxRate
-        || $subject instanceof ZipCode;
+            || $subject instanceof Country
+            || $subject instanceof DocumentTemplate
+            || $subject instanceof Page
+            || $subject instanceof PaymentType
+            || $subject instanceof Province
+            || $subject instanceof TaxRate
+            || $subject instanceof ZipCode;
     }
 }

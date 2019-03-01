@@ -10,13 +10,10 @@
 
 namespace AppBundle\Form\Processor;
 
-use AppBundle\Entity\Customer;
-use AppBundle\Entity\Document;
 use AppBundle\Entity\Invite;
-use AppBundle\Repository\CustomerRepository;
-use AppBundle\Entity\Repository\EntityRepository;
 use AppBundle\Form\InviteForm;
-use AppBundle\Mailer\Mailer;
+use AppBundle\Mailer\MailerInterface;
+use AppBundle\Repository\InviteRepository;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -24,7 +21,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 class InviteFormProcessor extends AbstractFormProcessor
 {
     /**
-     * @var EntityRepository
+     * @var InviteRepository
      */
     private $inviteRepository;
 
@@ -34,7 +31,7 @@ class InviteFormProcessor extends AbstractFormProcessor
     private $invite;
 
     /**
-     * @var Mailer
+     * @var MailerInterface
      */
     private $mailer;
 
@@ -43,11 +40,11 @@ class InviteFormProcessor extends AbstractFormProcessor
      */
     private $hasSentInvite;
 
-    public function __construct(EntityRepository $documentRepository, Mailer $mailer, FormFactoryInterface $formFactory, TokenStorageInterface $tokenStorage)
+    public function __construct(InviteRepository $inviteRepository, MailerInterface $mailer, FormFactoryInterface $formFactory, TokenStorageInterface $tokenStorage)
     {
         parent::__construct($formFactory, $tokenStorage);
 
-        $this->inviteRepository = $documentRepository;
+        $this->inviteRepository = $inviteRepository;
         $this->mailer = $mailer;
     }
 
@@ -66,7 +63,8 @@ class InviteFormProcessor extends AbstractFormProcessor
         return $this->invite;
     }
 
-    public function hasSentInvite() {
+    public function hasSentInvite()
+    {
         return $this->hasSentInvite;
     }
 
@@ -79,10 +77,9 @@ class InviteFormProcessor extends AbstractFormProcessor
 
             if ($this->isValid()) {
                 $this->invite = $form->getData();
-                if($this->inviteRepository->findOneByEmail($this->invite->getEmail())) {
-                    $this->hasSentInvite = false;                    
-                }
-                else {
+                if ($this->inviteRepository->findOneByEmail($this->invite->getEmail())) {
+                    $this->hasSentInvite = false;
+                } else {
                     $this->inviteRepository->save($this->invite);
                     $this->hasSentInvite = true;
 

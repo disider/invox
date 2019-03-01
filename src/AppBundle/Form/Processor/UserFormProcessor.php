@@ -29,7 +29,8 @@ class UserFormProcessor extends AbstractFormProcessor
         UserManager $userManager,
         FormFactoryInterface $formFactory,
         TokenStorageInterface $tokenStorage
-    ) {
+    )
+    {
         parent::__construct($formFactory, $tokenStorage);
 
         $this->userManager = $userManager;

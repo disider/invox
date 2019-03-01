@@ -5,12 +5,12 @@ Feature: Owner can edit a recurrence
 
   Background:
     Given there are users:
-      | email            | password |
-      | user@example.com | secret   |
+      | email             | password |
+      | user@example.com  | secret   |
       | user1@example.com | secret   |
     And there are companies:
-      | name | owner            |
-      | Acme | user@example.com |
+      | name | owner             |
+      | Acme | user@example.com  |
       | Bros | user1@example.com |
     And there are customers:
       | name | email                | company |

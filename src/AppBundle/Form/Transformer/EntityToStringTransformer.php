@@ -10,13 +10,13 @@
 
 namespace AppBundle\Form\Transformer;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class EntityToStringTransformer implements DataTransformerInterface
 {
-    /** @var EntityManager */
+    /** @var EntityManagerInterface */
     private $manager;
 
     /** @var string */
@@ -25,7 +25,7 @@ class EntityToStringTransformer implements DataTransformerInterface
     /** @var */
     private $field;
 
-    public function __construct(EntityManager $manager, $class, $field)
+    public function __construct(EntityManagerInterface $manager, $class, $field)
     {
         $this->manager = $manager;
         $this->class = $class;

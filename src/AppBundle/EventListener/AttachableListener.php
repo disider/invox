@@ -13,7 +13,6 @@ namespace AppBundle\EventListener;
 use AppBundle\Entity\Attachable;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
 use Oneup\UploaderBundle\Uploader\Orphanage\OrphanageManager;
 use Symfony\Component\Filesystem\Filesystem;
@@ -78,7 +77,7 @@ class AttachableListener implements EventSubscriber
             $fs->mkdir($attachable->getUploadRootDir());
             $destination = $attachable->getUploadRootDir() . '/' . $file->getFilename();
 
-            if(is_file($source)) {
+            if (is_file($source)) {
                 $fs->rename($source, $destination);
             }
         }

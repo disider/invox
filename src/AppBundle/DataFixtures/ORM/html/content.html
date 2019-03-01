@@ -38,7 +38,8 @@
         {% for vatGroup in vatGroupCollection.groups %}
         <tr class="taxes-{{ (vatGroup.formatTaxRate) }}">
             <td colspan="6" class="right">
-                {{ 'document.taxes'|trans({'%taxRate%':vatGroup.taxRate, '%netTotal%': vatGroup.netTotal|format_number, '%currency%': currency() })|raw }}
+                {{ 'document.taxes'|trans({'%taxRate%':vatGroup.taxRate, '%netTotal%': vatGroup.netTotal|format_number,
+                '%currency%': currency() })|raw }}
             </td>
             <td class="right">{{ vatGroup.taxesTotal|format_currency }}</td>
         </tr>

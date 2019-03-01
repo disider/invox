@@ -14,7 +14,7 @@
         {% include 'AppBundle:form:_uploader_template.html.twig' %}
 
         <script type="text/javascript">
-            $(function() {
+            $(function () {
                 var $fileUrl = $('#{{ form.vars.id }}');
                 var $fileName = $('#{{ form.parent.fileName.vars.id }}');
                 $fileUrl.hide();
@@ -33,7 +33,7 @@
                     }
                 };
 
-                $('#{{ id }}').fineUploader(options).on('complete', function(event, id, name, responseJson) {
+                $('#{{ id }}').fineUploader(options).on('complete', function (event, id, name, responseJson) {
                     $fileName.val(responseJson.fileName);
                     $fileUrl.val(responseJson.fileUrl);
                 });

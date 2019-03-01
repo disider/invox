@@ -12,7 +12,6 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\City;
 use AppBundle\Form\Processor\CityFormProcessor;
-use AppBundle\Form\Processor\DefaultFormProcessor;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;

@@ -23,15 +23,14 @@ class WorkingNoteVoter extends BaseVoter
     const WORKING_NOTE_RENDER = 'WORKING_NOTE_RENDER';
     const WORKING_NOTE_VIEW = 'WORKING_NOTE_VIEW';
 
-
     protected function supports($attribute, $subject)
     {
         return $subject instanceof WorkingNote && in_array($attribute, [
-            self::WORKING_NOTE_DELETE,
-            self::WORKING_NOTE_EDIT,
-            self::WORKING_NOTE_PRINT,
-            self::WORKING_NOTE_RENDER,
-            self::WORKING_NOTE_VIEW
+                self::WORKING_NOTE_DELETE,
+                self::WORKING_NOTE_EDIT,
+                self::WORKING_NOTE_PRINT,
+                self::WORKING_NOTE_RENDER,
+                self::WORKING_NOTE_VIEW
             ]);
     }
 

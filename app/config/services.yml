@@ -19,7 +19,7 @@ services:
     # you can exclude directories or files
     # but if a service is unused, it's removed anyway
 #   exclude: '../../src/AppBundle/{Entity,Repository,Tests}'
-    exclude: '../../src/AppBundle/{Entity,Entity/Repository,Form/Processor,Migrations,Tests}'
+    exclude: '../../src/AppBundle/{Entity,Entity\Repository,Form\Processor,Migrations,Tests}'
 
   # controllers are imported separately to make sure they're public
   # and have a tag that allows actions to type-hint services
@@ -48,3 +48,20 @@ services:
 
   AppBundle\Form\Processor\DocumentFormProcessor:
     $availableLocales: '%available_locales%'
+
+  AppBundle\Mailer\Mailer:
+    arguments:
+      - '@templating'
+      - '@router'
+      - '@swiftmailer.mailer'
+      - '@translator'
+      - '%mailer.display_names%'
+      - '%mailer.emails%'
+
+  AppBundle\Mailer\MailerInterface: '@AppBundle\Mailer\Mailer'
+
+  AppBundle\Helper\ParameterHelperInterface: '@AppBundle\Helper\ParameterHelper'
+
+  AppBundle\EventListener\InviteListener:
+    tags:
+      - { name: 'doctrine.event_subscriber' }

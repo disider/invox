@@ -1,12 +1,12 @@
 AppBundle\Entity\ZipCode:
-    rome_01234:
-        code: 11111
-        city: '@rome_city'
+  rome_01234:
+    code: 11111
+    city: '@rome_city'
 
-    rome_01235:
-        code: 11112
-        city: '@rome_city'
+  rome_01235:
+    code: 11112
+    city: '@rome_city'
 
-    milan_:
-        code: 22222
-        city: '@milan_city'
+  milan_:
+    code: 22222
+    city: '@milan_city'

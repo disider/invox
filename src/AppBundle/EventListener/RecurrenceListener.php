@@ -13,8 +13,6 @@ namespace AppBundle\EventListener;
 use AppBundle\Entity\Recurrence;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Doctrine\ORM\Event\OnFlushEventArgs;
-use Doctrine\ORM\Event\PreFlushEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
 

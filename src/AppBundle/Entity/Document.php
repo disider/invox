@@ -843,7 +843,6 @@ class Document extends AttachmentContainer implements Taggable
         return $this->showTotals;
     }
 
-
     public function setShowTotals($showTotals)
     {
         $this->showTotals = $showTotals;

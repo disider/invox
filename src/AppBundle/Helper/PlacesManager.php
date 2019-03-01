@@ -10,17 +10,16 @@
 
 namespace AppBundle\Helper;
 
-
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 class PlacesManager
 {
     /**
-     * @var EntityManager
+     * @var EntityManagerInterface
      */
     private $entityManager;
 
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
     }
@@ -56,8 +55,7 @@ class PlacesManager
             $provinceCode = $place['PROVINCECODE'];
             $country = $this->entityManager->getRepository('AppBundle:Country')
                 ->findOneByCode($place['COUNTRY'])
-                ->getId()
-            ;
+                ->getId();
 
             $this->insert("INSERT INTO province (country_id,name,code) VALUES(\"$country\",\"$province\",\"$provinceCode\")");
         }
@@ -72,8 +70,7 @@ class PlacesManager
 
             $province = $this->entityManager->getRepository('AppBundle:Province')
                 ->findOneByName($place['PROVINCE'])
-                ->getId()
-            ;
+                ->getId();
 
             $this->insert("INSERT INTO city (province_id,name) VALUES(\"$province\", \"$city\")");
         }
@@ -88,8 +85,7 @@ class PlacesManager
 
             $city = $this->entityManager->getRepository('AppBundle:City')
                 ->findOneByName($place['CITY'])
-                ->getId()
-            ;
+                ->getId();
 
             $matches = [];
             preg_match_all('/\d\d\d\d\d/i', $place['ZIPCODE'], $matches);

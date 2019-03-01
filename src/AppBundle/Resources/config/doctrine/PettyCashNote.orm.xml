@@ -17,13 +17,15 @@
         <field name="amount" column="amount" type="decimal" precision="16" scale="2"/>
         <field name="recordedAt" column="recorded_at" type="date"/>
 
-        <one-to-many field="invoices" target-entity="InvoicePerNote" mapped-by="note" orphan-removal="true" fetch="LAZY">
+        <one-to-many field="invoices" target-entity="InvoicePerNote" mapped-by="note" orphan-removal="true"
+                     fetch="LAZY">
             <cascade>
                 <cascade-all/>
             </cascade>
         </one-to-many>
 
-        <one-to-many field="attachments" target-entity="PettyCashNoteAttachment" mapped-by="container" orphan-removal="true">
+        <one-to-many field="attachments" target-entity="PettyCashNoteAttachment" mapped-by="container"
+                     orphan-removal="true">
             <cascade>
                 <cascade-all/>
             </cascade>

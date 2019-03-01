@@ -23,8 +23,8 @@ class CustomerVoter extends Voter
     protected function supports($attribute, $subject)
     {
         return $subject instanceof Customer && in_array($attribute, [
-            self::CUSTOMER_DELETE,
-            self::CUSTOMER_EDIT
+                self::CUSTOMER_DELETE,
+                self::CUSTOMER_EDIT
             ]);
     }
 

@@ -5,7 +5,7 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="AppBundle\Entity\Recurrence" table="recurrence"
-            repository-class="AppBundle\Entity\Repository\RecurrenceRepository">
+            repository-class="AppBundle\Repository\RecurrenceRepository">
 
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>

@@ -10,9 +10,7 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as JMS;
-use Symfony\Component\Validator\Constraints as Assert;
 
 class Service extends Item
 {

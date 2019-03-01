@@ -10,11 +10,7 @@
 
 namespace AppBundle\Form\Filter;
 
-use AppBundle\Entity\PettyCashNote;
 use AppBundle\Entity\Recurrence;
-use Doctrine\DBAL\Connection;
-use Doctrine\ORM\Query\Expr;
-use Lexik\Bundle\FormFilterBundle\Filter\FilterOperands;
 use Lexik\Bundle\FormFilterBundle\Filter\Form\Type\ChoiceFilterType;
 use Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType;
 use Lexik\Bundle\FormFilterBundle\Filter\Query\QueryInterface;
@@ -76,11 +72,9 @@ class RecurrenceFilterForm extends BaseFilterForm
             },
         ]);
 
-
         $this->addDateRangeType($builder, 'startAt', 'fields.start_at');
 
         $this->addDateRangeType($builder, 'nextDueDate', 'fields.next_due_date');
-
 
         $builder->add('filter', SubmitType::class, [
             'label' => 'actions.filter',
@@ -92,6 +86,5 @@ class RecurrenceFilterForm extends BaseFilterForm
     {
         return 'recurrenceFilter';
     }
-
 
 }

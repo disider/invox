@@ -13,11 +13,12 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\User;
 use AppBundle\Form\RegistrationForm;
 use AppBundle\Generator\TokenGenerator;
-use Symfony\Component\Routing\Annotation\Route;
+use AppBundle\Mailer\MailerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/register")
@@ -28,7 +29,7 @@ class RegistrationController extends BaseController
      * @Route("", name="register")
      * @Template
      */
-    public function registerAction(Request $request)
+    public function registerAction(Request $request, MailerInterface $mailer)
     {
         if (!$this->getParameter('enable_registration')) {
             return $this->redirectToRoute('dashboard');
@@ -57,8 +58,6 @@ class RegistrationController extends BaseController
 
                 $userManager->updateUser($user);
 
-                $mailer = $this->getMailer();
-
                 $mailer->sendConfirmRegistrationEmailTo($user);
 
                 return $this->redirectToRoute('register_request_confirmation');
@@ -86,7 +85,7 @@ class RegistrationController extends BaseController
     /**
      * @Route("/{email}/resend-confirmation", name="register_resend_confirmation")
      */
-    public function resendRegistrationConfirmationAction(User $user)
+    public function resendRegistrationConfirmationAction(User $user, MailerInterface $mailer)
     {
         if ($this->isAuthenticated()) {
             return $this->redirectToRoute('dashboard');
@@ -96,7 +95,6 @@ class RegistrationController extends BaseController
             throw new BadRequestHttpException('User is already enabled');
         }
 
-        $mailer = $this->getMailer();
         $mailer->sendConfirmRegistrationEmailTo($user);
 
         return $this->redirectToRoute('register_request_confirmation');
@@ -105,7 +103,7 @@ class RegistrationController extends BaseController
     /**
      * @Route("/confirm/{token}", name="register_confirm")
      */
-    public function confirmRegistrationAction($token)
+    public function confirmRegistrationAction($token, MailerInterface $mailer)
     {
         if ($this->isAuthenticated()) {
             return $this->redirectToRoute('dashboard');
@@ -120,8 +118,6 @@ class RegistrationController extends BaseController
         $user->setEnabled(true);
         $user->setConfirmationToken(null);
         $this->save($user);
-
-        $mailer = $this->getMailer();
 
         $mailer->sendRegistrationCompletedEmailTo($user);
 

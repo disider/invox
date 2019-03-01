@@ -40,7 +40,7 @@ describe('DynamicList', function () {
         var $addBtn = dom.find('.dynamic-add');
         var clicked = false;
 
-        dom.on('dynamicList.itemAdded', function() {
+        dom.on('dynamicList.itemAdded', function () {
             clicked = true;
         });
 
@@ -53,7 +53,7 @@ describe('DynamicList', function () {
         var $row = dom.find('.dynamic-add').parent();
         var clicked = false;
 
-        dom.on('dynamicList.itemAdded', function() {
+        dom.on('dynamicList.itemAdded', function () {
             clicked = true;
         });
 
@@ -81,7 +81,7 @@ describe('DynamicList', function () {
         var $deleteBtn = dom.find('li:first-child .dynamic-delete');
         var clicked = false;
 
-        dom.on('dynamicList.itemDeleted', function() {
+        dom.on('dynamicList.itemDeleted', function () {
             clicked = true;
         });
 

@@ -5,80 +5,82 @@
 
     <services>
         <service id="attachable_listener" class="AppBundle\EventListener\AttachableListener">
-            <argument type="service" id="oneup_uploader.orphanage_manager" />
-            <tag name="doctrine.event_subscriber" />
+            <argument type="service" id="oneup_uploader.orphanage_manager"/>
+            <tag name="doctrine.event_subscriber"/>
         </service>
 
         <service id="currency_listener" class="AppBundle\EventListener\CurrencyListener">
-            <argument type="service" id="security.token_storage" />
-            <argument type="service" id="twig" />
-            <argument type="service" id="locale_formatter" />
-            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="security.token_storage"/>
+            <argument type="service" id="twig"/>
+            <argument type="service" id="locale_formatter"/>
+            <tag name="kernel.event_subscriber"/>
         </service>
 
         <service id="company_listener" class="AppBundle\EventListener\CompanyListener" public="false">
-            <tag name="doctrine.event_subscriber" />
+            <tag name="doctrine.event_subscriber"/>
         </service>
 
         <service id="document_listener" class="AppBundle\EventListener\DocumentListener" public="false">
-            <tag name="doctrine.event_subscriber" />
+            <tag name="doctrine.event_subscriber"/>
         </service>
 
         <service id="document_row_listener" class="AppBundle\EventListener\DocumentRowListener" public="false">
-            <tag name="doctrine.event_subscriber" />
+            <tag name="doctrine.event_subscriber"/>
         </service>
 
         <service id="invite_listener" class="AppBundle\EventListener\InviteListener" public="false">
-            <argument type="service" id="service_container" />
-            <tag name="doctrine.event_subscriber" />
+            <argument type="service" id="service_container"/>
+            <tag name="doctrine.event_subscriber"/>
         </service>
 
         <service id="invoice_per_note_listener" class="AppBundle\EventListener\InvoicePerNoteListener" public="false">
-            <tag name="doctrine.event_subscriber" />
+            <tag name="doctrine.event_subscriber"/>
         </service>
 
         <service id="medium_listener" class="AppBundle\EventListener\MediumListener">
-            <argument type="service" id="oneup_uploader.orphanage_manager" />
-            <tag name="doctrine.event_subscriber" />
+            <argument type="service" id="oneup_uploader.orphanage_manager"/>
+            <tag name="doctrine.event_subscriber"/>
         </service>
 
         <service id="medium_upload_listener" class="AppBundle\EventListener\MediumUploadListener">
-            <argument type="service" id="oneup_uploader.orphanage_manager" />
-            <tag name="kernel.event_listener" event="oneup_uploader.post_upload" method="onPostUpload" />
-            <tag name="kernel.event_listener" event="oneup_uploader.pre_upload" method="onPreUpload" />
+            <argument type="service" id="oneup_uploader.orphanage_manager"/>
+            <tag name="kernel.event_listener" event="oneup_uploader.post_upload" method="onPostUpload"/>
+            <tag name="kernel.event_listener" event="oneup_uploader.pre_upload" method="onPreUpload"/>
         </service>
 
         <service id="petty_cash_note_listener" class="AppBundle\EventListener\PettyCashNoteListener" public="false">
-            <tag name="doctrine.event_subscriber" />
+            <tag name="doctrine.event_subscriber"/>
         </service>
 
         <service id="product_listener" class="AppBundle\EventListener\ProductListener" public="false">
-            <tag name="doctrine.event_subscriber" />
+            <tag name="doctrine.event_subscriber"/>
         </service>
 
         <service id="recurrence_listener" class="AppBundle\EventListener\RecurrenceListener" public="false">
-            <tag name="doctrine.event_subscriber" />
+            <tag name="doctrine.event_subscriber"/>
         </service>
 
-        <service id="security.interactive_login_listener" class="AppBundle\EventListener\InteractiveLoginListener" public="true">
-            <argument type="service" id="user_manager" />
-            <tag name="kernel.event_subscriber" />
+        <service id="security.interactive_login_listener" class="AppBundle\EventListener\InteractiveLoginListener"
+                 public="true">
+            <argument type="service" id="user_manager"/>
+            <tag name="kernel.event_subscriber"/>
         </service>
 
-        <service id="security.form_authentication_listener" class="AppBundle\EventListener\FormAuthenticationListener" public="true">
-            <argument type="service" id="session" />
-            <argument type="service" id="translator" />
-            <argument type="service" id="router" />
+        <service id="security.form_authentication_listener" class="AppBundle\EventListener\FormAuthenticationListener"
+                 public="true">
+            <argument type="service" id="session"/>
+            <argument type="service" id="translator"/>
+            <argument type="service" id="router"/>
         </service>
 
         <service id="user_listener" class="AppBundle\EventListener\UserListener" public="false">
-            <argument type="service" id="service_container" />
-            <tag name="doctrine.event_subscriber" />
+            <argument type="service" id="service_container"/>
+            <tag name="doctrine.event_subscriber"/>
         </service>
 
         <service id="url_redirect_listener" class="AppBundle\EventListener\UrlRedirectListener">
             <argument type="service" id="router"/>
-            <tag name="kernel.event_subscriber" />
+            <tag name="kernel.event_subscriber"/>
         </service>
     </services>
 </container>

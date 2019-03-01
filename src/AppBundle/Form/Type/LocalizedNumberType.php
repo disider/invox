@@ -41,5 +41,4 @@ class LocalizedNumberType extends LocalizedType
         ]);
     }
 
-
 }

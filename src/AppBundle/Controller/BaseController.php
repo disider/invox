@@ -12,21 +12,23 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Manager\CompanyManager;
-use AppBundle\Entity\Repository\EntityRepository;
-use AppBundle\Entity\Repository\PettyCashNoteRepository;
-use AppBundle\Entity\Repository\ProductRepository;
-use AppBundle\Entity\Repository\ServiceRepository;
-use AppBundle\Entity\Repository\TagRepository;
-use AppBundle\Entity\Repository\WarehouseRecordRepository;
-use AppBundle\Entity\Repository\WorkingNoteRepository;
-use AppBundle\Entity\Repository\ZipCodeRepository;
 use AppBundle\Entity\User;
-use AppBundle\Mailer\Mailer;
+use AppBundle\Helper\ParameterHelperInterface;
 use AppBundle\Model\Module;
 use AppBundle\Problem\JsonProblem;
+use AppBundle\Repository\AbstractTagRepository;
 use AppBundle\Repository\CityRepository;
 use AppBundle\Repository\CustomerRepository;
+use AppBundle\Repository\DocumentCostCenterRepository;
 use AppBundle\Repository\DocumentRepository;
+use AppBundle\Repository\PettyCashNoteRepository;
+use AppBundle\Repository\ProductRepository;
+use AppBundle\Repository\ProductTagRepository;
+use AppBundle\Repository\ServiceRepository;
+use AppBundle\Repository\ServiceTagRepository;
+use AppBundle\Repository\WarehouseRecordRepository;
+use AppBundle\Repository\WorkingNoteRepository;
+use AppBundle\Repository\ZipCodeRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -47,12 +49,6 @@ class BaseController extends Controller
     public function __construct(CompanyManager $companyManager)
     {
         $this->companyManager = $companyManager;
-    }
-
-    /** @return Mailer $mailer */
-    protected function getMailer()
-    {
-        return $this->get('default_mailer');
     }
 
     protected function getUserManager()
@@ -139,7 +135,7 @@ class BaseController extends Controller
         return $this->getRepository('AppBundle:Document');
     }
 
-    /** @return TagRepository */
+    /** @return DocumentCostCenterRepository */
     protected function getDocumentCostCenterRepository()
     {
         return $this->getRepository('AppBundle:DocumentCostCenter');
@@ -192,7 +188,7 @@ class BaseController extends Controller
         return $this->getRepository('AppBundle:Product');
     }
 
-    /** @return TagRepository */
+    /** @return ProductTagRepository */
     protected function getProductTagRepository()
     {
         return $this->getRepository('AppBundle:ProductTag');
@@ -214,7 +210,7 @@ class BaseController extends Controller
         return $this->getRepository('AppBundle:Recurrence');
     }
 
-    /** @return TagRepository */
+    /** @return ServiceTagRepository */
     protected function getServiceTagRepository()
     {
         return $this->getRepository('AppBundle:ServiceTag');
@@ -387,6 +383,6 @@ class BaseController extends Controller
 
     protected function isInDemoMode()
     {
-        return $this->get('parameter_helper')->isInDemoMode();
+        return $this->get(ParameterHelperInterface::class)->isInDemoMode();
     }
 }

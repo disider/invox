@@ -12,7 +12,6 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\Service;
 use AppBundle\Entity\ServiceAttachment;
-use AppBundle\Entity\User;
 use AppBundle\Form\Type\AttachmentType;
 use AppBundle\Form\Type\CollectionUploaderType;
 use AppBundle\Form\Type\LocalizedNumberType;

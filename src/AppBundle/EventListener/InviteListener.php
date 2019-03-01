@@ -11,11 +11,9 @@
 namespace AppBundle\EventListener;
 
 use AppBundle\Entity\Invite;
-use AppBundle\Entity\Manager\UserManager;
-use AppBundle\Model\UserInterface;
+use AppBundle\Repository\UserRepository;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
-use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -26,11 +24,6 @@ class InviteListener implements EventSubscriber
      */
     private $container;
 
-    /**
-     * Constructor.
-     *
-     * @param ContainerInterface $container
-     */
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
@@ -46,12 +39,12 @@ class InviteListener implements EventSubscriber
     public function prePersist(LifecycleEventArgs $args)
     {
         $object = $args->getObject();
-        
+
         if ($object instanceof Invite) {
-            $email  = $object->getEmail();
-            
-            $user = $this->container->get('user_repository')->findOneByEmail($email);
-            
+            $email = $object->getEmail();
+
+            $user = $this->container->get(UserRepository::class)->findOneByEmail($email);
+
             $object->setReceiver($user);
         }
     }

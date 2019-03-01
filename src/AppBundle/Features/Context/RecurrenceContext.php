@@ -12,11 +12,7 @@ namespace AppBundle\Features\Context;
 
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Customer;
-use AppBundle\Entity\Document;
-use AppBundle\Entity\DocumentAttachment;
-use AppBundle\Entity\DocumentRow;
 use AppBundle\Entity\Recurrence;
-use AppBundle\Model\DocumentType;
 use Behat\Gherkin\Node\TableNode;
 
 class RecurrenceContext extends BaseMinkContext
@@ -68,7 +64,6 @@ class RecurrenceContext extends BaseMinkContext
         /** @var Customer $customer */
         $customer = $this->getCustomerRepository()->findOneByName($customerName);
 
-
         $recurrence = new Recurrence();
         $recurrence->setCompany($company);
         $recurrence->setCustomer($customer);
@@ -81,7 +76,7 @@ class RecurrenceContext extends BaseMinkContext
         $recurrence->setOccurrences($occurrences);
         $recurrence->setAmount($amount);
 
-        if($endAt)
+        if ($endAt)
             $recurrence->setEndAt(new \DateTime($endAt));
 
         return $recurrence;

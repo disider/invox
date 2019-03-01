@@ -10,7 +10,7 @@
     </h1>
 
     {{ filter_start(filterForm) }}
-        {% include 'AppBundle:petty_cash_note:_filter.html.twig' with {'form': filterForm } %}
+    {% include 'AppBundle:petty_cash_note:_filter.html.twig' with {'form': filterForm } %}
     {{ filter_end(filterForm) }}
 
     {% if pagination|length > 0 %}
@@ -40,13 +40,13 @@
 
                         {% if pettyCashNote.hasAttachments %}
                             {% set attachmentsHtml %}
-                                    <ul class="list-unstyled">
-                                        {% for attachment in pettyCashNote.attachments %}
-                                            <li>
-                                                <small><a href='{{ attachment.webPath }}'>{{ attachment }}</a></small>
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
+                                <ul class="list-unstyled">
+                                    {% for attachment in pettyCashNote.attachments %}
+                                        <li>
+                                            <small><a href='{{ attachment.webPath }}'>{{ attachment }}</a></small>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
                             {% endset %}
 
                             <a href="#" data-html="true" data-toggle="popover"

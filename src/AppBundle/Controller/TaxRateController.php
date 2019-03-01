@@ -11,11 +11,11 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\TaxRate;
-use AppBundle\Form\Processor\DefaultFormProcessor;
-use Symfony\Component\Routing\Annotation\Route;
+use AppBundle\Form\Processor\TaxRateFormProcessor;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/tax-rates")
@@ -47,13 +47,13 @@ class TaxRateController extends BaseController
      * @Security("is_granted('TAX_RATE_CREATE')")
      * @Template
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, TaxRateFormProcessor $processor)
     {
         $position = $this->getTaxRateRepository()->countAll();
 
         $taxRate = TaxRate::createEmpty($position);
 
-        return $this->processForm($request, $taxRate);
+        return $this->processForm($request, $processor, $taxRate);
     }
 
     /**
@@ -61,9 +61,9 @@ class TaxRateController extends BaseController
      * @Security("is_granted('TAX_RATE_EDIT', taxRate)")
      * @Template
      */
-    public function editAction(Request $request, TaxRate $taxRate)
+    public function editAction(Request $request, TaxRateFormProcessor $processor, TaxRate $taxRate)
     {
-        return $this->processForm($request, $taxRate);
+        return $this->processForm($request, $processor, $taxRate);
     }
 
     /**
@@ -81,18 +81,15 @@ class TaxRateController extends BaseController
         return $this->redirectToRoute('tax_rates');
     }
 
-    private function processForm(Request $request, TaxRate $taxRate)
+    private function processForm(Request $request, TaxRateFormProcessor $processor, TaxRate $taxRate)
     {
-        /** @var DefaultFormProcessor $processor */
-        $processor = $this->get('tax_rate_form_processor');
-
         $processor->process($request, $taxRate);
 
         if ($processor->isValid()) {
             $this->addFlash('success', $processor->isNew() ? 'flash.tax_rate.created' : 'flash.tax_rate.updated',
                 ['%tax_rate%' => $processor->getData()]);
 
-            if ($processor->isRedirectingTo(DefaultFormProcessor::REDIRECT_TO_LIST)) {
+            if ($processor->isRedirectingTo(TaxRateFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('tax_rates');
             }
 

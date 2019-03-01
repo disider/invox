@@ -14,7 +14,6 @@ use AppBundle\Entity\Account;
 use AppBundle\Entity\User;
 use AppBundle\Model\Module;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class AccountVoter extends BaseVoter
 {
@@ -24,8 +23,8 @@ class AccountVoter extends BaseVoter
     protected function supports($attribute, $subject)
     {
         return $subject instanceof Account && in_array($attribute, [
-            self::ACCOUNT_DELETE,
-            self::ACCOUNT_EDIT
+                self::ACCOUNT_DELETE,
+                self::ACCOUNT_EDIT
             ]);
     }
 

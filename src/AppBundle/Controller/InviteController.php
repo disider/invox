@@ -11,9 +11,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Invite;
-use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/invites")
@@ -42,18 +42,17 @@ class InviteController extends BaseController
     {
         $email = $invite->getEmail();
 
-        if(!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            if($this->getUserRepository()->findOneByEmail($email)) {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            if ($this->getUserRepository()->findOneByEmail($email)) {
                 return $this->redirectToRoute('login');
             }
 
             return $this->redirectToRoute('register', ['email' => $email]);
         }
 
-        if($email != $this->getUser()->getEmail()) {
+        if ($email != $this->getUser()->getEmail()) {
             throw $this->createAccessDeniedException('Cannot access this invite');
         }
-
 
         return [
             'invite' => $invite,

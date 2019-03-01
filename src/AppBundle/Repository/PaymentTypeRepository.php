@@ -15,7 +15,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class PaymentTypeRepository extends AbstractRepository
 {
-    const ROOT_ALIAS = 'payment_type';
+    const ROOT_ALIAS = 'paymentType';
 
     public function __construct(RegistryInterface $registry)
     {

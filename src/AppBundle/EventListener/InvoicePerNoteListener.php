@@ -12,7 +12,6 @@ namespace AppBundle\EventListener;
 
 use AppBundle\Entity\Document;
 use AppBundle\Entity\InvoicePerNote;
-use AppBundle\Entity\PettyCashNote;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PostFlushEventArgs;
@@ -74,7 +73,7 @@ class InvoicePerNoteListener implements EventSubscriber
 
         /** @var Document $invoice */
         foreach ($this->invoices as $invoice) {
-            if($invoice->getId()) {
+            if ($invoice->getId()) {
                 $invoice->calculateTotals();
 
                 $invoice->updateStatus();

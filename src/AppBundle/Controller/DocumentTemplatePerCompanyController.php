@@ -13,7 +13,6 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Document;
 use AppBundle\Entity\DocumentTemplatePerCompany;
-use AppBundle\Form\Processor\DefaultFormProcessor;
 use AppBundle\Form\Processor\DocumentTemplatePerCompanyFormProcessor;
 use AppBundle\Repository\DocumentTemplatePerCompanyRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -147,7 +146,7 @@ class DocumentTemplatePerCompanyController extends BaseController
                 '%document_template%' => $template->getName()
             ]);
 
-            if ($processor->isRedirectingTo(DefaultFormProcessor::REDIRECT_TO_LIST)) {
+            if ($processor->isRedirectingTo(DocumentTemplatePerCompanyFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('document_templates_per_company', [
                     'companyId' => $this->getCurrentCompany()->getId(),
                 ]);

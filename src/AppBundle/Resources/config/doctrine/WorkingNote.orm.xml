@@ -5,7 +5,7 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="AppBundle\Entity\WorkingNote" table="working_note"
-            repository-class="AppBundle\Entity\Repository\WorkingNoteRepository">
+            repository-class="AppBundle\Repository\WorkingNoteRepository">
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>

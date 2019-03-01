@@ -1,33 +1,33 @@
 AppBundle\Entity\User:
-    superadmin:
-        email: superadmin@example.com
-        plainPassword: secret
-        enabled: true
-        roles: [ ROLE_SUPER_ADMIN, ROLE_ALLOWED_TO_SWITCH, ROLE_ADMIN, ROLE_CLERK ]
+  superadmin:
+    email: superadmin@example.com
+    plainPassword: secret
+    enabled: true
+    roles: [ ROLE_SUPER_ADMIN, ROLE_ALLOWED_TO_SWITCH, ROLE_ADMIN, ROLE_CLERK ]
 
-    admin:
-        email: admin@example.com
-        plainPassword: secret
-        enabled: true
-        roles: [ ROLE_ADMIN, ROLE_CLERK ]
+  admin:
+    email: admin@example.com
+    plainPassword: secret
+    enabled: true
+    roles: [ ROLE_ADMIN, ROLE_CLERK ]
 
-    accountant:
-        email: accountant@example.com
-        plainPassword: secret
-        enabled: true
+  accountant:
+    email: accountant@example.com
+    plainPassword: secret
+    enabled: true
 
-    owner:
-        email: owner@example.com
-        plainPassword: secret
-        enabled: true
-        roles: [ ROLE_OWNER, ROLE_CLERK ]
+  owner:
+    email: owner@example.com
+    plainPassword: secret
+    enabled: true
+    roles: [ ROLE_OWNER, ROLE_CLERK ]
 
-    clerk:
-        email: clerk@example.com
-        plainPassword: secret
-        enabled: true
-        roles: [ ROLE_CLERK ]
+  clerk:
+    email: clerk@example.com
+    plainPassword: secret
+    enabled: true
+    roles: [ ROLE_CLERK ]
 
-    inactive:
-        email: inactive@example.com
-        plainPassword: secret
+  inactive:
+    email: inactive@example.com
+    plainPassword: secret

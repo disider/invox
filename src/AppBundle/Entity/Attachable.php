@@ -10,7 +10,6 @@
 
 namespace AppBundle\Entity;
 
-use AppBundle\Validator\Constraints as AppAssert;
 use Symfony\Component\Validator\Constraints as Assert;
 
 abstract class Attachable
@@ -75,10 +74,10 @@ abstract class Attachable
 
     public function setContainer(AttachmentContainer $container = null)
     {
-        if($container == null) {
+        if ($container == null) {
             $this->removeFile();
         }
-        
+
         $this->container = $container;
     }
 

@@ -8,11 +8,12 @@
  *
  */
 
-namespace AppBundle\Entity\Repository;
+namespace AppBundle\Repository;
 
-use AppBundle\Entity\Company;
 use AppBundle\Entity\User;
+use AppBundle\Entity\WorkingNote;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class WorkingNoteRepository extends AbstractRepository
 {
@@ -20,6 +21,11 @@ class WorkingNoteRepository extends AbstractRepository
 
     const FILTER_BY_MANAGER = 'filter_by_manager';
     const FILTER_BY_SALES_AGENT = 'filter_by_sales_manager';
+
+    public function __construct(RegistryInterface $registry)
+    {
+        parent::__construct($registry, WorkingNote::class);
+    }
 
     protected function getRootAlias()
     {
@@ -46,16 +52,13 @@ class WorkingNoteRepository extends AbstractRepository
         return $qb;
     }
 
-
     private function filterBySalesAgent(QueryBuilder $qb, User $salesAgent)
     {
         $qb->leftJoin('company.salesAgents', 'salesAgents')
             ->orWhere('salesAgents = :salesAgent')
-            ->setParameter('salesAgent', $salesAgent->getId());
-        ;
+            ->setParameter('salesAgent', $salesAgent->getId());;
         return $qb;
     }
-
 
     protected function applyFilters(QueryBuilder $qb, array $filters)
     {

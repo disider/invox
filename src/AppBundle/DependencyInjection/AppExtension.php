@@ -22,15 +22,7 @@ class AppExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('doctrine.xml');
-        $loader->load('form.xml');
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('listeners.xml');
-//        $loader->load('security.xml');
-//        $loader->load('services.xml');
-//        $loader->load('twig.xml');
-//        $loader->load('uploader.xml');
-//        $loader->load('validation.xml');
-        $loader->load('validators.xml');
     }
 }

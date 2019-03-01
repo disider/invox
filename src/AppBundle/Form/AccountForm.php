@@ -12,7 +12,6 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\Account;
 use AppBundle\Entity\AccountType;
-use AppBundle\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -53,22 +52,22 @@ class AccountForm extends AbstractType
             'button_class' => 'btn btn-default',
         ]);
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
             $data = $event->getData();
             $form = $event->getForm();
 
-            if($data && $data->getId()) {
+            if ($data && $data->getId()) {
                 $form->add('currentAmount', NumberType::class, [
                     'label' => 'fields.current_amount',
                 ]);
             }
         });
 
-        $builder->addEventListener(FormEvents::SUBMIT, function(FormEvent $event) {
+        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
             /** @var Account $data */
             $data = $event->getData();
 
-            if(is_null($data->getId())) {
+            if (is_null($data->getId())) {
                 $data->setCurrentAmount($data->getInitialAmount());
             }
         });

@@ -35,7 +35,7 @@ class ZipCode
     /**
      * @Assert\NotBlank(message="error.empty_city")
      * @JMS\Expose
-     * @var City 
+     * @var City
      */
     private $city;
 
@@ -77,6 +77,5 @@ class ZipCode
     {
         $this->city = $city;
     }
-
 
 }

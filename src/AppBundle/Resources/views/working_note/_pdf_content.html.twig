@@ -28,25 +28,25 @@
             </td>
 
             {% if workingNote.customer %}
-            <td class="col-4 customer">
-                {% set customer = workingNote.customer %}
+                <td class="col-4 customer">
+                    {% set customer = workingNote.customer %}
 
-                <h2 class="name">{{ customer.name }}</h2>
-                <ul class="list-unstyled">
-                    {% if customer.referent %}
-                        <li class="referent">{{ 'fields.referent'|trans }}: {{ customer.referent }}</li>
-                    {% endif %}
-                    {% if customer.vatNumber %}
-                        <li class="vat-number">{{ 'fields.vat_number'|trans }}: {{ customer.vatNumber }}</li>
-                    {% endif %}
-                    {% if customer.Address %}
-                        <li class="address">{{ customer.address }}</li>
-                        <li class="address">{{ customer.zipCode }} {{ customer.city }}</li>
-                        <li class="address">{{ customer.country }}</li>
-                    {% endif %}
+                    <h2 class="name">{{ customer.name }}</h2>
+                    <ul class="list-unstyled">
+                        {% if customer.referent %}
+                            <li class="referent">{{ 'fields.referent'|trans }}: {{ customer.referent }}</li>
+                        {% endif %}
+                        {% if customer.vatNumber %}
+                            <li class="vat-number">{{ 'fields.vat_number'|trans }}: {{ customer.vatNumber }}</li>
+                        {% endif %}
+                        {% if customer.Address %}
+                            <li class="address">{{ customer.address }}</li>
+                            <li class="address">{{ customer.zipCode }} {{ customer.city }}</li>
+                            <li class="address">{{ customer.country }}</li>
+                        {% endif %}
 
-                </ul>
-            </td>
+                    </ul>
+                </td>
             {% endif %}
         </tr>
     </table>

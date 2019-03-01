@@ -11,19 +11,19 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Product;
-use AppBundle\Form\Processor\ProductFormProcessor;
-use AppBundle\Repository\ProductRepository;
-use AppBundle\Entity\Repository\WarehouseRecordRepository;
 use AppBundle\Entity\WarehouseRecord;
 use AppBundle\Form\Filter\ProductFilterForm;
-use AppBundle\Form\Processor\DefaultFormProcessor;
+use AppBundle\Form\Processor\ProductFormProcessor;
+use AppBundle\Form\Processor\WarehouseRecordFormProcessor;
 use AppBundle\Model\Module;
+use AppBundle\Repository\ProductRepository;
+use AppBundle\Repository\WarehouseRecordRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/products")
@@ -109,7 +109,7 @@ class ProductController extends BaseController
      * @Security("is_granted('PRODUCT_SHOW_WAREHOUSE', product)")
      * @Template
      */
-    public function showWarehouseAction(Request $request, Product $product)
+    public function showWarehouseAction(Request $request, WarehouseRecordFormProcessor $processor, Product $product)
     {
         if (!$product->isEnabledInWarehouse()) {
             throw $this->createNotFoundException('Product is not enabled in warehouse');
@@ -126,7 +126,7 @@ class ProductController extends BaseController
             $query
         );
 
-        return $this->processWarehouseRecordForm($request, $pagination, $product);
+        return $this->processWarehouseRecordForm($request, $processor, $pagination, $product);
     }
 
     /**
@@ -208,11 +208,8 @@ class ProductController extends BaseController
         ];
     }
 
-    private function processWarehouseRecordForm(Request $request, PaginationInterface $pagination, Product $product)
+    private function processWarehouseRecordForm(Request $request, WarehouseRecordFormProcessor $processor, PaginationInterface $pagination, Product $product)
     {
-        /** @var DefaultFormProcessor $processor */
-        $processor = $this->get('warehouse_record_form_processor');
-
         $warehouseRecord = new WarehouseRecord();
         $warehouseRecord->setProduct($product);
         $processor->process($request, $warehouseRecord);

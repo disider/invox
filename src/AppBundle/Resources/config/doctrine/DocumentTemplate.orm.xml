@@ -5,14 +5,12 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="AppBundle\Entity\DocumentTemplate" table="document_template"
-            repository-class="AppBundle\Entity\Repository\EntityRepository">
-
+            repository-class="AppBundle\Repository\DocumentTemplateRepository">
         <one-to-many field="companies" target-entity="DocumentTemplatePerCompany" mapped-by="documentTemplate">
             <cascade>
                 <cascade-all/>
             </cascade>
         </one-to-many>
-
     </entity>
 
 </doctrine-mapping>

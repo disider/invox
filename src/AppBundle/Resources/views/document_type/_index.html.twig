@@ -1,20 +1,20 @@
 {% extends '::two-columns.html.twig' %}
 
 {% block main_content %}
-<h1>
-   {{ title|trans }}
+    <h1>
+        {{ title|trans }}
 
-    <small class="pull-right">
-        <a title="{{ 'filter.show'|trans }}" aria-expanded="false" data-toggle="collapse"
-           href="#filter">{{ icon('search') }}</a>
-    </small>
-</h1>
+        <small class="pull-right">
+            <a title="{{ 'filter.show'|trans }}" aria-expanded="false" data-toggle="collapse"
+               href="#filter">{{ icon('search') }}</a>
+        </small>
+    </h1>
 
     {{ filter_start(filterForm) }}
     {% include 'AppBundle:document_type:_filter.html.twig' with {'form': filterForm, 'route': route} %}
     {{ filter_end(filterForm) }}
 
-{% include 'AppBundle:document_type:_list.html.twig' with {'pagination': pagination, 'type' : type} %}
+    {% include 'AppBundle:document_type:_list.html.twig' with {'pagination': pagination, 'type' : type} %}
 
 {% endblock main_content %}
 

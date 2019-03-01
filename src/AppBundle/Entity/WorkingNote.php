@@ -127,7 +127,6 @@ class WorkingNote
         return $this->paragraphs;
     }
 
-
     public function setParagraphs($paragraphs)
     {
         $this->paragraphs = $paragraphs;
@@ -143,7 +142,8 @@ class WorkingNote
         $this->customer = $customer;
     }
 
-    public function getCustomerName() {
+    public function getCustomerName()
+    {
         return $this->customer ? $this->customer->getName() : null;
     }
 }

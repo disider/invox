@@ -8,14 +8,21 @@
  *
  */
 
-namespace AppBundle\Entity\Repository;
+namespace AppBundle\Repository;
 
+use AppBundle\Entity\User;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class UserRepository extends AbstractRepository
 {
     const ROOT_ALIAS = 'user';
     const FILTER_BY_COMPANIES = 'filter_by_companies';
+
+    public function __construct(RegistryInterface $registry)
+    {
+        parent::__construct($registry, User::class);
+    }
 
     protected function getRootAlias()
     {

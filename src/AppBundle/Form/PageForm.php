@@ -26,7 +26,6 @@ class PageForm extends AbstractType
             'label' => false
         ]);
 
-
         $builder->add('save', SubmitType::class, [
             'label' => 'actions.save',
         ]);

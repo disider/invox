@@ -9,20 +9,11 @@ parameters:
 
 services:
   AppBundle\Entity\Manager\CompanyManager:
+    public: true
     arguments:
       - '@AppBundle\Repository\CompanyRepository'
       - '@security.token_storage'
       - '@session'
-
-  default_mailer:
-    class: AppBundle\Mailer\DefaultMailer
-    arguments:
-      - '@templating'
-      - '@router'
-      - '@swiftmailer.mailer'
-      - '@translator'
-      - '%mailer.display_names%'
-      - '%mailer.emails%'
 
   directory_subscriber:
     class: AppBundle\Pagination\DirectorySubscriber
@@ -65,3 +56,5 @@ services:
     class: AppBundle\Helper\ParameterHelper
     arguments:
       - '@service_container'
+
+#  oneup_uploader.orphanage_manager: 'Oneup\UploaderBundle\Uploader\Orphanage\OrphanageManager'

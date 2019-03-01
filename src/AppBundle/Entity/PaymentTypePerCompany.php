@@ -15,9 +15,9 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 class PaymentTypePerCompany extends BasePaymentType
 {
     use ORMBehaviors\Translatable\Translatable;
-    
-    /** 
-     * @var Company 
+
+    /**
+     * @var Company
      */
     private $company;
 

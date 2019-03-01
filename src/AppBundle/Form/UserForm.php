@@ -100,8 +100,7 @@ class UserForm extends AbstractType
 
                 if ($user->isSuperadmin() || $user->isManagingMultipleCompanies()) {
                     $form->add('email', TextType::class, ['label' => 'fields.email']);
-                }
-                else {
+                } else {
                     $form->add('email', PlainTextType::class, [
                         'label' => 'fields.email',
                     ]);
@@ -126,8 +125,7 @@ class UserForm extends AbstractType
 
                 if ($form['isSuperAdmin']->getData()) {
                     $formData->setRoles([User::ROLE_SUPER_ADMIN, User::ROLE_ALLOWED_TO_SWITCH]);
-                }
-                else {
+                } else {
                     $formData->setRoles([]);
                 }
             }

@@ -18,8 +18,8 @@ class PettyCashNoteTransformer implements DataTransformerInterface
     public function transform($value)
     {
         $transferNote = $value->getTransferNote();
-        
-        if(!$transferNote) {
+
+        if (!$transferNote) {
             $transferNote = new PettyCashNote();
             $transferNote->setRef($value->getRef());
             $transferNote->setCompany($value->getCompany());
@@ -33,11 +33,10 @@ class PettyCashNoteTransformer implements DataTransformerInterface
     {
         $transferNote = $value->getTransferNote();
 
-        if($transferNote->getAccount() == null) {
+        if ($transferNote->getAccount() == null) {
             $value->setTransferNote(null);
             $transferNote->setTransferNote(null);
-        }
-        else {
+        } else {
             $transferNote->setAmount(-$value->getAmount());
         }
 

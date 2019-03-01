@@ -15,9 +15,9 @@
         <field name="tableHeaderColor" column="table_header_color" type="string" length="255"/>
         <field name="tableHeaderBackgroundColor" column="table_header_background_color" type="string" length="255"/>
         <field name="fontFamily" column="font_family" type="string" length="255"/>
-        <field name="header" column="header" type="text" />
-        <field name="content" column="content" type="text" />
-        <field name="footer" column="footer" type="text" />
+        <field name="header" column="header" type="text"/>
+        <field name="content" column="content" type="text"/>
+        <field name="footer" column="footer" type="text"/>
 
     </mapped-superclass>
 

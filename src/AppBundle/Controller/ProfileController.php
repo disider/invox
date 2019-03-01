@@ -13,9 +13,9 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\User;
 use AppBundle\Form\ChangePasswordForm;
 use AppBundle\Form\ProfileForm;
-use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/profile")
@@ -48,7 +48,6 @@ class ProfileController extends BaseController
 
         if ($request->isMethod(Request::METHOD_POST)) {
             $form->handleRequest($request);
-
 
             if ($form->isValid()) {
                 /** @var User $user */

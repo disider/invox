@@ -22,22 +22,23 @@ class ValidPettyCashNoteValidator extends ConstraintValidator
      */
     private $localeFormatter;
 
-    public function __construct(LocaleFormatter $localeFormatter) {
+    public function __construct(LocaleFormatter $localeFormatter)
+    {
 
         $this->localeFormatter = $localeFormatter;
     }
-    
+
     /**
      * @param PettyCashNote $pettyCashNote
      * @param ValidPettyCashNote $constraint
      */
     public function validate($pettyCashNote, Constraint $constraint)
     {
-        if(!($pettyCashNote->getAccountTo() || $pettyCashNote->getAccountFrom())) {
+        if (!($pettyCashNote->getAccountTo() || $pettyCashNote->getAccountFrom())) {
             $this->context->buildViolation('error.no_account_selected')
                 ->addViolation();
         }
-        
+
         if ($pettyCashNote->getAmount() < $pettyCashNote->getInvoicesTotal()) {
             $this->context->buildViolation('error.invoices_exceeding_note_amount')
                 ->setParameter('%invoicesAmount%', $this->localeFormatter->format($pettyCashNote->getInvoicesTotal()))

@@ -8,30 +8,24 @@
  *
  */
 
-namespace AppBundle\Entity\Repository;
+namespace AppBundle\Repository;
 
 use AppBundle\Entity\Company;
 
-class TagRepository extends AbstractRepository
+abstract class AbstractTagRepository extends AbstractRepository
 {
-    const ROOT_ALIAS = 'tag';
-
-    protected function getRootAlias()
-    {
-        return self::ROOT_ALIAS;
-    }
-
     public function search($term, Company $company)
     {
-        $qb = $this->createQueryBuilder('tag')
-            ->leftJoin('tag.taggable', 'taggable')
-            ->where('tag.name LIKE :term')
+        $alias = $this->getRootAlias();
+
+        $qb = $this->createQueryBuilder($alias)
+            ->leftJoin($alias . '.taggable', 'taggable')
+            ->where($alias . '.name LIKE :term')
             ->andWhere('taggable.company = :company')
             ->setParameter('term', '%' . $term . '%')
             ->setParameter('company', $company)
             ->distinct()
-            ->groupBy('tag.name')
-        ;
+            ->groupBy($alias . '.name');
 
         return $qb
             ->getQuery()

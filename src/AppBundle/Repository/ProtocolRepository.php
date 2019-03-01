@@ -11,7 +11,6 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Company;
-use AppBundle\Entity\User;
 use Doctrine\ORM\QueryBuilder;
 
 abstract class ProtocolRepository extends SelectedCompanyRepository
@@ -26,15 +25,14 @@ abstract class ProtocolRepository extends SelectedCompanyRepository
             ->where($alias . '.company = :company')
             ->setParameter('company', $company)
             ->orderBy('refNumber', 'desc')
-            ->setMaxResults(1)
-        ;
+            ->setMaxResults(1);
 
         $qb = $this->filterByYear($qb, $alias, $year);
         $qb = $this->applyFilters($qb, $filters);
 
         $result = $qb->getQuery()->getScalarResult();
 
-        if(count($result) > 0) {
+        if (count($result) > 0) {
             return $result[0]['ref'];
         }
 

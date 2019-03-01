@@ -11,7 +11,6 @@
 namespace AppBundle\Builder;
 
 use AppBundle\Entity\Document;
-use Symfony\Component\Templating\EngineInterface;
 
 class DocumentBuilder
 {
@@ -46,7 +45,7 @@ class DocumentBuilder
 
         $content = $this->environment->createTemplate($template->$method());
 
-        if(!$isAutoReload) {
+        if (!$isAutoReload) {
             $this->environment->disableAutoReload();
         }
 

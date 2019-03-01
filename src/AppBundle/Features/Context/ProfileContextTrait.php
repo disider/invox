@@ -56,8 +56,7 @@ trait ProfileContextTrait
 
             $cookie = new Cookie($session->getName(), $session->getId());
             $client->getCookieJar()->set($cookie);
-        }
-        else {
+        } else {
             $this->visit('/login');
             $this->fillField('_username', $email);
             $this->fillField('_password', $password);

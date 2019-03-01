@@ -10,12 +10,9 @@
 
 namespace AppBundle\Form\Type;
 
-use AppBundle\Entity\Attachable;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AttachmentType extends AbstractType

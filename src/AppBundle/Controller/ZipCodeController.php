@@ -11,7 +11,6 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\ZipCode;
-use AppBundle\Form\Processor\DefaultFormProcessor;
 use AppBundle\Form\Processor\ZipCodeFormProcessor;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -100,7 +99,7 @@ class ZipCodeController extends BaseController
             $this->addFlash('success', $processor->isNew() ? 'flash.zip_code.created' : 'flash.zip_code.updated',
                 ['%zip_code%' => $processor->getData()]);
 
-            if ($processor->isRedirectingTo(DefaultFormProcessor::REDIRECT_TO_LIST)) {
+            if ($processor->isRedirectingTo(ZipCodeFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('zip_codes');
             }
 

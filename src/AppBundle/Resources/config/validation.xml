@@ -5,25 +5,25 @@
 
     <class name="AppBundle\Entity\Country">
         <property name="translations">
-            <constraint name="Valid" />
+            <constraint name="Valid"/>
         </property>
     </class>
 
     <class name="AppBundle\Entity\Page">
         <property name="translations">
-            <constraint name="Valid" />
+            <constraint name="Valid"/>
         </property>
     </class>
 
     <class name="AppBundle\Entity\PaymentType">
         <property name="translations">
-            <constraint name="Valid" />
+            <constraint name="Valid"/>
         </property>
     </class>
 
     <class name="AppBundle\Entity\TaxRate">
         <property name="translations">
-            <constraint name="Valid" />
+            <constraint name="Valid"/>
         </property>
     </class>
 </constraint-mapping>

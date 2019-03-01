@@ -46,10 +46,13 @@
 
     <div class="row">
         <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
-            <a href="#" id="show-more" class="btn btn-launcher" type="button" data-toggle="collapse" data-target="#description" aria-expanded="false" aria-controls="description">
-                <span class="fa fa-chevron-up hidden"></span><span class="fa fa-chevron-down"></span> <span>{{ 'homepage.read_more'|trans|upper }}</span>
+            <a href="#" id="show-more" class="btn btn-launcher" type="button" data-toggle="collapse"
+               data-target="#description" aria-expanded="false" aria-controls="description">
+                <span class="fa fa-chevron-up hidden"></span><span class="fa fa-chevron-down"></span>
+                <span>{{ 'homepage.read_more'|trans|upper }}</span>
             </a>
-            <a href="{{ launcher_links.demo }}" class="btn btn-launcher">{{ icon('th-large') }} <span>{{ 'homepage.live_preview'|trans|upper }}</span></a>
+            <a href="{{ launcher_links.demo }}" class="btn btn-launcher">{{ icon('th-large') }}
+                <span>{{ 'homepage.live_preview'|trans|upper }}</span></a>
         </div>
     </div>
 
@@ -78,14 +81,18 @@
                 {{ 'homepage.open_source.title'|trans }}
             </div>
             <div class="content">
-                <a href="{{ launcher_links.download_code }}" class="btn btn-launcher">{{ icon('github') }} {{ 'homepage.open_source.download_github'|trans }}</a>
+                <a href="{{ launcher_links.download_code }}"
+                   class="btn btn-launcher">{{ icon('github') }} {{ 'homepage.open_source.download_github'|trans }}</a>
                 <p>
                     {{ 'homepage.open_source.description'|trans }}
                 </p>
                 <div class="links">
-                    <a href="{{ launcher_links.wiki }}">{{ icon('question-circle-o') }}<span>{{ 'homepage.open_source.wiki'|trans }}</span></a>
-                    <a href="{{ launcher_links.github_repo }}">{{ icon('github') }}<span>{{ 'homepage.open_source.repository'|trans }}</span></a>
-                    <a href="{{ launcher_links.community }}" class="disabled">{{ icon('users') }}<span>{{ 'homepage.open_source.community'|trans }}</span></a>
+                    <a href="{{ launcher_links.wiki }}">{{ icon('question-circle-o') }}
+                        <span>{{ 'homepage.open_source.wiki'|trans }}</span></a>
+                    <a href="{{ launcher_links.github_repo }}">{{ icon('github') }}
+                        <span>{{ 'homepage.open_source.repository'|trans }}</span></a>
+                    <a href="{{ launcher_links.community }}" class="disabled">{{ icon('users') }}
+                        <span>{{ 'homepage.open_source.community'|trans }}</span></a>
                     {#<a href="{{ launcher_links.join_development }}">{{ icon('code') }}<span>{{ 'homepage.open_source.join_development'|trans }}</span></a>#}
                 </div>
 
@@ -98,7 +105,8 @@
             </div>
             <div class="content">
                 <a href="{{ path('contact_us') }}" class="btn btn-pro btn-block">
-                    <img src="{{ asset('images/pro-icon.png') }}"> <span>{{ "homepage.pro_install.go_pro"|trans }}</span>
+                    <img src="{{ asset('images/pro-icon.png') }}">
+                    <span>{{ "homepage.pro_install.go_pro"|trans }}</span>
                 </a>
                 <p>{{ 'homepage.pro_install.description'|trans }}</p>
                 {{ 'homepage.pro_install.features'|trans|raw }}

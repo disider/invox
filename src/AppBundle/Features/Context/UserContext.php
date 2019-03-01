@@ -159,7 +159,6 @@ class UserContext extends BaseMinkContext
         $this->getCompanyRepository()->save($company);
     }
 
-
     private function connectSalesAgent($email, $companyName)
     {
         /** @var UserRepository $userRepo */

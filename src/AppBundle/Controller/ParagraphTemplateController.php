@@ -12,7 +12,6 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\ParagraphTemplate;
 use AppBundle\Form\Filter\ParagraphTemplateFilterForm;
-use AppBundle\Form\Processor\DefaultFormProcessor;
 use AppBundle\Form\Processor\ParagraphTemplateFormProcessor;
 use AppBundle\Repository\ParagraphTemplateRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;

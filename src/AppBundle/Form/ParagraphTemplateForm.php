@@ -42,7 +42,7 @@ class ParagraphTemplateForm extends AbstractType
             ]
         ]);
 
-        if($options['prototype']) {
+        if ($options['prototype']) {
             $builder->add('save', SubmitType::class, ['label' => 'actions.save',]);
             $builder->add(
                 'saveAndClose',

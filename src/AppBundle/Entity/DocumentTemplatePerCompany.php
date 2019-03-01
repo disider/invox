@@ -14,8 +14,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class DocumentTemplatePerCompany extends BaseDocumentTemplate
 {
-    /** 
-     * @var DocumentTemplate 
+    /**
+     * @var DocumentTemplate
      */
     private $documentTemplate;
 
@@ -31,7 +31,7 @@ class DocumentTemplatePerCompany extends BaseDocumentTemplate
         $entity->documentTemplate = $documentTemplate;
         $entity->copyDocumentTemplateDetails();
         $entity->company = $company;
-        
+
         return $entity;
     }
 
@@ -52,7 +52,6 @@ class DocumentTemplatePerCompany extends BaseDocumentTemplate
         $this->setContent($this->documentTemplate->getContent());
         $this->setFooter($this->documentTemplate->getFooter());
     }
-    
 
     public function getDocumentTemplate()
     {
@@ -70,7 +69,8 @@ class DocumentTemplatePerCompany extends BaseDocumentTemplate
     }
 
     public function setCompany(Company $company)
-    {   $this->company = $company;
+    {
+        $this->company = $company;
         $this->company->addDocumentTemplatePerCompany($this);
     }
 

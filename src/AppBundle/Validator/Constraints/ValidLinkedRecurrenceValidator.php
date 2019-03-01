@@ -11,7 +11,6 @@
 namespace AppBundle\Validator\Constraints;
 
 use AppBundle\Entity\Document;
-use AppBundle\Model\DocumentType;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
@@ -23,7 +22,7 @@ class ValidLinkedRecurrenceValidator extends ConstraintValidator
      */
     public function validate($document, Constraint $constraint)
     {
-        if($document->hasRecurrence()) {
+        if ($document->hasRecurrence()) {
             if ($document->getCompany() != $document->getRecurrence()->getCompany()) {
                 $this->context->buildViolation('error.invalid_recurrence')
                     ->atPath('recurrence')

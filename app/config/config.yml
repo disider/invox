@@ -8,6 +8,7 @@ parameters:
     page_size: 25
     # TODO: check whether to remove after upgrading to 4.x
     container.dumper.inline_class_loader: true
+    container.autowiring.strict_mode: true
 
 framework:
     #esi:             ~
@@ -169,3 +170,6 @@ sensio_framework_extra:
 #    form:
 #        mapping:
 #            enabled: false
+
+knp_snappy:
+    temporary_folder: "%kernel.cache_dir%/snappy"

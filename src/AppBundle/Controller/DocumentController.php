@@ -13,16 +13,16 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Document;
 use AppBundle\Entity\Recurrence;
-use AppBundle\Repository\DocumentRepository;
 use AppBundle\Form\Processor\DocumentFormProcessor;
 use AppBundle\Model\DocumentType;
+use AppBundle\Repository\DocumentRepository;
 use Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator;
-use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/documents")
@@ -182,8 +182,7 @@ class DocumentController extends BaseController
                     $documents[] = $document;
                 }
             }
-        }
-        else {
+        } else {
             $documents = $records;
         }
 
@@ -327,7 +326,7 @@ class DocumentController extends BaseController
 
     private function generateRef($company, $type, $year)
     {
-        if(!$company) {
+        if (!$company) {
             return 1;
         }
 

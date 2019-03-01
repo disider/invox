@@ -10,18 +10,18 @@
 
     <div id="filter" class="collapse">
         {{ form_start(filterForm, { method: 'GET'}) }}
-            <div class="well">
-                <div class="row">
-                    <div class="col-sm-3">{{ form_row(filterForm.name) }}</div>
-                    <div class="col-sm-3">{{ form_row(filterForm.code) }}</div>
-                </div>
-
-                <div class="form-actions">
-                    {{ form_widget(filterForm.filter) }}
-
-                    <a class="btn btn-default" href="{{ path('services') }}">{{ 'actions.reset'|trans }}</a>
-                </div>
+        <div class="well">
+            <div class="row">
+                <div class="col-sm-3">{{ form_row(filterForm.name) }}</div>
+                <div class="col-sm-3">{{ form_row(filterForm.code) }}</div>
             </div>
+
+            <div class="form-actions">
+                {{ form_widget(filterForm.filter) }}
+
+                <a class="btn btn-default" href="{{ path('services') }}">{{ 'actions.reset'|trans }}</a>
+            </div>
+        </div>
         {{ form_end(filterForm) }}
     </div>
 

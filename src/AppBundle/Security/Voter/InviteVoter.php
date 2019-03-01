@@ -24,9 +24,9 @@ class InviteVoter extends Voter
     protected function supports($attribute, $subject)
     {
         return $subject instanceof Invite && in_array($attribute, [
-            self::INVITE_ACCEPT,
-            self::INVITE_REFUSE,
-            self::INVITE_DELETE
+                self::INVITE_ACCEPT,
+                self::INVITE_REFUSE,
+                self::INVITE_DELETE
             ]);
     }
 
@@ -38,10 +38,10 @@ class InviteVoter extends Voter
         if (!($user instanceof User))
             return false;
 
-        if($attribute == self::INVITE_DELETE)
+        if ($attribute == self::INVITE_DELETE)
             return $user->ownsCompany($subject->getCompany());
-        
+
         /** @var User $user */
-        return ($user->isSuperadmin() || ($user->getEmail() == $subject->getEmail())) ;
+        return ($user->isSuperadmin() || ($user->getEmail() == $subject->getEmail()));
     }
 }

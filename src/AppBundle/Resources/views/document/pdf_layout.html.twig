@@ -46,7 +46,7 @@
         .rows tbody td {
             color: {{ textColor }};
             font-size: 1.2em;
-            border-bottom: 1px solid {{ lineColor }};
+            border-bottom: 1px solid{{ lineColor }};
         }
 
         th, td {
@@ -90,7 +90,7 @@
         .separator {
             border: 0;
             height: 0;
-            border-top: 3px solid {{ lineColor }};
+            border-top: 3px solid{{ lineColor }};
         }
 
         .col-1 {
@@ -169,7 +169,7 @@
         }
 
         .footer {
-            border-top: 1px solid {{ lineColor }};
+            border-top: 1px solid{{ lineColor }};
         }
 
         footer {
@@ -185,9 +185,17 @@
             text-align: right;
         }
 
-        thead { display: table-header-group }
-        tfoot { display: table-row-group }
-        tr { page-break-inside: avoid }
+        thead {
+            display: table-header-group
+        }
+
+        tfoot {
+            display: table-row-group
+        }
+
+        tr {
+            page-break-inside: avoid
+        }
     </style>
 </head>
 <body>

@@ -1,7 +1,7 @@
 {% extends '::form.html.twig' %}
 
 {% block main_content %}
-    {%  set entity = form.vars.data %}
+    {% set entity = form.vars.data %}
     <h1>{{ 'recurrence.edit'|trans({'%recurrence%': entity }) }}</h1>
 
     {% include 'AppBundle:recurrence:_form.html.twig' %}

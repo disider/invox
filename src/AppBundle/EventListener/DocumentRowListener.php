@@ -67,7 +67,7 @@ class DocumentRowListener implements EventSubscriber
         $flush = count($this->documents) > 0;
 
         /** @var Document $document */
-        foreach($this->documents as $document) {
+        foreach ($this->documents as $document) {
             $document->calculateTotals();
 
             $em->persist($document);
@@ -75,7 +75,7 @@ class DocumentRowListener implements EventSubscriber
 
         $this->documents = [];
 
-        if($flush) {
+        if ($flush) {
             $em->flush();
         }
     }

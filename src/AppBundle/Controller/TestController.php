@@ -10,18 +10,12 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\DependencyInjection\DynamicConfiguration;
 use AppBundle\Entity\Invite;
-use AppBundle\Form\RegisterForm;
-use AppBundle\Form\ResetPasswordRequestForm;
 use AppBundle\Mailer\MailerInterface;
-use LegacyBundle\Entity\Country;
-use LegacyBundle\Entity\Coupon;
-use LegacyBundle\Entity\Repository\DefaultRepository;
-use LegacyBundle\Entity\User;
-use Symfony\Component\Routing\Annotation\Route;
+use AppBundle\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/tests")
@@ -32,12 +26,11 @@ class TestController extends BaseController
      * @Route("/emails/confirm-registration", name="test_confirm_registration_email")
      * @Template("AppBundle:default:test_email.html.twig")
      */
-    public function confirmRegistrationEmailAction()
+    public function confirmRegistrationEmailAction(UserRepository $userRepository, MailerInterface $mailer)
     {
-        $user = $this->get('user_repository')->findLast();
+        $user = $userRepository->findLast();
         $user->setConfirmationToken('12345678');
 
-        $mailer = $this->getMailer();
         $mailer->sendConfirmRegistrationEmailTo($user);
 
         return [
@@ -51,11 +44,10 @@ class TestController extends BaseController
      * @Route("/emails/registration-completed", name="test_registration_completed_email")
      * @Template("AppBundle:default:test_email.html.twig")
      */
-    public function registrationCompletedEmailAction()
+    public function registrationCompletedEmailAction(UserRepository $userRepository, MailerInterface $mailer)
     {
-        $user = $this->get('user_repository')->findLast();
+        $user = $userRepository->findLast();
 
-        $mailer = $this->getMailer();
         $mailer->sendRegistrationCompletedEmailTo($user);
 
         return [
@@ -69,12 +61,11 @@ class TestController extends BaseController
      * @Route("/emails/reset-password", name="test_reset_password_email")
      * @Template("AppBundle:default:test_email.html.twig")
      */
-    public function resetPasswordEmailAction()
+    public function resetPasswordEmailAction(UserRepository $userRepository, MailerInterface $mailer)
     {
-        $user = $this->get('user_repository')->findLast();
+        $user = $userRepository->findLast();
         $user->setResetPasswordToken('12345678');
 
-        $mailer = $this->getMailer();
         $mailer->sendResetPasswordRequestEmailTo($user);
 
         return [
@@ -88,15 +79,14 @@ class TestController extends BaseController
      * @Route("/emails/invite-accountant", name="test_invite_accountant_email")
      * @Template("AppBundle:default:test_email.html.twig")
      */
-    public function inviteAccountantEmailAction()
+    public function inviteAccountantEmailAction(UserRepository $userRepository, MailerInterface $mailer)
     {
-        $user = $this->get('user_repository')->findLast();
+        $user = $userRepository->findLast();
         $invite = new Invite();
         $invite->setCompany($user->getDefaultCompany());
         $invite->setEmail('accountant@example.com');
         $invite->setToken('12345678');
 
-        $mailer = $this->getMailer();
         $mailer->sendInviteAccountantEmailTo($invite);
 
         return [

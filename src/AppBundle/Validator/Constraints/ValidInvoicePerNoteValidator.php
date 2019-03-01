@@ -23,20 +23,21 @@ class ValidInvoicePerNoteValidator extends ConstraintValidator
      */
     private $localeFormatter;
 
-    public function __construct(LocaleFormatter $localeFormatter) {
+    public function __construct(LocaleFormatter $localeFormatter)
+    {
 
         $this->localeFormatter = $localeFormatter;
     }
-    
+
     /**
-     * @param InvoicePerNote      $invoicePerNote
+     * @param InvoicePerNote $invoicePerNote
      * @param ValidInvoicePerNote $constraint
      */
     public function validate($invoicePerNote, Constraint $constraint)
     {
         $invoice = $invoicePerNote->getInvoice();
 
-        if(!$invoice) {
+        if (!$invoice) {
             $this->context->buildViolation('error.invalid_invoice')
                 ->atPath('invoice')
                 ->addViolation();

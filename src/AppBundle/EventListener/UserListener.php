@@ -59,7 +59,7 @@ class UserListener implements EventSubscriber
             foreach ($invites as $invite) {
                 $invite->setReceiver($object);
             }
-            
+
             $this->updateUserFields($object);
         }
     }
@@ -69,7 +69,7 @@ class UserListener implements EventSubscriber
         $object = $args->getEntity();
         if ($object instanceof UserInterface) {
             $this->updateUserFields($object);
-            
+
             // We are doing a update, so we must force Doctrine to update the
             // changeset in case we changed something above
             $em = $args->getEntityManager();

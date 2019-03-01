@@ -16,7 +16,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
  * @AppAssert\ValidRecurrence
  * @JMS\ExclusionPolicy("all")
@@ -64,7 +63,6 @@ class Recurrence
      * @var \DateTime
      */
     private $startAt;
-
 
     /**
      * @var \DateTime
@@ -375,8 +373,8 @@ class Recurrence
                 if (!$weekdays) {
                     $formatDate .= 'week';
                 } else {
-                    $value = floor($totalDocuments/count($weekdays));
-                    $formatDate = sprintf("+%d %s", $value * $this->repeatEvery, $weekdays[$totalDocuments%count($weekdays)]);
+                    $value = floor($totalDocuments / count($weekdays));
+                    $formatDate = sprintf("+%d %s", $value * $this->repeatEvery, $weekdays[$totalDocuments % count($weekdays)]);
                 }
                 break;
             case self::EVERY_MONTH:

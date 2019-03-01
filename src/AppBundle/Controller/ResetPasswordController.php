@@ -14,9 +14,10 @@ use AppBundle\Entity\User;
 use AppBundle\Form\RequestResetPasswordForm;
 use AppBundle\Form\ResetPasswordForm;
 use AppBundle\Generator\TokenGenerator;
-use Symfony\Component\Routing\Annotation\Route;
+use AppBundle\Mailer\MailerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/reset-password")
@@ -27,7 +28,7 @@ class ResetPasswordController extends BaseController
      * @Route("", name="reset_password_request")
      * @Template
      */
-    public function requestResetPasswordAction(Request $request)
+    public function requestResetPasswordAction(Request $request, MailerInterface $mailer)
     {
         if ($this->isAuthenticated()) {
             return $this->redirectToRoute('dashboard');
@@ -54,8 +55,6 @@ class ResetPasswordController extends BaseController
                     $user->setPasswordRequestedAt(new \DateTime());
 
                     $this->save($user);
-
-                    $mailer = $this->getMailer();
 
                     $mailer->sendResetPasswordRequestEmailTo($user);
                 }

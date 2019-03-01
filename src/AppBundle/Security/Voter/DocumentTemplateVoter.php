@@ -23,8 +23,8 @@ class DocumentTemplateVoter extends Voter
     protected function supports($attribute, $subject)
     {
         return $subject instanceof DocumentTemplate && in_array($attribute, [
-            self::DOCUMENT_TEMPLATE_PREVIEW,
-            self::DOCUMENT_TEMPLATE_RESTORE,
+                self::DOCUMENT_TEMPLATE_PREVIEW,
+                self::DOCUMENT_TEMPLATE_RESTORE,
             ]);
     }
 

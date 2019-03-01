@@ -7,7 +7,7 @@
     <entity name="AppBundle\Entity\DocumentTemplatePerCompany" table="document_template_per_company"
             repository-class="AppBundle\Repository\DocumentTemplatePerCompanyRepository">
 
-        <one-to-many field="documents" target-entity="Document" mapped-by="documentTemplate" />
+        <one-to-many field="documents" target-entity="Document" mapped-by="documentTemplate"/>
 
         <many-to-one field="documentTemplate" target-entity="DocumentTemplate" inversed-by="companies">
             <join-column name="document_template_id" referenced-column-name="id" on-delete="CASCADE" nullable="false"/>

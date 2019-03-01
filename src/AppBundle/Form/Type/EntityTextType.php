@@ -11,7 +11,7 @@
 namespace AppBundle\Form\Type;
 
 use AppBundle\Form\Transformer\EntityToStringTransformer;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,11 +20,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class EntityTextType extends AbstractType
 {
     /**
-     * @var EntityManager
+     * @var EntityManagerInterface
      */
     private $entityManager;
 
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
     }
@@ -46,6 +46,5 @@ class EntityTextType extends AbstractType
             'field' => 'id'
         ]);
     }
-
 
 }

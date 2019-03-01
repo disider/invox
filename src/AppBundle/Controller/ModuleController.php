@@ -11,10 +11,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Model\Module;
-use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/modules")
@@ -42,11 +41,10 @@ class ModuleController extends BaseController
         $module = new Module($moduleName);
 
         $company = $this->getCurrentCompany();
-        
-        if($company->hasModule($module)) {
+
+        if ($company->hasModule($module)) {
             $this->addFlash('danger', $this->translate('error.module_already_enabled', ['%module%' => $this->translate($module)], 'validators'));
-        }
-        else {
+        } else {
             $company->addModule($module);
             $this->save($company);
 
@@ -65,10 +63,9 @@ class ModuleController extends BaseController
 
         $company = $this->getCurrentCompany();
 
-        if(!$company->hasModule($module)) {
+        if (!$company->hasModule($module)) {
             $this->addFlash('danger', $this->translate('error.module_not_enabled', ['%module%' => $this->translate($module)], 'validators'));
-        }
-        else {
+        } else {
             $company->removeModule($module);
             $this->save($company);
 

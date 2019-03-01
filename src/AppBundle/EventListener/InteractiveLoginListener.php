@@ -10,7 +10,6 @@
 
 namespace AppBundle\EventListener;
 
-use AppBundle\Entity\Manager\CompanyManager;
 use AppBundle\Entity\Manager\UserManager;
 use AppBundle\Model\UserInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

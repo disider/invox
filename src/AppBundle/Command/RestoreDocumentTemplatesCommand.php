@@ -10,14 +10,12 @@
 
 namespace AppBundle\Command;
 
-use Doctrine\ORM\EntityManager;
 use LegacyBundle\Entity\Customer;
 use LegacyBundle\Model\ReferenceTable;
 use LegacyBundle\Util\Util;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Yaml\Dumper;
 
 class RestoreDocumentTemplatesCommand extends ContainerAwareCommand
 {
@@ -36,7 +34,7 @@ class RestoreDocumentTemplatesCommand extends ContainerAwareCommand
 
         $output->writeln(sprintf('Updating %d templates', count($templates)));
 
-        foreach($templates as $template) {
+        foreach ($templates as $template) {
             $template->copyDocumentTemplateDetails();
             $em->persist($template);
         }

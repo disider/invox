@@ -11,9 +11,10 @@
 namespace AppBundle\Features\Context;
 
 use AppBundle\Entity\Company;
-use AppBundle\Features\Mock\MailerMock;
-use AppBundle\Features\Mock\ParameterHelperMock;
-use AppBundle\Mailer\Mailer;
+use AppBundle\Features\Fake\FakeMailer;
+use AppBundle\Features\Fake\FakeParameterHelper;
+use AppBundle\Helper\ParameterHelperInterface;
+use AppBundle\Mailer\MailerInterface;
 use Behat\Gherkin\Node\TableNode;
 use Diside\BehatExtension\Context\AbstractContext;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
@@ -27,7 +28,7 @@ class FeatureContext extends AbstractContext
     use EntityLookupContextTrait;
     use ProfileContextTrait;
 
-    /** @var MailerMock */
+    /** @var FakeMailer */
     private $mailer;
 
     /** @var string */
@@ -36,7 +37,7 @@ class FeatureContext extends AbstractContext
     /** @var string */
     private $firewallName;
 
-    /** @var ParameterHelperMock */
+    /** @var FakeParameterHelper */
     private $parameterHelper;
 
     public function __construct($userProvider, $firewallName)
@@ -44,8 +45,8 @@ class FeatureContext extends AbstractContext
         $this->userProvider = $userProvider;
         $this->firewallName = $firewallName;
 
-        $this->mailer = new MailerMock();
-        $this->parameterHelper = new ParameterHelperMock(null);
+        $this->mailer = new FakeMailer();
+        $this->parameterHelper = new FakeParameterHelper();
 
         $this->setFilePath(__DIR__ . '/attachments');
     }
@@ -53,17 +54,19 @@ class FeatureContext extends AbstractContext
     /** @BeforeScenario */
     public function mockServices()
     {
-        /* @var Mailer mailer */
-        $this->getContainer()->mock('default_mailer', $this->mailer);
-        $this->getContainer()->mock('parameter_helper', $this->parameterHelper);
+        /* @var MailerInterface mailer */
+        $this->getContainer()->mock(MailerInterface::class, $this->mailer);
+        $this->getContainer()->mock(ParameterHelperInterface::class, $this->parameterHelper);
     }
 
     /** @AfterScenario */
     public function unmockServices()
     {
-        /* @var Mailer mailer */
-        $this->getContainer()->unmock('default_mailer');
-        $this->getContainer()->unmock('parameter_helper');
+        /* @var MailerInterface mailer */
+        $this->getContainer()->unmock(MailerInterface::class);
+        $this->getContainer()->unmock(ParameterHelperInterface::class);
+
+        $this->mailer->clearEmails();
     }
 
     /** @BeforeScenario */
@@ -86,19 +89,23 @@ class FeatureContext extends AbstractContext
     /**
      * @Given /^an? "([^"]*)" email should be sent to "([^"]*)"$/
      */
-    public function anEmailIsSentTo($type, $address)
+    public function anEmailIsSentTo($subject, $recipient)
     {
-        a::assertThat($this->mailer->getTemplate(), a::equalTo($type));
-        a::assertThat($this->mailer->getTo(), a::equalTo($address));
+        a::assertTrue($this->mailer->hasSubject($subject), sprintf('No "%s" email found', $subject));
+
+        $email = $this->mailer->getSubject($subject);
+        a::assertTrue($email->hasRecipient($recipient), sprintf('No "%s" recipient found for "%s"', $recipient, $subject));
     }
 
     /**
      * @Given /^an? "([^"]*)" email should be sent from "([^"]*)"$/
      */
-    public function anEmailIsSentFrom($type, $address)
+    public function anEmailIsSentFrom($subject, $sender)
     {
-        a::assertThat($this->mailer->getTemplate(), a::equalTo($type));
-        a::assertThat($this->mailer->getFrom(), a::equalTo($address));
+        a::assertTrue($this->mailer->hasSubject($subject), sprintf('No "%s" email found', $subject));
+
+        $email = $this->mailer->getSubject($subject);
+        a::assertThat($email->sender, a::equalTo($sender), sprintf('No "%s" sender found for "%s"', $sender, $subject));
     }
 
     /**
@@ -106,8 +113,7 @@ class FeatureContext extends AbstractContext
      */
     public function noEmailIsSentTo($type, $address)
     {
-        a::assertThat($this->mailer->getTemplate(), a::logicalNot(a::equalTo($type)));
-        a::assertThat($this->mailer->getTo(), a::logicalNot(a::equalTo($address)));
+        a::assertFalse($this->mailer->hasSubject($type));
     }
 
     /**
@@ -120,8 +126,7 @@ class FeatureContext extends AbstractContext
 
         if ($visible == 'YES' || $visible == 'Y') {
             $this->assertSession()->elementExists('xpath', $this->formatXpathLink($link));
-        }
-        else {
+        } else {
             $this->assertSession()->elementNotExists('xpath', $this->formatXpathLink($link));
         }
     }
@@ -303,6 +308,7 @@ class FeatureContext extends AbstractContext
     {
         $this->getSession()->wait(10000, sprintf("$('%s').is(':visible');", $element));
     }
+
     /**
      * @Given /^I wait to see (\d+) "([^"]*)"(s|es)?$/
      */

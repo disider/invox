@@ -165,34 +165,33 @@ abstract class Item extends AttachmentContainer implements Taggable
 
         $tagsToRemove = [];
 
-        foreach($this->getTags() as $tag) {
+        foreach ($this->getTags() as $tag) {
             $found = false;
 
             $i = 0;
 
-            foreach($tags as $i => $name) {
-                if($tag->getName() == $name) {
+            foreach ($tags as $i => $name) {
+                if ($tag->getName() == $name) {
                     $found = true;
                 }
                 break;
             }
 
-            if($found) {
+            if ($found) {
                 unset($tags[$i]);
-            }
-            else {
+            } else {
                 $tagsToRemove[] = $tag;
             }
         }
 
-        foreach($tags as $name) {
+        foreach ($tags as $name) {
             $tag = $this->buildTag();
             $tag->setName($name);
             $tag->setTaggable($this);
             $this->tags->add($tag);
         }
 
-        foreach($tagsToRemove as $tag) {
+        foreach ($tagsToRemove as $tag) {
             $this->tags->removeElement($tag);
         }
     }

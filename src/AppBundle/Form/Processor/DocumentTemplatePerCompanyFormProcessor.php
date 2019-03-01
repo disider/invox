@@ -15,7 +15,7 @@ use AppBundle\Repository\DocumentTemplatePerCompanyRepository;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-class DocumentTemplatePerCompanyFormProcessor extends DefaultFormProcessor
+class DocumentTemplatePerCompanyFormProcessor extends DefaultAuthenticatedFormProcessor
 {
     public function __construct(DocumentTemplatePerCompanyRepository $repository, FormFactoryInterface $formFactory, TokenStorageInterface $tokenStorage)
     {

@@ -31,7 +31,7 @@ class AttachableNamer implements NamerInterface
         $company = $this->companyManager->getCurrent();
 
         $name = sprintf('%s/%s', $company->getAttachmentsUploadDir(), uniqid() . '.' . $file->getExtension());
-        
+
         return $name;
     }
 }

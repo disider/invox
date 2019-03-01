@@ -12,11 +12,9 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\Customer;
 use AppBundle\Entity\CustomerAttachment;
-use AppBundle\Entity\User;
 use AppBundle\Form\Type\AttachmentType;
 use AppBundle\Form\Type\CollectionUploaderType;
 use AppBundle\Form\Type\CountryEntityType;
-use Doctrine\ORM\EntityManager;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;

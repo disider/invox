@@ -18,4 +18,4 @@ Feature: User views a working note
   Scenario: I can view a working note details
     When I visit "/working-notes/%workingNotes.last.id%/render?showAsHtml=true"
     Then I should see the "working-note" details:
-      | code  | CODE1 |
+      | code | CODE1 |

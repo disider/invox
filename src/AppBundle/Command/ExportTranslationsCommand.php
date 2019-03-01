@@ -53,8 +53,7 @@ class ExportTranslationsCommand extends ContainerAwareCommand
                     $this->exportTranslation($locale, $domain, $output);
                 }
             }
-        }
-        else {
+        } else {
             $locale = $input->getOption('locale');
             if (!$locale) {
                 $locale = $container->getParameter('locale');

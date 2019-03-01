@@ -24,6 +24,6 @@ Feature: Accountant cannot access quote pages
     When I am on "<route>"
     Then the response status code should be 403
     Examples:
-      | route         |
-      | /quotes       |
-      | /orders       |
+      | route   |
+      | /quotes |
+      | /orders |

@@ -10,9 +10,7 @@
 
 namespace AppBundle\Entity;
 
-use AppBundle\Validator\Constraints as AppAssert;
 use JMS\Serializer\Annotation as JMS;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @JMS\ExclusionPolicy("all")

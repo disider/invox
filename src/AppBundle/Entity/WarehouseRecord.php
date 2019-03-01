@@ -153,8 +153,9 @@ class WarehouseRecord
         $this->description = $description;
     }
 
-    public function getStockBalance() {
+    public function getStockBalance()
+    {
         return $this->loadQuantity - $this->unloadQuantity;
     }
-    
+
 }

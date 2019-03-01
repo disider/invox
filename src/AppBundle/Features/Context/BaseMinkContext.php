@@ -52,8 +52,7 @@ class BaseMinkContext implements Context, KernelAwareContext
 
         if ($countryCode) {
             $country = $countryRepository->findOneByCode($countryCode);
-        }
-        else {
+        } else {
             $country = $countryRepository->findLast();
         }
 

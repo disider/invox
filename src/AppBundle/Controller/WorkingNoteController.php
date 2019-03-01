@@ -10,18 +10,16 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Paragraph;
-use AppBundle\Entity\Repository\WorkingNoteRepository;
 use AppBundle\Entity\WorkingNote;
 use AppBundle\Form\Filter\WorkingNoteFilterForm;
-use AppBundle\Form\Processor\DefaultFormProcessor;
-use Behat\Behat\Definition\Call\Then;
+use AppBundle\Form\Processor\WorkingNoteFormProcessor;
+use AppBundle\Repository\WorkingNoteRepository;
 use Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator;
-use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/working-notes")
@@ -68,7 +66,7 @@ class WorkingNoteController extends BaseController
      * @Security("is_granted('WORKING_NOTE_CREATE')")
      * @Template
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, WorkingNoteFormProcessor $processor)
     {
         $workingNote = new WorkingNote();
 
@@ -78,7 +76,7 @@ class WorkingNoteController extends BaseController
             $workingNote->setCompany($company);
         }
 
-        return $this->processForm($request, $workingNote);
+        return $this->processForm($request, $processor, $workingNote);
     }
 
     /**
@@ -86,18 +84,19 @@ class WorkingNoteController extends BaseController
      * @Security("is_granted('WORKING_NOTE_EDIT', workingNote)")
      * @Template
      */
-    public function editAction(Request $request, WorkingNote $workingNote)
+    public function editAction(Request $request, WorkingNoteFormProcessor $processor, WorkingNote $workingNote)
     {
-        return $this->processForm($request, $workingNote);
+        return $this->processForm($request, $processor, $workingNote);
     }
 
     /**
      * @Route("/{id}/delete", name="working_note_delete")
      * @Security("is_granted('WORKING_NOTE_DELETE', workingNote)")
      */
-    public function deleteAction(WorkingNote $workingNote)
+    public function deleteAction(WorkingNote $workingNote, WorkingNoteRepository $repository)
     {
-        $this->get('working_note_repository')->delete($workingNote);
+        $repository->delete($workingNote);
+
         $this->addFlash('success', 'flash.working_note.deleted');
 
         return $this->redirectToRoute('working_notes');
@@ -198,16 +197,14 @@ class WorkingNoteController extends BaseController
         );
     }
 
-    protected function processForm(Request $request, WorkingNote $workingNote = null)
+    protected function processForm(Request $request, WorkingNoteFormProcessor $processor, WorkingNote $workingNote = null)
     {
-        $processor = $this->get('working_note_form_processor');
-
         $processor->process($request, $workingNote);
 
         if ($processor->isValid()) {
             $this->addFlash('success', $processor->isNew() ? 'flash.working_note.created' : 'flash.working_note.updated');
 
-            if ($processor->isRedirectingTo(DefaultFormProcessor::REDIRECT_TO_LIST))
+            if ($processor->isRedirectingTo(WorkingNoteFormProcessor::REDIRECT_TO_LIST))
                 return $this->redirectToRoute('working_notes');
 
             return $this->redirectToRoute('working_note_edit', ['id' => $processor->getData()->getId()]);

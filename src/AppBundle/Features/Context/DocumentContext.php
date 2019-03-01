@@ -244,11 +244,11 @@ class DocumentContext extends BaseMinkContext
 
     private function getValidUntil($type, $values)
     {
-        if($type == DocumentType::INVOICE) {
+        if ($type == DocumentType::INVOICE) {
             return $this->getDateValue($values, 'validUntil', $this->getValue($values, 'issuedAt'));
         }
 
-        if(isset($values['validUntil'])) {
+        if (isset($values['validUntil'])) {
             return $this->getDateValue($values, 'validUntil');
         }
 

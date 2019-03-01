@@ -10,7 +10,6 @@
 
 namespace AppBundle\Validator\Constraints;
 
-
 use Symfony\Component\Validator\Constraint;
 
 /**
@@ -18,11 +17,6 @@ use Symfony\Component\Validator\Constraint;
  */
 class ValidUser extends Constraint
 {
-    public function validatedBy()
-    {
-        return 'valid_user';
-    }
-
     public function getTargets()
     {
         return self::CLASS_CONSTRAINT;

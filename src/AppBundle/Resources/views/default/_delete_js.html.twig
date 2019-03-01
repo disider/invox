@@ -1,12 +1,12 @@
 <script>
-    $('.delete').on('click', function(event) {
+    $('.delete').on('click', function (event) {
         var $self = $(this);
 
         event.stopPropagation();
         event.preventDefault();
 
-        bootbox.confirm('{{ message|trans }}', function(result) {
-            if(result) {
+        bootbox.confirm('{{ message|trans }}', function (result) {
+            if (result) {
                 window.location = $self.attr('href');
             }
         });

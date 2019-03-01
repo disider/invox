@@ -21,7 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 abstract class Uploadable
 {
     const UPLOAD_ROOT_DIR = __DIR__ . '/../../../web/';
-    
+
     /**
      * @Assert\Valid
      *

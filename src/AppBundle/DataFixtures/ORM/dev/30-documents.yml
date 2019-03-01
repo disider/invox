@@ -1,115 +1,115 @@
 AppBundle\Entity\Document:
-    quote_{1..10}:
-        company: '@acme'
-        linkedCustomer: '@first_customer'
-        ref: Q0<current()>
-        year: 2014
-        type: quote
-        issuedAt: <dateTime('2014-01-01')>
-        documentTemplate: '@acme_template'
-        customerCountry: '@italy'
+  quote_{1..10}:
+    company: '@acme'
+    linkedCustomer: '@first_customer'
+    ref: Q0<current()>
+    year: 2014
+    type: quote
+    issuedAt: <dateTime('2014-01-01')>
+    documentTemplate: '@acme_template'
+    customerCountry: '@italy'
 
-    order_1:
-        company: '@acme'
-        linkedCustomer: '@first_customer'
-        ref: O01
-        year: 2015
-        type: order
-        issuedAt: <dateTime('2014-01-01')>
-        documentTemplate: '@acme_template'
-        customerCountry: '@italy'
+  order_1:
+    company: '@acme'
+    linkedCustomer: '@first_customer'
+    ref: O01
+    year: 2015
+    type: order
+    issuedAt: <dateTime('2014-01-01')>
+    documentTemplate: '@acme_template'
+    customerCountry: '@italy'
 
-    invoice_2:
-        company: '@acme'
-        linkedCustomer: '@first_customer'
-        ref: I02
-        year: 2014
-        type: invoice
-        title: First Invoice
-        content: '<paragraph(3)>'
-        direction: outgoing
-        issuedAt: <dateTime('2014-01-01')>
-        language: it
-        discount: 0.50
-        rounding: 0.25
-        documentTemplate: '@acme_template'
-        customerCountry: '@italy'
+  invoice_2:
+    company: '@acme'
+    linkedCustomer: '@first_customer'
+    ref: I02
+    year: 2014
+    type: invoice
+    title: First Invoice
+    content: '<paragraph(3)>'
+    direction: outgoing
+    issuedAt: <dateTime('2014-01-01')>
+    language: it
+    discount: 0.50
+    rounding: 0.25
+    documentTemplate: '@acme_template'
+    customerCountry: '@italy'
 
-    invoice_3:
-        company: '@acme'
-        linkedCustomer: '@first_customer'
-        ref: I03
-        year: 2015
-        type: invoice
-        direction: incoming
-        issuedAt: <dateTime('2014-01-01')>
-        linkedOrder: '@order_1'
-        documentTemplate: '@acme_template'
-        customerCountry: '@italy'
+  invoice_3:
+    company: '@acme'
+    linkedCustomer: '@first_customer'
+    ref: I03
+    year: 2015
+    type: invoice
+    direction: incoming
+    issuedAt: <dateTime('2014-01-01')>
+    linkedOrder: '@order_1'
+    documentTemplate: '@acme_template'
+    customerCountry: '@italy'
 
-    invoice_4:
-        company: '@acme'
-        linkedCustomer: '@first_customer'
-        ref: I04
-        year: 2015
-        type: invoice
-        direction: incoming
-        issuedAt: <dateTime('2014-01-01')>
-        documentTemplate: '@acme_template'
-        customerCountry: '@italy'
+  invoice_4:
+    company: '@acme'
+    linkedCustomer: '@first_customer'
+    ref: I04
+    year: 2015
+    type: invoice
+    direction: incoming
+    issuedAt: <dateTime('2014-01-01')>
+    documentTemplate: '@acme_template'
+    customerCountry: '@italy'
 
-    credit_note_5:
-        company: '@acme'
-        linkedCustomer: '@first_customer'
-        ref: C05
-        year: 2015
-        type: credit_note
-        direction: incoming
-        issuedAt: <dateTime('2014-01-01')>
-        linkedInvoice: '@invoice_4'
-        documentTemplate: '@acme_template'
-        customerCountry: '@italy'
+  credit_note_5:
+    company: '@acme'
+    linkedCustomer: '@first_customer'
+    ref: C05
+    year: 2015
+    type: credit_note
+    direction: incoming
+    issuedAt: <dateTime('2014-01-01')>
+    linkedInvoice: '@invoice_4'
+    documentTemplate: '@acme_template'
+    customerCountry: '@italy'
 
 AppBundle\Entity\DocumentRow:
-    row_1_1:
-        document: '@quote_1'
-        position: 0
-        title: First product
-        unitPrice: 100
-        quantity: 2
-        taxRate: '@vat_22'
-        discount: 0
-    row_1_2:
-        document: '@quote_1'
-        position: 1
-        title: Second product
-        unitPrice: 10
-        quantity: 4
-        taxRate: '@vat_10'
-        discount: 5
-    row_2_1:
-        document: '@invoice_2'
-        title: First product
-        unitPrice: 10
-        quantity: 1
-        taxRate: '@vat_10'
-        discount: 0.50
-    row_3_1:
-        document: '@invoice_3'
-        title: Second product
-        unitPrice: 20
-        quantity: 2
-        taxRate: '@vat_22'
-        discount: 0.50
-    row_4_1:
-        document: '@invoice_4'
-        title: Second product
-        unitPrice: 20
-        quantity: 2
-        taxRate: '@vat_22'
-    row_5_1:
-        document: '@credit_note_5'
-        title: Second product
-        unitPrice: 20
-        quantity: 2
-        taxRate: '@vat_22'
+  row_1_1:
+    document: '@quote_1'
+    position: 0
+    title: First product
+    unitPrice: 100
+    quantity: 2
+    taxRate: '@vat_22'
+    discount: 0
+  row_1_2:
+    document: '@quote_1'
+    position: 1
+    title: Second product
+    unitPrice: 10
+    quantity: 4
+    taxRate: '@vat_10'
+    discount: 5
+  row_2_1:
+    document: '@invoice_2'
+    title: First product
+    unitPrice: 10
+    quantity: 1
+    taxRate: '@vat_10'
+    discount: 0.50
+  row_3_1:
+    document: '@invoice_3'
+    title: Second product
+    unitPrice: 20
+    quantity: 2
+    taxRate: '@vat_22'
+    discount: 0.50
+  row_4_1:
+    document: '@invoice_4'
+    title: Second product
+    unitPrice: 20
+    quantity: 2
+    taxRate: '@vat_22'
+  row_5_1:
+    document: '@credit_note_5'
+    title: Second product
+    unitPrice: 20
+    quantity: 2
+    taxRate: '@vat_22'

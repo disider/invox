@@ -10,12 +10,11 @@
 
 namespace AppBundle\Validator\Constraints;
 
-use AppBundle\Entity\Repository\UserRepository;
+use AppBundle\Repository\UserRepository;
 use AppBundle\Entity\User;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
-
 
 class ValidUserValidator extends ConstraintValidator
 {
@@ -40,7 +39,7 @@ class ValidUserValidator extends ConstraintValidator
         /** @var User $user */
         $user = $this->userRepository->findOneByEmail($value->getEmail());
 
-        if(!$user) {
+        if (!$user) {
             return;
         }
 
@@ -50,7 +49,7 @@ class ValidUserValidator extends ConstraintValidator
                 ->addViolation();
         }
 
-        if(!$user->isEnabled()) {
+        if (!$user->isEnabled()) {
             $email = $value->getUsername();
 
             $route = $this->generateRoute('register_resend_confirmation', [

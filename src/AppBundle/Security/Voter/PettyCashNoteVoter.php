@@ -24,9 +24,9 @@ class PettyCashNoteVoter extends BaseVoter
     protected function supports($attribute, $subject)
     {
         return $subject instanceof PettyCashNote && in_array($attribute, [
-            self::PETTY_CASH_NOTE_DELETE,
-            self::PETTY_CASH_NOTE_EDIT,
-            self::PETTY_CASH_NOTE_VIEW,
+                self::PETTY_CASH_NOTE_DELETE,
+                self::PETTY_CASH_NOTE_EDIT,
+                self::PETTY_CASH_NOTE_VIEW,
             ]);
     }
 
@@ -43,7 +43,7 @@ class PettyCashNoteVoter extends BaseVoter
             case self::PETTY_CASH_NOTE_DELETE:
             case self::PETTY_CASH_NOTE_EDIT:
                 return $user->canManageCompany($subject->getCompany())
-                && $this->isModuleEnabled($subject->getCompany(), Module::PETTY_CASH_NOTES_MODULE);
+                    && $this->isModuleEnabled($subject->getCompany(), Module::PETTY_CASH_NOTES_MODULE);
             case self::PETTY_CASH_NOTE_VIEW:
                 return
                     $user->isAccountant()

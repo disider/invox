@@ -11,10 +11,7 @@
 namespace AppBundle\Security\Voter;
 
 use AppBundle\Entity\Company;
-use AppBundle\Entity\Product;
-use AppBundle\Entity\User;
 use AppBundle\Model\Module;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 abstract class BaseVoter extends Voter

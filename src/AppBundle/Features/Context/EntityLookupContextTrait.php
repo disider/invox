@@ -10,6 +10,28 @@
 
 namespace AppBundle\Features\Context;
 
+use AppBundle\Entity\Account;
+use AppBundle\Entity\City;
+use AppBundle\Entity\Company;
+use AppBundle\Entity\Country;
+use AppBundle\Entity\Customer;
+use AppBundle\Entity\Document;
+use AppBundle\Entity\DocumentTemplate;
+use AppBundle\Entity\DocumentTemplatePerCompany;
+use AppBundle\Entity\Invite;
+use AppBundle\Entity\Medium;
+use AppBundle\Entity\Page;
+use AppBundle\Entity\ParagraphTemplate;
+use AppBundle\Entity\PaymentType;
+use AppBundle\Entity\PettyCashNote;
+use AppBundle\Entity\Product;
+use AppBundle\Entity\Province;
+use AppBundle\Entity\Recurrence;
+use AppBundle\Entity\Service;
+use AppBundle\Entity\TaxRate;
+use AppBundle\Entity\User;
+use AppBundle\Entity\WorkingNote;
+use AppBundle\Entity\ZipCode;
 use Diside\BehatExtension\Helper\EntityLookup;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
@@ -31,112 +53,112 @@ trait EntityLookupContextTrait
 
     protected function getAccountRepository()
     {
-        return $this->getRepository('AppBundle:Account');
+        return $this->getRepository(Account::class);
     }
 
     protected function getCityRepository()
     {
-        return $this->getRepository('AppBundle:City');
+        return $this->getRepository(City::class);
     }
 
     protected function getCompanyRepository()
     {
-        return $this->getRepository('AppBundle:Company');
+        return $this->getRepository(Company::class);
     }
 
     protected function getCountryRepository()
     {
-        return $this->getRepository('AppBundle:Country');
+        return $this->getRepository(Country::class);
     }
 
     protected function getCustomerRepository()
     {
-        return $this->getRepository('AppBundle:Customer');
+        return $this->getRepository(Customer::class);
     }
 
     protected function getDocumentRepository()
     {
-        return $this->getRepository('AppBundle:Document');
+        return $this->getRepository(Document::class);
     }
 
     protected function getDocumentTemplateRepository()
     {
-        return $this->getRepository('AppBundle:DocumentTemplate');
+        return $this->getRepository(DocumentTemplate::class);
     }
 
     protected function getDocumentTemplatePerCompanyRepository()
     {
-        return $this->getRepository('AppBundle:DocumentTemplatePerCompany');
+        return $this->getRepository(DocumentTemplatePerCompany::class);
     }
 
     protected function getInviteRepository()
     {
-        return $this->getRepository('AppBundle:Invite');
+        return $this->getRepository(Invite::class);
     }
 
     protected function getMediumRepository()
     {
-        return $this->getRepository('AppBundle:Medium');
+        return $this->getRepository(Medium::class);
     }
 
     protected function getPageRepository()
     {
-        return $this->getRepository('AppBundle:Page');
+        return $this->getRepository(Page::class);
     }
 
     protected function getPaymentTypeRepository()
     {
-        return $this->getRepository('AppBundle:PaymentType');
+        return $this->getRepository(PaymentType::class);
     }
 
     protected function getParagraphTemplateRepository()
     {
-        return $this->getRepository('AppBundle:ParagraphTemplate');
+        return $this->getRepository(ParagraphTemplate::class);
     }
 
     protected function getPettyCashNoteRepository()
     {
-        return $this->getRepository('AppBundle:PettyCashNote');
+        return $this->getRepository(PettyCashNote::class);
     }
 
     protected function getProductRepository()
     {
-        return $this->getRepository('AppBundle:Product');
+        return $this->getRepository(Product::class);
     }
 
     protected function getProvinceRepository()
     {
-        return $this->getRepository('AppBundle:Province');
+        return $this->getRepository(Province::class);
     }
 
     protected function getRecurrenceRepository()
     {
-        return $this->getRepository('AppBundle:Recurrence');
+        return $this->getRepository(Recurrence::class);
     }
 
     protected function getServiceRepository()
     {
-        return $this->getRepository('AppBundle:Service');
+        return $this->getRepository(Service::class);
     }
 
     protected function getTaxRateRepository()
     {
-        return $this->getRepository('AppBundle:TaxRate');
+        return $this->getRepository(TaxRate::class);
     }
 
     protected function getUserRepository()
     {
-        return $this->getRepository('AppBundle:User');
-    }
-
-    protected function getZipCodeRepository()
-    {
-        return $this->getRepository('AppBundle:ZipCode');
+        return $this->getRepository(User::class);
     }
 
     protected function getWorkingNoteRepository()
     {
-        return $this->getRepository('AppBundle:WorkingNote');
+        return $this->getRepository(WorkingNote::class);
+    }
+
+    protected function getZipCodeRepository()
+    {
+        return $this->getRepository(ZipCode::class);
     }
 
     public function getEntityLookupTables()
@@ -162,7 +184,7 @@ trait EntityLookupContextTrait
             'services' => new EntityLookup($this->getServiceRepository(), 'code'),
             'taxRates' => new EntityLookup($this->getTaxRateRepository(), 'amount'),
             'users' => new EntityLookup($this->getUserRepository(), 'username'),
-            'workingNotes' => new EntityLookup($this->get('working_note_repository'), 'code'),
+            'workingNotes' => new EntityLookup($this->getWorkingNoteRepository(), 'code'),
             'zipCodes' => new EntityLookup($this->getZipCodeRepository(), 'code'),
         ];
     }

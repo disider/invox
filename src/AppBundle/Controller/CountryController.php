@@ -12,11 +12,10 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Country;
 use AppBundle\Form\Processor\CountryFormProcessor;
-use AppBundle\Form\Processor\DefaultFormProcessor;
-use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/countries")
@@ -86,7 +85,7 @@ class CountryController extends BaseController
             $this->addFlash('success', $processor->isNew() ? 'flash.country.created' : 'flash.country.updated',
                 ['%country%' => $processor->getData()]);
 
-            if ($processor->isRedirectingTo(DefaultFormProcessor::REDIRECT_TO_LIST)) {
+            if ($processor->isRedirectingTo(CountryFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('countries');
             }
 

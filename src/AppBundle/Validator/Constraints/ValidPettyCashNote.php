@@ -21,10 +21,4 @@ class ValidPettyCashNote extends Constraint
     {
         return self::CLASS_CONSTRAINT;
     }
-
-    public function validatedBy()
-    {
-        return 'valid_petty_cash_note';
-    }
-
 }

@@ -12,12 +12,10 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Document;
 use AppBundle\Form\ContactUsForm;
-use AppBundle\Mailer\Mailer;
-use Symfony\Component\Routing\Annotation\Route;
+use AppBundle\Mailer\MailerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/")
@@ -69,7 +67,7 @@ class DefaultController extends BaseController
      * @Route("/contact-us", name="contact_us")
      * @Template
      */
-    public function contactUsAction(Request $request)
+    public function contactUsAction(Request $request, MailerInterface $mailer)
     {
         $form = $this->createForm(ContactUsForm::class, null, [
             'debug' => $this->getParameter('kernel.debug'),
@@ -79,8 +77,6 @@ class DefaultController extends BaseController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
-            /** @var Mailer $mailer */
-            $mailer = $this->get('default_mailer');
             $mailer->sendContactUsMail($data['email'], $data['subject'], $data['body']);
 
             $this->addFlash('success', 'contact_us.success');
@@ -110,6 +106,5 @@ class DefaultController extends BaseController
     {
         return [];
     }
-
 
 }

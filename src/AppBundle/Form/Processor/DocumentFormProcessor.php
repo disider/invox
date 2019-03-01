@@ -38,7 +38,7 @@ class DocumentFormProcessor extends AbstractFormProcessor
     private $companyManager;
 
     public function __construct(
-        DocumentRepository $documentRepository,
+        DocumentRepository $inviteRepository,
         CompanyManager $companyManager,
         FormFactoryInterface $formFactory,
         TokenStorageInterface $tokenStorage,
@@ -46,7 +46,7 @@ class DocumentFormProcessor extends AbstractFormProcessor
     {
         parent::__construct($formFactory, $tokenStorage);
 
-        $this->documentRepository = $documentRepository;
+        $this->documentRepository = $inviteRepository;
         $this->availableLocales = $availableLocales;
         $this->companyManager = $companyManager;
     }

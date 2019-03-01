@@ -1,44 +1,44 @@
 {% if invoices|length > 0 %}
-<table id="invoices" class="table table-striped">
-    <thead>
-    <tr>
-        <th class="col-md-3">{{ 'fields.ref'|trans }}</th>
-        <th class="col-md-3">{{ 'fields.customer'|trans }}</th>
-        <th class="col-md-2 text-center">{{ 'fields.expired_at'|trans }}</th>
-        <th class="col-md-2 text-right">{{ 'fields.gross_total'|trans }}</th>
-        <th class="col-md-2 text-right">{{ 'fields.unpaid_amount'|trans }}</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for document in invoices %}
-        <tr class="invoice {{ document.direction }}">
-            <td>
-                <a class="ref" href="{{ path('document_edit', {'id': document.id }) }}"
-                   title="{{ document }}">{{ document|truncate(15) }}</a>
-            </td>
-            <td>
-                <small>
-                    {% if document.hasLinkedCustomer %}
-                        <a href="{{ path('customer_edit', {'id': document.linkedCustomer.id}) }}"
-                           title="{{ document.customerName }}">{{ document.customerName|truncate(15) }}</a>
-                    {% else %}
-                        {{ document.customerName }}
-                    {% endif %}
-                </small>
-            </td>
-            <td class="customer text-center">
-                {{ document.validUntil|date('d/m/y') }}
-            </td>
-            <td class="gross-total text-right">
-                {{ document.grossTotal|format_currency }}
-            </td>
-            <td class="unpaid-total text-right">
-                {{ document.unpaidAmount|format_currency }}
-            </td>
+    <table id="invoices" class="table table-striped">
+        <thead>
+        <tr>
+            <th class="col-md-3">{{ 'fields.ref'|trans }}</th>
+            <th class="col-md-3">{{ 'fields.customer'|trans }}</th>
+            <th class="col-md-2 text-center">{{ 'fields.expired_at'|trans }}</th>
+            <th class="col-md-2 text-right">{{ 'fields.gross_total'|trans }}</th>
+            <th class="col-md-2 text-right">{{ 'fields.unpaid_amount'|trans }}</th>
         </tr>
-    {% endfor %}
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        {% for document in invoices %}
+            <tr class="invoice {{ document.direction }}">
+                <td>
+                    <a class="ref" href="{{ path('document_edit', {'id': document.id }) }}"
+                       title="{{ document }}">{{ document|truncate(15) }}</a>
+                </td>
+                <td>
+                    <small>
+                        {% if document.hasLinkedCustomer %}
+                            <a href="{{ path('customer_edit', {'id': document.linkedCustomer.id}) }}"
+                               title="{{ document.customerName }}">{{ document.customerName|truncate(15) }}</a>
+                        {% else %}
+                            {{ document.customerName }}
+                        {% endif %}
+                    </small>
+                </td>
+                <td class="customer text-center">
+                    {{ document.validUntil|date('d/m/y') }}
+                </td>
+                <td class="gross-total text-right">
+                    {{ document.grossTotal|format_currency }}
+                </td>
+                <td class="unpaid-total text-right">
+                    {{ document.unpaidAmount|format_currency }}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% else %}
     <p>{{ 'invoices.empty_list'|trans }}</p>
 {% endif %}

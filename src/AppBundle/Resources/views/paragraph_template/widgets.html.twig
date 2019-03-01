@@ -42,7 +42,7 @@
 
     {% set class = attr.class ~ ' ' ~ (level % 2 ? 'odd' : 'even') %}
     {% set attr = attr|merge({'class': class} ) %}
-    
+
     {{ block('form_widget') }}
 
     <div class="actions">

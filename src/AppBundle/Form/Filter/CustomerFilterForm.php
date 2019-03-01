@@ -11,11 +11,7 @@
 namespace AppBundle\Form\Filter;
 
 use AppBundle\Entity\Document;
-use AppBundle\Entity\PettyCashNote;
 use AppBundle\Model\DocumentType;
-use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Query\QueryBuilder;
-use Doctrine\ORM\Query\Expr;
 use Lexik\Bundle\FormFilterBundle\Filter\Form\Type\ChoiceFilterType;
 use Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType;
 use Lexik\Bundle\FormFilterBundle\Filter\Query\QueryInterface;
@@ -41,7 +37,6 @@ class CustomerFilterForm extends BaseFilterForm
             },
         ]);
 
-
         $builder->add('type', ChoiceFilterType::class, [
             'choices' => [
                 'customer.type.prospect' => DocumentType::QUOTE,
@@ -56,10 +51,10 @@ class CustomerFilterForm extends BaseFilterForm
 
                 $qb = $filterQuery->getQueryBuilder();
 
-                $qb->leftJoin($filterQuery->getRootAlias()  . '.documents', 'd')
+                $qb->leftJoin($filterQuery->getRootAlias() . '.documents', 'd')
                     ->andWhere('(d.direction = :direction and d.type = :type)')
-                    ->setParameter('direction', $values['value'] == DocumentType::QUOTE ? Document::NO_DIRECTION : $values['value'] )
-                    ->setParameter('type', $values['value'] == DocumentType::QUOTE ? DocumentType::QUOTE : DocumentType::INVOICE );
+                    ->setParameter('direction', $values['value'] == DocumentType::QUOTE ? Document::NO_DIRECTION : $values['value'])
+                    ->setParameter('type', $values['value'] == DocumentType::QUOTE ? DocumentType::QUOTE : DocumentType::INVOICE);
 
                 return $filterQuery;
             },
@@ -83,5 +78,5 @@ class CustomerFilterForm extends BaseFilterForm
     {
         return 'customerFilter';
     }
-    
+
 }

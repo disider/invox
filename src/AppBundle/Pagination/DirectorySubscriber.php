@@ -21,13 +21,12 @@ class DirectorySubscriber implements EventSubscriberInterface
     {
         if (is_string($event->target) && is_dir($event->target)) {
             $uploadDir = $event->options['uploadDir'];
-            
+
             $finder = new Finder;
             $finder
                 ->files()
-                ->depth('< 4') // 3 levels
-                ->in($event->target)
-            ;
+                ->depth('< 4')// 3 levels
+                ->in($event->target);
             $iter = $finder->getIterator();
             $files = iterator_to_array($iter);
             $event->count = count($files);
@@ -50,10 +49,10 @@ class DirectorySubscriber implements EventSubscriberInterface
     private function buildFiles($records, $uploadDir)
     {
         $files = [];
-        foreach($records as $record) {
+        foreach ($records as $record) {
             $files[] = new Medium($record, $uploadDir);
         }
-        
+
         return $files;
     }
 }

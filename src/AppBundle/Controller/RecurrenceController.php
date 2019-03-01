@@ -11,13 +11,13 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Recurrence;
-use AppBundle\Entity\Repository\RecurrenceRepository;
 use AppBundle\Form\Filter\RecurrenceFilterForm;
-use AppBundle\Form\Processor\DefaultFormProcessor;
-use Symfony\Component\Routing\Annotation\Route;
+use AppBundle\Form\Processor\RecurrenceFormProcessor;
+use AppBundle\Repository\RecurrenceRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/recurrences")
@@ -63,12 +63,12 @@ class RecurrenceController extends BaseController
      * @Security("is_granted('RECURRENCE_CREATE')")
      * @Template
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, RecurrenceFormProcessor $processor)
     {
         $recurrence = new Recurrence();
         $recurrence->setCompany($this->getCurrentCompany());
 
-        return $this->processForm($request, $recurrence);
+        return $this->processForm($request, $processor, $recurrence);
     }
 
     /**
@@ -76,9 +76,9 @@ class RecurrenceController extends BaseController
      * @Security("is_granted('RECURRENCE_EDIT', recurrence)")
      * @Template
      */
-    public function editAction(Request $request, Recurrence $recurrence)
+    public function editAction(Request $request, RecurrenceFormProcessor $processor, Recurrence $recurrence)
     {
-        return $this->processForm($request, $recurrence);
+        return $this->processForm($request, $processor, $recurrence);
     }
 
     /**
@@ -111,18 +111,15 @@ class RecurrenceController extends BaseController
         return $this->redirectToRoute('recurrences');
     }
 
-    private function processForm(Request $request, Recurrence $recurrence = null)
+    private function processForm(Request $request, RecurrenceFormProcessor $processor, Recurrence $recurrence = null)
     {
-        /** @var DefaultFormProcessor $processor */
-        $processor = $this->get('recurrence_form_processor');
-
         $processor->process($request, $recurrence);
 
         if ($processor->isValid()) {
             $this->addFlash('success', $processor->isNew() ? 'flash.recurrence.created' : 'flash.recurrence.updated',
                 ['%recurrence%' => $processor->getData()]);
 
-            if ($processor->isRedirectingTo(DefaultFormProcessor::REDIRECT_TO_LIST)) {
+            if ($processor->isRedirectingTo(RecurrenceFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('recurrences');
             }
 

@@ -10,7 +10,6 @@
 
 namespace AppBundle\Security\Voter;
 
-use AppBundle\Entity\Document;
 use AppBundle\Entity\Recurrence;
 use AppBundle\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -24,9 +23,9 @@ class RecurrenceVoter extends Voter
     protected function supports($attribute, $subject)
     {
         return $subject instanceof Recurrence && in_array($attribute, [
-            self::RECURRENCE_DELETE,
-            self::RECURRENCE_EDIT,
-        ]);
+                self::RECURRENCE_DELETE,
+                self::RECURRENCE_EDIT,
+            ]);
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)

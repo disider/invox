@@ -25,10 +25,10 @@ class DocumentTemplatePerCompanyVoter extends Voter
     protected function supports($attribute, $subject)
     {
         return $subject instanceof DocumentTemplatePerCompany && in_array($attribute, [
-            self::DOCUMENT_TEMPLATE_PER_COMPANY_EDIT,
-            self::DOCUMENT_TEMPLATE_PER_COMPANY_PREVIEW,
-            self::DOCUMENT_TEMPLATE_PER_COMPANY_RENDER,
-            self::DOCUMENT_TEMPLATE_PER_COMPANY_RESTORE,
+                self::DOCUMENT_TEMPLATE_PER_COMPANY_EDIT,
+                self::DOCUMENT_TEMPLATE_PER_COMPANY_PREVIEW,
+                self::DOCUMENT_TEMPLATE_PER_COMPANY_RENDER,
+                self::DOCUMENT_TEMPLATE_PER_COMPANY_RESTORE,
             ]);
     }
 

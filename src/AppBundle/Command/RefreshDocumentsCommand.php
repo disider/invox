@@ -25,8 +25,7 @@ class RefreshDocumentsCommand extends ContainerAwareCommand
             ->setName('invox:document:refresh')
             ->setDescription('Refresh document totals and status')
             ->addOption('rows', 'r', InputOption::VALUE_NONE, 'Recalculate rows totals')
-            ->addOption('company', 'c', InputOption::VALUE_NONE, 'Restore company data')
-        ;
+            ->addOption('company', 'c', InputOption::VALUE_NONE, 'Restore company data');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)

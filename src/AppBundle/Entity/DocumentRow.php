@@ -56,7 +56,7 @@ class DocumentRow
 
     /** @var float */
     private $discount = 0;
-    
+
     /** @var bool */
     private $discountPercent = false;
 
@@ -300,7 +300,7 @@ class DocumentRow
 
     private function calculateDiscount()
     {
-        if($this->discountPercent) {
+        if ($this->discountPercent) {
             return ($this->unitPrice * $this->discount) / 100;
         }
 

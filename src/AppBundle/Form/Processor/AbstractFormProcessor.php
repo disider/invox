@@ -42,6 +42,7 @@ abstract class AbstractFormProcessor
     }
 
     abstract protected function getFormClass();
+
     abstract protected function getFormOptions();
 
     abstract protected function handleRequest(Request $request);

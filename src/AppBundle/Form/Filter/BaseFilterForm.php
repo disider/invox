@@ -10,18 +10,9 @@
 
 namespace AppBundle\Form\Filter;
 
-use AppBundle\Entity\Document;
-use AppBundle\Model\DocumentType;
-use Doctrine\DBAL\Connection;
-use Doctrine\ORM\Query\Expr;
 use Lexik\Bundle\FormFilterBundle\Filter\Doctrine\ORMQuery;
-use Lexik\Bundle\FormFilterBundle\Filter\FilterOperands;
-use Lexik\Bundle\FormFilterBundle\Filter\Form\Type\ChoiceFilterType;
 use Lexik\Bundle\FormFilterBundle\Filter\Form\Type\DateRangeFilterType;
-use Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType;
-use Lexik\Bundle\FormFilterBundle\Filter\Query\QueryInterface;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -30,7 +21,7 @@ class BaseFilterForm extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'csrf_protection'   => false,
+            'csrf_protection' => false,
             'validation_groups' => ['filtering']
         ]);
     }

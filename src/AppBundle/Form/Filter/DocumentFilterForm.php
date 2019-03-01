@@ -12,8 +12,6 @@ namespace AppBundle\Form\Filter;
 
 use AppBundle\Entity\Document;
 use AppBundle\Model\DocumentType;
-use Doctrine\DBAL\Connection;
-use Doctrine\ORM\Query\Expr;
 use Lexik\Bundle\FormFilterBundle\Filter\FilterOperands;
 use Lexik\Bundle\FormFilterBundle\Filter\Form\Type\ChoiceFilterType;
 use Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType;
@@ -59,8 +57,7 @@ class DocumentFilterForm extends BaseFilterForm
                     $qb
                         ->leftJoin($filterQuery->getRootAlias() . '.costCenters', 'costCenter')
                         ->andWhere('costCenter.name LIKE :name')
-                        ->setParameter('name', '%' . $values['value'] . '%')
-                    ;
+                        ->setParameter('name', '%' . $values['value'] . '%');
 
                     return $filterQuery;
                 },

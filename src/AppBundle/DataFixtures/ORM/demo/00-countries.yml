@@ -1,501 +1,501 @@
 AppBundle\Entity\Country:
-    country_ad:
-        code: AD
-    country_ae:
-        code: AE
-    country_af:
-        code: AF
-    country_ag:
-        code: AG
-    country_ai:
-        code: AI
-    country_al:
-        code: AL
-    country_am:
-        code: AM
-    country_ao:
-        code: AO
-    country_aq:
-        code: AQ
-    country_ar:
-        code: AR
-    country_as:
-        code: AS
-    country_at:
-        code: AT
-    country_au:
-        code: AU
-    country_aw:
-        code: AW
-    country_ax:
-        code: AX
-    country_az:
-        code: AZ
-    country_ba:
-        code: BA
-    country_bb:
-        code: BB
-    country_bd:
-        code: BD
-    country_be:
-        code: BE
-    country_bf:
-        code: BF
-    country_bg:
-        code: BG
-    country_bh:
-        code: BH
-    country_bi:
-        code: BI
-    country_bj:
-        code: BJ
-    country_bl:
-        code: BL
-    country_bm:
-        code: BM
-    country_bn:
-        code: BN
-    country_bo:
-        code: BO
-    country_bq:
-        code: BQ
-    country_br:
-        code: BR
-    country_bs:
-        code: BS
-    country_bt:
-        code: BT
-    country_bv:
-        code: BV
-    country_bw:
-        code: BW
-    country_by:
-        code: BY
-    country_bz:
-        code: BZ
-    country_ca:
-        code: CA
-    country_cc:
-        code: CC
-    country_cd:
-        code: CD
-    country_cf:
-        code: CF
-    country_cg:
-        code: CG
-    country_ch:
-        code: CH
-    country_ci:
-        code: CI
-    country_ck:
-        code: CK
-    country_cl:
-        code: CL
-    country_cm:
-        code: CM
-    country_cn:
-        code: CN
-    country_co:
-        code: CO
-    country_cr:
-        code: CR
-    country_cu:
-        code: CU
-    country_cv:
-        code: CV
-    country_cw:
-        code: CW
-    country_cx:
-        code: CX
-    country_cy:
-        code: CY
-    country_cz:
-        code: CZ
-    country_de:
-        code: DE
-    country_dj:
-        code: DJ
-    country_dk:
-        code: DK
-    country_dm:
-        code: DM
-    country_do:
-        code: DO
-    country_dz:
-        code: DZ
-    country_ec:
-        code: EC
-    country_ee:
-        code: EE
-    country_eg:
-        code: EG
-    country_eh:
-        code: EH
-    country_er:
-        code: ER
-    country_es:
-        code: ES
-    country_et:
-        code: ET
-    country_fi:
-        code: FI
-    country_fj:
-        code: FJ
-    country_fk:
-        code: FK
-    country_fm:
-        code: FM
-    country_fo:
-        code: FO
-    country_fr:
-        code: FR
-    country_ga:
-        code: GA
-    country_gb:
-        code: GB
-    country_gd:
-        code: GD
-    country_ge:
-        code: GE
-    country_gf:
-        code: GF
-    country_gg:
-        code: GG
-    country_gh:
-        code: GH
-    country_gi:
-        code: GI
-    country_gl:
-        code: GL
-    country_gm:
-        code: GM
-    country_gn:
-        code: GN
-    country_gp:
-        code: GP
-    country_gq:
-        code: GQ
-    country_gr:
-        code: GR
-    country_gs:
-        code: GS
-    country_gt:
-        code: GT
-    country_gu:
-        code: GU
-    country_gw:
-        code: GW
-    country_gy:
-        code: GY
-    country_hk:
-        code: HK
-    country_hm:
-        code: HM
-    country_hn:
-        code: HN
-    country_hr:
-        code: HR
-    country_ht:
-        code: HT
-    country_hu:
-        code: HU
-    country_id:
-        code: ID
-    country_ie:
-        code: IE
-    country_il:
-        code: IL
-    country_im:
-        code: IM
-    country_in:
-        code: IN
-    country_io:
-        code: IO
-    country_iq:
-        code: IQ
-    country_ir:
-        code: IR
-    country_is:
-        code: IS
-    country_it:
-        code: IT
-    country_je:
-        code: JE
-    country_jm:
-        code: JM
-    country_jo:
-        code: JO
-    country_jp:
-        code: JP
-    country_ke:
-        code: KE
-    country_kg:
-        code: KG
-    country_kh:
-        code: KH
-    country_ki:
-        code: KI
-    country_km:
-        code: KM
-    country_kn:
-        code: KN
-    country_kp:
-        code: KP
-    country_kr:
-        code: KR
-    country_kw:
-        code: KW
-    country_ky:
-        code: KY
-    country_kz:
-        code: KZ
-    country_la:
-        code: LA
-    country_lb:
-        code: LB
-    country_lc:
-        code: LC
-    country_li:
-        code: LI
-    country_lk:
-        code: LK
-    country_lr:
-        code: LR
-    country_ls:
-        code: LS
-    country_lt:
-        code: LT
-    country_lu:
-        code: LU
-    country_lv:
-        code: LV
-    country_ly:
-        code: LY
-    country_ma:
-        code: MA
-    country_mc:
-        code: MC
-    country_md:
-        code: MD
-    country_me:
-        code: ME
-    country_mf:
-        code: MF
-    country_mg:
-        code: MG
-    country_mh:
-        code: MH
-    country_mk:
-        code: MK
-    country_ml:
-        code: ML
-    country_mm:
-        code: MM
-    country_mn:
-        code: MN
-    country_mo:
-        code: MO
-    country_mp:
-        code: MP
-    country_mq:
-        code: MQ
-    country_mr:
-        code: MR
-    country_ms:
-        code: MS
-    country_mt:
-        code: MT
-    country_mu:
-        code: MU
-    country_mv:
-        code: MV
-    country_mw:
-        code: MW
-    country_mx:
-        code: MX
-    country_my:
-        code: MY
-    country_mz:
-        code: MZ
-    country_na:
-        code: NA
-    country_nc:
-        code: NC
-    country_ne:
-        code: NE
-    country_nf:
-        code: NF
-    country_ng:
-        code: NG
-    country_ni:
-        code: NI
-    country_nl:
-        code: NL
-    country_no:
-        code: 'NO'
-    country_np:
-        code: NP
-    country_nr:
-        code: NR
-    country_nu:
-        code: NU
-    country_nz:
-        code: NZ
-    country_om:
-        code: OM
-    country_pa:
-        code: PA
-    country_pe:
-        code: PE
-    country_pf:
-        code: PF
-    country_pg:
-        code: PG
-    country_ph:
-        code: PH
-    country_pk:
-        code: PK
-    country_pl:
-        code: PL
-    country_pm:
-        code: PM
-    country_pn:
-        code: PN
-    country_pr:
-        code: PR
-    country_ps:
-        code: PS
-    country_pt:
-        code: PT
-    country_pw:
-        code: PW
-    country_py:
-        code: PY
-    country_qa:
-        code: QA
-    country_re:
-        code: RE
-    country_ro:
-        code: RO
-    country_rs:
-        code: RS
-    country_ru:
-        code: RU
-    country_rw:
-        code: RW
-    country_sa:
-        code: SA
-    country_sb:
-        code: SB
-    country_sc:
-        code: SC
-    country_sd:
-        code: SD
-    country_se:
-        code: SE
-    country_sg:
-        code: SG
-    country_sh:
-        code: SH
-    country_si:
-        code: SI
-    country_sj:
-        code: SJ
-    country_sk:
-        code: SK
-    country_sl:
-        code: SL
-    country_sm:
-        code: SM
-    country_sn:
-        code: SN
-    country_so:
-        code: SO
-    country_sr:
-        code: SR
-    country_ss:
-        code: SS
-    country_st:
-        code: ST
-    country_sv:
-        code: SV
-    country_sx:
-        code: SX
-    country_sy:
-        code: SY
-    country_sz:
-        code: SZ
-    country_tc:
-        code: TC
-    country_td:
-        code: TD
-    country_tf:
-        code: TF
-    country_tg:
-        code: TG
-    country_th:
-        code: TH
-    country_tj:
-        code: TJ
-    country_tk:
-        code: TK
-    country_tl:
-        code: TL
-    country_tm:
-        code: TM
-    country_tn:
-        code: TN
-    country_to:
-        code: TO
-    country_tr:
-        code: TR
-    country_tt:
-        code: TT
-    country_tv:
-        code: TV
-    country_tw:
-        code: TW
-    country_tz:
-        code: TZ
-    country_ua:
-        code: UA
-    country_ug:
-        code: UG
-    country_um:
-        code: UM
-    country_us:
-        code: US
-    country_uy:
-        code: UY
-    country_uz:
-        code: UZ
-    country_va:
-        code: VA
-    country_vc:
-        code: VC
-    country_ve:
-        code: VE
-    country_vg:
-        code: VG
-    country_vi:
-        code: VI
-    country_vn:
-        code: VN
-    country_vu:
-        code: VU
-    country_wf:
-        code: WF
-    country_ws:
-        code: WS
-    country_xk:
-        code: XK
-    country_ye:
-        code: YE
-    country_yt:
-        code: YT
-    country_za:
-        code: ZA
-    country_zm:
-        code: ZM
-    country_zw:
-        code: ZW
+  country_ad:
+    code: AD
+  country_ae:
+    code: AE
+  country_af:
+    code: AF
+  country_ag:
+    code: AG
+  country_ai:
+    code: AI
+  country_al:
+    code: AL
+  country_am:
+    code: AM
+  country_ao:
+    code: AO
+  country_aq:
+    code: AQ
+  country_ar:
+    code: AR
+  country_as:
+    code: AS
+  country_at:
+    code: AT
+  country_au:
+    code: AU
+  country_aw:
+    code: AW
+  country_ax:
+    code: AX
+  country_az:
+    code: AZ
+  country_ba:
+    code: BA
+  country_bb:
+    code: BB
+  country_bd:
+    code: BD
+  country_be:
+    code: BE
+  country_bf:
+    code: BF
+  country_bg:
+    code: BG
+  country_bh:
+    code: BH
+  country_bi:
+    code: BI
+  country_bj:
+    code: BJ
+  country_bl:
+    code: BL
+  country_bm:
+    code: BM
+  country_bn:
+    code: BN
+  country_bo:
+    code: BO
+  country_bq:
+    code: BQ
+  country_br:
+    code: BR
+  country_bs:
+    code: BS
+  country_bt:
+    code: BT
+  country_bv:
+    code: BV
+  country_bw:
+    code: BW
+  country_by:
+    code: BY
+  country_bz:
+    code: BZ
+  country_ca:
+    code: CA
+  country_cc:
+    code: CC
+  country_cd:
+    code: CD
+  country_cf:
+    code: CF
+  country_cg:
+    code: CG
+  country_ch:
+    code: CH
+  country_ci:
+    code: CI
+  country_ck:
+    code: CK
+  country_cl:
+    code: CL
+  country_cm:
+    code: CM
+  country_cn:
+    code: CN
+  country_co:
+    code: CO
+  country_cr:
+    code: CR
+  country_cu:
+    code: CU
+  country_cv:
+    code: CV
+  country_cw:
+    code: CW
+  country_cx:
+    code: CX
+  country_cy:
+    code: CY
+  country_cz:
+    code: CZ
+  country_de:
+    code: DE
+  country_dj:
+    code: DJ
+  country_dk:
+    code: DK
+  country_dm:
+    code: DM
+  country_do:
+    code: DO
+  country_dz:
+    code: DZ
+  country_ec:
+    code: EC
+  country_ee:
+    code: EE
+  country_eg:
+    code: EG
+  country_eh:
+    code: EH
+  country_er:
+    code: ER
+  country_es:
+    code: ES
+  country_et:
+    code: ET
+  country_fi:
+    code: FI
+  country_fj:
+    code: FJ
+  country_fk:
+    code: FK
+  country_fm:
+    code: FM
+  country_fo:
+    code: FO
+  country_fr:
+    code: FR
+  country_ga:
+    code: GA
+  country_gb:
+    code: GB
+  country_gd:
+    code: GD
+  country_ge:
+    code: GE
+  country_gf:
+    code: GF
+  country_gg:
+    code: GG
+  country_gh:
+    code: GH
+  country_gi:
+    code: GI
+  country_gl:
+    code: GL
+  country_gm:
+    code: GM
+  country_gn:
+    code: GN
+  country_gp:
+    code: GP
+  country_gq:
+    code: GQ
+  country_gr:
+    code: GR
+  country_gs:
+    code: GS
+  country_gt:
+    code: GT
+  country_gu:
+    code: GU
+  country_gw:
+    code: GW
+  country_gy:
+    code: GY
+  country_hk:
+    code: HK
+  country_hm:
+    code: HM
+  country_hn:
+    code: HN
+  country_hr:
+    code: HR
+  country_ht:
+    code: HT
+  country_hu:
+    code: HU
+  country_id:
+    code: ID
+  country_ie:
+    code: IE
+  country_il:
+    code: IL
+  country_im:
+    code: IM
+  country_in:
+    code: IN
+  country_io:
+    code: IO
+  country_iq:
+    code: IQ
+  country_ir:
+    code: IR
+  country_is:
+    code: IS
+  country_it:
+    code: IT
+  country_je:
+    code: JE
+  country_jm:
+    code: JM
+  country_jo:
+    code: JO
+  country_jp:
+    code: JP
+  country_ke:
+    code: KE
+  country_kg:
+    code: KG
+  country_kh:
+    code: KH
+  country_ki:
+    code: KI
+  country_km:
+    code: KM
+  country_kn:
+    code: KN
+  country_kp:
+    code: KP
+  country_kr:
+    code: KR
+  country_kw:
+    code: KW
+  country_ky:
+    code: KY
+  country_kz:
+    code: KZ
+  country_la:
+    code: LA
+  country_lb:
+    code: LB
+  country_lc:
+    code: LC
+  country_li:
+    code: LI
+  country_lk:
+    code: LK
+  country_lr:
+    code: LR
+  country_ls:
+    code: LS
+  country_lt:
+    code: LT
+  country_lu:
+    code: LU
+  country_lv:
+    code: LV
+  country_ly:
+    code: LY
+  country_ma:
+    code: MA
+  country_mc:
+    code: MC
+  country_md:
+    code: MD
+  country_me:
+    code: ME
+  country_mf:
+    code: MF
+  country_mg:
+    code: MG
+  country_mh:
+    code: MH
+  country_mk:
+    code: MK
+  country_ml:
+    code: ML
+  country_mm:
+    code: MM
+  country_mn:
+    code: MN
+  country_mo:
+    code: MO
+  country_mp:
+    code: MP
+  country_mq:
+    code: MQ
+  country_mr:
+    code: MR
+  country_ms:
+    code: MS
+  country_mt:
+    code: MT
+  country_mu:
+    code: MU
+  country_mv:
+    code: MV
+  country_mw:
+    code: MW
+  country_mx:
+    code: MX
+  country_my:
+    code: MY
+  country_mz:
+    code: MZ
+  country_na:
+    code: NA
+  country_nc:
+    code: NC
+  country_ne:
+    code: NE
+  country_nf:
+    code: NF
+  country_ng:
+    code: NG
+  country_ni:
+    code: NI
+  country_nl:
+    code: NL
+  country_no:
+    code: 'NO'
+  country_np:
+    code: NP
+  country_nr:
+    code: NR
+  country_nu:
+    code: NU
+  country_nz:
+    code: NZ
+  country_om:
+    code: OM
+  country_pa:
+    code: PA
+  country_pe:
+    code: PE
+  country_pf:
+    code: PF
+  country_pg:
+    code: PG
+  country_ph:
+    code: PH
+  country_pk:
+    code: PK
+  country_pl:
+    code: PL
+  country_pm:
+    code: PM
+  country_pn:
+    code: PN
+  country_pr:
+    code: PR
+  country_ps:
+    code: PS
+  country_pt:
+    code: PT
+  country_pw:
+    code: PW
+  country_py:
+    code: PY
+  country_qa:
+    code: QA
+  country_re:
+    code: RE
+  country_ro:
+    code: RO
+  country_rs:
+    code: RS
+  country_ru:
+    code: RU
+  country_rw:
+    code: RW
+  country_sa:
+    code: SA
+  country_sb:
+    code: SB
+  country_sc:
+    code: SC
+  country_sd:
+    code: SD
+  country_se:
+    code: SE
+  country_sg:
+    code: SG
+  country_sh:
+    code: SH
+  country_si:
+    code: SI
+  country_sj:
+    code: SJ
+  country_sk:
+    code: SK
+  country_sl:
+    code: SL
+  country_sm:
+    code: SM
+  country_sn:
+    code: SN
+  country_so:
+    code: SO
+  country_sr:
+    code: SR
+  country_ss:
+    code: SS
+  country_st:
+    code: ST
+  country_sv:
+    code: SV
+  country_sx:
+    code: SX
+  country_sy:
+    code: SY
+  country_sz:
+    code: SZ
+  country_tc:
+    code: TC
+  country_td:
+    code: TD
+  country_tf:
+    code: TF
+  country_tg:
+    code: TG
+  country_th:
+    code: TH
+  country_tj:
+    code: TJ
+  country_tk:
+    code: TK
+  country_tl:
+    code: TL
+  country_tm:
+    code: TM
+  country_tn:
+    code: TN
+  country_to:
+    code: TO
+  country_tr:
+    code: TR
+  country_tt:
+    code: TT
+  country_tv:
+    code: TV
+  country_tw:
+    code: TW
+  country_tz:
+    code: TZ
+  country_ua:
+    code: UA
+  country_ug:
+    code: UG
+  country_um:
+    code: UM
+  country_us:
+    code: US
+  country_uy:
+    code: UY
+  country_uz:
+    code: UZ
+  country_va:
+    code: VA
+  country_vc:
+    code: VC
+  country_ve:
+    code: VE
+  country_vg:
+    code: VG
+  country_vi:
+    code: VI
+  country_vn:
+    code: VN
+  country_vu:
+    code: VU
+  country_wf:
+    code: WF
+  country_ws:
+    code: WS
+  country_xk:
+    code: XK
+  country_ye:
+    code: YE
+  country_yt:
+    code: YT
+  country_za:
+    code: ZA
+  country_zm:
+    code: ZM
+  country_zw:
+    code: ZW
