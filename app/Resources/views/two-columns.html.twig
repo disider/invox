@@ -17,9 +17,9 @@
 
 {% block page %}
     <aside id="left-menu-content" class="col-md-3 hidden-xs">
-        {{ knp_menu_render('AppBundle:MenuBuilder:mainMenu', { 'allow_safe_labels': true, 'currentClass': 'active' }) }}
+        {{ knp_menu_render('mainMenu', { 'allow_safe_labels': true, 'currentClass': 'active' }) }}
         <br />
-        {{ knp_menu_render('AppBundle:MenuBuilder:superadminMenu', { 'allow_safe_labels': true, 'currentClass': 'active' }) }}
+        {{ knp_menu_render('superadminMenu', { 'allow_safe_labels': true, 'currentClass': 'active' }) }}
     </aside>
 
     <section id="main-content" class="col-md-9">

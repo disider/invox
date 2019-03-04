@@ -17,23 +17,54 @@ use AppBundle\Security\Voter\CompanyVoter;
 use AppBundle\Security\Voter\RoleVoter;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Routing\Router;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
-use Symfony\Component\Translation\Translator;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 
-class MenuBuilder implements ContainerAwareInterface
+class MenuBuilder
 {
-    use ContainerAwareTrait;
+    private $factory;
+    private $authorizationChecker;
+    private $translator;
+    private $router;
+    private $tokenStorage;
+    private $companyManager;
+    private $requestStack;
+    private $availableLocales;
+    private $locale;
+    private $enableRegistration;
 
-    public function userMenu(FactoryInterface $factory, array $options)
+    public function __construct(
+        FactoryInterface $factory,
+        AuthorizationCheckerInterface $authorizationChecker,
+        TranslatorInterface $translator,
+        RouterInterface $router,
+        TokenStorageInterface $tokenStorage,
+        CompanyManager $companyManager,
+        RequestStack $requestStack,
+        $availableLocales,
+        $locale,
+        $enableRegistration
+    ) {
+        $this->factory = $factory;
+        $this->authorizationChecker = $authorizationChecker;
+        $this->translator = $translator;
+        $this->router = $router;
+        $this->tokenStorage = $tokenStorage;
+        $this->companyManager = $companyManager;
+        $this->requestStack = $requestStack;
+        $this->availableLocales = $availableLocales;
+        $this->locale = $locale;
+        $this->enableRegistration = $enableRegistration;
+    }
+
+    public function userMenu(array $options)
     {
         /** @var ItemInterface $menu */
-        $menu = $factory->createItem('root');
+        $menu = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'user-menu nav navbar-nav');
 
         if ($this->isAuthenticated()) {
@@ -50,21 +81,28 @@ class MenuBuilder implements ContainerAwareInterface
                     }
                 }
 
-                $welcome = $menu->addChild($this->translate('menu.welcome', [
-                    '%url%' => $url,
-                    '%user%' => $user,
-                    '%exit_impersonate%' => $this->isGranted(User::ROLE_PREVIOUS_ADMIN)
-                        ? sprintf('<a class="navbar-link" href="%s">(%s)</a>',
-                            $this->generateUrl('dashboard', ['_switch_user' => '_exit']),
-                            $this->translate('actions.exit_impersonate'))
-                        : null,
-                ]));
+                $welcome = $menu->addChild(
+                    $this->translate(
+                        'menu.welcome',
+                        [
+                            '%url%' => $url,
+                            '%user%' => $user,
+                            '%exit_impersonate%' => $this->isGranted(User::ROLE_PREVIOUS_ADMIN)
+                                ? sprintf(
+                                    '<a class="navbar-link" href="%s">(%s)</a>',
+                                    $this->generateUrl('dashboard', ['_switch_user' => '_exit']),
+                                    $this->translate('actions.exit_impersonate')
+                                )
+                                : null,
+                        ]
+                    )
+                );
                 $welcome->setAttribute('class', 'navbar-text');
                 $welcome->setExtra('safe_label', true);
 
                 $menu->addChild($this->translate('menu.logout'), ['route' => 'logout']);
             } else {
-                if ($this->container->getParameter('enable_registration')) {
+                if ($this->enableRegistration) {
                     $menu->addChild($this->translate('menu.register'), ['route' => 'register']);
                 }
 
@@ -77,16 +115,23 @@ class MenuBuilder implements ContainerAwareInterface
         return $menu;
     }
 
-    public function mainMenu(FactoryInterface $factory, array $options)
+    public function mainMenu(array $options)
     {
-        $menu = $factory->createItem('root', ['allow_safe_labels' => true]);
+        $menu = $this->factory->createItem('root', ['allow_safe_labels' => true]);
         $menu->setChildrenAttribute('class', 'main-menu');
 
         $this->addMenu($menu, 'tachometer', 'dashboard', 'dashboard', 'menu.dashboard');
 
         if ($this->isAuthenticated()) {
             $this->addMenu($menu, 'user', 'users', 'users', 'menu.users', User::ROLE_SUPER_ADMIN);
-            $this->addMenu($menu, 'industry', 'companies\/new', 'company_create', 'menu.add_first_company', RoleVoter::FIRST_COMPANY_CREATE);
+            $this->addMenu(
+                $menu,
+                'industry',
+                'companies\/new',
+                'company_create',
+                'menu.add_first_company',
+                RoleVoter::FIRST_COMPANY_CREATE
+            );
             $this->addMenu($menu, 'industry', 'companies', 'companies', 'menu.companies', RoleVoter::LIST_COMPANIES);
             $this->addMenu($menu, 'envelope-o', 'invites', 'invites', 'menu.invites', RoleVoter::LIST_INVITES);
         }
@@ -95,77 +140,154 @@ class MenuBuilder implements ContainerAwareInterface
             $this->addMenu($menu, 'users', 'customers', 'customers', 'menu.customers', RoleVoter::LIST_CUSTOMERS);
             $this->addMenu($menu, 'university', 'accounts', 'accounts', 'menu.accounts', RoleVoter::LIST_ACCOUNTS);
 
-            $child = $this->addMenu($menu, 'book', '', '', 'menu.documents', RoleVoter::LIST_DOCUMENTS, [
-                'uri' => '#documents',
-                'showCaret' => true,
-            ]);
+            $child = $this->addMenu(
+                $menu,
+                'book',
+                '',
+                '',
+                'menu.documents',
+                RoleVoter::LIST_DOCUMENTS,
+                [
+                    'uri' => '#documents',
+                    'showCaret' => true,
+                ]
+            );
 
             if ($child) {
-                $child->setLinkAttributes([
-                    'class' => 'collapsible collapsed',
-                    'data-toggle' => 'collapse',
-                ]);
-                $child->setChildrenAttributes([
-                    'id' => 'documents',
-                    'class' => 'nav collapse submenu',
-                ]);
+                $child->setLinkAttributes(
+                    [
+                        'class' => 'collapsible collapsed',
+                        'data-toggle' => 'collapse',
+                    ]
+                );
+                $child->setChildrenAttributes(
+                    [
+                        'id' => 'documents',
+                        'class' => 'nav collapse submenu',
+                    ]
+                );
                 $this->addMenu($child, '', 'quotes', 'quotes', 'menu.quotes', RoleVoter::LIST_QUOTES);
                 $this->addMenu($child, '', 'orders', 'orders', 'menu.orders', RoleVoter::LIST_ORDERS);
                 $this->addMenu($child, '', 'invoices', 'invoices', 'menu.invoices', RoleVoter::LIST_INVOICES);
                 $this->addMenu($child, '', 'receipts', 'receipts', 'menu.receipts', RoleVoter::LIST_RECEIPTS);
-                $this->addMenu($child, '', 'credit-notes', 'credit_notes', 'menu.credit_notes', RoleVoter::LIST_CREDIT_NOTES);
-                $this->addMenu($child, '', 'working-notes', 'working_notes', 'menu.working_notes', RoleVoter::LIST_WORKING_NOTES);
-                $this->addMenu($child, '', 'delivery-notes', 'delivery_notes', 'menu.delivery_notes', RoleVoter::LIST_DELIVERY_NOTES);
+                $this->addMenu(
+                    $child,
+                    '',
+                    'credit-notes',
+                    'credit_notes',
+                    'menu.credit_notes',
+                    RoleVoter::LIST_CREDIT_NOTES
+                );
+                $this->addMenu(
+                    $child,
+                    '',
+                    'working-notes',
+                    'working_notes',
+                    'menu.working_notes',
+                    RoleVoter::LIST_WORKING_NOTES
+                );
+                $this->addMenu(
+                    $child,
+                    '',
+                    'delivery-notes',
+                    'delivery_notes',
+                    'menu.delivery_notes',
+                    RoleVoter::LIST_DELIVERY_NOTES
+                );
             }
 
-            $this->addMenu($menu, 'money', 'petty-cash-notes', 'petty_cash_notes', 'menu.petty_cash_notes', RoleVoter::LIST_PETTY_CASH_NOTES);
-            $this->addMenu($menu, 'clock-o', 'recurrences', 'recurrences', 'menu.recurrences', RoleVoter::LIST_RECURRENCES);
+            $this->addMenu(
+                $menu,
+                'money',
+                'petty-cash-notes',
+                'petty_cash_notes',
+                'menu.petty_cash_notes',
+                RoleVoter::LIST_PETTY_CASH_NOTES
+            );
+            $this->addMenu(
+                $menu,
+                'clock-o',
+                'recurrences',
+                'recurrences',
+                'menu.recurrences',
+                RoleVoter::LIST_RECURRENCES
+            );
             $this->addMenu($menu, 'shopping-cart', 'products', 'products', 'menu.products', RoleVoter::LIST_PRODUCTS);
             $this->addMenu($menu, 'server', 'services', 'services', 'menu.services', RoleVoter::LIST_SERVICES);
             $this->addMenu($menu, 'file', 'media', 'media', 'menu.media', RoleVoter::LIST_MEDIA);
 
-            $child = $this->addMenu($menu, 'cog', '', '', 'menu.settings', RoleVoter::SHOW_SETTINGS, [
-                'uri' => '#settings',
-                'showCaret' => true,
-            ]);
+            $child = $this->addMenu(
+                $menu,
+                'cog',
+                '',
+                '',
+                'menu.settings',
+                RoleVoter::SHOW_SETTINGS,
+                [
+                    'uri' => '#settings',
+                    'showCaret' => true,
+                ]
+            );
 
             if ($child) {
-                $child->setLinkAttributes([
-                    'class' => 'collapsible collapsed',
-                    'data-toggle' => 'collapse',
-                ]);
-                $child->setChildrenAttributes([
-                    'id' => 'settings',
-                    'class' => 'nav collapse submenu',
-                ]);
+                $child->setLinkAttributes(
+                    [
+                        'class' => 'collapsible collapsed',
+                        'data-toggle' => 'collapse',
+                    ]
+                );
+                $child->setChildrenAttributes(
+                    [
+                        'id' => 'settings',
+                        'class' => 'nav collapse submenu',
+                    ]
+                );
 
                 $company = $this->getCurrentCompany();
                 $link = $this->generateCurrentCompanyLink($company);
                 $item = $child->addChild($company, ['uri' => $link]);
 
                 $this->addMenu($child, '', 'modules', 'modules', 'menu.modules', RoleVoter::LIST_MODULES);
-                $this->addMenu($child, '', 'paragraph-templates', 'paragraph_templates', 'menu.paragraph_templates', RoleVoter::LIST_PARAGRAPH_TEMPLATES);
+                $this->addMenu(
+                    $child,
+                    '',
+                    'paragraph-templates',
+                    'paragraph_templates',
+                    'menu.paragraph_templates',
+                    RoleVoter::LIST_PARAGRAPH_TEMPLATES
+                );
 
-                $this->addMenu($child, '', 'companies\/' . $company->getId() . '\/document-templates', 'document_templates_per_company', 'menu.document_templates', CompanyVoter::LIST_DOCUMENT_TEMPLATES_PER_COMPANY, [
-                    'roleParameters' => $company,
-                    'routeParameters' => [
-                        'companyId' => $company->getId()
+                $this->addMenu(
+                    $child,
+                    '',
+                    'companies\/'.$company->getId().'\/document-templates',
+                    'document_templates_per_company',
+                    'menu.document_templates',
+                    CompanyVoter::LIST_DOCUMENT_TEMPLATES_PER_COMPANY,
+                    [
+                        'roleParameters' => $company,
+                        'routeParameters' => [
+                            'companyId' => $company->getId(),
+                        ],
                     ]
-                ]);
+                );
             }
         }
 
         return $menu;
     }
 
-    public function superadminMenu(FactoryInterface $factory, array $options)
+    public function superadminMenu(array $options)
     {
-        $menu = $factory->createItem('root', ['allow_safe_labels' => true]);
+        $menu = $this->factory->createItem('root', ['allow_safe_labels' => true]);
         $menu->setChildrenAttribute('class', 'superadmin-menu');
 
         if ($this->isGranted(User::ROLE_SUPER_ADMIN)) {
 
-            $item = $menu->addChild($this->translate('menu.superadmin') . '&nbsp;<i class="collapse-toggle fa fa-caret-down"></i>', ['uri' => '#submenu']);
+            $item = $menu->addChild(
+                $this->translate('menu.superadmin').'&nbsp;<i class="collapse-toggle fa fa-caret-down"></i>',
+                ['uri' => '#submenu']
+            );
             $item->setExtra('safe_label', true);
             $item->setLinkAttribute('class', 'collapsible collapsed heading');
             $item->setLinkAttribute('data-toggle', 'collapse');
@@ -178,10 +300,24 @@ class MenuBuilder implements ContainerAwareInterface
             $this->addMenu($item, 'globe', 'province', 'provinces', 'menu.provinces', User::ROLE_SUPER_ADMIN);
             $this->addMenu($item, 'globe', 'city', 'cities', 'menu.cities', User::ROLE_SUPER_ADMIN);
             $this->addMenu($item, 'globe', 'zip-code', 'zip_codes', 'menu.zip_codes', User::ROLE_SUPER_ADMIN);
-            $this->addMenu($item, 'money', 'payment-types', 'payment_types', 'menu.payment_types', User::ROLE_SUPER_ADMIN);
+            $this->addMenu(
+                $item,
+                'money',
+                'payment-types',
+                'payment_types',
+                'menu.payment_types',
+                User::ROLE_SUPER_ADMIN
+            );
             $this->addMenu($item, 'money', 'tax-rate', 'tax_rates', 'menu.tax_rates', User::ROLE_SUPER_ADMIN);
             $this->addMenu($item, 'file-o', 'page', 'pages', 'menu.pages', User::ROLE_SUPER_ADMIN);
-            $this->addMenu($item, 'file-o', 'document-templates', 'document_templates', 'menu.document_templates', User::ROLE_SUPER_ADMIN);
+            $this->addMenu(
+                $item,
+                'file-o',
+                'document-templates',
+                'document_templates',
+                'menu.document_templates',
+                User::ROLE_SUPER_ADMIN
+            );
         }
 
         return $menu;
@@ -189,26 +325,17 @@ class MenuBuilder implements ContainerAwareInterface
 
     private function isAuthenticated()
     {
-        $tokenStorage = $this->getTokenStorage();
-
-        return $tokenStorage->getToken() != null;
+        return $this->tokenStorage->getToken() != null;
     }
 
     private function isGranted($role, $params = [])
     {
-        /** @var AuthorizationChecker $authChecker */
-        $authChecker = $this->container->get('security.authorization_checker');
-
-        return $authChecker->isGranted($role, $params);
+        return $this->authorizationChecker->isGranted($role, $params);
     }
 
     private function translate($id, array $params = [])
     {
-        /** @var Translator $translator */
-        $translator = $this->container->get('translator');
-
-        /* @Ignore */
-        return $translator->trans($id, $params);
+        return $this->translator->trans($id, $params);
     }
 
     /**
@@ -216,15 +343,12 @@ class MenuBuilder implements ContainerAwareInterface
      */
     private function getUser()
     {
-        return $this->getTokenStorage()->getToken()->getUser();
+        return $this->tokenStorage->getToken()->getUser();
     }
 
     private function generateUrl($url, $params = [])
     {
-        /** @var Router $router */
-        $router = $this->container->get('router');
-
-        return $router->generate($url, $params);
+        return $this->router->generate($url, $params);
     }
 
     private function addMenu(ItemInterface $menu, $icon, $basePath, $route, $title, $role = null, $extraParams = [])
@@ -242,7 +366,7 @@ class MenuBuilder implements ContainerAwareInterface
         $matches = explode('/', $pathInfo);
         $currentPath = $matches[1];
 
-        if (in_array($currentPath, $this->container->getParameter('available_locales'))) {
+        if (in_array($currentPath, $this->availableLocales)) {
             $currentPath = $matches[2];
         }
 
@@ -268,25 +392,26 @@ class MenuBuilder implements ContainerAwareInterface
 
         $route = $request->get('_route') ?: 'dashboard';
         $routeParams = $request->get('_route_params') ?: [];
-        $currentLocale = $request->get('_locale') ?: $this->container->getParameter('locale');
+        $currentLocale = $request->get('_locale') ?: $this->locale;
 
         $title = sprintf('<span class="lang-sm lang-is" lang="%s"></span>', $currentLocale);
 
         $item = $this->addDropdownMenu($menu, $title);
 
-        $availableLocales = $this->container->getParameter('available_locales');
-
-        foreach ($availableLocales as $locale) {
-            $this->addLanguageMenu($item, 'locale.' . $locale, $route, $routeParams, $locale, $currentLocale);
+        foreach ($this->availableLocales as $locale) {
+            $this->addLanguageMenu($item, 'locale.'.$locale, $route, $routeParams, $locale, $currentLocale);
         }
     }
 
     private function addLanguageMenu(ItemInterface $menu, $title, $route, $routeParams, $locale, $currentLocale)
     {
-        $item = $menu->addChild(sprintf('<span class="lang-sm lang-is" lang="%s"></span> %s', $locale, $this->translate($title)), [
-            'route' => $route,
-            'routeParameters' => array_merge($routeParams, ['_locale' => $locale]),
-        ]);
+        $item = $menu->addChild(
+            sprintf('<span class="lang-sm lang-is" lang="%s"></span> %s', $locale, $this->translate($title)),
+            [
+                'route' => $route,
+                'routeParameters' => array_merge($routeParams, ['_locale' => $locale]),
+            ]
+        );
         $item->setExtra('safe_label', true);
         if ($locale == $currentLocale) {
             $item->setAttribute('class', 'active');
@@ -332,14 +457,6 @@ class MenuBuilder implements ContainerAwareInterface
         return $title;
     }
 
-    /**
-     * @return TokenStorageInterface
-     */
-    private function getTokenStorage()
-    {
-        return $this->container->get('security.token_storage');
-    }
-
     private function addSeparator(ItemInterface $menu)
     {
         $menu->addChild('')->setAttribute('class', 'nav-divider');
@@ -347,12 +464,12 @@ class MenuBuilder implements ContainerAwareInterface
 
     private function getCurrentCompany()
     {
-        return $this->container->get(CompanyManager::class)->getCurrent();
+        return $this->companyManager->getCurrent();
     }
 
     private function hasCurrentCompany()
     {
-        return $this->container->get(CompanyManager::class)->hasCurrent();
+        return $this->companyManager->hasCurrent();
     }
 
     /**
@@ -360,16 +477,18 @@ class MenuBuilder implements ContainerAwareInterface
      */
     private function addDropdownMenu(ItemInterface $menu, $title, array $parameters = [])
     {
-        $item = $menu->addChild($title . '&nbsp;<span class="caret"></span>', ['uri' => '#']);
+        $item = $menu->addChild($title.'&nbsp;<span class="caret"></span>', ['uri' => '#']);
         $item->setExtra('safe_label', true);
         $item->setAttribute('class', 'dropdown');
-        $item->setLinkAttributes([
-            'class' => 'dropdown-toggle',
-            'data-toggle' => 'dropdown',
-            'role' => 'button',
-            'aria-haspopup' => true,
-            'aria-expanded' => false
-        ]);
+        $item->setLinkAttributes(
+            [
+                'class' => 'dropdown-toggle',
+                'data-toggle' => 'dropdown',
+                'role' => 'button',
+                'aria-haspopup' => true,
+                'aria-expanded' => false,
+            ]
+        );
         $item->setChildrenAttribute('class', 'dropdown-menu');
 
         return $item;
@@ -390,7 +509,8 @@ class MenuBuilder implements ContainerAwareInterface
     {
         $user = $this->getUser();
 
-        return ($user->isSuperadmin() || $user->isAccountant() || $user->isSalesAgent() || $user->isManagingMultipleCompanies());
+        return ($user->isSuperadmin() || $user->isAccountant() || $user->isSalesAgent(
+            ) || $user->isManagingMultipleCompanies());
     }
 
     private function addCurrentCompanyMenu(ItemInterface $menu)
@@ -403,11 +523,13 @@ class MenuBuilder implements ContainerAwareInterface
         $link = $this->generateCurrentCompanyLink($company);
 
         $title = $this->formatIcon($company->getName(), 'industry');
-        $title = sprintf('<p class="navbar-text"><a class="navbar-link" href="%s">%s</a>&nbsp;&nbsp;<a class="navbar-link" href="%s">%s</i></a></p>',
+        $title = sprintf(
+            '<p class="navbar-text"><a class="navbar-link" href="%s">%s</a>&nbsp;&nbsp;<a class="navbar-link" href="%s">%s</i></a></p>',
             $link,
             $title,
             $this->generateUrl('company_close_current'),
-            '<i class="fa fa-times"></a>');
+            '<i class="fa fa-times"></a>'
+        );
         $child = $menu->addChild($title);
         $child->setAttribute('class', 'current');
         $child->setExtra('safe_label', true);
@@ -425,8 +547,12 @@ class MenuBuilder implements ContainerAwareInterface
     private function generateCurrentCompanyLink($company)
     {
         $user = $this->getUser();
-        $link = $this->generateUrl(($user->isAccountantFor($company) || $user->isSalesAgentFor($company)) ? 'company_view' : 'company_edit'
-            , ['id' => $company->getId()]);
+        $link = $this->generateUrl(
+            ($user->isAccountantFor($company) || $user->isSalesAgentFor($company)) ? 'company_view' : 'company_edit'
+            ,
+            ['id' => $company->getId()]
+        );
+
         return $link;
     }
 
@@ -435,11 +561,6 @@ class MenuBuilder implements ContainerAwareInterface
      */
     private function getRequest()
     {
-        /** @var RequestStack $requestStack */
-        $requestStack = $this->container->get('request_stack');
-
-        /** @var Request $request */
-        $request = $requestStack->getMasterRequest();
-        return $request;
+        return $this->requestStack->getMasterRequest();
     }
 }

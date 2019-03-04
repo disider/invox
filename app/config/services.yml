@@ -24,6 +24,9 @@ services:
   # controllers are imported separately to make sure they're public
   # and have a tag that allows actions to type-hint services
   AppBundle\Controller\:
+    arguments:
+      $defaultPageSize: '%page_size%'
+      $environment: '%kernel.environment%'
     resource: '../../src/AppBundle/Controller'
     public: true
     tags: ['controller.service_arguments']
@@ -73,3 +76,15 @@ services:
   AppBundle\Helper\ParameterHelper:
     arguments:
       - '%enable_demo_mode%'
+
+  AppBundle\Menu\MenuBuilder:
+    arguments:
+      $availableLocales: '%available_locales%'
+      $locale: '%locale%'
+      $enableRegistration: '%enable_registration%'
+    tags:
+      - { name: knp_menu.menu_builder, method: userMenu, alias: userMenu }
+      - { name: knp_menu.menu_builder, method: mainMenu, alias: mainMenu }
+      - { name: knp_menu.menu_builder, method: superadminMenu, alias: superadminMenu }
+
+  Symfony\Component\HttpKernel\Profiler\Profiler: '@profiler'

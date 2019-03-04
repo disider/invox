@@ -40,6 +40,7 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Profiler\Profiler;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
@@ -60,6 +61,9 @@ class BaseController extends Controller
     private $filterBuilderUpdater;
     private $paginator;
     private $requestStack;
+    private $defaultPageSize;
+    private $environment;
+    private $profiler;
 
     public function __construct(
         CompanyManager $companyManager,
@@ -71,7 +75,10 @@ class BaseController extends Controller
         ParameterHelperInterface $parameterHelper,
         FilterBuilderUpdaterInterface $filterBuilderUpdater,
         PaginatorInterface $paginator,
-        RequestStack $requestStack
+        RequestStack $requestStack,
+        Profiler $profiler,
+        $defaultPageSize,
+        $environment
     ) {
         $this->companyManager = $companyManager;
         $this->authorizationChecker = $authorizationChecker;
@@ -83,6 +90,9 @@ class BaseController extends Controller
         $this->filterBuilderUpdater = $filterBuilderUpdater;
         $this->paginator = $paginator;
         $this->requestStack = $requestStack;
+        $this->profiler = $profiler;
+        $this->defaultPageSize = $defaultPageSize;
+        $this->environment = $environment;
     }
 
     protected function isAuthenticated()
@@ -355,7 +365,7 @@ class BaseController extends Controller
 
     protected function paginate($query, $page, $pageSize, $sortField = '', $sortDirection = 'asc')
     {
-        if (in_array($this->getParameter('kernel.environment'), ['prod', 'dev'])) {
+        if (in_array($this->environment, ['prod', 'dev'])) {
             $options = [
                 'defaultSortFieldName' => $sortField,
                 'defaultSortDirection' => $sortDirection,
@@ -374,7 +384,7 @@ class BaseController extends Controller
 
     protected function getPageSize(Request $request)
     {
-        return $request->get('pageSize', $this->container->getParameter('page_size'));
+        return $request->get('pageSize', $this->defaultPageSize);
     }
 
     protected function getPage(Request $request)
@@ -389,9 +399,7 @@ class BaseController extends Controller
 
     protected function disableProfiler()
     {
-        if ($this->container->has('profiler')) {
-            $this->container->get('profiler')->disable();
-        }
+        $this->profiler->disable();
     }
 
     protected function isModuleEnabled($module)
