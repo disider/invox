@@ -15,6 +15,7 @@ use AppBundle\Form\Filter\WorkingNoteFilterForm;
 use AppBundle\Form\Processor\WorkingNoteFormProcessor;
 use AppBundle\Repository\WorkingNoteRepository;
 use Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator;
+use Knp\Snappy\Pdf;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
@@ -120,23 +121,23 @@ class WorkingNoteController extends BaseController
      * @Route("/{id}/render", name="working_note_render")
      * @Security("is_granted('WORKING_NOTE_RENDER', workingNote)")
      */
-    public function renderAction(Request $request, WorkingNote $workingNote)
+    public function renderAction(Request $request, Pdf $pdf, WorkingNote $workingNote)
     {
-        return $this->renderWorkingNote($request, $workingNote, 'inline;');
+        return $this->renderWorkingNote($request, $pdf, $workingNote, 'inline;');
     }
 
     /**
      * @Route("/{id}/print", name="working_note_print")
      * @Security("is_granted('WORKING_NOTE_PRINT', workingNote)")
      */
-    public function printAction(Request $request, WorkingNote $workingNote)
+    public function printAction(Request $request, Pdf $pdf, WorkingNote $workingNote)
     {
         $mode = sprintf('attachment; filename="%s"', $this->formatFileName($workingNote));
 
-        return $this->renderWorkingNote($request, $workingNote, $mode);
+        return $this->renderWorkingNote($request, $pdf, $workingNote, $mode);
     }
 
-    private function renderWorkingNote(Request $request, WorkingNote $workingNote, $mode)
+    private function renderWorkingNote(Request $request, Pdf $pdf, WorkingNote $workingNote, $mode)
     {
         $showAsHtml = $request->get('showAsHtml', false) !== false;
 
@@ -159,9 +160,6 @@ class WorkingNoteController extends BaseController
                 return $this->render('AppBundle:document:preview_error.html.twig', ['exception' => $exc]);
             }
         }
-
-        /** @var LoggableGenerator $pdf */
-        $pdf = $this->get('knp_snappy.pdf');
 
         $options = [
             'encoding' => 'utf-8',

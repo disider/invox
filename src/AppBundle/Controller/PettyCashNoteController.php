@@ -13,6 +13,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\PettyCashNote;
 use AppBundle\Form\Filter\PettyCashNoteFilterForm;
 use AppBundle\Form\Processor\PettyCashNoteFormProcessor;
+use AppBundle\Helper\ProtocolGenerator;
 use AppBundle\Repository\PettyCashNoteRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -67,13 +68,11 @@ class PettyCashNoteController extends BaseController
      * @Security("is_granted('PETTY_CASH_NOTE_CREATE')")
      * @Template
      */
-    public function createAction(Request $request, PettyCashNoteFormProcessor $processor)
+    public function createAction(Request $request, ProtocolGenerator $protocolGenerator, PettyCashNoteFormProcessor $processor)
     {
         if (!$this->canManageCurrentCompany()) {
             throw $this->createAccessDeniedException('Cannot manage petty cash for ' . $this->getCurrentCompany());
         }
-
-        $protocolGenerator = $this->get('protocol_generator');
 
         $ref = $this->getCurrentCompany()
             ? $protocolGenerator->generate('AppBundle:PettyCashNote', $this->getCurrentCompany(), date('Y'))

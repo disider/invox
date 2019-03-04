@@ -12,11 +12,11 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Manager\CompanyManager;
+use AppBundle\Entity\Repository\EntityRepository;
 use AppBundle\Entity\User;
 use AppBundle\Helper\ParameterHelperInterface;
 use AppBundle\Model\Module;
 use AppBundle\Problem\JsonProblem;
-use AppBundle\Repository\AbstractTagRepository;
 use AppBundle\Repository\CityRepository;
 use AppBundle\Repository\CustomerRepository;
 use AppBundle\Repository\DocumentCostCenterRepository;
@@ -30,51 +30,80 @@ use AppBundle\Repository\WarehouseRecordRepository;
 use AppBundle\Repository\WorkingNoteRepository;
 use AppBundle\Repository\ZipCodeRepository;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
+use JMS\Serializer\SerializerInterface;
+use Knp\Component\Pager\PaginatorInterface;
+use Lexik\Bundle\FormFilterBundle\Filter\FilterBuilderUpdaterInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use Symfony\Component\Translation\Translator;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * @method User getUser()
  */
 class BaseController extends Controller
 {
-    /** @var CompanyManager */
     private $companyManager;
+    private $authorizationChecker;
+    private $tokenStorage;
+    private $translator;
+    private $entityManager;
+    private $serializer;
+    private $parameterHelper;
+    private $filterBuilderUpdater;
+    private $paginator;
+    private $requestStack;
 
-    public function __construct(CompanyManager $companyManager)
-    {
+    public function __construct(
+        CompanyManager $companyManager,
+        AuthorizationCheckerInterface $authorizationChecker,
+        TokenStorageInterface $tokenStorage,
+        TranslatorInterface $translator,
+        EntityManagerInterface $entityManager,
+        SerializerInterface $serializer,
+        ParameterHelperInterface $parameterHelper,
+        FilterBuilderUpdaterInterface $filterBuilderUpdater,
+        PaginatorInterface $paginator,
+        RequestStack $requestStack
+    ) {
         $this->companyManager = $companyManager;
-    }
-
-    protected function getUserManager()
-    {
-        return $this->get('user_manager');
+        $this->authorizationChecker = $authorizationChecker;
+        $this->tokenStorage = $tokenStorage;
+        $this->translator = $translator;
+        $this->entityManager = $entityManager;
+        $this->serializer = $serializer;
+        $this->parameterHelper = $parameterHelper;
+        $this->filterBuilderUpdater = $filterBuilderUpdater;
+        $this->paginator = $paginator;
+        $this->requestStack = $requestStack;
     }
 
     protected function isAuthenticated()
     {
-        return $this->get('security.authorization_checker')->isGranted('ROLE_USER');
+        return $this->authorizationChecker->isGranted('ROLE_USER');
     }
 
     protected function authenticateUser(User $user)
     {
         $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
-        $this->container->get('security.token_storage')->setToken($token);
+        $this->tokenStorage->setToken($token);
     }
 
     protected function translate($id, array $params = [], $domain = null)
     {
-        /** @var Translator $translator */
-        $translator = $this->get('translator');
+        return $this->translator->trans($id, $params, $domain);
+    }
 
-        /* @Ignore */
-
-        return $translator->trans($id, $params, $domain);
+    protected function setLocale($locale)
+    {
+        return $this->translator->setLocale($locale);
     }
 
     protected function applyFiltering(Request $request, Form $filterForm)
@@ -244,10 +273,10 @@ class BaseController extends Controller
         return $this->getRepository('AppBundle:ZipCode');
     }
 
-    /** @return EntityManager */
+    /** @return EntityManagerInterface */
     protected function getEntityManager()
     {
-        return $this->get('doctrine.orm.entity_manager');
+        return $this->entityManager;
     }
 
     /** @return EntityRepository */
@@ -258,12 +287,12 @@ class BaseController extends Controller
 
     protected function serialize($object)
     {
-        $serializer = $this->get('jms_serializer');
-
-        $response = new Response($serializer->serialize($object, 'json'));
-        $response->headers->add([
-            'Content-Type' => 'application/json'
-        ]);
+        $response = new Response($this->serializer->serialize($object, 'json'));
+        $response->headers->add(
+            [
+                'Content-Type' => 'application/json',
+            ]
+        );
 
         return $response;
     }
@@ -318,8 +347,7 @@ class BaseController extends Controller
         if ($request->query->has($filterForm->getName())) {
             $filterForm->submit($request->query->get($filterForm->getName()));
 
-            $lexik = $this->get('lexik_form_filter.query_builder_updater');
-            $lexik->addFilterConditions($filterForm, $queryBuilder);
+            $this->filterBuilderUpdater->addFilterConditions($filterForm, $queryBuilder);
         }
 
         return $filterForm;
@@ -327,18 +355,16 @@ class BaseController extends Controller
 
     protected function paginate($query, $page, $pageSize, $sortField = '', $sortDirection = 'asc')
     {
-        $paginator = $this->get('knp_paginator');
-
         if (in_array($this->getParameter('kernel.environment'), ['prod', 'dev'])) {
             $options = [
                 'defaultSortFieldName' => $sortField,
-                'defaultSortDirection' => $sortDirection
+                'defaultSortDirection' => $sortDirection,
             ];
         } else {
             $options = [];
         }
 
-        return $paginator->paginate(
+        return $this->paginator->paginate(
             $query,
             $page,
             $pageSize,
@@ -358,7 +384,7 @@ class BaseController extends Controller
 
     protected function getCurrentLocale()
     {
-        return $this->get('request_stack')->getMasterRequest()->getLocale();
+        return $this->requestStack->getMasterRequest()->getLocale();
     }
 
     protected function disableProfiler()
@@ -378,11 +404,12 @@ class BaseController extends Controller
         $problem = new JsonProblem($title, $statusCode);
         $response = new Response($problem->format(), $problem->getStatusCode());
         $response->headers->set('ContentType', 'application/problem+json');
+
         return $response;
     }
 
     protected function isInDemoMode()
     {
-        return $this->get(ParameterHelperInterface::class)->isInDemoMode();
+        return $this->parameterHelper->isInDemoMode();
     }
 }

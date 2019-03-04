@@ -10,10 +10,6 @@
 
 namespace Tests\AppBundle\Helper;
 
-use AppBundle\Entity\City;
-use AppBundle\Entity\Country;
-use AppBundle\Entity\Province;
-use AppBundle\Entity\ZipCode;
 use AppBundle\Helper\PlacesManager;
 use Doctrine\ORM\EntityManager;
 use Tests\AppBundle\RepositoryTestCase;
@@ -43,7 +39,7 @@ class PlacesManagerTest extends RepositoryTestCase
         $this->provinceRepo = $this->em->getRepository('AppBundle:Province');
         $this->cityRepo = $this->em->getRepository('AppBundle:City');
         $this->zipCodeRepo = $this->em->getRepository('AppBundle:ZipCode');
-        $this->placesManger = $this->getService('places_manager');
+        $this->placesManger = new PlacesManager($this->em);
     }
 
     /**
@@ -53,18 +49,18 @@ class PlacesManagerTest extends RepositoryTestCase
     {
         $data = [
             [
-            'CITY' => 'Palestrina',
-            'ZIPCODE' => '00036',
-            'PROVINCECODE' => 'RM',
-            'PROVINCE' => 'Roma',
-            'COUNTRY' => 'IT'
+                'CITY' => 'Palestrina',
+                'ZIPCODE' => '00036',
+                'PROVINCECODE' => 'RM',
+                'PROVINCE' => 'Roma',
+                'COUNTRY' => 'IT',
             ],
             [
-            'CITY' => 'Sant\'Anna',
-            'ZIPCODE' => '09016',
-            'PROVINCECODE' => 'CI',
-            'PROVINCE' => 'L\'Aquila',
-            'COUNTRY' => 'IT'
+                'CITY' => 'Sant\'Anna',
+                'ZIPCODE' => '09016',
+                'PROVINCECODE' => 'CI',
+                'PROVINCE' => 'L\'Aquila',
+                'COUNTRY' => 'IT',
             ],
         ];
 
@@ -84,14 +80,14 @@ class PlacesManagerTest extends RepositoryTestCase
                 'ZIPCODE' => '00036',
                 'PROVINCECODE' => 'RM',
                 'PROVINCE' => 'Roma',
-                'COUNTRY' => 'IT'
+                'COUNTRY' => 'IT',
             ],
             [
                 'CITY' => 'Palestrina',
                 'ZIPCODE' => '00036',
                 'PROVINCECODE' => 'RM',
                 'PROVINCE' => 'Roma',
-                'COUNTRY' => 'IT'
+                'COUNTRY' => 'IT',
             ],
         ];
 
@@ -107,19 +103,19 @@ class PlacesManagerTest extends RepositoryTestCase
     {
         $data = [
             [
-            'CITY' => 'Palestrina',
-            'ZIPCODE' => '00036',
-            'PROVINCECODE' => 'RM',
-            'PROVINCE' => 'Roma',
-            'COUNTRY' => 'IT'
+                'CITY' => 'Palestrina',
+                'ZIPCODE' => '00036',
+                'PROVINCECODE' => 'RM',
+                'PROVINCE' => 'Roma',
+                'COUNTRY' => 'IT',
             ],
             [
-            'CITY' => 'Ostia',
-            'ZIPCODE' => '00036',
-            'PROVINCECODE' => 'RM',
-            'PROVINCE' => 'Roma',
-            'COUNTRY' => 'IT'
-            ]
+                'CITY' => 'Ostia',
+                'ZIPCODE' => '00036',
+                'PROVINCECODE' => 'RM',
+                'PROVINCE' => 'Roma',
+                'COUNTRY' => 'IT',
+            ],
         ];
 
         $this->placesManger->savePlaces($data);
@@ -134,11 +130,11 @@ class PlacesManagerTest extends RepositoryTestCase
     {
         $data = [
             [
-            'CITY' => 'Palestrina d\'aquila',
-            'ZIPCODE' => 'da 00036 a  00037',
-            'PROVINCECODE' => 'RM',
-            'PROVINCE' => 'Roma',
-            'COUNTRY' => 'IT'
+                'CITY' => 'Palestrina d\'aquila',
+                'ZIPCODE' => 'da 00036 a  00037',
+                'PROVINCECODE' => 'RM',
+                'PROVINCE' => 'Roma',
+                'COUNTRY' => 'IT',
             ],
         ];
 

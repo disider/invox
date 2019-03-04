@@ -11,6 +11,7 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\Attachable;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -18,6 +19,15 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class RefreshAttachmentsCommand extends ContainerAwareCommand
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        parent::__construct();
+
+        $this->entityManager = $entityManager;
+    }
+
     protected function configure()
     {
         $this
@@ -27,31 +37,24 @@ class RefreshAttachmentsCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
+        $attachments = $this->entityManager->getRepository('AppBundle:DocumentAttachment')->findAll();
+        $this->refreshAttachments($output, $attachments);
 
-        $attachments = $em->getRepository('AppBundle:DocumentAttachment')->findAll();
-        $this->refreshAttachments($output, $attachments, $em);
-
-        $attachments = $em->getRepository('AppBundle:PettyCashNoteAttachment')->findAll();
-        $this->refreshAttachments($output, $attachments, $em);
+        $attachments = $this->entityManager->getRepository('AppBundle:PettyCashNoteAttachment')->findAll();
+        $this->refreshAttachments($output, $attachments);
     }
 
-    /**
-     * @param OutputInterface $output
-     * @param $attachments
-     * @param $em
-     */
-    protected function refreshAttachments(OutputInterface $output, $attachments, $em)
+    protected function refreshAttachments(OutputInterface $output, $attachments)
     {
         /** @var Attachable $attachment */
         foreach ($attachments as $attachment) {
             $fileUrl = $attachment->getFileUrl();
-            $originalPath = __DIR__ . '/../../../../../../attachments/uploads/';
+            $originalPath = __DIR__.'/../../../../../../attachments/uploads/';
             $pos = strrpos($fileUrl, '/');
 
             try {
                 if ($pos) {
-                    $source = $originalPath . $fileUrl;
+                    $source = $originalPath.$fileUrl;
                     $fileUrl = substr($fileUrl, $pos + 1);
 
                     if (!is_file($source)) {
@@ -61,16 +64,16 @@ class RefreshAttachmentsCommand extends ContainerAwareCommand
                     $attachment->setFileUrl($fileUrl);
 
                     $fs = new Filesystem();
-                    $destination = $attachment->getUploadRootDir() . '/' . $fileUrl;
+                    $destination = $attachment->getUploadRootDir().'/'.$fileUrl;
                     $fs->copy($source, $destination);
-                    $em->persist($attachment);
+                    $this->entityManager->persist($attachment);
                 }
             } catch (\Exception $e) {
                 $output->writeln($e->getMessage());
             }
         }
 
-        $em->flush();
+        $this->entityManager->flush();
     }
 
 }

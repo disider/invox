@@ -42,9 +42,9 @@ default:
                 javascript:
                     selenium2:
                       browser: phantomjs
-#                        wd_host: "http://localhost:4444/wd/hub"
+                      wd_host: "http://localhost:4444/wd/hub"
 
 #        Behat\TeamCityFormatter\TeamCityFormatterExtension: ~
-    formatters:
-        pretty: true
+#    formatters:
+#        pretty: true
 

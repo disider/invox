@@ -23,4 +23,8 @@ interface UserInterface extends AdvancedUserInterface, \Serializable
     public function getConfirmationToken();
 
     public function getResetPasswordToken();
+
+    public function getPlainPassword();
+
+    public function setPassword($password);
 }

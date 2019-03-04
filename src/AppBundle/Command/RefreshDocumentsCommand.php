@@ -12,13 +12,25 @@ namespace AppBundle\Command;
 
 use AppBundle\Entity\Document;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class RefreshDocumentsCommand extends ContainerAwareCommand
+class RefreshDocumentsCommand extends Command
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        parent::__construct();
+
+        $this->entityManager = $entityManager;
+    }
+
+
     protected function configure()
     {
         $this
@@ -30,35 +42,33 @@ class RefreshDocumentsCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
-
         if ($input->getOption('rows')) {
-            $this->refreshRows($em, $output);
+            $this->refreshRows($output);
         }
 
         if ($input->getOption('company')) {
-            $this->refreshCompanies($em, $output);
+            $this->refreshCompanies($output);
         }
     }
 
-    protected function refreshRows(EntityManager $em, OutputInterface $output)
+    protected function refreshRows(OutputInterface $output)
     {
-        $rows = $em->getRepository('AppBundle:DocumentRow')->findAll();
+        $rows = $this->entityManager->getRepository('AppBundle:DocumentRow')->findAll();
 
         $output->writeln(sprintf('Updating %d rows', count($rows)));
 
         foreach ($rows as $row) {
             $row->calculateTotals();
 
-            $em->persist($row);
+            $this->entityManager->persist($row);
         }
 
-        $em->flush();
+        $this->entityManager->flush();
     }
 
-    protected function refreshCompanies(EntityManager $em, OutputInterface $output)
+    protected function refreshCompanies(OutputInterface $output)
     {
-        $documents = $em->getRepository('AppBundle:Document')->findAll();
+        $documents = $this->entityManager->getRepository('AppBundle:Document')->findAll();
 
         $output->writeln(sprintf('Updating %d documents', count($documents)));
 
@@ -66,10 +76,10 @@ class RefreshDocumentsCommand extends ContainerAwareCommand
         foreach ($documents as $document) {
             $document->copyCompanyDetails();
 
-            $em->persist($document);
+            $this->entityManager->persist($document);
         }
 
-        $em->flush();
+        $this->entityManager->flush();
     }
 
 }

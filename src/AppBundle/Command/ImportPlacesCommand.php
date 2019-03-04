@@ -10,6 +10,8 @@
 
 namespace AppBundle\Command;
 
+use AppBundle\Helper\CsvToArray;
+use AppBundle\Helper\PlacesManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -17,6 +19,17 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ImportPlacesCommand extends ContainerAwareCommand
 {
+    private $placesManager;
+    private $csvToArray;
+
+    public function __construct(PlacesManager $placesManager, CsvToArray $csvToArray)
+    {
+        parent::__construct();
+
+        $this->placesManager = $placesManager;
+        $this->csvToArray = $csvToArray;
+    }
+
     protected function configure()
     {
         $this
@@ -28,16 +41,14 @@ class ImportPlacesCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $data = $this->getData($input);
-        $this->getContainer()->get('places_manager')->savePlaces($data);
+
+        $this->placesManager->savePlaces($data);
     }
 
     private function getData(InputInterface $input)
     {
         $fileName = $input->getArgument('file');
 
-        $converter = $this->getContainer()->get('csv_to_array');
-        $data = $converter->convert($fileName, ';');
-
-        return $data;
+        return $this->csvToArray->convert($fileName, ';');
     }
 }

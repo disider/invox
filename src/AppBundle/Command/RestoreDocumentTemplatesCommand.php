@@ -10,15 +10,22 @@
 
 namespace AppBundle\Command;
 
-use LegacyBundle\Entity\Customer;
-use LegacyBundle\Model\ReferenceTable;
-use LegacyBundle\Util\Util;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class RestoreDocumentTemplatesCommand extends ContainerAwareCommand
+class RestoreDocumentTemplatesCommand extends Command
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        parent::__construct();
+
+        $this->entityManager = $entityManager;
+    }
+
     protected function configure()
     {
         $this
@@ -28,18 +35,16 @@ class RestoreDocumentTemplatesCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
-
-        $templates = $em->getRepository('AppBundle:DocumentTemplatePerCompany')->findAll();
+        $templates = $this->entityManager->getRepository('AppBundle:DocumentTemplatePerCompany')->findAll();
 
         $output->writeln(sprintf('Updating %d templates', count($templates)));
 
         foreach ($templates as $template) {
             $template->copyDocumentTemplateDetails();
-            $em->persist($template);
+            $this->entityManager->persist($template);
         }
 
-        $em->flush();
+        $this->entityManager->flush();
     }
 
 }

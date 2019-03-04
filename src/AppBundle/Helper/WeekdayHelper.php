@@ -22,7 +22,7 @@ class WeekdayHelper
 
     public static function daysValues()
     {
-        return array(
+        return [
             self::MONDAY,
             self::TUESDAY,
             self::WEDNESDAY,
@@ -30,7 +30,7 @@ class WeekdayHelper
             self::FRIDAY,
             self::SATURDAY,
             self::SUNDAY,
-        );
+        ];
     }
 
     public static function getDaysArray($weekdays)

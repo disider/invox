@@ -10,6 +10,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Manager\UserManager;
 use AppBundle\Entity\User;
 use AppBundle\Form\RegistrationForm;
 use AppBundle\Generator\TokenGenerator;
@@ -29,7 +30,7 @@ class RegistrationController extends BaseController
      * @Route("", name="register")
      * @Template
      */
-    public function registerAction(Request $request, MailerInterface $mailer)
+    public function registerAction(Request $request, MailerInterface $mailer, UserManager $userManager)
     {
         if (!$this->getParameter('enable_registration')) {
             return $this->redirectToRoute('dashboard');
@@ -53,8 +54,6 @@ class RegistrationController extends BaseController
                 $user = $form->getData();
                 $user->addRole(User::ROLE_OWNER);
                 $user->setConfirmationToken(TokenGenerator::generateToken());
-
-                $userManager = $this->getUserManager();
 
                 $userManager->updateUser($user);
 

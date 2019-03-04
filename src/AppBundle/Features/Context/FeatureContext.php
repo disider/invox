@@ -57,6 +57,8 @@ class FeatureContext extends AbstractContext
         /* @var MailerInterface mailer */
         $this->getContainer()->mock(MailerInterface::class, $this->mailer);
         $this->getContainer()->mock(ParameterHelperInterface::class, $this->parameterHelper);
+
+        $this->parameterHelper->setDemoMode(false);
     }
 
     /** @AfterScenario */

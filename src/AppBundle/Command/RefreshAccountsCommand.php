@@ -11,12 +11,22 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\Account;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class RefreshAccountsCommand extends ContainerAwareCommand
+class RefreshAccountsCommand extends Command
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        parent::__construct();
+
+        $this->entityManager = $entityManager;
+    }
+
     protected function configure()
     {
         $this
@@ -26,9 +36,7 @@ class RefreshAccountsCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
-
-        $accounts = $em->getRepository('AppBundle:Account')->findAll();
+        $accounts = $this->entityManager->getRepository('AppBundle:Account')->findAll();
 
         $output->writeln(sprintf('Updating %d accounts', count($accounts)));
 
@@ -37,10 +45,10 @@ class RefreshAccountsCommand extends ContainerAwareCommand
             $account->calculateCurrentAmount();
 
             $output->writeln(sprintf('%s: %0.2f', $account, $account->getCurrentAmount()));
-            $em->persist($account);
+            $this->entityManager->persist($account);
         }
 
-        $em->flush();
+        $this->entityManager->flush();
     }
 
 }

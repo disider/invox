@@ -6,15 +6,15 @@ use AppBundle\Helper\ParameterHelperInterface;
 
 class FakeParameterHelper implements ParameterHelperInterface
 {
-    private $isInDemoMode = false;
+    private static $isInDemoMode = false;
 
     public function setDemoMode($isInDemoMode)
     {
-        $this->isInDemoMode = $isInDemoMode;
+        self::$isInDemoMode = $isInDemoMode;
     }
 
     public function isInDemoMode()
     {
-        return $this->isInDemoMode;
+        return self::$isInDemoMode;
     }
 }

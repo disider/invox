@@ -8,31 +8,44 @@
  *
  */
 
-namespace AppBundle\EventListener;
+namespace AppBundle\EventListener\ORM;
 
-use AppBundle\Entity\Company;
+use AppBundle\Entity\Recurrence;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
 
-class CompanyListener implements EventSubscriber
+class RecurrenceListener implements EventSubscriber
 {
+
     public function getSubscribedEvents()
     {
         return [
             Events::prePersist,
+            Events::preUpdate,
         ];
     }
 
     public function prePersist(LifecycleEventArgs $args)
     {
+        $this->updateRecurrence($args);
+    }
+
+    public function preUpdate(PreUpdateEventArgs $args)
+    {
+        $this->updateRecurrence($args);
+    }
+
+    private function updateRecurrence(LifecycleEventArgs $args)
+    {
         $object = $args->getObject();
 
-        if (!($object instanceof Company)) {
+        if (!($object instanceof Recurrence)) {
             return;
         }
 
-        /** @var Company $object */
-        $object->addManager($object->getOwner());
+        /* @var Recurrence $object */
+        $object->calculateNextDueDate();
     }
 }

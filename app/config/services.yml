@@ -28,6 +28,11 @@ services:
     public: true
     tags: ['controller.service_arguments']
 
+  AppBundle\EventListener\ORM\:
+    resource: '../../src/AppBundle/EventListener/ORM'
+    tags: ['doctrine.event_subscriber']
+
+
   AppBundle\Form\Type\CountryEntityType:
     $locale: '%locale%'
 
@@ -39,9 +44,7 @@ services:
 
   AppBundle\Entity\Manager\UserManager:
     arguments:
-      - '@security.encoder_factory'
-      - '@doctrine.orm.entity_manager'
-      - 'AppBundle\Entity\User'
+      $class: 'AppBundle\Entity\User'
 
   Twig_Extensions_Extension_Text:
     class: Twig_Extensions_Extension_Text
@@ -62,6 +65,11 @@ services:
 
   AppBundle\Helper\ParameterHelperInterface: '@AppBundle\Helper\ParameterHelper'
 
-  AppBundle\EventListener\InviteListener:
-    tags:
-      - { name: 'doctrine.event_subscriber' }
+  AppBundle\Builder\DocumentBuilder:
+    arguments:
+      $cacheDir: '%kernel.cache_dir%'
+
+
+  AppBundle\Helper\ParameterHelper:
+    arguments:
+      - '%enable_demo_mode%'

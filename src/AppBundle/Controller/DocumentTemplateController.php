@@ -10,6 +10,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Builder\DocumentBuilder;
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Document;
 use AppBundle\Entity\DocumentTemplate;
@@ -105,13 +106,13 @@ class DocumentTemplateController extends BaseController
 
     /**
      * @Route("/{id}/render", name="document_template_render")
-     * @Template("AppBundle:DocumentTemplatePerCompany:render.html.twig")
+     * @Template("AppBundle:document_template_per_company:render.html.twig")
      */
-    public function renderAction(Request $request, DocumentTemplate $documentTemplate)
+    public function renderAction(Request $request, DocumentBuilder $builder, DocumentTemplate $documentTemplate)
     {
         $locale = $this->getCurrentLocale();
         $request->setLocale($locale);
-        $this->get('translator')->setLocale($locale);
+        $this->setLocale($locale);
 
         $this->disableProfiler();
         $company = $this->getCurrentCompany();
@@ -123,9 +124,9 @@ class DocumentTemplateController extends BaseController
         try {
             $params = [
                 'template' => $documentTemplatePerCompany,
-                'header' => $this->renderSection($document, 'header'),
-                'footer' => $this->renderSection($document, 'footer'),
-                'content' => $this->renderSection($document, 'content')
+                'header' => $this->renderSection($builder, $document, 'header'),
+                'footer' => $this->renderSection($builder, $document, 'footer'),
+                'content' => $this->renderSection($builder, $document, 'content')
             ];
 
             return $this->render('AppBundle:document_template_per_company:render.html.twig', $params);
@@ -134,11 +135,9 @@ class DocumentTemplateController extends BaseController
         }
     }
 
-    private function renderSection(Document $document, $section)
+    private function renderSection(DocumentBuilder $builder, Document $document, $section)
     {
-        $documentBuilder = $this->get('document_builder');
-
-        return $documentBuilder->build($document, $section);
+        return $builder->build($document, $section);
     }
 
     private function processForm(Request $request, DocumentTemplateFormProcessor $processor, DocumentTemplate $documentTemplate = null)

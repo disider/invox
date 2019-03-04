@@ -12,12 +12,22 @@ namespace AppBundle\Command;
 
 use AppBundle\Entity\Document;
 use AppBundle\Entity\InvoicePerNote;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class ExportDocumentsCommand extends ContainerAwareCommand
+class ExportDocumentsCommand extends Command
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        parent::__construct();
+
+        $this->entityManager = $entityManager;
+    }
+
     protected function configure()
     {
         $this
@@ -27,9 +37,9 @@ class ExportDocumentsCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
-
-        $docs = $em->getRepository('AppBundle:Document')->findBy(['status' => 'unpaid', 'direction' => 'outgoing', 'type' => 'invoice']);
+        $docs = $this->entityManager->getRepository('AppBundle:Document')->findBy(
+            ['status' => 'unpaid', 'direction' => 'outgoing', 'type' => 'invoice']
+        );
 
         $file = fopen('documents-export.csv', 'w');
 
@@ -42,7 +52,7 @@ class ExportDocumentsCommand extends ContainerAwareCommand
                 $doc->formatRef(),
                 $doc->getCustomerName(),
                 $this->formatDate($doc->getValidUntil()),
-                $doc->getGrossTotal()
+                $doc->getGrossTotal(),
             ];
 
             $output->writeln(sprintf('Found %d notes', $doc->getPettyCashNotes()->count()));
@@ -50,11 +60,14 @@ class ExportDocumentsCommand extends ContainerAwareCommand
             /** @var InvoicePerNote $invoicePerNote */
             foreach ($doc->getPettyCashNotes() as $invoicePerNote) {
                 $note = $invoicePerNote->getNote();
-                $row = array_merge($row, [
-                    $note->getRef(),
-                    $this->formatDate($note->getRecordedAt()),
-                    $invoicePerNote->getAmount()
-                ]);
+                $row = array_merge(
+                    $row,
+                    [
+                        $note->getRef(),
+                        $this->formatDate($note->getRecordedAt()),
+                        $invoicePerNote->getAmount(),
+                    ]
+                );
             }
 
             fputcsv($file, $row);

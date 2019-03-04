@@ -10,16 +10,13 @@
 
 namespace AppBundle\Entity\Manager;
 
+use AppBundle\Security\UserPasswordEncoder;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityRepository;
-use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
-use Symfony\Component\Security\Core\User\UserInterface as SecurityUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class UserManager
 {
-    /** @var EncoderFactoryInterface */
-    protected $encoderFactory;
-
     /** @var ObjectManager */
     protected $objectManager;
 
@@ -28,15 +25,16 @@ class UserManager
 
     /** @var string */
     protected $class;
+    private $passwordEncoder;
 
-    public function __construct(EncoderFactoryInterface $encoderFactory, ObjectManager $om, $class)
+    public function __construct(ObjectManager $om, UserPasswordEncoder $passwordEncoder, $class)
     {
         $this->objectManager = $om;
         $this->repository = $om->getRepository($class);
-        $this->encoderFactory = $encoderFactory;
 
         $metadata = $om->getClassMetadata($class);
         $this->class = $metadata->getName();
+        $this->passwordEncoder = $passwordEncoder;
     }
 
     public function getClass()
@@ -47,7 +45,7 @@ class UserManager
     /**
      * Returns an empty user instance.
      *
-     * @return SecurityUserInterface
+     * @return UserInterface
      */
     public function createUser()
     {
@@ -60,10 +58,10 @@ class UserManager
     /**
      * Updates a user.
      *
-     * @param SecurityUserInterface $user
+     * @param UserInterface $user
      * @param Boolean $andFlush Whether to flush the changes (default true)
      */
-    public function updateUser(SecurityUserInterface $user, $andFlush = true)
+    public function updateUser(UserInterface $user, $andFlush = true)
     {
         $this->updatePassword($user);
 
@@ -80,7 +78,7 @@ class UserManager
      *
      * @param string $email
      *
-     * @return SecurityUserInterface
+     * @return UserInterface
      */
     public function findUserByEmail($email)
     {
@@ -92,7 +90,7 @@ class UserManager
      *
      * @param string $username
      *
-     * @return SecurityUserInterface
+     * @return UserInterface
      */
     public function findUserByUsername($username)
     {
@@ -104,7 +102,7 @@ class UserManager
      *
      * @param string $usernameOrEmail
      *
-     * @return SecurityUserInterface
+     * @return UserInterface
      */
     public function findUserByUsernameOrEmail($usernameOrEmail)
     {
@@ -120,7 +118,7 @@ class UserManager
      *
      * @param string $token
      *
-     * @return SecurityUserInterface
+     * @return UserInterface
      */
     public function findUserByConfirmationToken($token)
     {
@@ -135,16 +133,12 @@ class UserManager
     /**
      * {@inheritDoc}
      */
-    public function updatePassword(SecurityUserInterface $user)
+    public function updatePassword(UserInterface $user)
     {
-        if (0 !== strlen($password = $user->getPlainPassword())) {
-            $encoder = $this->getEncoder($user);
-            $user->setPassword($encoder->encodePassword($password, $user->getSalt()));
-            $user->eraseCredentials();
-        }
+        $this->passwordEncoder->encodePassword($user);
     }
 
-    protected function getEncoder(SecurityUserInterface $user)
+    protected function getEncoder(UserInterface $user)
     {
         return $this->encoderFactory->getEncoder($user);
     }

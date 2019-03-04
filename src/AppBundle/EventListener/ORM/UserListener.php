@@ -8,37 +8,23 @@
  *
  */
 
-namespace AppBundle\EventListener;
+namespace AppBundle\EventListener\ORM;
 
 use AppBundle\Entity\Invite;
-use AppBundle\Entity\Manager\UserManager;
 use AppBundle\Model\UserInterface;
+use AppBundle\Security\UserPasswordEncoder;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class UserListener implements EventSubscriber
 {
-    /**
-     * @var UserManager
-     */
-    private $userManager;
+    private $encoder;
 
-    /**
-     * @var ContainerInterface
-     */
-    private $container;
-
-    /**
-     * Constructor.
-     *
-     * @param ContainerInterface $container
-     */
-    public function __construct(ContainerInterface $container)
+    public function __construct(UserPasswordEncoder $encoder)
     {
-        $this->container = $container;
+        $this->encoder = $encoder;
     }
 
     public function getSubscribedEvents()
@@ -87,10 +73,6 @@ class UserListener implements EventSubscriber
      */
     protected function updateUserFields(UserInterface $user)
     {
-        if (null === $this->userManager) {
-            $this->userManager = $this->container->get('user_manager');
-        }
-
-        $this->userManager->updatePassword($user);
+        $this->encoder->encodePassword($user);
     }
 }

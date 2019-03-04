@@ -11,12 +11,22 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\PettyCashNote;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class RefreshPettyCashNotesCommand extends ContainerAwareCommand
+class RefreshPettyCashNotesCommand extends Command
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        parent::__construct();
+
+        $this->entityManager = $entityManager;
+    }
+
     protected function configure()
     {
         $this
@@ -26,9 +36,7 @@ class RefreshPettyCashNotesCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
-
-        $pettyCashNotes = $em->getRepository('AppBundle:PettyCashNote')->findAllQuery()
+        $pettyCashNotes = $this->entityManager->getRepository('AppBundle:PettyCashNote')->findAllQuery()
             ->addOrderBy('note.recordedAt', 'ASC')
             ->addOrderBy('note.id', 'DESC')
             ->getQuery()->execute();
@@ -48,10 +56,10 @@ class RefreshPettyCashNotesCommand extends ContainerAwareCommand
             }
 
             $pettyCashNote->setRef(++$count);
-            $em->persist($pettyCashNote);
+            $this->entityManager->persist($pettyCashNote);
         }
 
-        $em->flush();
+        $this->entityManager->flush();
     }
 
 }

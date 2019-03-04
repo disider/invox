@@ -10,6 +10,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Manager\UserManager;
 use AppBundle\Entity\User;
 use AppBundle\Form\ChangePasswordForm;
 use AppBundle\Form\ProfileForm;
@@ -35,7 +36,7 @@ class ProfileController extends BaseController
      * @Route("/change-password", name="profile_change_password")
      * @Template
      */
-    public function changePasswordAction(Request $request)
+    public function changePasswordAction(Request $request, UserManager $userManager)
     {
         if ($this->isInDemoMode()) {
             $this->addFlash('danger', 'demo.action_not_allowed');
@@ -52,7 +53,6 @@ class ProfileController extends BaseController
             if ($form->isValid()) {
                 /** @var User $user */
                 $user = $form->getData();
-                $userManager = $this->getUserManager();
 
                 $userManager->updateUser($user);
 

@@ -12,9 +12,9 @@ namespace AppBundle\Features\Context;
 
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Manager\UserManager;
-use AppBundle\Entity\Repository\UserRepository;
 use AppBundle\Entity\User;
 use AppBundle\Model\UserInterface;
+use AppBundle\Repository\UserRepository;
 use Behat\Gherkin\Node\TableNode;
 
 class UserContext extends BaseMinkContext
@@ -101,8 +101,7 @@ class UserContext extends BaseMinkContext
         $resetPasswordToken,
         \DateTime $passwordRequestedAt = null,
         $managerFor = null
-    )
-    {
+    ) {
         $user = User::create($email, '', '');
         $user->setUsername($username);
         $user->setPlainPassword($password);
@@ -118,7 +117,7 @@ class UserContext extends BaseMinkContext
         }
 
         /** @var UserManager $userManager */
-        $userManager = $this->get('user_manager');
+        $userManager = $this->get(UserManager::class);
 
         /** @var UserInterface $user */
         $user = $userManager->updateUser($user);

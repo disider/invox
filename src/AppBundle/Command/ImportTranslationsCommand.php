@@ -14,6 +14,7 @@ use GuzzleHttp\Client;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Filesystem\Filesystem;
 
 class ImportTranslationsCommand extends ContainerAwareCommand
 {
@@ -31,9 +32,14 @@ class ImportTranslationsCommand extends ContainerAwareCommand
     /** @var Client */
     private $client;
 
-    private $key;
+    /** @var Filesystem */
+    private $filesystem;
 
-    private $path;
+    public function __construct(Filesystem $filesystem)
+    {
+        parent::__construct();
+        $this->filesystem = $filesystem;
+    }
 
     protected function configure()
     {
@@ -50,16 +56,15 @@ class ImportTranslationsCommand extends ContainerAwareCommand
 
         $path = $container->getParameter('kernel.root_dir') . '/Resources/translations';
         $key = $container->getParameter('loco_api_key');
-        $filesystem = $container->get('filesystem');
 
         foreach ($this->locales as $locale) {
             foreach ($this->domains as $domain) {
-                $this->importTranslation($locale, $domain, $path, $key, $filesystem, $output);
+                $this->importTranslation($locale, $domain, $path, $key, $output);
             }
         }
     }
 
-    protected function importTranslation($locale, $domain, $path, $key, $filesystem, OutputInterface $output)
+    protected function importTranslation($locale, $domain, $path, $key, OutputInterface $output)
     {
         $output->writeln(sprintf('Importing: %s (%s)', $domain, $locale));
 
@@ -72,27 +77,28 @@ class ImportTranslationsCommand extends ContainerAwareCommand
         $filename = sprintf('%s/%s.%s.yml', $path, $domain, $locale);
 
 //        $this->backup($locale, $domain, $path, $filesystem, $filename);
-        $this->sort($yaml, $filename, $filesystem);
+        $this->sort($yaml, $filename);
     }
 
-    protected function backup($locale, $domain, $path, $filesystem, $filename)
+    protected function backup($locale, $domain, $path, $filename)
     {
         $timestamp = new \DateTime();
         $backupPath = sprintf('%s/%s', $path, $timestamp->format('Ymdhi'));
 
-        @mkdir($backupPath);
+        $this->filesystem->mkdir($backupPath);
 
         $backupFilename = sprintf('%s/%s.%s.yml', $backupPath, $domain, $locale);
 
-        $filesystem->rename($filename, $backupFilename);
+        $this->filesystem->rename($filename, $backupFilename);
     }
 
-    private function sort($yaml, $filename, $filesystem)
+    private function sort($yaml, $filename)
     {
         $tempFilename = $filename . '.tmp';
-        $filesystem->dumpFile($tempFilename, $yaml, null);
+        $this->filesystem->dumpFile($tempFilename, $yaml, null);
 
         shell_exec(sprintf('sort_yaml < %s > %s', $tempFilename, $filename));
+
         @unlink($tempFilename);
     }
 }

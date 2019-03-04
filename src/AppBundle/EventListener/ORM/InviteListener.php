@@ -8,27 +8,16 @@
  *
  */
 
-namespace AppBundle\EventListener;
+namespace AppBundle\EventListener\ORM;
 
 use AppBundle\Entity\Invite;
-use AppBundle\Repository\UserRepository;
+use AppBundle\Entity\User;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class InviteListener implements EventSubscriber
 {
-    /**
-     * @var ContainerInterface
-     */
-    private $container;
-
-    public function __construct(ContainerInterface $container)
-    {
-        $this->container = $container;
-    }
-
     public function getSubscribedEvents()
     {
         return [
@@ -43,7 +32,9 @@ class InviteListener implements EventSubscriber
         if ($object instanceof Invite) {
             $email = $object->getEmail();
 
-            $user = $this->container->get(UserRepository::class)->findOneByEmail($email);
+            $repository = $args->getObjectManager()->getRepository(User::class);
+
+            $user = $repository->findOneByEmail($email);
 
             $object->setReceiver($user);
         }

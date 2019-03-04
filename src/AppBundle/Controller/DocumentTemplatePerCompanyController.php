@@ -10,6 +10,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Builder\DocumentBuilder;
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Document;
 use AppBundle\Entity\DocumentTemplatePerCompany;
@@ -32,7 +33,7 @@ class DocumentTemplatePerCompanyController extends BaseController
      * @ParamConverter("company", class="AppBundle:Company", options={"id" = "companyId"})
      * @Template
      */
-    public function indexAction(Request $request, Company $company)
+    public function indexAction(Request $request)
     {
         $page = $this->getPage($request);
         $pageSize = $this->getPageSize($request);
@@ -103,11 +104,11 @@ class DocumentTemplatePerCompanyController extends BaseController
      * @ParamConverter("company", class="AppBundle:Company", options={"id" = "companyId"})
      * @ParamConverter("documentTemplate", class="AppBundle:DocumentTemplatePerCompany", options={"id" = "id"})
      */
-    public function renderAction(Request $request, DocumentTemplatePerCompany $documentTemplate)
+    public function renderAction(Request $request, DocumentBuilder $builder, DocumentTemplatePerCompany $documentTemplate)
     {
         $locale = $this->getCurrentLocale();
         $request->setLocale($locale);
-        $this->get('translator')->setLocale($locale);
+        $this->setLocale($locale);
 
         $this->disableProfiler();
 
@@ -117,9 +118,9 @@ class DocumentTemplatePerCompanyController extends BaseController
         try {
             $params = [
                 'template' => $documentTemplate,
-                'header' => $this->renderSection($document, 'header'),
-                'footer' => $this->renderSection($document, 'footer'),
-                'content' => $this->renderSection($document, 'content')
+                'header' => $this->renderSection($builder, $document, 'header'),
+                'footer' => $this->renderSection($builder, $document, 'footer'),
+                'content' => $this->renderSection($builder, $document, 'content')
             ];
 
             return $this->render('AppBundle:document_template_per_company:render.html.twig', $params);
@@ -128,11 +129,9 @@ class DocumentTemplatePerCompanyController extends BaseController
         }
     }
 
-    private function renderSection(Document $document, $section)
+    private function renderSection(DocumentBuilder $builder, Document $document, $section)
     {
-        $documentBuilder = $this->get('document_builder');
-
-        return $documentBuilder->build($document, $section);
+        return $builder->build($document, $section);
     }
 
     private function processForm(Request $request, DocumentTemplatePerCompanyFormProcessor $processor, DocumentTemplatePerCompany $documentTemplate = null)

@@ -10,6 +10,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\EventListener\FormAuthenticationListener;
 use AppBundle\Form\LoginForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +22,7 @@ class SecurityController extends BaseController
      * @Route("/login", name="login")
      * @Template
      */
-    public function loginAction(Request $request)
+    public function loginAction(Request $request, FormAuthenticationListener $listener)
     {
         if ($this->isAuthenticated()) {
             return $this->redirectToRoute('dashboard');
@@ -31,7 +32,7 @@ class SecurityController extends BaseController
 
         $form = $this->createForm(LoginForm::class, null, [
                 'target_path' => $targetPath,
-                'authentication_listener' => $this->get('security.form_authentication_listener'),
+                'authentication_listener' => $listener,
             ]
         );
 

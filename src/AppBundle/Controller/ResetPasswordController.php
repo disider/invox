@@ -10,6 +10,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Manager\UserManager;
 use AppBundle\Entity\User;
 use AppBundle\Form\RequestResetPasswordForm;
 use AppBundle\Form\ResetPasswordForm;
@@ -85,7 +86,7 @@ class ResetPasswordController extends BaseController
      * @Route("/reset/{token}", name="reset_password")
      * @Template
      */
-    public function resetPasswordAction(Request $request, $token)
+    public function resetPasswordAction(Request $request, UserManager $userManager, $token)
     {
         if ($this->isAuthenticated()) {
             return $this->redirectToRoute('dashboard');
@@ -108,7 +109,6 @@ class ResetPasswordController extends BaseController
                 $user->setResetPasswordToken(null);
                 $user->setPasswordRequestedAt(null);
 
-                $userManager = $this->getUserManager();
                 $userManager->updateUser($user);
 
                 $this->authenticateUser($user);

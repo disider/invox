@@ -97,6 +97,18 @@ class ProtocolGeneratorTest extends RepositoryTestCase
         $this->assertThat($this->generator->generate('AppBundle:Document', $company, 2016), $this->equalTo(1));
     }
 
+    /**
+     * @test
+     */
+    public function generateFromStringValue()
+    {
+        $this->assertThat($this->generator->increment(''), $this->equalTo(1));
+        $this->assertThat($this->generator->increment(1), $this->equalTo(2));
+        $this->assertThat($this->generator->increment('PC1'), $this->equalTo('PC2'));
+        $this->assertThat($this->generator->increment('PC123'), $this->equalTo('PC124'));
+        $this->assertThat($this->generator->increment('A1.B2.C3'), $this->equalTo('A1.B2.C4'));
+    }
+
     private function givenCompany()
     {
         $user = $this->givenUser();

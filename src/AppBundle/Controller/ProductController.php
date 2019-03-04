@@ -121,10 +121,10 @@ class ProductController extends BaseController
 
         $query = $this->getWarehouseRecordRepository()->findAllQuery($filters);
 
-        $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $query
-        );
+        $page = $this->getPage($request);
+        $pageSize = $this->getPageSize($request);
+
+        $pagination = $this->paginate($query, $page, $pageSize);
 
         return $this->processWarehouseRecordForm($request, $processor, $pagination, $product);
     }

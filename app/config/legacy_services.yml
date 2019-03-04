@@ -19,12 +19,6 @@ services:
     class: AppBundle\Pagination\DirectorySubscriber
     tags: { name: 'knp_paginator.subscriber' }
 
-  document_builder:
-    class: AppBundle\Builder\DocumentBuilder
-    arguments:
-      - '@twig'
-      - '%kernel.cache_dir%'
-
   locale_formatter:
     class: AppBundle\Model\LocaleFormatter
     arguments:
@@ -47,14 +41,7 @@ services:
       - '@doctrine.orm.entity_manager'
     tags: { name: 'form.type', alias: 'user_registration' }
 
-  user_manager: '@AppBundle\Entity\Manager\UserManager'
-
   csv_to_array:
     class: AppBundle\Helper\CsvToArray
 
-  parameter_helper:
-    class: AppBundle\Helper\ParameterHelper
-    arguments:
-      - '@service_container'
-
-#  oneup_uploader.orphanage_manager: 'Oneup\UploaderBundle\Uploader\Orphanage\OrphanageManager'
+  Oneup\UploaderBundle\Uploader\Orphanage\OrphanageManager: '@oneup_uploader.orphanage_manager'

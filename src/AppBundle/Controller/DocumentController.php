@@ -10,13 +10,15 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Builder\DocumentBuilder;
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Document;
 use AppBundle\Entity\Recurrence;
 use AppBundle\Form\Processor\DocumentFormProcessor;
+use AppBundle\Helper\ProtocolGenerator;
 use AppBundle\Model\DocumentType;
 use AppBundle\Repository\DocumentRepository;
-use Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator;
+use Knp\Snappy\Pdf;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -34,24 +36,25 @@ class DocumentController extends BaseController
      * @Security("is_granted('DOCUMENT_CREATE')")
      * @Template
      */
-    public function createAction(Request $request, DocumentFormProcessor $processor)
+    public function createAction(Request $request, ProtocolGenerator $generator, DocumentFormProcessor $processor)
     {
         $company = $this->getCurrentCompany();
 
         if (!$this->canManageCurrentCompany()) {
-            throw $this->createAccessDeniedException('Cannot manage documents for ' . $company);
+            throw $this->createAccessDeniedException('Cannot manage documents for '.$company);
         }
 
         $type = $request->get('type', DocumentType::QUOTE);
         $year = $request->get('year', date('Y'));
-        $ref = $this->generateRef($company, $type, $year);
+        $ref = $this->generateRef($generator, $company, $type, $year);
 
         $document = Document::createEmpty(
             $type,
             Document::NO_DIRECTION,
             $ref,
             date('Y'),
-            $company);
+            $company
+        );
         $document->setLanguage($this->getCurrentLocale());
         $document->setDocumentTemplate($company->getFirstDocumentTemplate());
 
@@ -102,10 +105,8 @@ class DocumentController extends BaseController
      * @Route("/{id}/copy", name="document_copy")
      * @Security("is_granted('DOCUMENT_COPY', document)")
      */
-    public function copyAction(Document $document)
+    public function copyAction(Document $document, ProtocolGenerator $protocolGenerator)
     {
-        $protocolGenerator = $this->get('protocol_generator');
-
         $ref = $protocolGenerator->generate('AppBundle:Document', $document->getCompany(), $document->getYear());
 
         $document = $document->copy();
@@ -113,8 +114,11 @@ class DocumentController extends BaseController
 
         $this->save($document);
 
-        $this->addFlash('success', 'flash.document.copied',
-            ['%document%' => $document]);
+        $this->addFlash(
+            'success',
+            'flash.document.copied',
+            ['%document%' => $document]
+        );
 
         return $this->redirectToRoute('document_edit', ['id' => $document->getId()]);
     }
@@ -122,20 +126,20 @@ class DocumentController extends BaseController
     /**
      * @Route("/{id}/render", name="document_render")
      */
-    public function renderAction(Request $request, Document $document)
+    public function renderAction(Request $request, DocumentBuilder $builder, Document $document, Pdf $pdf)
     {
-        return $this->renderDocument($request, $document, 'inline;');
+        return $this->renderDocument($request, $builder, $pdf, $document, 'inline;');
     }
 
     /**
      * @Route("/{id}/print", name="document_print")
      * @Security("is_granted('DOCUMENT_PRINT', document)")
      */
-    public function printAction(Request $request, Document $document)
+    public function printAction(Request $request, DocumentBuilder $builder, Document $document, Pdf $pdf)
     {
         $mode = sprintf('attachment; filename="%s"', $this->formatFileName($document));
 
-        return $this->renderDocument($request, $document, $mode);
+        return $this->renderDocument($request, $builder, $pdf, $document, $mode);
     }
 
     /**
@@ -186,9 +190,11 @@ class DocumentController extends BaseController
             $documents = $records;
         }
 
-        return $this->serialize([
-            'documents' => $documents,
-        ]);
+        return $this->serialize(
+            [
+                'documents' => $documents,
+            ]
+        );
     }
 
     /**
@@ -200,22 +206,26 @@ class DocumentController extends BaseController
 
         $costCenters = $this->getDocumentCostCenterRepository()->search($term, $this->getCurrentCompany());
 
-        return $this->serialize([
-            'costCenters' => $costCenters,
-        ]);
+        return $this->serialize(
+            [
+                'costCenters' => $costCenters,
+            ]
+        );
     }
 
     /**
      * @Route("/generate-ref", name="document_generate_ref")
      */
-    public function generateRefAction(Request $request)
+    public function generateRefAction(Request $request, ProtocolGenerator $generator)
     {
         $year = $request->get('year', date('Y'));
         $type = $request->get('type');
 
-        return $this->serialize([
-            'ref' => $this->generateRef($this->getCurrentCompany(), $type, $year),
-        ]);
+        return $this->serialize(
+            [
+                'ref' => $this->generateRef($generator, $this->getCurrentCompany(), $type, $year),
+            ]
+        );
     }
 
     private function processForm(Request $request, DocumentFormProcessor $processor, Document $document)
@@ -223,16 +233,22 @@ class DocumentController extends BaseController
         $processor->process($request, $document);
 
         if ($processor->isValid() && $processor->isSaving()) {
-            $this->addFlash('success', $processor->isNew() ? 'flash.document.created' : 'flash.document.updated',
-                ['%document%' => $processor->getDocument()]);
+            $this->addFlash(
+                'success',
+                $processor->isNew() ? 'flash.document.created' : 'flash.document.updated',
+                ['%document%' => $processor->getDocument()]
+            );
 
             if ($processor->isRedirectingTo(DocumentFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRouteByDocument($document);
             }
 
-            return $this->redirectToRoute('document_edit', [
-                'id' => $processor->getDocument()->getId(),
-            ]);
+            return $this->redirectToRoute(
+                'document_edit',
+                [
+                    'id' => $processor->getDocument()->getId(),
+                ]
+            );
         }
 
         $form = $processor->getForm();
@@ -244,12 +260,12 @@ class DocumentController extends BaseController
         ];
     }
 
-    private function renderDocument(Request $request, Document $document, $mode)
+    private function renderDocument(Request $request, DocumentBuilder $builder, Pdf $pdf, Document $document, $mode)
     {
         $showAsHtml = $request->get('showAsHtml', false) !== false;
 
         $request->setLocale($document->getLanguage());
-        $this->get('translator')->setLocale($document->getLanguage());
+        $this->setLocale($document->getLanguage());
 
         $this->disableProfiler();
 
@@ -257,9 +273,9 @@ class DocumentController extends BaseController
             try {
                 $params = [
                     'template' => $document->getDocumentTemplate(),
-                    'header' => $this->renderSection($document, 'header'),
-                    'footer' => $this->renderSection($document, 'footer'),
-                    'content' => $this->renderSection($document, 'content'),
+                    'header' => $this->renderSection($builder, $document, 'header'),
+                    'footer' => $this->renderSection($builder, $document, 'footer'),
+                    'content' => $this->renderSection($builder, $document, 'content'),
                     'showAsHtml' => $showAsHtml,
                 ];
 
@@ -269,13 +285,10 @@ class DocumentController extends BaseController
             }
         }
 
-        $body = $this->renderPdfLayout($document, 'content');
+        $body = $this->renderPdfLayout($builder, $document, 'content');
 
-        /** @var LoggableGenerator $pdf */
-        $pdf = $this->get('knp_snappy.pdf');
-
-        $headerHtml = $this->renderPdfLayout($document, 'header');
-        $footerHtml = $this->renderPdfLayout($document, 'footer');
+        $headerHtml = $this->renderPdfLayout($builder, $document, 'header');
+        $footerHtml = $this->renderPdfLayout($builder, $document, 'footer');
 
         $options = [
             'encoding' => 'utf-8',
@@ -284,10 +297,12 @@ class DocumentController extends BaseController
             'header-spacing' => 2,
         ];
 
-        return new Response($pdf->getOutputFromHtml($body, $options), 200, [
+        return new Response(
+            $pdf->getOutputFromHtml($body, $options), 200, [
             'Content-Type' => 'application/pdf',
             'Content-Disposition' => $mode,
-        ]);
+        ]
+        );
     }
 
     private function formatFileName(Document $document)
@@ -300,19 +315,20 @@ class DocumentController extends BaseController
         );
     }
 
-    private function renderPdfLayout(Document $document, $partial)
+    private function renderPdfLayout(DocumentBuilder $builder, Document $document, $partial)
     {
-        return $this->renderView('AppBundle:document:pdf_layout.html.twig', [
-            'template' => $document->getDocumentTemplate(),
-            'content' => $this->renderSection($document, $partial),
-        ]);
+        return $this->renderView(
+            'AppBundle:document:pdf_layout.html.twig',
+            [
+                'template' => $document->getDocumentTemplate(),
+                'content' => $this->renderSection($builder, $document, $partial),
+            ]
+        );
     }
 
-    private function renderSection(Document $document, $section)
+    private function renderSection(DocumentBuilder $builder, Document $document, $section)
     {
-        $documentBuilder = $this->get('document_builder');
-
-        return $documentBuilder->build($document, $section);
+        return $builder->build($document, $section);
     }
 
     /**
@@ -321,16 +337,14 @@ class DocumentController extends BaseController
      */
     private function redirectToRouteByDocument(Document $document)
     {
-        return $this->redirectToRoute($document->getType() . 's');
+        return $this->redirectToRoute($document->getType().'s');
     }
 
-    private function generateRef($company, $type, $year)
+    private function generateRef(ProtocolGenerator $generator, $company, $type, $year)
     {
         if (!$company) {
             return 1;
         }
-
-        $protocolGenerator = $this->get('protocol_generator');
 
         $filters = [
             DocumentRepository::FILTER_BY_TYPE => $type,
@@ -340,7 +354,7 @@ class DocumentController extends BaseController
             $filters[DocumentRepository::FILTER_BY_DIRECTION] = Document::OUTGOING;
         }
 
-        return $protocolGenerator->generate(
+        return $generator->generate(
             Document::class,
             $this->getCurrentCompany(),
             $year,

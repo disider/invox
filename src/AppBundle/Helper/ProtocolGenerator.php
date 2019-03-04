@@ -16,9 +16,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class ProtocolGenerator
 {
-    /**
-     * @var EntityManagerInterface
-     */
+    /** @var EntityManagerInterface */
     private $entityManager;
 
     public function __construct(EntityManagerInterface $entityManager)
@@ -31,6 +29,16 @@ class ProtocolGenerator
         /** @var ProtocolRepository $repo */
         $repo = $this->entityManager->getRepository($class);
 
-        return $repo->findLastProtocolNumber($company, $year, $filters) + 1;
+        $lastProtocolNumber = $repo->findLastProtocolNumber($company, $year, $filters);
+
+        return $this->increment($lastProtocolNumber);
+    }
+
+    public function increment($value)
+    {
+        preg_match_all('/(\d+)/', $value, $matches, PREG_SET_ORDER);
+        $lastMatch = end($matches);
+
+        return substr($value, 0, strlen($value) - strlen($lastMatch[1])) . ($lastMatch[1] + 1);
     }
 }

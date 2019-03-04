@@ -8,7 +8,7 @@
  *
  */
 
-namespace AppBundle\EventListener;
+namespace AppBundle\EventListener\ORM;
 
 use AppBundle\Entity\Product;
 use AppBundle\Entity\WarehouseRecord;

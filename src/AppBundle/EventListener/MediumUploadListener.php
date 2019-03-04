@@ -15,9 +15,11 @@ use Oneup\UploaderBundle\Event\PreUploadEvent;
 use Oneup\UploaderBundle\Uploader\File\FilesystemFile;
 use Oneup\UploaderBundle\Uploader\Orphanage\OrphanageManager;
 use Oneup\UploaderBundle\Uploader\Storage\OrphanageStorageInterface;
+use Oneup\UploaderBundle\UploadEvents;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\File\File;
 
-class MediumUploadListener
+class MediumUploadListener implements EventSubscriberInterface
 {
     /**
      * @var OrphanageManager
@@ -33,6 +35,7 @@ class MediumUploadListener
     {
         /** @var OrphanageStorageInterface $storage */
         $storage = $this->orphanageManager->get($event->getType());
+
         $files = $storage->getFiles();
         foreach ($files as $file) {
             @unlink($file);
@@ -53,5 +56,13 @@ class MediumUploadListener
         $response = $event->getResponse();
 
         $response['fileUrl'] = $file->getFilename();
+    }
+
+    public static function getSubscribedEvents()
+    {
+        return [
+            UploadEvents::PRE_UPLOAD => 'onPreUpload',
+            UploadEvents::POST_UPLOAD => 'onPostUpload',
+        ];
     }
 }
