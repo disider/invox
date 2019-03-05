@@ -82,13 +82,13 @@ Per caricarle basta lanciare il comando `php {project-dir}/bin/console hautelook
 
 ### Executing tests
 
-To run unit tests, execute
+To run unit tests, execute:
 
     vendor/bin/simple-phpunit
     
-To run behavior tests, run PhantomJS in a terminal shell
+To run behavior tests, run Chrome in a terminal shell
 
-    vendor/bin/phantomjs --web-driver=4444 --disk-cache=false
+    chrome --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 --headless
     
 then run the tests
 

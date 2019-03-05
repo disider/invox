@@ -10,7 +10,10 @@
 
 namespace AppBundle\Twig;
 
-class GlobalExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
+
+class GlobalExtension extends AbstractExtension
 {
     /**
      * @var bool
@@ -22,15 +25,20 @@ class GlobalExtension extends \Twig_Extension implements \Twig_Extension_Globals
         $this->debug = $debug;
     }
 
+    public function getGlobals()
+    {
+        return [];
+    }
+
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('novalidate', [$this, 'getNoValidate'], ['is_safe' => ['html']]),
+            new TwigFunction('novalidate', [$this, 'getNoValidate'], ['is_safe' => ['html']]),
         ];
     }
 
     public function getNoValidate()
     {
-        return 'novalidate';
+        return ''; //'novalidate';
     }
 }

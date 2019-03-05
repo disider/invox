@@ -32,17 +32,23 @@ default:
               - AppBundle\Features\Context\ZipCodeContext
 
     extensions:
+        DMore\ChromeExtension\Behat\ServiceContainer\ChromeExtension: ~
         Behat\Symfony2Extension: ~
         Behat\MinkExtension:
 #            base_url: http://invox.local/app_test.php
             base_url: http://localhost:8000/app_test.php
+#            browser_name: chrome
             sessions:
                 default:
                     symfony2: ~
                 javascript:
-                    selenium2:
-                      browser: phantomjs
-                      wd_host: "http://localhost:4444/wd/hub"
+#                    zombie:
+#                      node_modules_path: /Users/pietrino.atzeni/.nvm/versions/node/v9.3.0/lib/node_modules/
+                  chrome:
+                    api_url: http://localhost:9222
+
+#                    selenium2:
+#                      wd_host: "http://localhost:4444/wd/hub"
 
 #        Behat\TeamCityFormatter\TeamCityFormatterExtension: ~
 #    formatters:

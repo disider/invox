@@ -22,7 +22,7 @@
                 {% endif %}
 
                 {% if not company.hasAccountant and company.invites|length == 0 %}
-                    {{ form_start(form, {'novalide' : 'novalidate', 'method' : 'POST'}) }}
+                    {{ form_start(form) }}
                     {{ form_errors(form, { global_errors: true}) }}
 
                     {{ form_rest(form) }}
