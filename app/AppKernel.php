@@ -8,7 +8,7 @@ class AppKernel extends Kernel
 {
     public function registerBundles()
     {
-        $bundles = array(
+        $bundles = [
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
@@ -18,8 +18,9 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
             new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
-            new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
+            //new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
             new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
@@ -31,9 +32,8 @@ class AppKernel extends Kernel
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Oneup\UploaderBundle\OneupUploaderBundle(),
-            new Webfactory\Bundle\ExceptionsBundle\WebfactoryExceptionsBundle(),
-            new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
-            
+//            new Webfactory\Bundle\ExceptionsBundle\WebfactoryExceptionsBundle(),
+
 //            new Sonata\CoreBundle\SonataCoreBundle(),
 //            new Sonata\BlockBundle\SonataBlockBundle(),
 //            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
@@ -41,7 +41,7 @@ class AppKernel extends Kernel
 
 //            new AdminBundle\AdminBundle(),
             new AppBundle\AppBundle(),
-        );
+        ];
 
         if (in_array($this->getEnvironment(), ['stage', 'dev', 'test'], true)) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
@@ -67,7 +67,7 @@ class AppKernel extends Kernel
     public function getCacheDir()
     {
         $envDir = getenv('SYMFONY_CACHE_DIR');
-        if ($envDir && in_array($this->environment, array('dev', 'test'))) {
+        if ($envDir && in_array($this->environment, ['dev', 'test'])) {
             return $envDir . DIRECTORY_SEPARATOR . $this->environment;
         }
 
