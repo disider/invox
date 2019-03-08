@@ -33,8 +33,5 @@ doctrine:
     dbal:
         dbname: "%database_name%_dev"
 
-#assetic:
-#    use_controller: false
-
 swiftmailer:
     delivery_address: "%mailer_delivery_address%"

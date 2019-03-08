@@ -85,10 +85,11 @@ a2lix_translation_form:
     locales: "%available_locales%"
     required_locales: "%available_locales%"
 
-braincrafted_bootstrap:
-    icon_prefix: fa
-    auto_configure:
-        assetic: false
+# TODO: Fix bootstrap
+#braincrafted_bootstrap:
+#    icon_prefix: fa
+#    auto_configure:
+#        assetic: false
 
 liip_imagine:
     driver: imagick

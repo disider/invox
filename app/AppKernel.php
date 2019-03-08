@@ -17,6 +17,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
+            new A2lix\AutoFormBundle\A2lixAutoFormBundle(),
             new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
             //new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
@@ -46,10 +47,9 @@ class AppKernel extends Kernel
         if (in_array($this->getEnvironment(), ['stage', 'dev', 'test'], true)) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
-            $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
-            $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
-            $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
             $bundles[] = new Hautelook\AliceBundle\HautelookAliceBundle();
+            $bundles[] = new Nelmio\Alice\Bridge\Symfony\NelmioAliceBundle();
+            $bundles[] = new Fidry\AliceDataFixtures\Bridge\Symfony\FidryAliceDataFixturesBundle();
         }
 
         if ('dev' === $this->getEnvironment()) {
@@ -68,25 +68,25 @@ class AppKernel extends Kernel
     {
         $envDir = getenv('SYMFONY_CACHE_DIR');
         if ($envDir && in_array($this->environment, ['dev', 'test'])) {
-            return $envDir . DIRECTORY_SEPARATOR . $this->environment;
+            return $envDir.DIRECTORY_SEPARATOR.$this->environment;
         }
 
-        return dirname(__DIR__) . '/var/cache/' . $this->getEnvironment();
+        return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
     }
 
     public function getLogDir()
     {
         $envDir = getenv('SYMFONY_LOGS_DIR');
         if ($envDir && in_array($this->environment, array('dev', 'test'))) {
-            return $envDir . DIRECTORY_SEPARATOR . $this->environment;
+            return $envDir.DIRECTORY_SEPARATOR.$this->environment;
         }
 
-        return dirname(__DIR__) . '/var/logs';
+        return dirname(__DIR__).'/var/logs';
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load($this->getRootDir() . '/config/config_' . $this->getEnvironment() . '.yml');
+        $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');
     }
 
     /**
