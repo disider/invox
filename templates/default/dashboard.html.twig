@@ -7,12 +7,12 @@
         <hr/>
 
         <h3>{{ 'invoices.expired_incoming'|trans }}</h3>
-        {% include 'AppBundle:invoice:_list.html.twig' with { 'invoices': incomingInvoices } %}
+        {% include 'invoice/_list.html.twig' with { 'invoices': incomingInvoices } %}
 
         <hr/>
 
         <h3>{{ 'invoices.expired_outgoing'|trans }}</h3>
-        {% include 'AppBundle:invoice:_list.html.twig' with { 'invoices': outgoingInvoices } %}
+        {% include 'invoice/_list.html.twig' with { 'invoices': outgoingInvoices } %}
     {% else %}
         <h1>{{ 'app.welcome'|trans }}</h1>
 

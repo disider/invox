@@ -46,14 +46,14 @@ parameters:
         no-reply: '%noreply_display_name%'
         info: '%info_display_name%'
 
-    recaptcha_public_key: '%env(RECAPTCHA_PUBLIC_KEY)%'
-    recaptcha_private_key: '%env(RECAPTCHA_PRIVATE_KEY)%'
-
     noreply_display_name: 'No Reply'
     noreply_email: noreply@invox.it
     info_display_name: 'Invox - Info'
     info_email: info@invox.it
 
+    google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
+    jms_serializer.camel_case_naming_strategy.class: JMS\Serializer\Naming\IdenticalPropertyNamingStrategy
+    loco_api_key: '%env(LOCO_API_KEY)%'
 
 services:
     # default configuration for services in *this* file
@@ -73,6 +73,7 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    App\Repository\CityRepository: ~
 
     # TODO: remove after migration to 4.x
     AppBundle\:
@@ -109,7 +110,8 @@ services:
         class: Twig_Extensions_Extension_Text
 
     AppBundle\Form\Processor\DocumentFormProcessor:
-        $availableLocales: '%available_locales%'
+        arguments:
+            $availableLocales: '%available_locales%'
 
     AppBundle\Mailer\Mailer:
         arguments:

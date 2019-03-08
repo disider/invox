@@ -1,4 +1,4 @@
-{% extends '::two-columns.html.twig' %}
+{% extends 'two-columns.html.twig' %}
 
 {% block main_content %}
     <h1>{{ 'pages.title'|trans }}</h1>
@@ -41,5 +41,5 @@
 {% block javascripts %}
     {{ parent() }}
 
-    {% include 'AppBundle:default:_delete_js.html.twig' with { message: 'page.delete_confirmation' } %}
+    {% include 'default/_delete_js.html.twig' with { message: 'page.delete_confirmation' } %}
 {% endblock %}

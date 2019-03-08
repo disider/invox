@@ -1,4 +1,4 @@
-{% extends '::two-columns.html.twig' %}
+{% extends 'two-columns.html.twig' %}
 
 {% block main_content %}
     <h1>{{ 'accounts.title'|trans }}</h1>
@@ -75,7 +75,7 @@
 {% block javascripts %}
     {{ parent() }}
 
-    {% include 'AppBundle:default:_filter_js.html.twig' %}
+    {% include 'default/_filter_js.html.twig' %}
 
-    {% include 'AppBundle:default:_delete_js.html.twig' with { message: 'account.delete_confirmation' } %}
+    {% include 'default/_delete_js.html.twig' with { message: 'account.delete_confirmation' } %}
 {% endblock javascripts %}

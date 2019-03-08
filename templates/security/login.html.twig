@@ -1,10 +1,10 @@
-{% extends '::one-column.html.twig' %}
+{% extends 'one-column.html.twig' %}
 
 {% block main_content %}
     {% if enable_demo_mode %}
-        {% include 'AppBundle:security:_login_demo.html.twig' %}
+        {% include 'security/_login_demo.html.twig' %}
     {% else %}
-        {% include 'AppBundle:security:_login_default.html.twig' %}
+        {% include 'security/_login_default.html.twig' %}
     {% endif %}
 
 {% endblock main_content %}

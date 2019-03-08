@@ -21,15 +21,21 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
         mappings:
-            App:
-                is_bundle: false
-                type: annotation
-                dir: '%kernel.project_dir%/src/Entity'
-                prefix: 'App\Entity'
-                alias: App
+#            App:
+#                is_bundle: false
+#                type: annotation
+#                dir: '%kernel.project_dir%/src/Entity'
+#                prefix: 'App\Entity'
+#                alias: App
+#            AppBundle:
+#                is_bundle: false
+#                type: annotation
+#                dir: '%kernel.project_dir%/src/AppBundle/Entity'
+#                prefix: 'AppBundle\Entity'
+#                alias: AppBundle
             AppBundle:
                 is_bundle: false
-                type: annotation
-                dir: '%kernel.project_dir%/src/AppBundle/Entity'
+                type: xml
+                dir: '%kernel.project_dir%/config/doctrine'
                 prefix: 'AppBundle\Entity'
                 alias: AppBundle

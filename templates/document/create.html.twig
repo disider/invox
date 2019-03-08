@@ -1,14 +1,14 @@
-{% extends '::form.html.twig' %}
+{% extends 'form.html.twig' %}
 
 {% block main_content %}
 
     <h1>{{ 'document.create'|trans }}</h1>
 
-    {% include 'AppBundle:document:_form.html.twig' %}
+    {% include 'document/_form.html.twig' %}
 {% endblock main_content %}
 
 {% block javascripts %}
     {{ parent() }}
 
-    {% include 'AppBundle:document:_javascript.html.twig' %}
+    {% include 'document/_javascript.html.twig' %}
 {% endblock javascripts %}

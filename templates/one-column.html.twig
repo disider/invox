@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block page %}
     <section id="main-content" class="col-md-12">
@@ -7,7 +7,7 @@
 
             <div class="panel-body">
 
-                {% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': true } %}
+                {#{% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': true } %}#}
 
                 {% block main_content %}
 

@@ -1,4 +1,4 @@
-{% extends '::two-columns.html.twig' %}
+{% extends 'two-columns.html.twig' %}
 
 {% block main_content %}
     <h1>
@@ -11,10 +11,10 @@
     </h1>
 
     {{ filter_start(filterForm) }}
-    {% include 'AppBundle:document_type:_filter.html.twig' with {'form': filterForm, 'route': route} %}
+    {% include 'document_type/_filter.html.twig' with {'form': filterForm, 'route': route} %}
     {{ filter_end(filterForm) }}
 
-    {% include 'AppBundle:document_type:_list.html.twig' with {'pagination': pagination, 'type' : type} %}
+    {% include 'document_type/_list.html.twig' with {'pagination': pagination, 'type' : type} %}
 
 {% endblock main_content %}
 
@@ -29,7 +29,7 @@
 
     <script src="{{ asset('js/filter.min.js') }}"></script>
 
-    {% include 'AppBundle:default:_delete_js.html.twig' with { message: 'document.delete_confirmation' } %}
+    {% include 'default/_delete_js.html.twig' with { message: 'document.delete_confirmation' } %}
 
     <script>
         $(function () {

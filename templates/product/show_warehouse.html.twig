@@ -1,4 +1,4 @@
-{% extends '::form.html.twig' %}
+{% extends 'form.html.twig' %}
 
 {% block main_content %}
     <h1>{{ 'warehouse.title'|trans({'%product%': product}) }}</h1>
@@ -143,6 +143,6 @@
 {% block javascripts %}
     {{ parent() }}
 
-    {% include 'AppBundle:default:_delete_js.html.twig' with { message: 'warehouse.delete_confirmation' } %}
+    {% include 'default/_delete_js.html.twig' with { message: 'warehouse.delete_confirmation' } %}
 {% endblock javascripts %}
 

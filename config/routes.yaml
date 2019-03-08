@@ -1,3 +1,19 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+app:
+  resource: "../src/AppBundle/Controller"
+  type: annotation
+
+# TODO: restore sonata
+#admin:
+#    resource: "@AdminBundle/Controller/"
+#    type: annotation
+#
+#admin_area:
+#    resource: "@SonataAdminBundle/Resources/config/routing/sonata_admin.xml"
+#    prefix: /admin
+
+liip_imagine:
+  resource: "@LiipImagineBundle/Resources/config/routing.yaml"
+
+oneup_uploader:
+  resource: .
+  type: uploader

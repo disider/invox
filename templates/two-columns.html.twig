@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block left_menu_nav %}
     <button id="left-menu-button" class="visible-xs navbar-toggle">
@@ -27,7 +27,7 @@
 
             <div class="panel-body">
 
-                {% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': true } %}
+                {#{% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': true } %}#}
 
                 {% block main_content %}
 

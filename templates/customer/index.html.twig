@@ -1,4 +1,4 @@
-{% extends '::two-columns.html.twig' %}
+{% extends 'two-columns.html.twig' %}
 
 {% block main_content %}
     <h1>
@@ -11,7 +11,7 @@
     </h1>
 
     {{ filter_start(filterForm) }}
-    {% include 'AppBundle:customer:_filter.html.twig' with {'form': filterForm } %}
+    {% include 'customer/_filter.html.twig' with {'form': filterForm } %}
     {{ filter_end(filterForm) }}
 
     {% if pagination|length > 0 %}
@@ -78,5 +78,5 @@
 {% block javascripts %}
     {{ parent() }}
 
-    {% include 'AppBundle:default:_delete_js.html.twig' with { message: 'customer.delete_confirmation' } %}
+    {% include 'default/_delete_js.html.twig' with { message: 'customer.delete_confirmation' } %}
 {% endblock %}

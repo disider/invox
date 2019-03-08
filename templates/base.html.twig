@@ -9,7 +9,7 @@
     {% endblock stylesheets %}
 
     <!-- HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries -->
-    {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
+    {#{% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}#}
 
     <script src="/js/jquery.min.js"></script>
 
@@ -77,8 +77,8 @@
             </small>
         </footer>
 
-        {% include '::_analytics.html.twig' %}
-        {% include '::_chat.html.twig' %}
+        {% include '_analytics.html.twig' %}
+        {% include '_chat.html.twig' %}
 
     {% endblock footer %}
 </div>

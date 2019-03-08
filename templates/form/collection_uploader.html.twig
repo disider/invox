@@ -12,7 +12,7 @@
 
 {% block collection_uploader_javascript %}
     {% spaceless %}
-        {% include 'AppBundle:form:_collection_uploader_template.html.twig' %}
+        {% include 'form/_collection_uploader_template.html.twig' %}
 
         {% set attachmentsId = form.vars.id %}
         {% set id = form.vars.id ~ '_uploader' %}
