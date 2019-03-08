@@ -1,4 +1,4 @@
-AppBundle\Entity\PettyCashNote:
+App\Entity\PettyCashNote:
   PettyCashNote1:
     ref: '0'
     company: '@acme'

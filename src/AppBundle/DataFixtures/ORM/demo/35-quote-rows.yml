@@ -1,4 +1,4 @@
-AppBundle\Entity\DocumentRow:
+App\Entity\DocumentRow:
   QuoteRow1:
     document: '@Quote1'
     title: 'First'

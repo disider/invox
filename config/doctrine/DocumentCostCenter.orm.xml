@@ -4,8 +4,8 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="AppBundle\Entity\DocumentCostCenter" table="document_cost_center"
-            repository-class="AppBundle\Repository\DocumentCostCenterRepository">
+    <entity name="App\Entity\DocumentCostCenter" table="document_cost_center"
+            repository-class="App\Repository\DocumentCostCenterRepository">
 
         <many-to-one field="taggable" target-entity="Document" inversed-by="costCenters">
             <join-column name="document_id" referenced-column-name="id" on-delete="CASCADE" nullable="false"/>

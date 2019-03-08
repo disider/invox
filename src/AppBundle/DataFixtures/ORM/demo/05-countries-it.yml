@@ -1,4 +1,4 @@
-AppBundle\Entity\CountryTranslation:
+App\Entity\CountryTranslation:
   country_ad_it:
     translatable: '@country_ad'
     name: Andorra

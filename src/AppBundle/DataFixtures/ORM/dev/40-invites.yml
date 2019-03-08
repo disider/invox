@@ -1,4 +1,4 @@
-AppBundle\Entity\Invite:
+App\Entity\Invite:
   accountant_invite:
     sender: '@owner'
     email: 'accountant@example.com'

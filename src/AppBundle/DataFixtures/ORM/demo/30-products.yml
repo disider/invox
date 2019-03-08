@@ -1,4 +1,4 @@
-AppBundle\Entity\Product:
+App\Entity\Product:
   product_{1..10}:
     company: '@acme'
     name: Product<current()>

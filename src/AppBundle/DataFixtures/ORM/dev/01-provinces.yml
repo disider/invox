@@ -1,4 +1,4 @@
-AppBundle\Entity\Province:
+App\Entity\Province:
   rome_province:
     name: Rome
     code: RM

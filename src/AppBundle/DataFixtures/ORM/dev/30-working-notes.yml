@@ -1,4 +1,4 @@
-AppBundle\Entity\WorkingNote:
+App\Entity\WorkingNote:
   working_note_{1..10}:
     company: '@acme'
     title: WorkingNote<current()>

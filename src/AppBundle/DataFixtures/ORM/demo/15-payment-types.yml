@@ -1,4 +1,4 @@
-AppBundle\Entity\PaymentType:
+App\Entity\PaymentType:
   PaymentType0:
     name: 'In advance'
     days: '-30'

@@ -1,6 +1,6 @@
 security:
     encoders:
-        AppBundle\Model\UserInterface: sha512
+        App\Model\UserInterface: sha512
 
     role_hierarchy:
         ROLE_SALES:       ROLE_USER
@@ -14,7 +14,7 @@ security:
 
     providers:
         user_provider:
-            id: AppBundle\Security\UserProvider
+            id: App\Security\UserProvider
 
     firewalls:
         dev:
@@ -35,7 +35,6 @@ security:
         #                target:               admin_login
         #            anonymous:                true
         #            switch_user:              true
-        #            logout_on_user_change:    true
 
         main:
             pattern: ^/
@@ -54,7 +53,6 @@ security:
                 target:   login
             anonymous:    true
             switch_user:  true
-            logout_on_user_change:    true
 
     access_control:
         - { path: ^/((en|it)/)?admin/login, role: IS_AUTHENTICATED_ANONYMOUSLY }

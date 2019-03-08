@@ -1,4 +1,4 @@
-AppBundle\Entity\WarehouseRecord:
+App\Entity\WarehouseRecord:
   warehouse_record_1:
     product: '@warehouse_product_1'
     loadQuantity: 100

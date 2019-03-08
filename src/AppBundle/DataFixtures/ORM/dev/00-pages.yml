@@ -1,8 +1,8 @@
-AppBundle\Entity\Page:
+App\Entity\Page:
   privacy: {}
   terms: {}
 
-AppBundle\Entity\PageTranslation:
+App\Entity\PageTranslation:
   privacy_en:
     translatable: '@privacy'
     locale: en

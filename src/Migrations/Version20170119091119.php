@@ -2,8 +2,8 @@
 
 namespace DoctrineMigrations;
 
-use AppBundle\Helper\DatabaseHelper;
-use AppBundle\Migration\SqlMigration;
+use App\Helper\DatabaseHelper;
+use App\Migration\SqlMigration;
 use Doctrine\DBAL\Schema\Schema;
 
 /**

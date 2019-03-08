@@ -4,7 +4,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="AppBundle\Entity\TaxRate" table="tax_rate" repository-class="AppBundle\Repository\TaxRateRepository">
+    <entity name="App\Entity\TaxRate" table="tax_rate" repository-class="App\Repository\TaxRateRepository">
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>

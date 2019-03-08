@@ -4,7 +4,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="AppBundle\Entity\Invite" table="invite" repository-class="AppBundle\Repository\InviteRepository">
+    <entity name="App\Entity\Invite" table="invite" repository-class="App\Repository\InviteRepository">
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>

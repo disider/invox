@@ -1,4 +1,4 @@
-AppBundle\Entity\City:
+App\Entity\City:
   rome_city:
     name: Rome
     province: '@rome_province'

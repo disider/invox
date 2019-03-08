@@ -6,17 +6,11 @@
   "autoload": {
     "psr-4": {
       "AdminBundle\\": "src/AdminBundle/",
-      "AppBundle\\": "src/AppBundle/",
       "App\\": "src/"
-    },
-    "classmap": [
-      "app/AppKernel.php",
-      "app/AppCache.php"
-    ]
+    }
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\AppBundle\\": "tests/AppBundle/",
       "Tests\\App\\": "tests/"
     }
   },

@@ -3,25 +3,25 @@
                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                     xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
 
-    <class name="AppBundle\Entity\Country">
+    <class name="App\Entity\Country">
         <property name="translations">
             <constraint name="Valid"/>
         </property>
     </class>
 
-    <class name="AppBundle\Entity\Page">
+    <class name="App\Entity\Page">
         <property name="translations">
             <constraint name="Valid"/>
         </property>
     </class>
 
-    <class name="AppBundle\Entity\PaymentType">
+    <class name="App\Entity\PaymentType">
         <property name="translations">
             <constraint name="Valid"/>
         </property>
     </class>
 
-    <class name="AppBundle\Entity\TaxRate">
+    <class name="App\Entity\TaxRate">
         <property name="translations">
             <constraint name="Valid"/>
         </property>

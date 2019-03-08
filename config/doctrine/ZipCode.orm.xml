@@ -4,7 +4,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="AppBundle\Entity\ZipCode" table="zip_code" repository-class="AppBundle\Repository\ZipCodeRepository">
+    <entity name="App\Entity\ZipCode" table="zip_code" repository-class="App\Repository\ZipCodeRepository">
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>

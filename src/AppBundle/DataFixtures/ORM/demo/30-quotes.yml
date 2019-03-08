@@ -1,4 +1,4 @@
-AppBundle\Entity\Document:
+App\Entity\Document:
   Quote1:
     ref: '001'
     company: '@acme'

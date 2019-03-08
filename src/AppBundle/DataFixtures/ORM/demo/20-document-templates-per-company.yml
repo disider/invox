@@ -1,4 +1,4 @@
-AppBundle\Entity\DocumentTemplatePerCompany:
+App\Entity\DocumentTemplatePerCompany:
   acme_template:
     company: '@acme'
     documentTemplate: '@default_template'

@@ -1,4 +1,4 @@
-AppBundle\Entity\TaxRateTranslation:
+App\Entity\TaxRateTranslation:
   TaxRate0_it:
     translatable: '@TaxRate0'
     locale: 'it'

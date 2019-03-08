@@ -1,4 +1,4 @@
-AppBundle\Entity\DocumentRow:
+App\Entity\DocumentRow:
   OrderRow0:
     document: '@Order1'
     title: 'Product1 order'

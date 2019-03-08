@@ -1,4 +1,4 @@
-AppBundle\Entity\DocumentTemplate:
+App\Entity\DocumentTemplate:
   default_template:
     name: 'Default template'
     textColor: '#434343'

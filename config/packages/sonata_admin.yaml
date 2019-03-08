@@ -1,10 +1,31 @@
-sonata_admin:
-    title: 'Sonata Admin'
-    dashboard:
-        blocks:
-            - { type: sonata.admin.block.admin_list, position: left }
+# TODO: restore sonata
+#sonata_admin:
+#    title:            Invox Admin
+#    security:
+#        handler:      sonata.admin.security.handler.role
+#        information:
+#            EDIT:     EDIT
+#            LIST:     LIST
+#            CREATE:   CREATE
+#            VIEW:     VIEW
+#            DELETE:   DELETE
+#            EXPORT:   EXPORT
+#            OPERATOR: OPERATOR
+#            MASTER:   MASTER
+#
+#sonata_block:
+#    default_contexts: [cms]
+#    blocks:
+#        sonata.admin.block.admin_list:
+#            contexts: [admin]
 
-sonata_block:
-    blocks:
-        sonata.admin.block.admin_list:
-            contexts: [admin]
+#sonata_admin:
+#    title: 'Sonata Admin'
+#    dashboard:
+#        blocks:
+#            - { type: sonata.admin.block.admin_list, position: left }
+#
+#sonata_block:
+#    blocks:
+#        sonata.admin.block.admin_list:
+#            contexts: [admin]

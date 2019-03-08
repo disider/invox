@@ -1,4 +1,4 @@
-AppBundle\Entity\Customer:
+App\Entity\Customer:
   first_customer:
     name: First customer
     email: customer@example.com

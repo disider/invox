@@ -1,4 +1,4 @@
-AppBundle\Entity\Country:
+App\Entity\Country:
   country_ad:
     code: AD
   country_ae:

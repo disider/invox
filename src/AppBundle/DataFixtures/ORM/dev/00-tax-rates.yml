@@ -1,4 +1,4 @@
-AppBundle\Entity\TaxRate:
+App\Entity\TaxRate:
   vat_22:
     amount: 22
     position: 0
@@ -7,7 +7,7 @@ AppBundle\Entity\TaxRate:
     amount: 10
     position: 1
 
-AppBundle\Entity\TaxRateTranslation:
+App\Entity\TaxRateTranslation:
   vat_22_en:
     locale: en
     name: VAT 22%

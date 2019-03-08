@@ -4,8 +4,8 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="AppBundle\Entity\Service" table="service"
-            repository-class="AppBundle\Repository\ServiceRepository">
+    <entity name="App\Entity\Service" table="service"
+            repository-class="App\Repository\ServiceRepository">
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>

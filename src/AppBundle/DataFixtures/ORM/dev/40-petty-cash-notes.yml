@@ -1,4 +1,4 @@
-AppBundle\Entity\PettyCashNote:
+App\Entity\PettyCashNote:
   income_note_1:
     ref: 1
     company: '@acme'
@@ -26,7 +26,7 @@ AppBundle\Entity\PettyCashNote:
     accountFrom: '@credit_1'
     accountTo: '@bank_1'
 
-AppBundle\Entity\InvoicePerNote:
+App\Entity\InvoicePerNote:
   ipn_1:
     invoice: '@invoice_2'
     note: '@income_note_1'

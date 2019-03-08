@@ -1,4 +1,4 @@
-AppBundle\Entity\Document:
+App\Entity\Document:
   quote_{1..10}:
     company: '@acme'
     linkedCustomer: '@first_customer'
@@ -70,7 +70,7 @@ AppBundle\Entity\Document:
     documentTemplate: '@acme_template'
     customerCountry: '@italy'
 
-AppBundle\Entity\DocumentRow:
+App\Entity\DocumentRow:
   row_1_1:
     document: '@quote_1'
     position: 0

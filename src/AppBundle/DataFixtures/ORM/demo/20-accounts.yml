@@ -1,4 +1,4 @@
-AppBundle\Entity\Account:
+App\Entity\Account:
   cash:
     name: Cash
     company: '@acme'

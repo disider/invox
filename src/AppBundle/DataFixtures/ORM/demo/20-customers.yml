@@ -1,4 +1,4 @@
-AppBundle\Entity\Customer:
+App\Entity\Customer:
   customer_google:
     name: 'Google, Inc.'
     address: '1600 Amphitheatre Parkway'

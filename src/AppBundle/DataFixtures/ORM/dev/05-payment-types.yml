@@ -1,4 +1,4 @@
-AppBundle\Entity\PaymentType:
+App\Entity\PaymentType:
   payment_type_0:
     days: '-1'
     position: '0'
@@ -36,7 +36,7 @@ AppBundle\Entity\PaymentType:
     position: '8'
     endOfMonth: true
 
-AppBundle\Entity\PaymentTypeTranslation:
+App\Entity\PaymentTypeTranslation:
   payment_type_0_en:
     locale: en
     name: 'In advance'

@@ -1,4 +1,7 @@
 services:
-  AppBundle\Mailer\MailerInterface: '@AppBundle\Features\Fake\FakeMailer'
+  Tests\App\Fake\:
+    resource: '../tests/Fake/*'
 
-  AppBundle\Helper\ParameterHelperInterface: '@AppBundle\Features\Fake\FakeParameterHelper'
+  App\Mailer\MailerInterface: '@Tests\App\Fake\FakeMailer'
+
+  App\Helper\ParameterHelperInterface: '@Tests\App\Fake\FakeParameterHelper'

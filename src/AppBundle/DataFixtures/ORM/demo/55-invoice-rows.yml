@@ -1,4 +1,4 @@
-AppBundle\Entity\DocumentRow:
+App\Entity\DocumentRow:
   InvoiceRow0:
     document: '@Invoice1'
     title: 'Consult'

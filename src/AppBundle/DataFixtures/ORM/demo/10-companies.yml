@@ -1,4 +1,4 @@
-AppBundle\Entity\Company:
+App\Entity\Company:
   acme:
     name: 'Acme s.r.l.'
     address: '221B Baker Street'

@@ -4,7 +4,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <mapped-superclass name="AppBundle\Entity\Tag">
+    <mapped-superclass name="App\Entity\Tag">
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>

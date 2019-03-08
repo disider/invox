@@ -1,4 +1,4 @@
-AppBundle\Entity\Country:
+App\Entity\Country:
   austria:
     code: AT
   italy:
@@ -6,7 +6,7 @@ AppBundle\Entity\Country:
   uk:
     code: UK
 
-AppBundle\Entity\CountryTranslation:
+App\Entity\CountryTranslation:
   austria_it:
     translatable: '@austria'
     locale: 'it'

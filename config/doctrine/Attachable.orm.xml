@@ -4,7 +4,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <mapped-superclass name="AppBundle\Entity\Attachable">
+    <mapped-superclass name="App\Entity\Attachable">
 
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>

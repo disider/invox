@@ -1,4 +1,12 @@
-sonata_core:
-    form:
-        mapping:
-            enabled: false
+
+# TODO: restore sonata
+# # TODO: remove once migration to 4.x is completed
+#sonata_core:
+#    form:
+#        mapping:
+#            enabled: false
+#
+#sonata_core:
+#    form:
+#        mapping:
+#            enabled: false

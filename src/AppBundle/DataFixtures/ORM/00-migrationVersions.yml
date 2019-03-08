@@ -1,4 +1,4 @@
-AppBundle\Entity\MigrationVersions:
+App\Entity\MigrationVersions:
   20160603151354:
     version: 20160603151354
   20160607131527:

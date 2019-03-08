@@ -1,4 +1,4 @@
-AppBundle\Entity\Company:
+App\Entity\Company:
   acme:
     name: Acme
     address: 123, Abbey Road, London

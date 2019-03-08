@@ -2,34 +2,34 @@ default:
     suites:
         appbundle:
             type: symfony_bundle
-            bundle: AppBundle
+            bundle: App
             contexts:
-              - AppBundle\Features\Context\FeatureContext:
-                    userProvider: AppBundle\Security\UserProvider
+              - App\Features\Context\FeatureContext:
+                    userProvider: App\Security\UserProvider
                     firewallName: main
 
-              - AppBundle\Features\Context\AccountContext
-              - AppBundle\Features\Context\CityContext
-              - AppBundle\Features\Context\CompanyContext
-              - AppBundle\Features\Context\CountryContext
-              - AppBundle\Features\Context\CustomerContext
-              - AppBundle\Features\Context\DocumentContext
-              - AppBundle\Features\Context\DocumentTemplateContext
-              - AppBundle\Features\Context\InviteContext
-              - AppBundle\Features\Context\JsonContext
-              - AppBundle\Features\Context\MediumContext
-              - AppBundle\Features\Context\PageContext
-              - AppBundle\Features\Context\ParagraphTemplateContext
-              - AppBundle\Features\Context\PaymentTypeContext
-              - AppBundle\Features\Context\PettyCashContext
-              - AppBundle\Features\Context\ProductContext
-              - AppBundle\Features\Context\ProvinceContext
-              - AppBundle\Features\Context\RecurrenceContext
-              - AppBundle\Features\Context\ServiceContext
-              - AppBundle\Features\Context\TaxRateContext
-              - AppBundle\Features\Context\UserContext
-              - AppBundle\Features\Context\WorkingNoteContext
-              - AppBundle\Features\Context\ZipCodeContext
+              - App\Features\Context\AccountContext
+              - App\Features\Context\CityContext
+              - App\Features\Context\CompanyContext
+              - App\Features\Context\CountryContext
+              - App\Features\Context\CustomerContext
+              - App\Features\Context\DocumentContext
+              - App\Features\Context\DocumentTemplateContext
+              - App\Features\Context\InviteContext
+              - App\Features\Context\JsonContext
+              - App\Features\Context\MediumContext
+              - App\Features\Context\PageContext
+              - App\Features\Context\ParagraphTemplateContext
+              - App\Features\Context\PaymentTypeContext
+              - App\Features\Context\PettyCashContext
+              - App\Features\Context\ProductContext
+              - App\Features\Context\ProvinceContext
+              - App\Features\Context\RecurrenceContext
+              - App\Features\Context\ServiceContext
+              - App\Features\Context\TaxRateContext
+              - App\Features\Context\UserContext
+              - App\Features\Context\WorkingNoteContext
+              - App\Features\Context\ZipCodeContext
 
     extensions:
         DMore\ChromeExtension\Behat\ServiceContainer\ChromeExtension: ~

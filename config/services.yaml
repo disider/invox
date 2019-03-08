@@ -65,76 +65,77 @@ services:
     # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/*'
-        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php,AppBundle,AdminBundle,Application}'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php,AdminBundle,Application}'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
     App\Controller\:
         resource: '../src/Controller'
-        tags: ['controller.service_arguments']
-
-    App\Repository\CityRepository: ~
-
-    # TODO: remove after migration to 4.x
-    AppBundle\:
-        resource: '../src/AppBundle/*'
-        exclude: '../src/AppBundle/{Entity,Entity\Repository,Form\Processor,Migrations,Tests}'
-
-    AppBundle\Controller\:
         arguments:
             $defaultPageSize: '%page_size%'
             $environment: '%kernel.environment%'
-        resource: '../src/AppBundle/Controller'
-        public: true
         tags: ['controller.service_arguments']
+
+    # TODO: remove after migration to 4.x
+#    App\:
+#        resource: '../src/AppBundle/*'
+#        exclude: '../src/AppBundle/{Entity,Entity\Repository,Form\Processor,Migrations,Tests}'
+#
+#    App\Controller\:
+#        arguments:
+#            $defaultPageSize: '%page_size%'
+#            $environment: '%kernel.environment%'
+#        resource: '../src/AppBundle/Controller'
+#        public: true
+#        tags: ['controller.service_arguments']
     # End of "remove after migration to 4.x"
 
-    AppBundle\EventListener\ORM\:
-        resource: '../src/AppBundle/EventListener/ORM'
+    App\EventListener\ORM\:
+        resource: '../src/EventListener/ORM'
         tags: ['doctrine.event_subscriber']
 
-    AppBundle\Form\Type\CountryEntityType:
+    App\Form\Type\CountryEntityType:
         $locale: '%locale%'
 
-    AppBundle\Model\LocaleFormatter:
+    App\Model\LocaleFormatter:
         $locale: '%locale%'
 
-    AppBundle\Twig\GlobalExtension:
+    App\Twig\GlobalExtension:
         $debug: '%kernel.debug%'
 
-    AppBundle\Entity\Manager\UserManager:
+    App\Entity\Manager\UserManager:
         arguments:
-            $class: 'AppBundle\Entity\User'
+            $class: 'App\Entity\User'
 
     Twig_Extensions_Extension_Text:
         class: Twig_Extensions_Extension_Text
 
-    AppBundle\Form\Processor\DocumentFormProcessor:
+    App\Form\Processor\DocumentFormProcessor:
         arguments:
             $availableLocales: '%available_locales%'
 
-    AppBundle\Mailer\Mailer:
+    App\Mailer\Mailer:
         arguments:
             $displayNames: '%mailer.display_names%'
             $emails: '%mailer.emails%'
 
-    AppBundle\Mailer\MailerInterface: '@AppBundle\Mailer\Mailer'
+    App\Mailer\MailerInterface: '@App\Mailer\Mailer'
 
-    AppBundle\Helper\ParameterHelperInterface: '@AppBundle\Helper\ParameterHelper'
+    App\Helper\ParameterHelperInterface: '@App\Helper\ParameterHelper'
 
-    AppBundle\Builder\DocumentBuilder:
+    App\Builder\DocumentBuilder:
         arguments:
             $cacheDir: '%kernel.cache_dir%'
 
-    AppBundle\Helper\ParameterHelper:
+    App\Helper\ParameterHelper:
         arguments:
             - '%enable_demo_mode%'
 
-    AppBundle\Pagination\DirectorySubscriber:
+    App\Pagination\DirectorySubscriber:
         tags:
             - { name: 'knp_paginator.subscriber' }
 
-    AppBundle\Menu\MenuBuilder:
+    App\Menu\MenuBuilder:
         arguments:
             $availableLocales: '%available_locales%'
             $locale: '%locale%'
@@ -144,10 +145,10 @@ services:
             - { name: knp_menu.menu_builder, method: mainMenu, alias: mainMenu }
             - { name: knp_menu.menu_builder, method: superadminMenu, alias: superadminMenu }
 
-    AppBundle\Entity\Manager\CompanyManager:
+    App\Entity\Manager\CompanyManager:
         public: true
         arguments:
-            - '@AppBundle\Repository\CompanyRepository'
+            - '@App\Repository\CompanyRepository'
             - '@security.token_storage'
             - '@session'
 

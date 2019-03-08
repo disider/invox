@@ -4,7 +4,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="AppBundle\Entity\PageTranslation" table="page_translation">
+    <entity name="App\Entity\PageTranslation" table="page_translation">
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>

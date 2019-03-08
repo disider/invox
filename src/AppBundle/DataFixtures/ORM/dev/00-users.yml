@@ -1,4 +1,4 @@
-AppBundle\Entity\User:
+App\Entity\User:
   superadmin:
     email: superadmin@example.com
     plainPassword: secret

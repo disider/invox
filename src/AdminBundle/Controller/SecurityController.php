@@ -10,8 +10,8 @@
 
 namespace AdminBundle\Controller;
 
-use AppBundle\EventListener\FormAuthenticationListener;
-use AppBundle\Form\LoginForm;
+use App\Form\LoginForm;
+use App\EventListener\FormAuthenticationListener;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
