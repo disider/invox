@@ -11,6 +11,8 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\Attachable;
+use AppBundle\Entity\DocumentAttachment;
+use AppBundle\Entity\PettyCashNoteAttachment;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -37,10 +39,10 @@ class RefreshAttachmentsCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $attachments = $this->entityManager->getRepository('AppBundle:DocumentAttachment')->findAll();
+        $attachments = $this->entityManager->getRepository(DocumentAttachment::class)->findAll();
         $this->refreshAttachments($output, $attachments);
 
-        $attachments = $this->entityManager->getRepository('AppBundle:PettyCashNoteAttachment')->findAll();
+        $attachments = $this->entityManager->getRepository(PettyCashNoteAttachment::class)->findAll();
         $this->refreshAttachments($output, $attachments);
     }
 

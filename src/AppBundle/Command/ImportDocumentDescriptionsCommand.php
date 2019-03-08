@@ -22,14 +22,12 @@ use Symfony\Component\Yaml\Yaml;
 
 class ImportDocumentDescriptionsCommand extends Command
 {
-    private $documentRepository;
     private $em;
 
-    public function __construct(DocumentRepository $documentRepository, EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em)
     {
         parent::__construct();
 
-        $this->documentRepository = $documentRepository;
         $this->em = $em;
     }
 
@@ -71,6 +69,8 @@ class ImportDocumentDescriptionsCommand extends Command
 
     protected function updateDocuments($documents, OutputInterface $output)
     {
+        $repository = $this->em->getRepository(Document::class);
+
         foreach ($documents as $record) {
             $ref = $record['ref'];
             $type = $record['type'];
@@ -80,7 +80,7 @@ class ImportDocumentDescriptionsCommand extends Command
             $customerName = $record['customerName'];
 
             /** @var Document $document */
-            $document = $this->documentRepository->findOneBy([
+            $document = $repository->findOneBy([
                 'ref' => $ref,
                 'year' => $year,
                 'direction' => $direction,
@@ -92,7 +92,7 @@ class ImportDocumentDescriptionsCommand extends Command
                 $output->writeln(sprintf('Searching for %s for %s/%s (%s), %s', $type, $ref, $year, $direction, $customerName));
 
                 /** @var Document $document */
-                $document = $this->documentRepository->findOneBy([
+                $document = $repository->findOneBy([
                     'ref' => $ref,
                     'year' => $year,
                     'direction' => 'none',

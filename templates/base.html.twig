@@ -1,12 +1,91 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<html lang="it" xml:lang="it">
+<head>
+    <title>{{ 'app.name'|trans }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block stylesheets %}
+        <link href="/css/main.css?{{ version }}" rel="stylesheet" media="screen">
+    {% endblock stylesheets %}
+
+    <!-- HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries -->
+    {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
+
+    <script src="/js/jquery.min.js"></script>
+
+    <script>
+        $('html').addClass('js');
+    </script>
+</head>
+<body>
+<div id="page">
+    {% block header %}
+        <header>
+            <nav class="navbar navbar-default navbar-inverse">
+                <div class="container">
+
+                    <div class="navbar-header">
+                        <div class="navbar-brand">
+                            <a href="{{ path('homepage') }}">
+                                <img src="{{ asset('logo.png') }}" alt="{{ 'app.name'|trans }}"/>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="top-header-collapse collapse navbar-collapse" id="top-navbar-collapse">
+                        <div class="navbar-right">
+                            {{ knp_menu_render('userMenu', {'allow_safe_labels': true}) }}
+                        </div>
+                    </div>
+
+                </div>
+            </nav>
+            {% if enable_fork_me %}
+                <a href="https://github.com/disider/invox"><img style="position: fixed; top: 0; right: 0; border: 0; z-index: 9999;"
+                                                                src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67"
+                                                                alt="Fork me on GitHub"
+                                                                data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
+            {% endif %}
+        </header>
+    {% endblock header %}
+
+    {% block main_container %}
+        <div class="main-content container">
+            <div class="row">
+
+                {% block page %}
+                {% endblock page %}
+
+                <div class="push"></div>
+            </div>
+        </div>
+    {% endblock main_container %}
+
+    {% block footer %}
+        <footer class="main-footer text-center">
+            <small class="pull-left ">
+                <span class="label label-default">{{ version }}</span>
+            </small>
+
+            <a href="{{ path('privacy') }}">{{ 'privacy.title'|trans }}</a> |
+            <a href="{{ path('terms') }}">{{ 'terms.title'|trans({}, 'terms') }}</a> |
+            <a href="{{ path('contact_us') }}">{{ 'contact_us.title'|trans }}</a> |
+
+            <small>
+                &copy; <a href="http://di-side.com" target="_blank">Di-SiDE</a> {{ "now"|date('Y') }}
+            </small>
+        </footer>
+
+        {% include '::_analytics.html.twig' %}
+        {% include '::_chat.html.twig' %}
+
+    {% endblock footer %}
+</div>
+
+{% block javascripts %}
+    <script src="/js/main.min.js?{{ version }}"></script>
+{% endblock javascripts %}
+
+</body>
 </html>

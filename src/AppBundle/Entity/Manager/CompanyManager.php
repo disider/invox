@@ -20,23 +20,15 @@ class CompanyManager
 {
     const CURRENT_COMPANY = 'current_company';
 
-    /**
-     * @var TokenStorageInterface
-     */
+    /** @var TokenStorageInterface */
     private $tokenStorage;
 
-    /**
-     * @var Session
-     */
+    /** @var SessionInterface */
     private $session;
-    /**
-     * @var CompanyRepository
-     */
+    /** @var CompanyRepository */
     private $companyRepository;
 
-    /**
-     * @var Company|null
-     */
+    /** @var Company|null */
     private $currentCompany;
 
     public function __construct(CompanyRepository $companyRepository, TokenStorageInterface $tokenStorage, SessionInterface $session)

@@ -37,43 +37,43 @@ class ExportDocumentsCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $docs = $this->entityManager->getRepository('AppBundle:Document')->findBy(
-            ['status' => 'unpaid', 'direction' => 'outgoing', 'type' => 'invoice']
-        );
-
-        $file = fopen('documents-export.csv', 'w');
-
-        $output->writeln(sprintf('Exporting %d documents', count($docs)));
-
-        /** @var Document $doc */
-        foreach ($docs as $doc) {
-            $row = [
-                $doc->getType(),
-                $doc->formatRef(),
-                $doc->getCustomerName(),
-                $this->formatDate($doc->getValidUntil()),
-                $doc->getGrossTotal(),
-            ];
-
-            $output->writeln(sprintf('Found %d notes', $doc->getPettyCashNotes()->count()));
-
-            /** @var InvoicePerNote $invoicePerNote */
-            foreach ($doc->getPettyCashNotes() as $invoicePerNote) {
-                $note = $invoicePerNote->getNote();
-                $row = array_merge(
-                    $row,
-                    [
-                        $note->getRef(),
-                        $this->formatDate($note->getRecordedAt()),
-                        $invoicePerNote->getAmount(),
-                    ]
-                );
-            }
-
-            fputcsv($file, $row);
-        }
-
-        fclose($file);
+//        $docs = $this->entityManager->getRepository(Document::class)->findBy(
+//            ['status' => 'unpaid', 'direction' => 'outgoing', 'type' => 'invoice']
+//        );
+//
+//        $file = fopen('documents-export.csv', 'w');
+//
+//        $output->writeln(sprintf('Exporting %d documents', count($docs)));
+//
+//        /** @var Document $doc */
+//        foreach ($docs as $doc) {
+//            $row = [
+//                $doc->getType(),
+//                $doc->formatRef(),
+//                $doc->getCustomerName(),
+//                $this->formatDate($doc->getValidUntil()),
+//                $doc->getGrossTotal(),
+//            ];
+//
+//            $output->writeln(sprintf('Found %d notes', $doc->getPettyCashNotes()->count()));
+//
+//            /** @var InvoicePerNote $invoicePerNote */
+//            foreach ($doc->getPettyCashNotes() as $invoicePerNote) {
+//                $note = $invoicePerNote->getNote();
+//                $row = array_merge(
+//                    $row,
+//                    [
+//                        $note->getRef(),
+//                        $this->formatDate($note->getRecordedAt()),
+//                        $invoicePerNote->getAmount(),
+//                    ]
+//                );
+//            }
+//
+//            fputcsv($file, $row);
+//        }
+//
+//        fclose($file);
     }
 
     private function formatDate(\DateTime $date = null)

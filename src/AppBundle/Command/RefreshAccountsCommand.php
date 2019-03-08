@@ -36,7 +36,7 @@ class RefreshAccountsCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $accounts = $this->entityManager->getRepository('AppBundle:Account')->findAll();
+        $accounts = $this->entityManager->getRepository(Account::class)->findAll();
 
         $output->writeln(sprintf('Updating %d accounts', count($accounts)));
 

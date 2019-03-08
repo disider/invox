@@ -1,0 +1,4 @@
+services:
+  AppBundle\Mailer\MailerInterface: '@AppBundle\Features\Fake\FakeMailer'
+
+  AppBundle\Helper\ParameterHelperInterface: '@AppBundle\Features\Fake\FakeParameterHelper'

@@ -15,7 +15,7 @@ use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Templating\EngineInterface;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class Mailer implements MailerInterface
 {
@@ -64,7 +64,7 @@ class Mailer implements MailerInterface
      */
     private $html;
 
-    public function __construct(EngineInterface $templating, RouterInterface $router, \Swift_Mailer $mailer, TranslatorInterface $translator, array $displayNames, array $emails)
+    public function __construct(\Twig_Environment $templating, RouterInterface $router, \Swift_Mailer $mailer, TranslatorInterface $translator, array $displayNames, array $emails)
     {
         $this->mailer = $mailer;
         $this->templating = $templating;

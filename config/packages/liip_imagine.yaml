@@ -1,0 +1,25 @@
+liip_imagine:
+  driver: imagick
+
+  resolvers:
+    default:
+      web_path: ~
+
+  filter_sets:
+    cache: ~
+    thumb:
+      quality: 75
+      filters:
+        thumbnail: { size: [256, 256], mode: inset }
+    logo_thumb:
+      quality: 75
+      filters:
+        thumbnail: { size: [256, 256], mode: inset }
+    logo_small:
+      quality: 75
+      filters:
+        thumbnail: { size: [128, 128], mode: inset }
+    logo_tiny:
+      quality: 75
+      filters:
+        thumbnail: { size: [64, 64], mode: inset }

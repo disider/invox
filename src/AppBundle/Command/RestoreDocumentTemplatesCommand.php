@@ -10,6 +10,7 @@
 
 namespace AppBundle\Command;
 
+use AppBundle\Entity\DocumentTemplatePerCompany;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -35,7 +36,7 @@ class RestoreDocumentTemplatesCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $templates = $this->entityManager->getRepository('AppBundle:DocumentTemplatePerCompany')->findAll();
+        $templates = $this->entityManager->getRepository(DocumentTemplatePerCompany::class)->findAll();
 
         $output->writeln(sprintf('Updating %d templates', count($templates)));
 

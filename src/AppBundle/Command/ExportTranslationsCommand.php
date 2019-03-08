@@ -42,7 +42,7 @@ class ExportTranslationsCommand extends ContainerAwareCommand
     {
         $container = $this->getContainer();
 
-        $this->path = $container->get('kernel')->getRootDir() . '/Resources/translations';
+        $this->path = $container->get('kernel')->getProjectDir() . '/Resources/translations';
         $this->key = $container->getParameter('loco_api_key');
 
         if ($input->hasOption('all')) {

@@ -36,7 +36,7 @@ class RefreshPettyCashNotesCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $pettyCashNotes = $this->entityManager->getRepository('AppBundle:PettyCashNote')->findAllQuery()
+        $pettyCashNotes = $this->entityManager->getRepository(PettyCashNote::class)->findAllQuery()
             ->addOrderBy('note.recordedAt', 'ASC')
             ->addOrderBy('note.id', 'DESC')
             ->getQuery()->execute();

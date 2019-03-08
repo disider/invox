@@ -1,0 +1,2 @@
+knp_snappy:
+  temporary_folder: "%kernel.cache_dir%/snappy"

@@ -11,9 +11,8 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\Document;
-use Doctrine\ORM\EntityManager;
+use AppBundle\Entity\DocumentRow;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -29,7 +28,6 @@ class RefreshDocumentsCommand extends Command
 
         $this->entityManager = $entityManager;
     }
-
 
     protected function configure()
     {
@@ -53,7 +51,7 @@ class RefreshDocumentsCommand extends Command
 
     protected function refreshRows(OutputInterface $output)
     {
-        $rows = $this->entityManager->getRepository('AppBundle:DocumentRow')->findAll();
+        $rows = $this->entityManager->getRepository(DocumentRow::class)->findAll();
 
         $output->writeln(sprintf('Updating %d rows', count($rows)));
 
@@ -68,7 +66,7 @@ class RefreshDocumentsCommand extends Command
 
     protected function refreshCompanies(OutputInterface $output)
     {
-        $documents = $this->entityManager->getRepository('AppBundle:Document')->findAll();
+        $documents = $this->entityManager->getRepository(Document::class)->findAll();
 
         $output->writeln(sprintf('Updating %d documents', count($documents)));
 

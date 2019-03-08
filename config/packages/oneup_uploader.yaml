@@ -1,0 +1,15 @@
+oneup_uploader:
+  mappings:
+    medium:
+      use_orphanage: true
+      frontend: fineuploader
+      storage:
+        directory: "%kernel.root_dir%/../web"
+      namer: AppBundle\Uploader\MediumNamer
+      max_size: 2m
+    attachable:
+      use_orphanage: true
+      frontend: fineuploader
+      storage:
+        directory: "%kernel.root_dir%/../web"
+      max_size: 2m

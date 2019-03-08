@@ -1,47 +1,10 @@
 parameters:
-  mailer.emails:
-      no-reply: '%noreply_email%'
-      info: '%info_email%'
-
-  mailer.display_names:
-    no-reply: '%noreply_display_name%'
-    info: '%info_display_name%'
 
 services:
-  AppBundle\Entity\Manager\CompanyManager:
-    public: true
-    arguments:
-      - '@AppBundle\Repository\CompanyRepository'
-      - '@security.token_storage'
-      - '@session'
 
-  directory_subscriber:
-    class: AppBundle\Pagination\DirectorySubscriber
-    tags: { name: 'knp_paginator.subscriber' }
 
   locale_formatter:
     class: AppBundle\Model\LocaleFormatter
     arguments:
       - '@translator.default'
       - '%locale%'
-
-  protocol_generator:
-    class: AppBundle\Helper\ProtocolGenerator
-    arguments:
-      - '@doctrine.orm.entity_manager'
-
-  places_manager:
-    class: AppBundle\Helper\PlacesManager
-    arguments:
-      - '@doctrine.orm.entity_manager'
-
-  registration.form.type:
-    class: AppBundle\Form\RegistrationForm
-    arguments:
-      - '@doctrine.orm.entity_manager'
-    tags: { name: 'form.type', alias: 'user_registration' }
-
-  csv_to_array:
-    class: AppBundle\Helper\CsvToArray
-
-  Oneup\UploaderBundle\Uploader\Orphanage\OrphanageManager: '@oneup_uploader.orphanage_manager'

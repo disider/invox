@@ -1,0 +1,28 @@
+# TODO: restore sonata
+#sonata_admin:
+#    title:            Invox Admin
+#    security:
+#        handler:      sonata.admin.security.handler.role
+#        information:
+#            EDIT:     EDIT
+#            LIST:     LIST
+#            CREATE:   CREATE
+#            VIEW:     VIEW
+#            DELETE:   DELETE
+#            EXPORT:   EXPORT
+#            OPERATOR: OPERATOR
+#            MASTER:   MASTER
+#
+#sonata_block:
+#    default_contexts: [cms]
+#    blocks:
+#        sonata.admin.block.admin_list:
+#            contexts: [admin]
+
+# TODO: restore sonata
+# # TODO: remove once migration to 4.x is completed
+#sonata_core:
+#    form:
+#        mapping:
+#            enabled: false
+
