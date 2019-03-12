@@ -1,0 +1,19 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+
+    App\Mailer\MailerInterface: '@Tests\App\Fake\FakeMailer'
+
+    App\Helper\ParameterHelperInterface: '@Tests\App\Fake\FakeParameterHelper'
+
+    Tests\App\Fake\:
+        resource: '../tests/Fake/*'
+
+    Features\App\:
+        resource: '../features/Behat/*'
+#
+#    Features\App\FeatureContext:
+#        arguments:
+#            $cacheDir: '%kernel.cache_dir%'
