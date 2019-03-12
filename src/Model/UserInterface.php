@@ -10,7 +10,9 @@
 
 namespace App\Model;
 
-interface UserInterface extends \Serializable
+use Symfony\Component\Security\Core\User\UserInterface as BaseUserInterface;
+
+interface UserInterface extends BaseUserInterface, \Serializable
 {
     public function getDecimalPoint();
 

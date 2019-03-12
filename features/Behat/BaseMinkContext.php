@@ -8,16 +8,18 @@
  *
  */
 
+namespace Features\App;
+
+use App\Entity\Attachable;
 use App\Entity\AttachmentContainer;
 use App\Entity\Country;
-use App\Entity\Attachable;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\Environment\InitializedContextEnvironment;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Symfony2Extension\Context\KernelAwareContext;
 use Diside\BehatExtension\Context\ContextTrait;
 
-class BaseMinkContext implements Context, KernelAwareContext
+abstract class BaseMinkContext implements Context, KernelAwareContext
 {
     use ContextTrait;
     use EntityLookupContextTrait;

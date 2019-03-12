@@ -53,6 +53,7 @@ security:
                 target:   login
             anonymous:    true
             switch_user:  true
+            user_checker: App\Security\UserChecker
 
     access_control:
         - { path: ^/((en|it)/)?admin/login, role: IS_AUTHENTICATED_ANONYMOUSLY }

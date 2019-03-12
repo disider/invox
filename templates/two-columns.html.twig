@@ -17,6 +17,7 @@
 
 {% block page %}
     <aside id="left-menu-content" class="col-md-3 hidden-xs">
+        here
         {{ knp_menu_render('mainMenu', { 'allow_safe_labels': true, 'currentClass': 'active' }) }}
         <br />
         {{ knp_menu_render('superadminMenu', { 'allow_safe_labels': true, 'currentClass': 'active' }) }}
@@ -27,7 +28,7 @@
 
             <div class="panel-body">
 
-                {#{% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': true } %}#}
+                {% include 'flash.html.twig' with { 'close': true } %}
 
                 {% block main_content %}
 

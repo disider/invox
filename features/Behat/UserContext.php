@@ -8,15 +8,23 @@
  *
  */
 
+namespace Features\App;
+
 use App\Entity\Company;
-use App\Entity\Manager\UserManager;
-use App\Model\UserInterface;
-use App\Repository\UserRepository;
 use App\Entity\User;
+use App\Repository\UserRepository;
+use App\Security\UserPasswordEncoder;
 use Behat\Gherkin\Node\TableNode;
 
 class UserContext extends BaseMinkContext
 {
+    private $passwordEncoder;
+
+    public function __construct(UserPasswordEncoder $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
     /**
      * @Given /^there is a user:$/
      * @Given /^there are users:$/
@@ -114,11 +122,7 @@ class UserContext extends BaseMinkContext
             $company->addManager($user);
         }
 
-        /** @var UserManager $userManager */
-        $userManager = $this->get(UserManager::class);
-
-        /** @var UserInterface $user */
-        $user = $userManager->updateUser($user);
+        $this->passwordEncoder->encodePassword($user);
 
         if ($role == 'superadmin') {
             $user->addRole(User::ROLE_SUPER_ADMIN);

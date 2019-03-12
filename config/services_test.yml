@@ -1,7 +1,0 @@
-services:
-  Tests\App\Fake\:
-    resource: '../tests/Fake/*'
-
-  App\Mailer\MailerInterface: '@Tests\App\Fake\FakeMailer'
-
-  App\Helper\ParameterHelperInterface: '@Tests\App\Fake\FakeParameterHelper'

@@ -137,9 +137,4 @@ class UserManager
     {
         $this->passwordEncoder->encodePassword($user);
     }
-
-    protected function getEncoder(UserInterface $user)
-    {
-        return $this->encoderFactory->getEncoder($user);
-    }
 }

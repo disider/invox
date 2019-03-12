@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class MenuBuilder
 {
@@ -123,6 +123,7 @@ class MenuBuilder
         $this->addMenu($menu, 'tachometer', 'dashboard', 'dashboard', 'menu.dashboard');
 
         if ($this->isAuthenticated()) {
+            var_dump('here');
             $this->addMenu($menu, 'user', 'users', 'users', 'menu.users', User::ROLE_SUPER_ADMIN);
             $this->addMenu(
                 $menu,

@@ -16,11 +16,12 @@ class IconExtension extends \Twig_Extension
     {
         return [
             new \Twig_SimpleFunction('fa_icon', [$this, 'showIcon'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction('icon', [$this, 'showIcon'], ['is_safe' => ['html']]),
         ];
     }
 
     public function showIcon($icon, $class = '')
     {
-        return sprintf('<span class="fa fa-%s %s"></span>', $icon, $class ? 'fa-' . $class : '');
+        return sprintf('<span class="fa fa-%s %s"></span>', $icon, $class ? 'fa-'.$class : '');
     }
 }

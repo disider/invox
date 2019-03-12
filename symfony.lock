@@ -160,6 +160,21 @@
     "exsyst/swagger": {
         "version": "v0.4.1"
     },
+    "friends-of-behat/symfony-extension": {
+        "version": "2.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.0",
+            "ref": "78a2c7ae7f228ada6645d58e57cf919b180b7827"
+        },
+        "files": [
+            "behat.yml.dist",
+            "config/services_test.yaml",
+            "features/demo.feature",
+            "tests/Behat/DemoContext.php"
+        ]
+    },
     "fzaninotto/faker": {
         "version": "v1.8.0"
     },
@@ -709,6 +724,9 @@
     "symfony/polyfill-intl-icu": {
         "version": "v1.10.0"
     },
+    "symfony/polyfill-intl-idn": {
+        "version": "v1.10.0"
+    },
     "symfony/polyfill-mbstring": {
         "version": "v1.10.0"
     },
@@ -725,6 +743,9 @@
         "version": "v4.2.4"
     },
     "symfony/property-info": {
+        "version": "v4.2.4"
+    },
+    "symfony/proxy-manager-bridge": {
         "version": "v4.2.4"
     },
     "symfony/routing": {

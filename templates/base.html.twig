@@ -2,14 +2,17 @@
 <html lang="it" xml:lang="it">
 <head>
     <title>{{ 'app.name'|trans }}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {% block stylesheets %}
-        <link href="/css/main.css?{{ version }}" rel="stylesheet" media="screen">
+        <link href="/css/main.css?{{ version }}" rel="stylesheet" media="screen" />
     {% endblock stylesheets %}
 
     <!-- HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries -->
-    {#{% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}#}
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv-printshiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 
     <script src="/js/jquery.min.js"></script>
 

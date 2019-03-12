@@ -8,73 +8,76 @@
  *
  */
 
+namespace Features\App;
+
 use App\Entity\Company;
-use App\Features\Fake\FakeParameterHelper;
 use App\Helper\ParameterHelperInterface;
 use App\Mailer\MailerInterface;
-use App\Features\Fake\FakeMailer;
 use Behat\Gherkin\Node\TableNode;
 use Diside\BehatExtension\Context\AbstractContext;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
-use Doctrine\ORM\EntityManager;
-use PHPUnit_Framework_Assert as a;
+use Doctrine\ORM\EntityManagerInterface;
+use PHPUnit\Framework\Assert as a;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Tests\App\Fake\FakeMailer;
+use Tests\App\Fake\FakeParameterHelper;
 
 class FeatureContext extends AbstractContext
 {
     use EntityLookupContextTrait;
     use ProfileContextTrait;
 
+    /** @var ContainerInterface */
+    private $container;
+
     /** @var FakeMailer */
     private $mailer;
-
-    /** @var string */
-    private $userProvider;
-
-    /** @var string */
-    private $firewallName;
 
     /** @var FakeParameterHelper */
     private $parameterHelper;
 
-    public function __construct($userProvider, $firewallName)
-    {
-        $this->userProvider = $userProvider;
-        $this->firewallName = $firewallName;
+    /** @var EntityManagerInterface */
+    private $entityManager;
+    private $userProvider;
+    private $session;
 
-        $this->mailer = new FakeMailer();
-        $this->parameterHelper = new FakeParameterHelper();
-
+    public function __construct(
+        ContainerInterface $container,
+        ParameterHelperInterface $parameterHelper,
+        MailerInterface $mailer,
+        EntityManagerInterface $entityManager,
+        UserProviderInterface $userProvider,
+        SessionInterface $session
+    ) {
         $this->setFilePath(__DIR__.'/attachments');
+
+        $this->container = $container;
+        $this->parameterHelper = $parameterHelper;
+        $this->mailer = $mailer;
+        $this->entityManager = $entityManager;
+        $this->userProvider = $userProvider;
+        $this->session = $session;
     }
 
     /** @BeforeScenario */
-    public function mockServices()
+    public function setUpServices()
     {
-        /* @var MailerInterface mailer */
-        $this->getContainer()->mock(MailerInterface::class, $this->mailer);
-        $this->getContainer()->mock(ParameterHelperInterface::class, $this->parameterHelper);
-
         $this->parameterHelper->setDemoMode(false);
     }
 
     /** @AfterScenario */
-    public function unmockServices()
+    public function tearDownServices()
     {
-        /* @var MailerInterface mailer */
-        $this->getContainer()->unmock(MailerInterface::class);
-        $this->getContainer()->unmock(ParameterHelperInterface::class);
-
         $this->mailer->clearEmails();
     }
 
     /** @BeforeScenario */
     public function purgeDatabase()
     {
-        /** @var EntityManager $entityManager */
-        $entityManager = $this->getContainer()->get('doctrine.orm.entity_manager');
-
-        $purger = new ORMPurger($entityManager);
+        $purger = new ORMPurger($this->entityManager);
         $purger->purge();
     }
 
@@ -83,6 +86,16 @@ class FeatureContext extends AbstractContext
     {
         $fs = new Filesystem();
         $fs->remove($this->getOrphanageDir());
+    }
+
+    public function getUserProvider()
+    {
+        return $this->userProvider;
+    }
+
+    public function getFirewallName()
+    {
+        return 'main';
     }
 
     /**
@@ -198,7 +211,7 @@ class FeatureContext extends AbstractContext
 
     protected function getConfigParameter($param)
     {
-        return $this->getContainer()->getParameter($param);
+        return $this->container->getParameter($param);
     }
 
     /**
@@ -347,10 +360,18 @@ class FeatureContext extends AbstractContext
     }
 
     /**
-     * @Given /^the demo mode is enabled$/
+     * @Given /^the demo mode is enabled/
      */
-    public function theDemoModeIsEnabled()
+    public function enableDemoMode()
     {
         $this->parameterHelper->setDemoMode(true);
+    }
+
+    /**
+     * @Then /^die$/
+     */
+    public function die()
+    {
+        die();
     }
 }

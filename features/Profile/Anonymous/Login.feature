@@ -15,7 +15,6 @@ Feature: Login
     Then I should be on "/dashboard"
     And I should see "Logout"
     And I should see "Welcome, user@example.com"
-
     And I should see the "/companies/new" link
 
   Scenario: I cannot login with empty email
@@ -41,15 +40,6 @@ Feature: Login
       | not-registered@example.com | irrelevant |
     And I press "Login"
     Then I should see "Invalid credentials"
-
-  Scenario: I cannot login with not activated email
-    Given there is an inactive user:
-      | email                      | password   |
-      | not-yet-active@example.com | irrelevant |
-    When I enter my credentials:
-      | email                      | password   |
-      | not-yet-active@example.com | irrelevant |
-    And I press "Login"
 
   Scenario: I cannot login with not activated email
     Given there is an inactive user:

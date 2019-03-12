@@ -14,4 +14,6 @@ twig:
         enable_demo_mode:            "%enable_demo_mode%"
         demo_credentials:     "%demo_credentials%"
     form_themes:
+        - 'bootstrap_3_layout.html.twig'
+        - 'forms.html.twig'
         - 'fields.html.twig'

@@ -1,56 +1,51 @@
 default:
     suites:
-        appbundle:
-            type: symfony_bundle
-            bundle: App
+        default:
             contexts:
-              - App\Features\Context\FeatureContext:
-                    userProvider: App\Security\UserProvider
-                    firewallName: main
+              - Features\App\FeatureContext:
+                  container: '@service_container'
+                  entityManager: '@Doctrine\ORM\EntityManagerInterface'
+                  parameterHelper: '@App\Helper\ParameterHelperInterface'
+                  mailer: '@App\Mailer\MailerInterface'
+                  userProvider: '@App\Security\UserProvider'
+                  session: '@Symfony\Component\HttpFoundation\Session\SessionInterface'
 
-              - App\Features\Context\AccountContext
-              - App\Features\Context\CityContext
-              - App\Features\Context\CompanyContext
-              - App\Features\Context\CountryContext
-              - App\Features\Context\CustomerContext
-              - App\Features\Context\DocumentContext
-              - App\Features\Context\DocumentTemplateContext
-              - App\Features\Context\InviteContext
-              - App\Features\Context\JsonContext
-              - App\Features\Context\MediumContext
-              - App\Features\Context\PageContext
-              - App\Features\Context\ParagraphTemplateContext
-              - App\Features\Context\PaymentTypeContext
-              - App\Features\Context\PettyCashContext
-              - App\Features\Context\ProductContext
-              - App\Features\Context\ProvinceContext
-              - App\Features\Context\RecurrenceContext
-              - App\Features\Context\ServiceContext
-              - App\Features\Context\TaxRateContext
-              - App\Features\Context\UserContext
-              - App\Features\Context\WorkingNoteContext
-              - App\Features\Context\ZipCodeContext
+#              - AccountContext
+#              - CityContext
+#              - CompanyContext
+#              - CountryContext
+#              - CustomerContext
+#              - DocumentContext
+#              - DocumentTemplateContext
+#              - InviteContext
+#              - JsonContext
+#              - MediumContext
+#              - PageContext
+#              - ParagraphTemplateContext
+#              - PaymentTypeContext
+#              - PettyCashContext
+#              - ProductContext
+#              - ProvinceContext
+#              - RecurrenceContext
+#              - ServiceContext
+#              - TaxRateContext
+              - Features\App\UserContext:
+                  passwordEncoder: '@App\Security\UserPasswordEncoder'
+
+#              - WorkingNoteContext
+#              - ZipCodeContext
 
     extensions:
         DMore\ChromeExtension\Behat\ServiceContainer\ChromeExtension: ~
-        Behat\Symfony2Extension: ~
+        Behat\Symfony2Extension:
+          kernel:
+            bootstrap: features/bootstrap.php
+            class: App\Kernel
         Behat\MinkExtension:
-#            base_url: http://invox.local/app_test.php
-            base_url: http://localhost:8000/app_test.php
-#            browser_name: chrome
+            base_url: http://localhost:8000
             sessions:
                 default:
                     symfony2: ~
                 javascript:
-#                    zombie:
-#                      node_modules_path: /Users/pietrino.atzeni/.nvm/versions/node/v9.3.0/lib/node_modules/
                   chrome:
                     api_url: http://localhost:9222
-
-#                    selenium2:
-#                      wd_host: "http://localhost:4444/wd/hub"
-
-#        Behat\TeamCityFormatter\TeamCityFormatterExtension: ~
-#    formatters:
-#        pretty: true
-

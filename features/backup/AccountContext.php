@@ -7,6 +7,8 @@
  * file that was distributed with this source code.
  *
  */
+namespace Features\App;
+
 
 use App\Entity\Account;
 use App\Entity\AccountType;

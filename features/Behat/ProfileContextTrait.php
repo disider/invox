@@ -8,11 +8,14 @@
  *
  */
 
+namespace Features\App;
+
 use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Driver\BrowserKitDriver;
 use Behat\Mink\Session;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 trait ProfileContextTrait
 {
@@ -45,11 +48,14 @@ trait ProfileContextTrait
 
             $session = $client->getContainer()->get('session');
 
-            $userProvider = $this->kernel->getContainer()->get($this->userProvider);
+            /** @var UserProviderInterface $userProvider */
+            $userProvider = $this->getUserProvider();
             $user = $userProvider->loadUserByUsername($email);
 
-            $token = new UsernamePasswordToken($user, null, $this->firewallName, $user->getRoles());
-            $session->set('_security_'.$this->firewallName, serialize($token));
+            $firewallName = $this->getFirewallName();
+
+            $token = new UsernamePasswordToken($user, null, $firewallName, $user->getRoles());
+            $session->set('_security_'.$firewallName, serialize($token));
             $session->save();
 
             $cookie = new Cookie($session->getName(), $session->getId());
@@ -74,4 +80,7 @@ trait ProfileContextTrait
         $this->fillField('_username', $values['email']);
         $this->fillField('_password', $values['password']);
     }
+
+    protected abstract function getUserProvider();
+    protected abstract function getFirewallName();
 }

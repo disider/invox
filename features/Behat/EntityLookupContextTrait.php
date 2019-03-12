@@ -8,6 +8,8 @@
  *
  */
 
+namespace Features\App;
+
 use App\Entity\Account;
 use App\Entity\City;
 use App\Entity\Company;
@@ -26,10 +28,10 @@ use App\Entity\Product;
 use App\Entity\Province;
 use App\Entity\Recurrence;
 use App\Entity\Service;
+use App\Entity\TaxRate;
 use App\Entity\User;
 use App\Entity\WorkingNote;
 use App\Entity\ZipCode;
-use App\Entity\TaxRate;
 use Diside\BehatExtension\Helper\EntityLookup;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
