@@ -26,4 +26,4 @@ Feature: Superadmin can add a country
   Scenario: I cannot add a country without name
     When I press "Save and close"
     Then I should be on "/countries/new"
-    And I should see a "Empty name" error
+    And I should see a "Empty code" error
