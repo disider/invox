@@ -24,21 +24,23 @@ class TextEditorType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'filebrowsers' => [
-                'ImageUpload',
-                'ImageBrowse',
-            ],
-            'config' => [
-                'filebrowserImageBrowseRoute' => 'media_browse',
-                'filebrowserImageBrowseRouteAbsolute' => false,
-                'filebrowserImageUploadRoute' => '_uploader_upload_medium',
-                'filebrowserImageUploadRouteAbsolute' => false,
-            ],
-            'attr' => [
-                'class' => 'form-control text-editor'
+        $resolver->setDefaults(
+            [
+                'filebrowsers' => [
+                    'ImageUpload',
+                    'ImageBrowse',
+                ],
+                'config' => [
+                    'filebrowserImageBrowseRoute' => 'media_browse',
+                    'filebrowserImageBrowseRouteAbsolute' => false,
+                    'filebrowserImageUploadRoute' => '_uploader_upload_medium',
+                    'filebrowserImageUploadRouteAbsolute' => false,
+                ],
+                'attr' => [
+                    'class' => 'form-control text-editor',
+                ],
             ]
-        ]);
+        );
     }
 
     public function getBlockPrefix()

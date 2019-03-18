@@ -121,7 +121,7 @@ class DocumentRepository extends ProtocolRepository
         $qb = $this->createQueryBuilder('document')
             ->where('(document.ref LIKE :term OR document.customerName LIKE :term OR document.title LIKE :term)')
             ->andWhere('document.company = :company')
-            ->setParameter('term', '%' . $term . '%')
+            ->setParameter('term', '%'.$term.'%')
             ->setParameter('company', $company);
 
         $qb = $this->applyFilters($qb, $filters);
@@ -134,7 +134,7 @@ class DocumentRepository extends ProtocolRepository
     /** @return QueryBuilder */
     protected function filterByYear(QueryBuilder $qb, $alias, $year)
     {
-        return $qb->andWhere($alias . '.year = :year')
+        return $qb->andWhere($alias.'.year = :year')
             ->setParameter('year', $year);
     }
 
@@ -163,7 +163,7 @@ class DocumentRepository extends ProtocolRepository
 
         $alias = $this->getRootAlias();
         $qb
-            ->andWhere($alias . '.type = :type')
+            ->andWhere($alias.'.type = :type')
             ->setParameter('type', $type);
 
         return $qb;
@@ -173,7 +173,7 @@ class DocumentRepository extends ProtocolRepository
     {
         $alias = $this->getRootAlias();
         $qb
-            ->andWhere($alias . '.status = :status')
+            ->andWhere($alias.'.status = :status')
             ->setParameter('status', $status);
 
         return $qb;
@@ -183,7 +183,7 @@ class DocumentRepository extends ProtocolRepository
     {
         $alias = $this->getRootAlias();
         $qb
-            ->andWhere($alias . '.direction = :direction')
+            ->andWhere($alias.'.direction = :direction')
             ->setParameter('direction', $direction);
 
         return $qb;

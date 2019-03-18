@@ -20,13 +20,17 @@ class AttachmentForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('id', HiddenType::class);
-        $builder->add('deleteAttachment', CheckboxType::class, [
-            'property_path' => 'deleted',
-            'label' => false,
-            'attr' => [
-                'title' => 'actions.delete_attachment'
-            ],
-        ]);
+        $builder->add(
+            'deleteAttachment',
+            CheckboxType::class,
+            [
+                'property_path' => 'deleted',
+                'label' => false,
+                'attr' => [
+                    'title' => 'actions.delete_attachment',
+                ],
+            ]
+        );
     }
 
     public function getBlockPrefix()

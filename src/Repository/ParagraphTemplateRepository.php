@@ -57,6 +57,7 @@ class ParagraphTemplateRepository extends AbstractRepository
         $qb->leftJoin('company.salesAgents', 'salesAgents')
             ->orWhere('salesAgents = :salesAgent')
             ->setParameter('salesAgent', $salesAgent->getId());;
+
         return $qb;
     }
 

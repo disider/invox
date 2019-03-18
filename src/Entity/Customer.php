@@ -125,8 +125,19 @@ class Customer extends AttachmentContainer
      */
     private $documents;
 
-    public static function create(Company $company, $name, $email, $vatNumber, $fiscalCode, Country $country, $province, $city, $zipCode, $address, $addressNotes)
-    {
+    public static function create(
+        Company $company,
+        $name,
+        $email,
+        $vatNumber,
+        $fiscalCode,
+        Country $country,
+        $province,
+        $city,
+        $zipCode,
+        $address,
+        $addressNotes
+    ) {
         $entity = new self();
 
         $entity->name = $name;
@@ -341,27 +352,33 @@ class Customer extends AttachmentContainer
 
     public function isProspect()
     {
-        $documents = $this->documents->filter(function (Document $document) {
-            return $document->is(DocumentType::QUOTE);
-        });
+        $documents = $this->documents->filter(
+            function (Document $document) {
+                return $document->is(DocumentType::QUOTE);
+            }
+        );
 
         return count($documents) > 0;
     }
 
     public function isCustomer()
     {
-        $documents = $this->documents->filter(function (Document $document) {
-            return $document->isOutgoing();
-        });
+        $documents = $this->documents->filter(
+            function (Document $document) {
+                return $document->isOutgoing();
+            }
+        );
 
         return count($documents) > 0;
     }
 
     public function isSupplier()
     {
-        $documents = $this->documents->filter(function (Document $document) {
-            return $document->isIncoming();
-        });
+        $documents = $this->documents->filter(
+            function (Document $document) {
+                return $document->isIncoming();
+            }
+        );
 
         return count($documents) > 0;
     }
@@ -381,7 +398,7 @@ class Customer extends AttachmentContainer
 
     public function getAttachmentsUploadDir()
     {
-        return $this->getUploadDir() . sprintf('/customers/%s/attachments', $this->getId());
+        return $this->getUploadDir().sprintf('/customers/%s/attachments', $this->getId());
     }
 
     protected function buildAttachment()

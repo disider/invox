@@ -17,8 +17,11 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 class RecurrenceFormProcessor extends DefaultFormProcessor
 {
-    public function __construct(RecurrenceRepository $repository, FormFactoryInterface $formFactory, TokenStorageInterface $tokenStorage)
-    {
+    public function __construct(
+        RecurrenceRepository $repository,
+        FormFactoryInterface $formFactory,
+        TokenStorageInterface $tokenStorage
+    ) {
         parent::__construct(RecurrenceForm::class, $repository, $formFactory, $tokenStorage);
     }
 }

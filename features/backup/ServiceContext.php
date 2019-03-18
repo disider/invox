@@ -8,11 +8,13 @@
  *
  */
 
+namespace Features\App;
+
 use App\Entity\Service;
 use App\Entity\ServiceAttachment;
 use Behat\Gherkin\Node\TableNode;
 
-class ServiceContext extends BaseMinkContext
+class ServiceContext extends AbstractMinkContext
 {
     /**
      * @Given /^there is a service:$/

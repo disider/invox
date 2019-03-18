@@ -23,39 +23,63 @@ class WarehouseRecordForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('loadQuantity', LocalizedNumberType::class, [
-            'label' => 'fields.load_quantity',
-            'invalid_message' => 'error.invalid_quantity',
-        ]);
-        $builder->add('unloadQuantity', LocalizedNumberType::class, [
-            'label' => 'fields.unload_quantity',
-            'invalid_message' => 'error.invalid_quantity',
-        ]);
-        $builder->add('purchasePrice', LocalizedNumberType::class, [
-            'label' => 'fields.purchase_price',
-            'invalid_message' => 'error.invalid_price',
-        ]);
-        $builder->add('sellPrice', LocalizedNumberType::class, [
-            'label' => 'fields.sell_price',
-            'invalid_message' => 'error.invalid_price',
-        ]);
-        $builder->add('date', DateType::class, [
-            'label' => 'fields.date',
-            'widget' => 'single_text',
-            'format' => 'dd/MM/yyyy',
-            'attr' => [
-                'class' => 'datepicker'
+        $builder->add(
+            'loadQuantity',
+            LocalizedNumberType::class,
+            [
+                'label' => 'fields.load_quantity',
+                'invalid_message' => 'error.invalid_quantity',
             ]
-        ]);
+        );
+        $builder->add(
+            'unloadQuantity',
+            LocalizedNumberType::class,
+            [
+                'label' => 'fields.unload_quantity',
+                'invalid_message' => 'error.invalid_quantity',
+            ]
+        );
+        $builder->add(
+            'purchasePrice',
+            LocalizedNumberType::class,
+            [
+                'label' => 'fields.purchase_price',
+                'invalid_message' => 'error.invalid_price',
+            ]
+        );
+        $builder->add(
+            'sellPrice',
+            LocalizedNumberType::class,
+            [
+                'label' => 'fields.sell_price',
+                'invalid_message' => 'error.invalid_price',
+            ]
+        );
+        $builder->add(
+            'date',
+            DateType::class,
+            [
+                'label' => 'fields.date',
+                'widget' => 'single_text',
+                'format' => 'dd/MM/yyyy',
+                'attr' => [
+                    'class' => 'datepicker',
+                ],
+            ]
+        );
         $builder->add('description', TextType::class, ['label' => 'fields.sell_price']);
 
-        $builder->add('add', SubmitType::class, [
-            'label' => false,
-            'attr' => [
-                'icon' => 'plus',
-                'title' => 'actions.add'
+        $builder->add(
+            'add',
+            SubmitType::class,
+            [
+                'label' => false,
+                'attr' => [
+                    'icon' => 'plus',
+                    'title' => 'actions.add',
+                ],
             ]
-        ]);
+        );
     }
 
     public function getBlockPrefix()
@@ -65,9 +89,11 @@ class WarehouseRecordForm extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => WarehouseRecord::class,
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => WarehouseRecord::class,
+            ]
+        );
     }
 
 }

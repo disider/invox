@@ -7,14 +7,14 @@
  * file that was distributed with this source code.
  *
  */
-namespace Features\App;
 
+namespace Features\App;
 
 use App\Entity\Account;
 use App\Entity\AccountType;
 use Behat\Gherkin\Node\TableNode;
 
-class AccountContext extends BaseMinkContext
+class AccountContext extends AbstractMinkContext
 {
     /**
      * @Given /^there is an account:$/

@@ -60,9 +60,11 @@ class FormAuthenticationListener implements EventSubscriberInterface
             $event->getForm()->addError(new FormError($this->formatError($error)));
         }
 
-        $event->setData([
-            '_username' => $this->session->get(Security::LAST_USERNAME),
-        ]);
+        $event->setData(
+            [
+                '_username' => $this->session->get(Security::LAST_USERNAME),
+            ]
+        );
     }
 
     /**
@@ -83,9 +85,12 @@ class FormAuthenticationListener implements EventSubscriberInterface
         if ($error instanceof DisabledException) {
             $email = $error->getUser()->getUsername();
 
-            $route = $this->generateRoute('register_resend_confirmation', [
-                'email' => $email
-            ]);
+            $route = $this->generateRoute(
+                'register_resend_confirmation',
+                [
+                    'email' => $email,
+                ]
+            );
 
             return $this->translate('error.inactive_user', ['%url%' => $route], 'validators');
         }

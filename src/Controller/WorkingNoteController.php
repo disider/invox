@@ -152,7 +152,8 @@ class WorkingNoteController extends BaseController
                     'header' => $header,
                     'content' => $content,
                     'footer' => $footer,
-                    'showAsHtml' => $showAsHtml];
+                    'showAsHtml' => $showAsHtml,
+                ];
 
                 return $this->render('working_note/render.html.twig', $params);
             } catch (\Exception $exc) {
@@ -167,17 +168,19 @@ class WorkingNoteController extends BaseController
             'header-spacing' => 2,
         ];
 
-        return new Response($pdf->getOutputFromHtml($this->renderPdfLayout($content), $options), 200, [
+        return new Response(
+            $pdf->getOutputFromHtml($this->renderPdfLayout($content), $options), 200, [
             'Content-Type' => 'application/pdf',
             'Content-Disposition' => $mode,
-        ]);
+        ]
+        );
     }
 
     private function renderPartialView($partial, $options = [])
     {
         $options['company'] = $this->getCurrentCompany();
 
-        return $this->renderView('working_note/_pdf_' . $partial . '.html.twig', $options);
+        return $this->renderView('working_note/_pdf_'.$partial.'.html.twig', $options);
     }
 
     private function formatFileName(WorkingNote $workingNote)
@@ -188,21 +191,29 @@ class WorkingNoteController extends BaseController
     private function renderPdfLayout($content)
     {
         return $this->renderView(
-            'working_note/pdf_layout.html.twig', [
-                'content' => $content
+            'working_note/pdf_layout.html.twig',
+            [
+                'content' => $content,
             ]
         );
     }
 
-    protected function processForm(Request $request, WorkingNoteFormProcessor $processor, WorkingNote $workingNote = null)
-    {
+    protected function processForm(
+        Request $request,
+        WorkingNoteFormProcessor $processor,
+        WorkingNote $workingNote = null
+    ) {
         $processor->process($request, $workingNote);
 
         if ($processor->isValid()) {
-            $this->addFlash('success', $processor->isNew() ? 'flash.working_note.created' : 'flash.working_note.updated');
+            $this->addFlash(
+                'success',
+                $processor->isNew() ? 'flash.working_note.created' : 'flash.working_note.updated'
+            );
 
-            if ($processor->isRedirectingTo(WorkingNoteFormProcessor::REDIRECT_TO_LIST))
+            if ($processor->isRedirectingTo(WorkingNoteFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('working_notes');
+            }
 
             return $this->redirectToRoute('working_note_edit', ['id' => $processor->getData()->getId()]);
         }
@@ -210,7 +221,7 @@ class WorkingNoteController extends BaseController
         $form = $processor->getForm();
 
         return [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ];
     }
 

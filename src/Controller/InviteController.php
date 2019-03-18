@@ -67,9 +67,12 @@ class InviteController extends BaseController
     {
         $this->delete($invite);
 
-        return $this->redirectToRoute('company_accountant', [
-            'id' => $invite->getCompany()->getId()
-        ]);
+        return $this->redirectToRoute(
+            'company_accountant',
+            [
+                'id' => $invite->getCompany()->getId(),
+            ]
+        );
     }
 
     /**

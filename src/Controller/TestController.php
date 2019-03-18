@@ -36,7 +36,7 @@ class TestController extends BaseController
         return [
             'subject' => $mailer->getSubject(),
             'txt' => $mailer->getTxt(),
-            'html' => $mailer->getHtml()
+            'html' => $mailer->getHtml(),
         ];
     }
 
@@ -53,7 +53,7 @@ class TestController extends BaseController
         return [
             'subject' => $mailer->getSubject(),
             'txt' => $mailer->getTxt(),
-            'html' => $mailer->getHtml()
+            'html' => $mailer->getHtml(),
         ];
     }
 
@@ -71,7 +71,7 @@ class TestController extends BaseController
         return [
             'subject' => $mailer->getSubject(),
             'txt' => $mailer->getTxt(),
-            'html' => $mailer->getHtml()
+            'html' => $mailer->getHtml(),
         ];
     }
 
@@ -92,7 +92,7 @@ class TestController extends BaseController
         return [
             'subject' => $mailer->getSubject(),
             'txt' => $mailer->getTxt(),
-            'html' => $mailer->getHtml()
+            'html' => $mailer->getHtml(),
         ];
     }
 

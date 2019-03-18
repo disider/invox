@@ -22,18 +22,22 @@ class RecurrenceVoter extends Voter
 
     protected function supports($attribute, $subject)
     {
-        return $subject instanceof Recurrence && in_array($attribute, [
-                self::RECURRENCE_DELETE,
-                self::RECURRENCE_EDIT,
-            ]);
+        return $subject instanceof Recurrence && in_array(
+                $attribute,
+                [
+                    self::RECURRENCE_DELETE,
+                    self::RECURRENCE_EDIT,
+                ]
+            );
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
         $user = $token->getUser();
 
-        if (!$user instanceof User)
+        if (!$user instanceof User) {
             return false;
+        }
 
         return $user->canManageRecurrence($subject);
     }

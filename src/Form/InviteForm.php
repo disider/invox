@@ -21,9 +21,13 @@ class InviteForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('email', EmailType::class, [
-            'label' => 'fields.email',
-        ]);
+        $builder->add(
+            'email',
+            EmailType::class,
+            [
+                'label' => 'fields.email',
+            ]
+        );
 
         $builder->add('invite', SubmitType::class, ['label' => 'fields.invite']);
     }
@@ -35,8 +39,10 @@ class InviteForm extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => Invite::class,
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => Invite::class,
+            ]
+        );
     }
 }

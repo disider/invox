@@ -110,15 +110,21 @@ class MediumController extends BaseController
         $processor->process($request, $medium);
 
         if ($processor->isValid()) {
-            $this->addFlash('success', $processor->isNew() ? 'flash.medium.created' : 'flash.medium.updated',
-                ['%medium%' => $processor->getData()]);
+            $this->addFlash(
+                'success',
+                $processor->isNew() ? 'flash.medium.created' : 'flash.medium.updated',
+                ['%medium%' => $processor->getData()]
+            );
 
             if ($processor->isRedirectingTo(MediumFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('media');
             }
 
-            return $this->redirectToRoute('medium_edit', [
-                    'id' => $processor->getData()->getId(),]
+            return $this->redirectToRoute(
+                'medium_edit',
+                [
+                    'id' => $processor->getData()->getId(),
+                ]
             );
         }
 

@@ -8,12 +8,14 @@
  *
  */
 
+namespace Features\App;
+
 use App\Entity\Company;
 use App\Entity\Customer;
 use App\Entity\Recurrence;
 use Behat\Gherkin\Node\TableNode;
 
-class RecurrenceContext extends BaseMinkContext
+class RecurrenceContext extends AbstractMinkContext
 {
     /**
      * @Given /^there is a recurrence:$/

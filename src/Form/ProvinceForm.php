@@ -45,9 +45,11 @@ class ProvinceForm extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => Province::class,
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => Province::class,
+            ]
+        );
     }
 
 }

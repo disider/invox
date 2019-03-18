@@ -82,16 +82,24 @@ class CountryController extends BaseController
         $processor->process($request, $country);
 
         if ($processor->isValid()) {
-            $this->addFlash('success', $processor->isNew() ? 'flash.country.created' : 'flash.country.updated',
-                ['%country%' => $processor->getData()]);
+            $this->addFlash(
+                'success',
+                $processor->isNew() ? 'flash.country.created' : 'flash.country.updated',
+                ['%country%' => $processor->getData()]
+            );
 
             if ($processor->isRedirectingTo(CountryFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('countries');
             }
 
-            return $this->redirect($this->generateUrl('country_edit', [
-                    'id' => $processor->getData()->getId(),]
-            ));
+            return $this->redirect(
+                $this->generateUrl(
+                    'country_edit',
+                    [
+                        'id' => $processor->getData()->getId(),
+                    ]
+                )
+            );
         }
 
         $form = $processor->getForm();

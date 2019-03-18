@@ -22,18 +22,22 @@ class DocumentTemplateVoter extends Voter
 
     protected function supports($attribute, $subject)
     {
-        return $subject instanceof DocumentTemplate && in_array($attribute, [
-                self::DOCUMENT_TEMPLATE_PREVIEW,
-                self::DOCUMENT_TEMPLATE_RESTORE,
-            ]);
+        return $subject instanceof DocumentTemplate && in_array(
+                $attribute,
+                [
+                    self::DOCUMENT_TEMPLATE_PREVIEW,
+                    self::DOCUMENT_TEMPLATE_RESTORE,
+                ]
+            );
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
         $user = $token->getUser();
 
-        if (!$user instanceof User)
+        if (!$user instanceof User) {
             return false;
+        }
 
         /** @var User $user */
         switch ($attribute) {

@@ -8,11 +8,13 @@
  *
  */
 
+namespace Features\App;
+
 use App\Entity\Customer;
 use App\Entity\CustomerAttachment;
 use Behat\Gherkin\Node\TableNode;
 
-class CustomerContext extends BaseMinkContext
+class CustomerContext extends AbstractMinkContext
 {
     /**
      * @Given /^there is a customer:$/

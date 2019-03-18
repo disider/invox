@@ -85,16 +85,22 @@ class PageController extends BaseController
         $processor->process($request, $page);
 
         if ($processor->isValid()) {
-            $this->addFlash('success', $processor->isNew() ? 'flash.page.created' : 'flash.page.updated',
-                ['%page%' => $processor->getData()]);
+            $this->addFlash(
+                'success',
+                $processor->isNew() ? 'flash.page.created' : 'flash.page.updated',
+                ['%page%' => $processor->getData()]
+            );
 
             if ($processor->isRedirectingTo(PageFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('pages');
             }
 
-            return $this->redirectToRoute('page_edit', [
-                'id' => $processor->getData()->getId(),
-            ]);
+            return $this->redirectToRoute(
+                'page_edit',
+                [
+                    'id' => $processor->getData()->getId(),
+                ]
+            );
         }
 
         $form = $processor->getForm();

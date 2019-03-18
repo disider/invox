@@ -11,7 +11,7 @@
 namespace App\DataFixtures\ORM\Processor;
 
 use App\Entity\Attachable;
-use Nelmio\Alice\ProcessorInterface;
+use Fidry\AliceDataFixtures\ProcessorInterface;
 use Symfony\Component\Filesystem\Filesystem;
 
 class AttachableProcessor implements ProcessorInterface
@@ -20,19 +20,19 @@ class AttachableProcessor implements ProcessorInterface
     /**
      * {@inheritdoc}
      */
-    public function preProcess($object)
+    public function preProcess(string $id, $object): void
     {
         if (!($object instanceof Attachable)) {
             return;
         }
 
         $fileUrl = $object->getFileUrl();
-        $originalPath = __DIR__ . '/../../../../../../attachments/uploads/';
+        $originalPath = __DIR__.'/../../../../../../attachments/uploads/';
         $pos = strrpos($fileUrl, '/');
 
         try {
             if ($pos) {
-                $source = $originalPath . $fileUrl;
+                $source = $originalPath.$fileUrl;
                 $fileUrl = substr($fileUrl, $pos + 1);
 
                 if (!is_file($source)) {
@@ -42,7 +42,7 @@ class AttachableProcessor implements ProcessorInterface
                 $object->setFileUrl($fileUrl);
 
                 $fs = new Filesystem();
-                $destination = $object->getUploadRootDir() . '/' . $fileUrl;
+                $destination = $object->getUploadRootDir().'/'.$fileUrl;
                 $fs->copy($source, $destination);
             }
         } catch (\Exception $e) {
@@ -53,7 +53,7 @@ class AttachableProcessor implements ProcessorInterface
     /**
      * {@inheritdoc}
      */
-    public function postProcess($object)
+    public function postProcess(string $id, $object): void
     {
     }
 }

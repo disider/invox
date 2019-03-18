@@ -24,7 +24,7 @@ class ButtonTypeExtension extends AbstractTypeExtension
     public static function getExtendedTypes()
     {
         return [
-            ButtonType::class
+            ButtonType::class,
         ];
     }
 }

@@ -39,8 +39,13 @@ class WorkingNoteFormProcessor2 extends AbstractFormProcessor
      */
     private $availableLocales;
 
-    public function __construct(DocumentRepository $inviteRepository, CustomerRepository $customerRepository, FormFactoryInterface $formFactory, TokenStorageInterface $tokenStorage, array $availableLocales)
-    {
+    public function __construct(
+        DocumentRepository $inviteRepository,
+        CustomerRepository $customerRepository,
+        FormFactoryInterface $formFactory,
+        TokenStorageInterface $tokenStorage,
+        array $availableLocales
+    ) {
         parent::__construct($formFactory, $tokenStorage);
 
         $this->workingNoteRepository = $inviteRepository;
@@ -81,9 +86,11 @@ class WorkingNoteFormProcessor2 extends AbstractFormProcessor
                     $this->workingNoteRepository->save($this->document);
 
                     $this->evaluateRedirect();
-                } else if ($this->isButtonClicked('linkCustomer')) {
-                    $this->document = $form->getData();
-                    $this->document->copyCustomerDetails();
+                } else {
+                    if ($this->isButtonClicked('linkCustomer')) {
+                        $this->document = $form->getData();
+                        $this->document->copyCustomerDetails();
+                    }
                 }
             }
         }

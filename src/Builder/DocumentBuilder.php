@@ -34,7 +34,7 @@ class DocumentBuilder
         $template = $document->getDocumentTemplate();
         $company = $document->getCompany();
 
-        $method = 'get' . ucfirst($section);
+        $method = 'get'.ucfirst($section);
 //
 //        $file = $section . '.twig.html';
 //        $dir = sprintf('%s/companies/%d/templates/%d', $this->cacheDir, $company->getId(), $template->getId());
@@ -49,8 +49,10 @@ class DocumentBuilder
             $this->environment->disableAutoReload();
         }
 
-        return $content->render([
-            'document' => $document
-        ]);
+        return $content->render(
+            [
+                'document' => $document,
+            ]
+        );
     }
 }

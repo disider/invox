@@ -46,9 +46,11 @@ class ChangePasswordForm extends BaseForm
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefaults([
-            'validation_groups' => ['change_password'],
-        ]);
+        $resolver->setDefaults(
+            [
+                'validation_groups' => ['change_password'],
+            ]
+        );
     }
 
     public function getBlockPrefix()

@@ -17,8 +17,11 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 class CompanyFormProcessor extends DefaultAuthenticatedFormProcessor
 {
-    public function __construct(CompanyRepository $repository, FormFactoryInterface $formFactory, TokenStorageInterface $tokenStorage)
-    {
+    public function __construct(
+        CompanyRepository $repository,
+        FormFactoryInterface $formFactory,
+        TokenStorageInterface $tokenStorage
+    ) {
         parent::__construct(CompanyForm::class, $repository, $formFactory, $tokenStorage);
     }
 }

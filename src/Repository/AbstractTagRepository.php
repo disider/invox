@@ -19,13 +19,13 @@ abstract class AbstractTagRepository extends AbstractRepository
         $alias = $this->getRootAlias();
 
         $qb = $this->createQueryBuilder($alias)
-            ->leftJoin($alias . '.taggable', 'taggable')
-            ->where($alias . '.name LIKE :term')
+            ->leftJoin($alias.'.taggable', 'taggable')
+            ->where($alias.'.name LIKE :term')
             ->andWhere('taggable.company = :company')
-            ->setParameter('term', '%' . $term . '%')
+            ->setParameter('term', '%'.$term.'%')
             ->setParameter('company', $company)
             ->distinct()
-            ->groupBy($alias . '.name');
+            ->groupBy($alias.'.name');
 
         return $qb
             ->getQuery()

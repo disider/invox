@@ -154,6 +154,9 @@
     "egulias/email-validator": {
         "version": "2.1.7"
     },
+    "escapestudios/symfony2-coding-standard": {
+        "version": "3.x-dev"
+    },
     "excelwebzone/recaptcha-bundle": {
         "version": "v1.5.13"
     },
@@ -556,6 +559,18 @@
     },
     "sonata-project/exporter": {
         "version": "2.0.1"
+    },
+    "squizlabs/php_codesniffer": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "0dc9cceda799fd3a08b96987e176a261028a3709"
+        },
+        "files": [
+            "phpcs.xml.dist"
+        ]
     },
     "swiftmailer/swiftmailer": {
         "version": "v6.1.3"

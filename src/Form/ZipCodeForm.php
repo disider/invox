@@ -25,11 +25,15 @@ class ZipCodeForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('code', TextType::class, ['label' => 'fields.code']);
-        $builder->add('city', EntityType::class, [
-            'label' => 'fields.city',
-            'class' => City::class,
-            'placeholder' => '',
-        ]);
+        $builder->add(
+            'city',
+            EntityType::class,
+            [
+                'label' => 'fields.city',
+                'class' => City::class,
+                'placeholder' => '',
+            ]
+        );
 
         $builder->add('save', SubmitType::class, ['label' => 'actions.save']);
         $builder->add(
@@ -49,9 +53,11 @@ class ZipCodeForm extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => ZipCode::class,
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => ZipCode::class,
+            ]
+        );
     }
 
 }

@@ -30,7 +30,10 @@ class SecurityController extends BaseController
 
         $targetPath = $request->headers->get('referer');
 
-        $form = $this->createForm(LoginForm::class, null, [
+        $form = $this->createForm(
+            LoginForm::class,
+            null,
+            [
                 'target_path' => $targetPath,
                 'authentication_listener' => $listener,
             ]

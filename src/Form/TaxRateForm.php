@@ -27,20 +27,24 @@ class TaxRateForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('amount', LocalizedNumberType::class, ['label' => 'fields.amount']);
-        $builder->add('translations', TranslationsType::class, [
-            'label' => false,
-            'fields' => [
-                'name' => [
-                    'field_type' => TextType::class,
-                    'label' => 'fields.name',
-                ],
-                'description' => [
-                    'field_type' => TextareaType::class,
-                    'label' => 'fields.description',
-                    'required' => false,
+        $builder->add(
+            'translations',
+            TranslationsType::class,
+            [
+                'label' => false,
+                'fields' => [
+                    'name' => [
+                        'field_type' => TextType::class,
+                        'label' => 'fields.name',
+                    ],
+                    'description' => [
+                        'field_type' => TextareaType::class,
+                        'label' => 'fields.description',
+                        'required' => false,
+                    ],
                 ],
             ]
-        ]);
+        );
 
         $builder->add('save', SubmitType::class, ['label' => 'actions.save']);
         $builder->add(
@@ -60,10 +64,12 @@ class TaxRateForm extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => TaxRate::class,
-            'constraints' => new Valid(),
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => TaxRate::class,
+                'constraints' => new Valid(),
+            ]
+        );
     }
 
 }

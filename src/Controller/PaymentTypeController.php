@@ -86,16 +86,22 @@ class PaymentTypeController extends BaseController
         $processor->process($request, $paymentType);
 
         if ($processor->isValid()) {
-            $this->addFlash('success', $processor->isNew() ? 'flash.payment_type.created' : 'flash.payment_type.updated',
-                ['%payment_type%' => $processor->getData()]);
+            $this->addFlash(
+                'success',
+                $processor->isNew() ? 'flash.payment_type.created' : 'flash.payment_type.updated',
+                ['%payment_type%' => $processor->getData()]
+            );
 
             if ($processor->isRedirectingTo(PaymentTypeFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('payment_types');
             }
 
-            return $this->redirectToRoute('payment_type_edit', [
-                'id' => $processor->getData()->getId(),
-            ]);
+            return $this->redirectToRoute(
+                'payment_type_edit',
+                [
+                    'id' => $processor->getData()->getId(),
+                ]
+            );
         }
 
         $form = $processor->getForm();

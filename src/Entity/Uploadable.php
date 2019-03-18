@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 abstract class Uploadable
 {
-    const UPLOAD_ROOT_DIR = __DIR__ . '/../../../web/';
+    const UPLOAD_ROOT_DIR = __DIR__.'/../../../web/';
 
     /**
      * @Assert\Valid
@@ -62,7 +62,7 @@ abstract class Uploadable
             $attachment = $this->buildAttachment();
             $attachment->setFile($this->file);
             $attachment->setFileName($this->file->getClientOriginalName());
-            $attachment->setFileUrl($filename . '.' . $this->file->guessExtension());
+            $attachment->setFileUrl($filename.'.'.$this->file->guessExtension());
 
             $this->addAttachment($attachment);
         }
@@ -94,12 +94,12 @@ abstract class Uploadable
 
     public function getAttachmentsUploadRootDir()
     {
-        return self::UPLOAD_ROOT_DIR . $this->getAttachmentsUploadDir();
+        return self::UPLOAD_ROOT_DIR.$this->getAttachmentsUploadDir();
     }
 
     public function getUploadRootDir()
     {
-        return self::UPLOAD_ROOT_DIR . $this->getUploadDir();
+        return self::UPLOAD_ROOT_DIR.$this->getUploadDir();
     }
 
 }

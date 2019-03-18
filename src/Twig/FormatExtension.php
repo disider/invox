@@ -37,26 +37,40 @@ class FormatExtension extends \Twig_Extension
             new \Twig_SimpleFunction('decimalPosition', [$this, 'getDecimalPosition']),
             new \Twig_SimpleFunction('decimalPoint', [$this, 'getDecimalPoint']),
             new \Twig_SimpleFunction('thousandSeparator', [$this, 'getThousandSeparator']),
-            new \Twig_SimpleFunction('filter_start', null, ['node_class' => 'Symfony\Bridge\Twig\Node\RenderBlockNode', 'is_safe' => ['html']]),
-            new \Twig_SimpleFunction('filter_end', null, ['node_class' => 'Symfony\Bridge\Twig\Node\RenderBlockNode', 'is_safe' => ['html']]),
+            new \Twig_SimpleFunction(
+                'filter_start',
+                null,
+                ['node_class' => 'Symfony\Bridge\Twig\Node\RenderBlockNode', 'is_safe' => ['html']]
+            ),
+            new \Twig_SimpleFunction(
+                'filter_end',
+                null,
+                ['node_class' => 'Symfony\Bridge\Twig\Node\RenderBlockNode', 'is_safe' => ['html']]
+            ),
         ];
     }
 
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('format_currency', [$this, 'formatCurrency'], [
+            new \Twig_SimpleFilter(
+                'format_currency', [$this, 'formatCurrency'], [
                 'pre_escape' => 'html',
                 'is_safe' => ['html'],
-            ]),
-            new \Twig_SimpleFilter('format_number', [$this, 'formatNumber'], [
+            ]
+            ),
+            new \Twig_SimpleFilter(
+                'format_number', [$this, 'formatNumber'], [
                 'pre_escape' => 'html',
                 'is_safe' => ['html'],
-            ]),
-            new \Twig_SimpleFilter('format_tax_rate', [$this, 'formatTaxRate'], [
+            ]
+            ),
+            new \Twig_SimpleFilter(
+                'format_tax_rate', [$this, 'formatTaxRate'], [
                 'pre_escape' => 'html',
                 'is_safe' => ['html'],
-            ]),
+            ]
+            ),
             new \Twig_SimpleFilter('format_sort', [$this, 'formatSort']),
         ];
     }
@@ -64,7 +78,7 @@ class FormatExtension extends \Twig_Extension
     public function formatSort(SlidingPagination $pagination, $key, $class = '')
     {
         if ($pagination->isSorted($key)) {
-            return !empty($class) ? $class . ' sorted' : 'sorted';
+            return !empty($class) ? $class.' sorted' : 'sorted';
         }
 
         return $class;
@@ -72,12 +86,12 @@ class FormatExtension extends \Twig_Extension
 
     public function formatCurrency($number, $decimal = null, $decimalPoint = null, $thousandSep = null)
     {
-        return $this->getCurrency() . '&nbsp;' . $this->formatNumber((float)$number, $decimal, $decimalPoint, $thousandSep);
+        return $this->getCurrency().'&nbsp;'.$this->formatNumber((float)$number, $decimal, $decimalPoint, $thousandSep);
     }
 
     public function formatTaxRate($number, $decimal = null, $decimalPoint = null, $thousandSep = null)
     {
-        return $this->formatNumber((float)$number, $decimal, $decimalPoint, $thousandSep) . '%';
+        return $this->formatNumber((float)$number, $decimal, $decimalPoint, $thousandSep).'%';
     }
 
     public function formatNumber($number, $decimal = null, $decimalPoint = null, $thousandSep = null)

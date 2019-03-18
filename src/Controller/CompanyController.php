@@ -148,9 +148,13 @@ class CompanyController extends BaseController
     {
         if ($request->getMethod() == 'POST' && $this->isInDemoMode()) {
             $this->addFlash('danger', 'demo.action_not_allowed');
-            return $this->redirectToRoute('company_accountant', [
-                'id' => $company->getId(),
-            ]);
+
+            return $this->redirectToRoute(
+                'company_accountant',
+                [
+                    'id' => $company->getId(),
+                ]
+            );
         }
 
         return $this->processInviteForm($request, $processor, $company);
@@ -164,17 +168,22 @@ class CompanyController extends BaseController
     {
         if (!$company->hasAccountant()) {
             $this->addFlash('danger', 'flash.company.accountant_not_connected');
-        } else if ($this->isInDemoMode()) {
-            $this->addFlash('danger', 'demo.action_not_allowed');
         } else {
-            $company->setAccountant(null);
-            $this->save($company);
-            $this->addFlash('success', 'flash.company.accountant_disconnected');
+            if ($this->isInDemoMode()) {
+                $this->addFlash('danger', 'demo.action_not_allowed');
+            } else {
+                $company->setAccountant(null);
+                $this->save($company);
+                $this->addFlash('success', 'flash.company.accountant_disconnected');
+            }
         }
 
-        return $this->redirectToRoute('company_accountant', [
-            'id' => $company->getId(),
-        ]);
+        return $this->redirectToRoute(
+            'company_accountant',
+            [
+                'id' => $company->getId(),
+            ]
+        );
     }
 
     private function processForm(Request $request, CompanyFormProcessor $processor, Company $company)
@@ -182,8 +191,11 @@ class CompanyController extends BaseController
         $processor->process($request, $company);
 
         if ($processor->isValid()) {
-            $this->addFlash('success', $processor->isNew() ? 'flash.company.created' : 'flash.company.updated',
-                ['%company%' => $processor->getData()]);
+            $this->addFlash(
+                'success',
+                $processor->isNew() ? 'flash.company.created' : 'flash.company.updated',
+                ['%company%' => $processor->getData()]
+            );
 
             if ($processor->isRedirectingTo(CompanyFormProcessor::REDIRECT_TO_LIST)) {
                 $user = $this->getUser();
@@ -195,9 +207,12 @@ class CompanyController extends BaseController
                 return $this->redirectToRoute('dashboard');
             }
 
-            return $this->redirectToRoute('company_edit', [
-                'id' => $processor->getData()->getId()
-            ]);
+            return $this->redirectToRoute(
+                'company_edit',
+                [
+                    'id' => $processor->getData()->getId(),
+                ]
+            );
         }
 
         $form = $processor->getForm();
@@ -218,19 +233,26 @@ class CompanyController extends BaseController
             if ($processor->hasSentInvite()) {
                 $this->addFlash('success', 'flash.company.accountant_invited', ['%accountant%' => $invite->getEmail()]);
             } else {
-                $this->addFlash('info', 'flash.company.accountant_already_invited', ['%accountant%' => $invite->getEmail()]);
+                $this->addFlash(
+                    'info',
+                    'flash.company.accountant_already_invited',
+                    ['%accountant%' => $invite->getEmail()]
+                );
             }
 
-            return $this->redirectToRoute('company_accountant', [
-                'id' => $company->getId(),
-            ]);
+            return $this->redirectToRoute(
+                'company_accountant',
+                [
+                    'id' => $company->getId(),
+                ]
+            );
         }
 
         $form = $processor->getForm();
 
         return [
             'form' => $form->createView(),
-            'company' => $company
+            'company' => $company,
         ];
     }
 }

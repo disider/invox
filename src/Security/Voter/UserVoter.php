@@ -22,11 +22,14 @@ class UserVoter extends Voter
 
     protected function supports($attribute, $subject)
     {
-        return $subject instanceof User && in_array($attribute, [
-                self::USER_IMPERSONATE,
-                self::USER_DELETE,
-                self::USER_EDIT
-            ]);
+        return $subject instanceof User && in_array(
+                $attribute,
+                [
+                    self::USER_IMPERSONATE,
+                    self::USER_DELETE,
+                    self::USER_EDIT,
+                ]
+            );
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
@@ -35,7 +38,9 @@ class UserVoter extends Voter
         $user = $token->getUser();
 
         if ($attribute == self::USER_DELETE) {
-            if ($user->isSuperadmin() || ($user->isManagingMultipleCompanies() && $user->hasCompanyManager($subject)) && !$user->isSameAs($subject)) {
+            if ($user->isSuperadmin() || ($user->isManagingMultipleCompanies() && $user->hasCompanyManager(
+                        $subject
+                    )) && !$user->isSameAs($subject)) {
                 return true;
             }
         }

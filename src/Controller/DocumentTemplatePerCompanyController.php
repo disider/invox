@@ -38,7 +38,7 @@ class DocumentTemplatePerCompanyController extends BaseController
         $pageSize = $this->getPageSize($request);
 
         $filters = [
-            DocumentTemplatePerCompanyRepository::FILTER_BY_COMPANY => $this->getCurrentCompany()
+            DocumentTemplatePerCompanyRepository::FILTER_BY_COMPANY => $this->getCurrentCompany(),
         ];
 
         $query = $this->getDocumentTemplatePerCompanyRepository()->findAllQuery($filters, $page, $pageSize);
@@ -57,8 +57,11 @@ class DocumentTemplatePerCompanyController extends BaseController
      * @ParamConverter("documentTemplate", class="App:DocumentTemplatePerCompany", options={"id" = "id"})
      * @Template
      */
-    public function editAction(Request $request, DocumentTemplatePerCompanyFormProcessor $processor, DocumentTemplatePerCompany $documentTemplate)
-    {
+    public function editAction(
+        Request $request,
+        DocumentTemplatePerCompanyFormProcessor $processor,
+        DocumentTemplatePerCompany $documentTemplate
+    ) {
         return $this->processForm($request, $processor, $documentTemplate);
     }
 
@@ -73,14 +76,21 @@ class DocumentTemplatePerCompanyController extends BaseController
         $documentTemplate->copyDocumentTemplateDetails();
         $this->save($documentTemplate);
 
-        $this->addFlash('success', 'flash.document_template.restored', [
-            '%document_template%' => $documentTemplate->getName()
-        ]);
+        $this->addFlash(
+            'success',
+            'flash.document_template.restored',
+            [
+                '%document_template%' => $documentTemplate->getName(),
+            ]
+        );
 
-        return $this->redirectToRoute('document_template_per_company_edit', [
-            'companyId' => $documentTemplate->getCompany()->getId(),
-            'id' => $documentTemplate->getId(),
-        ]);
+        return $this->redirectToRoute(
+            'document_template_per_company_edit',
+            [
+                'companyId' => $documentTemplate->getCompany()->getId(),
+                'id' => $documentTemplate->getId(),
+            ]
+        );
     }
 
     /**
@@ -93,7 +103,7 @@ class DocumentTemplatePerCompanyController extends BaseController
     public function previewAction(DocumentTemplatePerCompany $documentTemplate)
     {
         return [
-            'documentTemplate' => $documentTemplate
+            'documentTemplate' => $documentTemplate,
         ];
     }
 
@@ -103,8 +113,11 @@ class DocumentTemplatePerCompanyController extends BaseController
      * @ParamConverter("company", class="App:Company", options={"id" = "companyId"})
      * @ParamConverter("documentTemplate", class="App:DocumentTemplatePerCompany", options={"id" = "id"})
      */
-    public function renderAction(Request $request, DocumentBuilder $builder, DocumentTemplatePerCompany $documentTemplate)
-    {
+    public function renderAction(
+        Request $request,
+        DocumentBuilder $builder,
+        DocumentTemplatePerCompany $documentTemplate
+    ) {
         $locale = $this->getCurrentLocale();
         $request->setLocale($locale);
         $this->setLocale($locale);
@@ -119,7 +132,7 @@ class DocumentTemplatePerCompanyController extends BaseController
                 'template' => $documentTemplate,
                 'header' => $this->renderSection($builder, $document, 'header'),
                 'footer' => $this->renderSection($builder, $document, 'footer'),
-                'content' => $this->renderSection($builder, $document, 'content')
+                'content' => $this->renderSection($builder, $document, 'content'),
             ];
 
             return $this->render('document_template_per_company/render.html.twig', $params);
@@ -133,27 +146,40 @@ class DocumentTemplatePerCompanyController extends BaseController
         return $builder->build($document, $section);
     }
 
-    private function processForm(Request $request, DocumentTemplatePerCompanyFormProcessor $processor, DocumentTemplatePerCompany $documentTemplate = null)
-    {
+    private function processForm(
+        Request $request,
+        DocumentTemplatePerCompanyFormProcessor $processor,
+        DocumentTemplatePerCompany $documentTemplate = null
+    ) {
         $processor->process($request, $documentTemplate);
 
         if ($processor->isValid()) {
             /** @var DocumentTemplatePerCompany $template */
             $template = $processor->getData();
-            $this->addFlash('success', 'flash.document_template.updated', [
-                '%document_template%' => $template->getName()
-            ]);
+            $this->addFlash(
+                'success',
+                'flash.document_template.updated',
+                [
+                    '%document_template%' => $template->getName(),
+                ]
+            );
 
             if ($processor->isRedirectingTo(DocumentTemplatePerCompanyFormProcessor::REDIRECT_TO_LIST)) {
-                return $this->redirectToRoute('document_templates_per_company', [
-                    'companyId' => $this->getCurrentCompany()->getId(),
-                ]);
+                return $this->redirectToRoute(
+                    'document_templates_per_company',
+                    [
+                        'companyId' => $this->getCurrentCompany()->getId(),
+                    ]
+                );
             }
 
-            return $this->redirectToRoute('document_template_per_company_edit', [
-                'companyId' => $template->getCompany()->getId(),
-                'id' => $template->getId(),
-            ]);
+            return $this->redirectToRoute(
+                'document_template_per_company_edit',
+                [
+                    'companyId' => $template->getCompany()->getId(),
+                    'id' => $template->getId(),
+                ]
+            );
         }
 
         $form = $processor->getForm();

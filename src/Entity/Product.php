@@ -83,7 +83,7 @@ class Product extends Item
 
     public function getAttachmentsUploadDir()
     {
-        return $this->getUploadDir() . sprintf('/products/%s/attachments', $this->getId());
+        return $this->getUploadDir().sprintf('/products/%s/attachments', $this->getId());
     }
 
     protected function buildAttachment()

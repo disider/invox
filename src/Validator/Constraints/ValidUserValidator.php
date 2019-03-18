@@ -52,9 +52,12 @@ class ValidUserValidator extends ConstraintValidator
         if (!$user->isEnabled()) {
             $email = $value->getUsername();
 
-            $route = $this->generateRoute('register_resend_confirmation', [
-                'email' => $email
-            ]);
+            $route = $this->generateRoute(
+                'register_resend_confirmation',
+                [
+                    'email' => $email,
+                ]
+            );
 
             $this->context->buildViolation('error.inactive_user')
                 ->setParameter('%url%', $route)

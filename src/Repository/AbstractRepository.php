@@ -24,10 +24,12 @@ abstract class AbstractRepository extends EntityRepository implements AbstractRe
         $manager = $registry->getManagerForClass($entityClass);
 
         if ($manager === null) {
-            throw new \LogicException(sprintf(
-                'Could not find the entity manager for class "%s". Check your Doctrine configuration to make sure it is configured to load this entity’s metadata.',
-                $entityClass
-            ));
+            throw new \LogicException(
+                sprintf(
+                    'Could not find the entity manager for class "%s". Check your Doctrine configuration to make sure it is configured to load this entity’s metadata.',
+                    $entityClass
+                )
+            );
         }
 
         parent::__construct($manager, $manager->getClassMetadata($entityClass));
@@ -38,7 +40,7 @@ abstract class AbstractRepository extends EntityRepository implements AbstractRe
         $alias = $this->getRootAlias();
 
         return $this->createQueryBuilder($alias)
-            ->orderBy($alias . '.id', 'DESC')
+            ->orderBy($alias.'.id', 'DESC')
             ->setMaxResults(1)
             ->getQuery()->getOneOrNullResult();
     }
@@ -54,7 +56,7 @@ abstract class AbstractRepository extends EntityRepository implements AbstractRe
         $alias = $this->getRootAlias();
 
         $qb = $this->createQueryBuilder($alias)
-            ->where($alias . '.id = :id')
+            ->where($alias.'.id = :id')
             ->setParameter('id', $id);
 
         return $qb->getQuery()->getOneOrNullResult();

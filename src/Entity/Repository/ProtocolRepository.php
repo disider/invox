@@ -20,9 +20,9 @@ abstract class ProtocolRepository extends SelectedCompanyRepository
         $alias = $this->getRootAlias();
 
         $qb = $this->createQueryBuilder($alias)
-            ->select($alias . '.ref as ref')
-            ->addSelect('ABS(' . $alias . '.ref) AS HIDDEN refNumber')
-            ->where($alias . '.company = :company')
+            ->select($alias.'.ref as ref')
+            ->addSelect('ABS('.$alias.'.ref) AS HIDDEN refNumber')
+            ->where($alias.'.company = :company')
             ->setParameter('company', $company)
             ->orderBy('refNumber', 'desc')
             ->setMaxResults(1);

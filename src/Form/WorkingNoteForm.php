@@ -33,26 +33,34 @@ class WorkingNoteForm extends AbstractType
         $builder->add('title', null, ['label' => 'fields.title']);
         $builder->add('code', null, ['label' => 'fields.code']);
 
-        $builder->add('customer', EntityTextType::class, [
-            'label' => false,
-            'class' => Customer::class,
-            'required' => false,
-            'attr' => [
-                'class' => 'hidden',
-            ],
-            'invalid_message' => 'error.invalid_customer',
-        ]);
+        $builder->add(
+            'customer',
+            EntityTextType::class,
+            [
+                'label' => false,
+                'class' => Customer::class,
+                'required' => false,
+                'attr' => [
+                    'class' => 'hidden',
+                ],
+                'invalid_message' => 'error.invalid_customer',
+            ]
+        );
 
-        $builder->add('customerName', DocumentLinkType::class, [
-            'label' => 'fields.name',
-            'mapped' => false,
-            'required' => false,
-            'attr' => [
-                'placeholder' => 'fields.autocomplete_customer',
-            ],
-            'linked_to' => 'customer',
-            'type' => 'customer'
-        ]);
+        $builder->add(
+            'customerName',
+            DocumentLinkType::class,
+            [
+                'label' => 'fields.name',
+                'mapped' => false,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'fields.autocomplete_customer',
+                ],
+                'linked_to' => 'customer',
+                'type' => 'customer',
+            ]
+        );
 
         $builder->add('paragraphs', ParagraphCollectionType::class);
 
@@ -65,22 +73,28 @@ class WorkingNoteForm extends AbstractType
             ]
         );
 
-        $builder->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) {
-            /** @var WorkingNote $data */
-            $data = $event->getData();
-            $form = $event->getForm();
+        $builder->addEventListener(
+            FormEvents::POST_SET_DATA,
+            function (FormEvent $event) {
+                /** @var WorkingNote $data */
+                $data = $event->getData();
+                $form = $event->getForm();
 
-            if ($data->getCustomer())
-                $form->get('customerName')->setData($data->getCustomer()->getName());
-        });
+                if ($data->getCustomer()) {
+                    $form->get('customerName')->setData($data->getCustomer()->getName());
+                }
+            }
+        );
 
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => WorkingNote::class
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => WorkingNote::class,
+            ]
+        );
     }
 
     public function getBlockPrefix()

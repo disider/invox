@@ -39,6 +39,6 @@ class ProtocolGenerator
         preg_match_all('/(\d+)/', $value, $matches, PREG_SET_ORDER);
         $lastMatch = end($matches);
 
-        return substr($value, 0, strlen($value) - strlen($lastMatch[1])) . ($lastMatch[1] + 1);
+        return substr($value, 0, strlen($value) - strlen($lastMatch[1])).($lastMatch[1] + 1);
     }
 }

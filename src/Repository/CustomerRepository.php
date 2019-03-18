@@ -39,6 +39,7 @@ class CustomerRepository extends SelectedCompanyRepository
 
         if (count($codes) > 0) {
             $code = $codes[0]['code'];
+
             return ++$code;
         }
 
@@ -61,7 +62,7 @@ class CustomerRepository extends SelectedCompanyRepository
         return $this->createQueryBuilder('c')
             ->where('c.name like :term')
             ->andWhere('c.company = :company')
-            ->setParameter('term', '%' . $term . '%')
+            ->setParameter('term', '%'.$term.'%')
             ->setParameter('company', $company)
             ->getQuery()
             ->execute();
@@ -88,7 +89,7 @@ class CustomerRepository extends SelectedCompanyRepository
     protected function filterByManager(QueryBuilder $qb, User $user)
     {
         $qb
-            ->leftJoin($this->getRootAlias() . '.company', 'company')
+            ->leftJoin($this->getRootAlias().'.company', 'company')
             ->leftJoin('company.managers', 'manager')
             ->andWhere('company.owner = :user')
             ->orWhere('manager = :user')

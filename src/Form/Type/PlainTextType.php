@@ -22,19 +22,21 @@ class PlainTextType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'widget' => 'field',
-            'read_only' => true,
-            'disabled' => true,
-            'date_format' => null,
-            'date_pattern' => null,
-            'time_format' => null,
-            'time_zone' => 'UTC',
-            'attr' => [
-                'class' => 'plain_type',
-            ],
-            'compound' => false,
-        ]);
+        $resolver->setDefaults(
+            [
+                'widget' => 'field',
+                'read_only' => true,
+                'disabled' => true,
+                'date_format' => null,
+                'date_pattern' => null,
+                'time_format' => null,
+                'time_zone' => 'UTC',
+                'attr' => [
+                    'class' => 'plain_type',
+                ],
+                'compound' => false,
+            ]
+        );
     }
 
     /**

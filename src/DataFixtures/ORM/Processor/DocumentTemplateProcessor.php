@@ -12,7 +12,7 @@ namespace App\DataFixtures\ORM\Processor;
 
 use App\Entity\DocumentTemplate;
 use App\Entity\DocumentTemplatePerCompany;
-use Nelmio\Alice\ProcessorInterface;
+use Fidry\AliceDataFixtures\ProcessorInterface;
 
 class DocumentTemplateProcessor implements ProcessorInterface
 {
@@ -20,7 +20,7 @@ class DocumentTemplateProcessor implements ProcessorInterface
     /**
      * {@inheritdoc}
      */
-    public function preProcess($object)
+    public function preProcess(string $id, $object): void
     {
         if ($object instanceof DocumentTemplate) {
             $object->setHeader($this->loadContents('header'));
@@ -37,7 +37,7 @@ class DocumentTemplateProcessor implements ProcessorInterface
     /**
      * {@inheritdoc}
      */
-    public function postProcess($object)
+    public function postProcess(string $id, $object): void
     {
     }
 

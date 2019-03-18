@@ -36,8 +36,10 @@ class ProductListener implements EventSubscriber
             /** @var WarehouseRecord $object */
 
             $object->getProduct()->updateStock($object->getStockBalance());
-        } else if ($object instanceof Product) {
-            $object->setCurrentStock($object->getInitialStock());
+        } else {
+            if ($object instanceof Product) {
+                $object->setCurrentStock($object->getInitialStock());
+            }
         }
     }
 

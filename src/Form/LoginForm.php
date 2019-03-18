@@ -44,10 +44,12 @@ class LoginForm extends AbstractType
     {
         $resolver->setRequired('authentication_listener');
 
-        $resolver->setDefaults([
-            'csrf_field_name' => '_csrf_token',
-            'intention' => 'authenticate',
-            'target_path' => '',
-        ]);
+        $resolver->setDefaults(
+            [
+                'csrf_field_name' => '_csrf_token',
+                'intention' => 'authenticate',
+                'target_path' => '',
+            ]
+        );
     }
 }

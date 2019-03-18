@@ -54,7 +54,7 @@ class ServiceController extends BaseController
 
         return [
             'pagination' => $pagination,
-            'filterForm' => $filterForm->createView()
+            'filterForm' => $filterForm->createView(),
         ];
     }
 
@@ -114,9 +114,11 @@ class ServiceController extends BaseController
 
         $services = $this->getServiceRepository()->search($term, $this->getCurrentCompany(), $filters);
 
-        return $this->serialize([
-            'services' => $services,
-        ]);
+        return $this->serialize(
+            [
+                'services' => $services,
+            ]
+        );
     }
 
     /**
@@ -132,9 +134,11 @@ class ServiceController extends BaseController
 
         $tags = $this->getServiceTagRepository()->search($term, $this->getCurrentCompany());
 
-        return $this->serialize([
-            'tags' => $tags,
-        ]);
+        return $this->serialize(
+            [
+                'tags' => $tags,
+            ]
+        );
     }
 
     private function processForm(Request $request, ServiceFormProcessor $processor, Service $service = null)
@@ -142,16 +146,22 @@ class ServiceController extends BaseController
         $processor->process($request, $service);
 
         if ($processor->isValid()) {
-            $this->addFlash('success', $processor->isNew() ? 'flash.service.created' : 'flash.service.updated',
-                ['%service%' => $processor->getData()]);
+            $this->addFlash(
+                'success',
+                $processor->isNew() ? 'flash.service.created' : 'flash.service.updated',
+                ['%service%' => $processor->getData()]
+            );
 
             if ($processor->isRedirectingTo(ServiceFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('services');
             }
 
-            return $this->redirectToRoute('service_edit', [
-                'id' => $processor->getData()->getId(),
-            ]);
+            return $this->redirectToRoute(
+                'service_edit',
+                [
+                    'id' => $processor->getData()->getId(),
+                ]
+            );
         }
 
         $form = $processor->getForm();

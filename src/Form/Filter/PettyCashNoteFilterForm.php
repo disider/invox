@@ -23,79 +23,103 @@ class PettyCashNoteFilterForm extends BaseFilterForm
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('type', ChoiceFilterType::class, [
-            'choices' => $this->buildTypes(),
-            'label' => 'fields.type',
-            'multiple' => true,
-            'apply_filter' => function (QueryInterface $filterQuery, $field, $values) {
-                $value = $values['value'];
-                if (empty($value)) {
-                    return null;
-                }
-                $paramName = sprintf('p_%s', str_replace('.', '_', $field));
-                $expression = $filterQuery->getExpr()->in($field, ':' . $paramName);
-                $parameters = [$paramName => [$values['value'], Connection::PARAM_STR_ARRAY]];
+        $builder->add(
+            'type',
+            ChoiceFilterType::class,
+            [
+                'choices' => $this->buildTypes(),
+                'label' => 'fields.type',
+                'multiple' => true,
+                'apply_filter' => function (QueryInterface $filterQuery, $field, $values) {
+                    $value = $values['value'];
+                    if (empty($value)) {
+                        return null;
+                    }
+                    $paramName = sprintf('p_%s', str_replace('.', '_', $field));
+                    $expression = $filterQuery->getExpr()->in($field, ':'.$paramName);
+                    $parameters = [$paramName => [$values['value'], Connection::PARAM_STR_ARRAY]];
 
-                return $filterQuery->createCondition($expression, $parameters);
-            },
-            'attr' => [
-                'class' => 'selectize'
-            ],
-        ]);
+                    return $filterQuery->createCondition($expression, $parameters);
+                },
+                'attr' => [
+                    'class' => 'selectize',
+                ],
+            ]
+        );
 
-        $builder->add('ref', TextFilterType::class, [
-            'label' => 'fields.ref',
-        ]);
+        $builder->add(
+            'ref',
+            TextFilterType::class,
+            [
+                'label' => 'fields.ref',
+            ]
+        );
 
-        $builder->add('customer', TextFilterType::class, [
-            'label' => 'fields.customer',
-            'apply_filter' => function (QueryInterface $filterQuery, $field, $values) {
-                if (empty($values['value'])) {
-                    return null;
-                }
+        $builder->add(
+            'customer',
+            TextFilterType::class,
+            [
+                'label' => 'fields.customer',
+                'apply_filter' => function (QueryInterface $filterQuery, $field, $values) {
+                    if (empty($values['value'])) {
+                        return null;
+                    }
 
-                $qb = $filterQuery->getQueryBuilder();
-                $qb
-                    ->leftJoin($filterQuery->getRootAlias() . '.invoices', 'invoicePerNote')
-                    ->leftJoin('invoicePerNote.invoice', 'invoice')
-                    ->leftJoin('invoice.linkedCustomer', 'customer')
-                    ->andWhere('customer.name LIKE :name')
-                    ->orWhere('invoice.customerName LIKE :name')
-                    ->setParameter('name', '%' . $values['value'] . '%');
+                    $qb = $filterQuery->getQueryBuilder();
+                    $qb
+                        ->leftJoin($filterQuery->getRootAlias().'.invoices', 'invoicePerNote')
+                        ->leftJoin('invoicePerNote.invoice', 'invoice')
+                        ->leftJoin('invoice.linkedCustomer', 'customer')
+                        ->andWhere('customer.name LIKE :name')
+                        ->orWhere('invoice.customerName LIKE :name')
+                        ->setParameter('name', '%'.$values['value'].'%');
 
-                return $filterQuery;
-            },
-        ]);
+                    return $filterQuery;
+                },
+            ]
+        );
 
-        $builder->add('account', TextFilterType::class, [
-            'label' => 'fields.account',
-            'apply_filter' => function (QueryInterface $filterQuery, $field, $values) {
-                if (empty($values['value'])) {
-                    return null;
-                }
+        $builder->add(
+            'account',
+            TextFilterType::class,
+            [
+                'label' => 'fields.account',
+                'apply_filter' => function (QueryInterface $filterQuery, $field, $values) {
+                    if (empty($values['value'])) {
+                        return null;
+                    }
 
-                $qb = $filterQuery->getQueryBuilder();
-                $qb
-                    ->leftJoin($filterQuery->getRootAlias() . '.accountFrom', 'accountFrom')
-                    ->leftJoin($filterQuery->getRootAlias() . '.accountTo', 'accountTo')
-                    ->andWhere('accountFrom.name LIKE :name OR accountTo.name LIKE :name')
-                    ->setParameter('name', '%' . $values['value'] . '%');
+                    $qb = $filterQuery->getQueryBuilder();
+                    $qb
+                        ->leftJoin($filterQuery->getRootAlias().'.accountFrom', 'accountFrom')
+                        ->leftJoin($filterQuery->getRootAlias().'.accountTo', 'accountTo')
+                        ->andWhere('accountFrom.name LIKE :name OR accountTo.name LIKE :name')
+                        ->setParameter('name', '%'.$values['value'].'%');
 
-                return $filterQuery;
-            },
-        ]);
+                    return $filterQuery;
+                },
+            ]
+        );
 
         $this->addDateRangeType($builder, 'recordedAt', 'fields.recorded_at');
 
-        $builder->add('description', TextFilterType::class, [
-            'label' => 'fields.description',
-            'condition_pattern' => FilterOperands::STRING_CONTAINS,
-        ]);
+        $builder->add(
+            'description',
+            TextFilterType::class,
+            [
+                'label' => 'fields.description',
+                'condition_pattern' => FilterOperands::STRING_CONTAINS,
+            ]
+        );
 
-        $builder->add('filter', SubmitType::class, [
-            'label' => 'actions.filter',
-            'button_class' => 'btn btn-primary btn-sm',
-        ]);
+        $builder->add(
+            'filter',
+            SubmitType::class,
+            [
+                'label' => 'actions.filter',
+                'button_class' => 'btn btn-primary btn-sm',
+            ]
+        );
     }
 
     public function getBlockPrefix()

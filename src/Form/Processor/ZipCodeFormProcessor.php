@@ -17,8 +17,11 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 class ZipCodeFormProcessor extends DefaultFormProcessor
 {
-    public function __construct(ZipCodeRepository $repository, FormFactoryInterface $formFactory, TokenStorageInterface $tokenStorage)
-    {
+    public function __construct(
+        ZipCodeRepository $repository,
+        FormFactoryInterface $formFactory,
+        TokenStorageInterface $tokenStorage
+    ) {
         parent::__construct(ZipCodeForm::class, $repository, $formFactory, $tokenStorage);
     }
 }

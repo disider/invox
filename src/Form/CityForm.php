@@ -24,11 +24,15 @@ class CityForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name', TextType::class, ['label' => 'fields.name']);
-        $builder->add('province', EntityType::class, [
-            'label' => 'fields.province',
-            'class' => 'App:Province',
-            'placeholder' => '',
-        ]);
+        $builder->add(
+            'province',
+            EntityType::class,
+            [
+                'label' => 'fields.province',
+                'class' => 'App:Province',
+                'placeholder' => '',
+            ]
+        );
 
         $builder->add('save', SubmitType::class, ['label' => 'actions.save']);
         $builder->add(
@@ -48,9 +52,11 @@ class CityForm extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => City::class,
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => City::class,
+            ]
+        );
     }
 
 }

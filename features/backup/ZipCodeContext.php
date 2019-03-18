@@ -8,10 +8,12 @@
  *
  */
 
+namespace Features\App;
+
 use App\Entity\ZipCode;
 use Behat\Gherkin\Node\TableNode;
 
-class ZipCodeContext extends BaseMinkContext
+class ZipCodeContext extends AbstractMinkContext
 {
     /**
      * @Given /^there is a zip code:$/

@@ -23,7 +23,9 @@ class ValidDocumentValidator extends ConstraintValidator
      */
     public function validate($document, Constraint $constraint)
     {
-        if (($document->is(DocumentType::RECEIPT) || $document->is(DocumentType::INVOICE) || $document->is(DocumentType::CREDIT_NOTE)) && !$document->hasDirection()) {
+        if (($document->is(DocumentType::RECEIPT) || $document->is(DocumentType::INVOICE) || $document->is(
+                    DocumentType::CREDIT_NOTE
+                )) && !$document->hasDirection()) {
             $this->context->buildViolation('error.empty_direction')
                 ->atPath('direction')
                 ->addViolation();
@@ -35,7 +37,9 @@ class ValidDocumentValidator extends ConstraintValidator
                 ->addViolation();
         }
 
-        if (($document->is(DocumentType::RECEIPT) || $document->is(DocumentType::INVOICE)) && !$document->hasPaymentType()) {
+        if (($document->is(DocumentType::RECEIPT) || $document->is(
+                    DocumentType::INVOICE
+                )) && !$document->hasPaymentType()) {
             $this->context->buildViolation('error.empty_payment_type')
                 ->atPath('paymentType')
                 ->addViolation();

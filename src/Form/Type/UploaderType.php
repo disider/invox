@@ -21,9 +21,11 @@ class UploaderType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setRequired([
-            'endpoint'
-        ]);
+        $resolver->setRequired(
+            [
+                'endpoint',
+            ]
+        );
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options)

@@ -60,7 +60,7 @@ class Module
 
     public function __toString()
     {
-        return 'module.' . $this->name;
+        return 'module.'.$this->name;
     }
 
     public function getName()

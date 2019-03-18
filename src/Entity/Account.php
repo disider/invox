@@ -113,7 +113,7 @@ class Account
     public function setType($type)
     {
         if (!in_array($type, AccountType::getTypes())) {
-            throw new \LogicException('Invalid account type: ' . $type);
+            throw new \LogicException('Invalid account type: '.$type);
         }
 
         $this->type = $type;

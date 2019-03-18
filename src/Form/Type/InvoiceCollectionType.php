@@ -29,24 +29,26 @@ class InvoiceCollectionType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'label' => false,
-            'allow_add' => true,
-            'allow_delete' => true,
-            'by_reference' => false,
-            'error_bubbling' => false,
-            'required' => false,
-            'entry_type' => InvoicePerNoteType::class,
-            'prototype' => true,
-            'delete_empty' => true,
-            'attr' => [
-                'class' => 'collection',
-            ],
-            'entry_options' => [
+        $resolver->setDefaults(
+            [
                 'label' => false,
-                'company' => $this->companyManager->getCurrent(),
-            ],
-        ]);
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'error_bubbling' => false,
+                'required' => false,
+                'entry_type' => InvoicePerNoteType::class,
+                'prototype' => true,
+                'delete_empty' => true,
+                'attr' => [
+                    'class' => 'collection',
+                ],
+                'entry_options' => [
+                    'label' => false,
+                    'company' => $this->companyManager->getCurrent(),
+                ],
+            ]
+        );
     }
 
     public function getParent()

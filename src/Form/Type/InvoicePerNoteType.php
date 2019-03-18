@@ -21,32 +21,44 @@ class InvoicePerNoteType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('invoiceTitle', TextType::class, [
-            'label' => 'fields.invoice',
-            'required' => false,
-            'attr' => [
-                'autocomplete' => 'off',
-                'class' => 'invoice-title',
-                'placeholder' => 'fields.autocomplete_invoice',
-            ],
-        ]);
+        $builder->add(
+            'invoiceTitle',
+            TextType::class,
+            [
+                'label' => 'fields.invoice',
+                'required' => false,
+                'attr' => [
+                    'autocomplete' => 'off',
+                    'class' => 'invoice-title',
+                    'placeholder' => 'fields.autocomplete_invoice',
+                ],
+            ]
+        );
 
-        $builder->add('invoice', EntityTextType::class, [
-            'label' => false,
-            'required' => false,
-            'class' => Document::class,
-            'invalid_message' => 'error.invalid_invoice',
-            'attr' => [
-                'class' => 'invoice'
-            ],
-        ]);
+        $builder->add(
+            'invoice',
+            EntityTextType::class,
+            [
+                'label' => false,
+                'required' => false,
+                'class' => Document::class,
+                'invalid_message' => 'error.invalid_invoice',
+                'attr' => [
+                    'class' => 'invoice',
+                ],
+            ]
+        );
 
-        $builder->add('amount', LocalizedNumberType::class, [
-            'label' => 'fields.amount',
-            'attr' => [
-                'class' => 'amount'
-            ],
-        ]);
+        $builder->add(
+            'amount',
+            LocalizedNumberType::class,
+            [
+                'label' => 'fields.amount',
+                'attr' => [
+                    'class' => 'amount',
+                ],
+            ]
+        );
     }
 
     public function getBlockPrefix()
@@ -56,12 +68,16 @@ class InvoicePerNoteType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => InvoicePerNote::class,
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => InvoicePerNote::class,
+            ]
+        );
 
-        $resolver->setRequired([
-            'company'
-        ]);
+        $resolver->setRequired(
+            [
+                'company',
+            ]
+        );
     }
 }

@@ -8,11 +8,13 @@
  *
  */
 
+namespace Features\App;
+
 use App\Entity\Paragraph;
 use App\Entity\WorkingNote;
 use Behat\Gherkin\Node\TableNode;
 
-class WorkingNoteContext extends BaseMinkContext
+class WorkingNoteContext extends AbstractMinkContext
 {
     /**
      * @Given /^there is a working note:$/

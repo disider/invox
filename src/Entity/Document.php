@@ -283,8 +283,7 @@ class Document extends AttachmentContainer implements Taggable
         $year,
         \DateTime $issuedAt,
         $language = 'en'
-    )
-    {
+    ) {
         $entity = new self();
 
         if (!in_array($type, DocumentType::getAll())) {
@@ -292,7 +291,7 @@ class Document extends AttachmentContainer implements Taggable
         }
 
         if (!in_array($direction, [self::NO_DIRECTION, self::INCOMING, self::OUTGOING])) {
-            throw new \LogicException('Invalid document direction: ' . $direction);
+            throw new \LogicException('Invalid document direction: '.$direction);
         }
 
         $entity->type = $type;
@@ -320,7 +319,7 @@ class Document extends AttachmentContainer implements Taggable
         }
 
         if (!in_array($direction, [self::NO_DIRECTION, self::INCOMING, self::OUTGOING])) {
-            throw new \LogicException('Invalid document direction: ' . $direction);
+            throw new \LogicException('Invalid document direction: '.$direction);
         }
 
         $entity->type = $type;
@@ -339,9 +338,20 @@ class Document extends AttachmentContainer implements Taggable
         return $entity;
     }
 
-    public static function createForTestingTemplates(Company $company, DocumentTemplatePerCompany $documentTemplatePerCompany, $locale)
-    {
-        $document = Document::create(DocumentType::INVOICE, Document::INCOMING, $company, '123', date('Y'), new \DateTime(), $locale);
+    public static function createForTestingTemplates(
+        Company $company,
+        DocumentTemplatePerCompany $documentTemplatePerCompany,
+        $locale
+    ) {
+        $document = Document::create(
+            DocumentType::INVOICE,
+            Document::INCOMING,
+            $company,
+            '123',
+            date('Y'),
+            new \DateTime(),
+            $locale
+        );
 
         $document->setDocumentTemplate($documentTemplatePerCompany);
 
@@ -356,7 +366,19 @@ class Document extends AttachmentContainer implements Taggable
         $document->setTitle('My invoice');
         $document->setContent('<p>Some notes here</p>');
 
-        $customer = Customer::create($company, 'Acme', 'adam@acme.com', '01234567890', '09876543210', $company->getCountry(), 'EN', 'London', '01234', 'Abbey Road, 123', '');
+        $customer = Customer::create(
+            $company,
+            'Acme',
+            'adam@acme.com',
+            '01234567890',
+            '09876543210',
+            $company->getCountry(),
+            'EN',
+            'London',
+            '01234',
+            'Abbey Road, 123',
+            ''
+        );
         $document->setLinkedCustomer($customer);
         $document->copyCustomerDetails();
         $document->copyCompanyDetails();
@@ -386,7 +408,9 @@ class Document extends AttachmentContainer implements Taggable
 
     public function updateDirection()
     {
-        if (!($this->is(DocumentType::INVOICE) || $this->is(DocumentType::CREDIT_NOTE) || $this->is(DocumentType::RECEIPT))) {
+        if (!($this->is(DocumentType::INVOICE) || $this->is(DocumentType::CREDIT_NOTE) || $this->is(
+                DocumentType::RECEIPT
+            ))) {
             $this->direction = self::NO_DIRECTION;
         }
     }
@@ -1087,7 +1111,7 @@ class Document extends AttachmentContainer implements Taggable
     private function evalRows($method)
     {
 
-        $method = 'get' . ucfirst($method);
+        $method = 'get'.ucfirst($method);
         $total = 0;
 
         /** @var DocumentRow $row */
@@ -1106,6 +1130,7 @@ class Document extends AttachmentContainer implements Taggable
         foreach ($this->rows as $row) {
             $collection->addRow($row);
         }
+
         return $collection;
     }
 
@@ -1177,7 +1202,7 @@ class Document extends AttachmentContainer implements Taggable
 
     public function getAttachmentsUploadDir()
     {
-        return $this->getUploadDir() . sprintf('/documents/%s/attachments', $this->getId());
+        return $this->getUploadDir().sprintf('/documents/%s/attachments', $this->getId());
     }
 
     public function hasSameCompanyAs($order)
@@ -1187,10 +1212,13 @@ class Document extends AttachmentContainer implements Taggable
 
     public function canAcceptOrder()
     {
-        return in_array($this->type, [
-            DocumentType::INVOICE,
-            DocumentType::CREDIT_NOTE
-        ]);
+        return in_array(
+            $this->type,
+            [
+                DocumentType::INVOICE,
+                DocumentType::CREDIT_NOTE,
+            ]
+        );
     }
 
     public function copy()
@@ -1298,8 +1326,9 @@ class Document extends AttachmentContainer implements Taggable
 
     public function updateRecurrence()
     {
-        if ($this->recurrence != null)
+        if ($this->recurrence != null) {
             $this->recurrence->calculateNextDueDate();
+        }
     }
 
     public function hasRecurrence()
@@ -1324,7 +1353,7 @@ class Document extends AttachmentContainer implements Taggable
         if ($this->companyLogo) {
             $filename = sha1(uniqid(mt_rand(), true));
 
-            $this->companyLogoUrl = $filename . '.' . $this->companyLogo->guessExtension();
+            $this->companyLogoUrl = $filename.'.'.$this->companyLogo->guessExtension();
         } else {
             $this->companyLogoUrl = null;
         }
@@ -1354,7 +1383,7 @@ class Document extends AttachmentContainer implements Taggable
     {
         return null == $this->companyLogoUrl
             ? ""
-            : $this->getUploadDir() . '/' . $this->companyLogoUrl;
+            : $this->getUploadDir().'/'.$this->companyLogoUrl;
     }
 
     public function copyCompanyDetails()
@@ -1408,8 +1437,10 @@ class Document extends AttachmentContainer implements Taggable
 
     public function buildCustomer()
     {
-        $customer = Customer::create($this->getCompany(),
-            $this->customerName, '',
+        $customer = Customer::create(
+            $this->getCompany(),
+            $this->customerName,
+            '',
             $this->customerVatNumber,
             $this->customerFiscalCode,
             $this->customerCountry,
@@ -1417,7 +1448,8 @@ class Document extends AttachmentContainer implements Taggable
             $this->customerCity,
             $this->customerZipCode,
             $this->customerAddress,
-            $this->customerAddressNotes);
+            $this->customerAddressNotes
+        );
         $customer->setPhoneNumber($this->customerPhoneNumber);
         $customer->setFaxNumber($this->customerFaxNumber);
 

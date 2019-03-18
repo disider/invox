@@ -350,13 +350,15 @@ class User implements UserInterface
      */
     public function serialize()
     {
-        return serialize([
-            $this->password,
-            $this->salt,
-            $this->username,
-            $this->enabled,
-            $this->id,
-        ]);
+        return serialize(
+            [
+                $this->password,
+                $this->salt,
+                $this->username,
+                $this->enabled,
+                $this->id,
+            ]
+        );
     }
 
     /**
@@ -730,12 +732,16 @@ class User implements UserInterface
 
     public function ownsWorkingNote(WorkingNote $workingNote)
     {
-        return $this->canManageCompany($workingNote->getCompany()) || $this->canManageWorkingNotes($workingNote->getCompany());
+        return $this->canManageCompany($workingNote->getCompany()) || $this->canManageWorkingNotes(
+                $workingNote->getCompany()
+            );
     }
 
     public function ownsParagraphTemplate(ParagraphTemplate $paragraphTemplate)
     {
-        return $this->canManageCompany($paragraphTemplate->getCompany()) || $this->canManageParagraphTemplates($paragraphTemplate->getCompany());
+        return $this->canManageCompany($paragraphTemplate->getCompany()) || $this->canManageParagraphTemplates(
+                $paragraphTemplate->getCompany()
+            );
     }
 
 }

@@ -17,8 +17,17 @@ class DocumentTemplate extends BaseDocumentTemplate
     /** @var ArrayCollection */
     private $companies;
 
-    public static function create($name, $textColor, $headingColor, $tableHeaderColor, $tableHeaderBackgroundColor, $fontFamily, $header, $content, $footer)
-    {
+    public static function create(
+        $name,
+        $textColor,
+        $headingColor,
+        $tableHeaderColor,
+        $tableHeaderBackgroundColor,
+        $fontFamily,
+        $header,
+        $content,
+        $footer
+    ) {
         $entity = new self();
         $entity->setName($name);
         $entity->setTextColor($textColor);

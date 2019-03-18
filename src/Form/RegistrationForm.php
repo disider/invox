@@ -21,18 +21,24 @@ class RegistrationForm extends BaseForm
     {
         $builder
             ->add('email', EmailType::class, ['label' => 'fields.email'])
-            ->add('password', PasswordType::class, [
-                'property_path' => 'plainPassword',
-            ]);
+            ->add(
+                'password',
+                PasswordType::class,
+                [
+                    'property_path' => 'plainPassword',
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefaults([
-            'validation_groups' => ['registration'],
-        ]);
+        $resolver->setDefaults(
+            [
+                'validation_groups' => ['registration'],
+            ]
+        );
     }
 
     public function getBlockPrefix()

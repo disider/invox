@@ -17,8 +17,11 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 class TaxRateFormProcessor extends DefaultFormProcessor
 {
-    public function __construct(TaxRateRepository $repository, FormFactoryInterface $formFactory, TokenStorageInterface $tokenStorage)
-    {
+    public function __construct(
+        TaxRateRepository $repository,
+        FormFactoryInterface $formFactory,
+        TokenStorageInterface $tokenStorage
+    ) {
         parent::__construct(TaxRateForm::class, $repository, $formFactory, $tokenStorage);
     }
 }

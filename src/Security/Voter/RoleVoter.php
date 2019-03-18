@@ -84,58 +84,61 @@ class RoleVoter extends Voter
 
     protected function supports($attribute, $subject)
     {
-        return in_array($attribute, [
-            self::ACCOUNT_CREATE,
-            self::CITY_CREATE,
-            self::COMPANY_CREATE,
-            self::COUNTRY_CREATE,
-            self::CUSTOMER_CREATE,
-            self::DOCUMENT_CREATE,
-            self::DOCUMENT_TEMPLATE_CREATE,
-            self::FIRST_COMPANY_CREATE,
-            self::MEDIUM_CREATE,
-            self::PAGE_CREATE,
-            self::PARAGRAPH_TEMPLATE_CREATE,
-            self::PAYMENT_TYPE_CREATE,
-            self::PETTY_CASH_NOTE_CREATE,
-            self::PRODUCT_CREATE,
-            self::PRODUCT_SEARCH,
-            self::PROVINCE_CREATE,
-            self::RECURRENCE_CREATE,
-            self::SERVICE_CREATE,
-            self::SERVICE_SEARCH,
-            self::TAX_RATE_CREATE,
-            self::USER_CREATE,
-            self::WORKING_NOTE_CREATE,
-            self::ZIP_CODE_CREATE,
-            self::LIST_ACCOUNTS,
-            self::LIST_COMPANIES,
-            self::LIST_CREDIT_NOTES,
-            self::LIST_CUSTOMERS,
-            self::LIST_CITIES,
-            self::LIST_COUNTRIES,
-            self::LIST_DELIVERY_NOTES,
-            self::LIST_DOCUMENTS,
-            self::LIST_INVITES,
-            self::LIST_INVOICES,
-            self::LIST_MEDIA,
-            self::LIST_MODULES,
-            self::LIST_ORDERS,
-            self::LIST_PARAGRAPH_TEMPLATES,
-            self::LIST_PETTY_CASH_NOTES,
-            self::LIST_PRODUCTS,
-            self::LIST_PROVINCES,
-            self::LIST_QUOTES,
-            self::LIST_RECURRENCES,
-            self::LIST_RECEIPTS,
-            self::LIST_SERVICES,
-            self::LIST_PAYMENT_TYPES,
-            self::LIST_TAX_RATES,
-            self::LIST_USERS,
-            self::LIST_WORKING_NOTES,
-            self::LIST_ZIP_CODES,
-            self::SHOW_SETTINGS,
-        ]);
+        return in_array(
+            $attribute,
+            [
+                self::ACCOUNT_CREATE,
+                self::CITY_CREATE,
+                self::COMPANY_CREATE,
+                self::COUNTRY_CREATE,
+                self::CUSTOMER_CREATE,
+                self::DOCUMENT_CREATE,
+                self::DOCUMENT_TEMPLATE_CREATE,
+                self::FIRST_COMPANY_CREATE,
+                self::MEDIUM_CREATE,
+                self::PAGE_CREATE,
+                self::PARAGRAPH_TEMPLATE_CREATE,
+                self::PAYMENT_TYPE_CREATE,
+                self::PETTY_CASH_NOTE_CREATE,
+                self::PRODUCT_CREATE,
+                self::PRODUCT_SEARCH,
+                self::PROVINCE_CREATE,
+                self::RECURRENCE_CREATE,
+                self::SERVICE_CREATE,
+                self::SERVICE_SEARCH,
+                self::TAX_RATE_CREATE,
+                self::USER_CREATE,
+                self::WORKING_NOTE_CREATE,
+                self::ZIP_CODE_CREATE,
+                self::LIST_ACCOUNTS,
+                self::LIST_COMPANIES,
+                self::LIST_CREDIT_NOTES,
+                self::LIST_CUSTOMERS,
+                self::LIST_CITIES,
+                self::LIST_COUNTRIES,
+                self::LIST_DELIVERY_NOTES,
+                self::LIST_DOCUMENTS,
+                self::LIST_INVITES,
+                self::LIST_INVOICES,
+                self::LIST_MEDIA,
+                self::LIST_MODULES,
+                self::LIST_ORDERS,
+                self::LIST_PARAGRAPH_TEMPLATES,
+                self::LIST_PETTY_CASH_NOTES,
+                self::LIST_PRODUCTS,
+                self::LIST_PROVINCES,
+                self::LIST_QUOTES,
+                self::LIST_RECURRENCES,
+                self::LIST_RECEIPTS,
+                self::LIST_SERVICES,
+                self::LIST_PAYMENT_TYPES,
+                self::LIST_TAX_RATES,
+                self::LIST_USERS,
+                self::LIST_WORKING_NOTES,
+                self::LIST_ZIP_CODES,
+                self::SHOW_SETTINGS,
+            ]
+        );
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
@@ -181,20 +184,30 @@ class RoleVoter extends Voter
             case self::LIST_RECEIPTS:
                 return $this->canManageOrAccountCompany($user) && $this->canCompanyHandle(DocumentType::RECEIPT);
             case self::LIST_PETTY_CASH_NOTES:
-                return ($this->canManageOrAccountCompany($user) && $this->isModuleEnabled(Module::PETTY_CASH_NOTES_MODULE));
+                return ($this->canManageOrAccountCompany($user) && $this->isModuleEnabled(
+                        Module::PETTY_CASH_NOTES_MODULE
+                    ));
             case self::ACCOUNT_CREATE:
-                return (($user->isSuperadmin() && $this->hasCurrentCompany()) || ($this->canManageCurrentCompany($user) && $this->isModuleEnabled(Module::ACCOUNTS_MODULE)));
+                return (($user->isSuperadmin() && $this->hasCurrentCompany()) || ($this->canManageCurrentCompany(
+                            $user
+                        ) && $this->isModuleEnabled(Module::ACCOUNTS_MODULE)));
             case self::CUSTOMER_CREATE:
             case self::LIST_CUSTOMERS:
-                return (($user->isSuperadmin() && $this->hasCurrentCompany()) || $this->canManageCurrentCompany($user)) || $this->isSalesAgentInCurrentCompany($user);
+                return (($user->isSuperadmin() && $this->hasCurrentCompany()) || $this->canManageCurrentCompany(
+                            $user
+                        )) || $this->isSalesAgentInCurrentCompany($user);
             case self::DOCUMENT_CREATE:
             case self::MEDIUM_CREATE:
             case self::LIST_MEDIA:
                 return (($user->isSuperadmin() && $this->hasCurrentCompany()) || $this->canManageCurrentCompany($user));
             case self::PETTY_CASH_NOTE_CREATE:
-                return (($user->isSuperadmin() && $this->hasCurrentCompany()) || ($this->canManageCurrentCompany($user) && $this->isModuleEnabled(Module::PETTY_CASH_NOTES_MODULE)));
+                return (($user->isSuperadmin() && $this->hasCurrentCompany()) || ($this->canManageCurrentCompany(
+                            $user
+                        ) && $this->isModuleEnabled(Module::PETTY_CASH_NOTES_MODULE)));
             case self::LIST_MODULES:
-                return ($this->hasCurrentCompany() && ($user->isSuperadmin() || $user->ownsCompany($this->getCurrentCompany())));
+                return ($this->hasCurrentCompany() && ($user->isSuperadmin() || $user->ownsCompany(
+                            $this->getCurrentCompany()
+                        )));
             case self::LIST_INVITES:
                 return ($user->isSuperadmin() || $user->hasReceivedInvites());
             case self::COMPANY_CREATE:
@@ -219,7 +232,9 @@ class RoleVoter extends Voter
             case self::LIST_WORKING_NOTES:
             case self::PARAGRAPH_TEMPLATE_CREATE:
             case self::WORKING_NOTE_CREATE:
-                return ($this->canManageCurrentCompany($user) || $user->isSalesAgent()) && $this->isModuleEnabled(Module::WORKING_NOTES_MODULE);
+                return ($this->canManageCurrentCompany($user) || $user->isSalesAgent()) && $this->isModuleEnabled(
+                        Module::WORKING_NOTES_MODULE
+                    );
             case self::SHOW_SETTINGS:
                 return ($this->canManageCurrentCompany($user) || $user->isSalesAgentFor($this->getCurrentCompany()));
         }

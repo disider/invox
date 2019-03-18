@@ -119,8 +119,11 @@ class ParagraphTemplateController extends BaseController
      * @Security("is_granted('PARAGRAPH_TEMPLATE_EDIT', paragraphTemplate)")
      * @Template
      */
-    public function editAction(Request $request, ParagraphTemplateFormProcessor $processor, ParagraphTemplate $paragraphTemplate)
-    {
+    public function editAction(
+        Request $request,
+        ParagraphTemplateFormProcessor $processor,
+        ParagraphTemplate $paragraphTemplate
+    ) {
         return $this->processForm($request, $processor, $paragraphTemplate);
     }
 
@@ -136,15 +139,22 @@ class ParagraphTemplateController extends BaseController
         return $this->redirectToRoute('paragraph_templates');
     }
 
-    protected function processForm(Request $request, ParagraphTemplateFormProcessor $processor, ParagraphTemplate $paragraphTemplate)
-    {
+    protected function processForm(
+        Request $request,
+        ParagraphTemplateFormProcessor $processor,
+        ParagraphTemplate $paragraphTemplate
+    ) {
         $processor->process($request, $paragraphTemplate);
 
         if ($processor->isValid()) {
-            $this->addFlash('success', $processor->isNew() ? 'flash.paragraph_template.created' : 'flash.paragraph_template.updated');
+            $this->addFlash(
+                'success',
+                $processor->isNew() ? 'flash.paragraph_template.created' : 'flash.paragraph_template.updated'
+            );
 
-            if ($processor->isRedirectingTo(ParagraphTemplateFormProcessor::REDIRECT_TO_LIST))
+            if ($processor->isRedirectingTo(ParagraphTemplateFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('paragraph_templates');
+            }
 
             return $this->redirectToRoute('paragraph_template_edit', ['id' => $processor->getData()->getId()]);
         }
@@ -152,7 +162,7 @@ class ParagraphTemplateController extends BaseController
         $form = $processor->getForm();
 
         return [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ];
     }
 

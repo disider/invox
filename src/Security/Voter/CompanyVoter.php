@@ -28,16 +28,19 @@ class CompanyVoter extends Voter
 
     protected function supports($attribute, $subject)
     {
-        return $subject instanceof Company && in_array($attribute, [
-                self::COMPANY_ACCOUNTANT,
-                self::COMPANY_DELETE,
-                self::COMPANY_DESELECT,
-                self::COMPANY_DISCONNECT_ACCOUNTANT,
-                self::COMPANY_EDIT,
-                self::COMPANY_SELECT,
-                self::COMPANY_VIEW,
-                self::LIST_DOCUMENT_TEMPLATES_PER_COMPANY,
-            ]);
+        return $subject instanceof Company && in_array(
+                $attribute,
+                [
+                    self::COMPANY_ACCOUNTANT,
+                    self::COMPANY_DELETE,
+                    self::COMPANY_DESELECT,
+                    self::COMPANY_DISCONNECT_ACCOUNTANT,
+                    self::COMPANY_EDIT,
+                    self::COMPANY_SELECT,
+                    self::COMPANY_VIEW,
+                    self::LIST_DOCUMENT_TEMPLATES_PER_COMPANY,
+                ]
+            );
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
@@ -53,10 +56,14 @@ class CompanyVoter extends Voter
 
         switch ($attribute) {
             case self::COMPANY_VIEW:
-                return ($subject->hasManager($user) && !$user->ownsCompany($subject)) || $user->isAccountantFor($subject) || $user->isSalesAgentFor($subject);
+                return ($subject->hasManager($user) && !$user->ownsCompany($subject)) || $user->isAccountantFor(
+                        $subject
+                    ) || $user->isSalesAgentFor($subject);
             case self::COMPANY_DESELECT:
             case self::COMPANY_SELECT:
-                return $user->canManageCompany($subject) || $user->isAccountantFor($subject) || $user->isSalesAgentFor($subject);
+                return $user->canManageCompany($subject) || $user->isAccountantFor($subject) || $user->isSalesAgentFor(
+                        $subject
+                    );
             case self::COMPANY_ACCOUNTANT:
                 return (($user->isSuperadmin() || $user->ownsCompany($subject)));
             case self::COMPANY_DISCONNECT_ACCOUNTANT:

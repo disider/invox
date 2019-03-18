@@ -23,14 +23,22 @@ class ParagraphType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('title', TextType::class, ['label' => 'fields.title']);
-        $builder->add('description', TextEditorType::class, [
-            'label' => 'fields.description',
-            'required' => false
-        ]);
+        $builder->add(
+            'description',
+            TextEditorType::class,
+            [
+                'label' => 'fields.description',
+                'required' => false,
+            ]
+        );
 
-        $builder->add('children', ParagraphCollectionType::class, [
-            'prototype' => false
-        ]);
+        $builder->add(
+            'children',
+            ParagraphCollectionType::class,
+            [
+                'prototype' => false,
+            ]
+        );
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options)
@@ -40,10 +48,12 @@ class ParagraphType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => Paragraph::class,
-            'prototype' => false
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => Paragraph::class,
+                'prototype' => false,
+            ]
+        );
     }
 
     public function getBlockPrefix()

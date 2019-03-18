@@ -9,8 +9,9 @@ class DayOfWeekTransformer implements DataTransformerInterface
 
     public function transform($value)
     {
-        if (empty($value))
+        if (empty($value)) {
             return [];
+        }
 
         $days = [];
         for ($i = 0; $i < 7; $i++) {

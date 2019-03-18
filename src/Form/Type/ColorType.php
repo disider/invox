@@ -23,8 +23,10 @@ class ColorType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'attr' => ['class' => ''],
-        ]);
+        $resolver->setDefaults(
+            [
+                'attr' => ['class' => ''],
+            ]
+        );
     }
 }

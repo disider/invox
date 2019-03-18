@@ -37,6 +37,7 @@ class ResetPasswordController extends BaseController
 
         if ($this->isInDemoMode()) {
             $this->addFlash('danger', 'demo.action_not_allowed');
+
             return $this->redirectToRoute('homepage');
         }
 

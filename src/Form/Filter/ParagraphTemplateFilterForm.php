@@ -17,12 +17,16 @@ class ParagraphTemplateFilterForm extends BaseFilterForm
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title', null, [
-            'label' => false,
-            'attr' => ['placeholder' => 'fields.title'],
-            'apply_filter' => $this->getFilterFunction(),
-            'required' => false
-        ]);
+        $builder->add(
+            'title',
+            null,
+            [
+                'label' => false,
+                'attr' => ['placeholder' => 'fields.title'],
+                'apply_filter' => $this->getFilterFunction(),
+                'required' => false,
+            ]
+        );
 
         $builder->add('filter', SubmitType::class, ['label' => 'actions.filter']);;
     }

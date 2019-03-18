@@ -23,11 +23,14 @@ class PettyCashNoteVoter extends BaseVoter
 
     protected function supports($attribute, $subject)
     {
-        return $subject instanceof PettyCashNote && in_array($attribute, [
-                self::PETTY_CASH_NOTE_DELETE,
-                self::PETTY_CASH_NOTE_EDIT,
-                self::PETTY_CASH_NOTE_VIEW,
-            ]);
+        return $subject instanceof PettyCashNote && in_array(
+                $attribute,
+                [
+                    self::PETTY_CASH_NOTE_DELETE,
+                    self::PETTY_CASH_NOTE_EDIT,
+                    self::PETTY_CASH_NOTE_VIEW,
+                ]
+            );
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)

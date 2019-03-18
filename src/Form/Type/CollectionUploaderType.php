@@ -21,16 +21,20 @@ class CollectionUploaderType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setRequired([
-            'endpoint',
-        ]);
+        $resolver->setRequired(
+            [
+                'endpoint',
+            ]
+        );
 
-        $resolver->setDefaults([
-            'allow_add' => true,
-            'allow_delete' => true,
-            'by_reference' => false,
-            'multiple' => true,
-        ]);
+        $resolver->setDefaults(
+            [
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'multiple' => true,
+            ]
+        );
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options)

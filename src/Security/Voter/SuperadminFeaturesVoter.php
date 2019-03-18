@@ -43,35 +43,40 @@ class SuperadminFeaturesVoter extends Voter
 
     protected function supports($attribute, $subject)
     {
-        return ($this->isSubjectSupported($subject)) && in_array($attribute, [
-                self::CITY_DELETE,
-                self::CITY_EDIT,
-                self::COUNTRY_DELETE,
-                self::COUNTRY_EDIT,
-                self::DOCUMENT_TEMPLATE_DELETE,
-                self::DOCUMENT_TEMPLATE_EDIT,
-                self::PAGE_DELETE,
-                self::PAGE_EDIT,
-                self::PAYMENT_TYPE_DELETE,
-                self::PAYMENT_TYPE_EDIT,
-                self::PROVINCE_DELETE,
-                self::PROVINCE_EDIT,
-                self::TAX_RATE_DELETE,
-                self::TAX_RATE_EDIT,
-                self::ZIP_CODE_DELETE,
-                self::ZIP_CODE_EDIT,
-            ]);
+        return ($this->isSubjectSupported($subject)) && in_array(
+                $attribute,
+                [
+                    self::CITY_DELETE,
+                    self::CITY_EDIT,
+                    self::COUNTRY_DELETE,
+                    self::COUNTRY_EDIT,
+                    self::DOCUMENT_TEMPLATE_DELETE,
+                    self::DOCUMENT_TEMPLATE_EDIT,
+                    self::PAGE_DELETE,
+                    self::PAGE_EDIT,
+                    self::PAYMENT_TYPE_DELETE,
+                    self::PAYMENT_TYPE_EDIT,
+                    self::PROVINCE_DELETE,
+                    self::PROVINCE_EDIT,
+                    self::TAX_RATE_DELETE,
+                    self::TAX_RATE_EDIT,
+                    self::ZIP_CODE_DELETE,
+                    self::ZIP_CODE_EDIT,
+                ]
+            );
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
         $user = $token->getUser();
 
-        if (!($user instanceof User))
+        if (!($user instanceof User)) {
             return false;
+        }
 
-        if ($user->isSuperadmin())
+        if ($user->isSuperadmin()) {
             return true;
+        }
 
         return false;
     }

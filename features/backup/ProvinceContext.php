@@ -8,10 +8,12 @@
  *
  */
 
+namespace Features\App;
+
 use App\Entity\Province;
 use Behat\Gherkin\Node\TableNode;
 
-class ProvinceContext extends BaseMinkContext
+class ProvinceContext extends AbstractMinkContext
 {
     /**
      * @Given /^there is a province:$/

@@ -8,6 +8,8 @@
  *
  */
 
+namespace Features\App;
+
 use App\Entity\Company;
 use App\Entity\DocumentTemplate;
 use App\Entity\User;
@@ -15,7 +17,7 @@ use App\Model\DocumentType;
 use App\Model\Module;
 use Behat\Gherkin\Node\TableNode;
 
-class CompanyContext extends BaseMinkContext
+class CompanyContext extends AbstractMinkContext
 {
     /**
      * @Given /^there is a company:$/

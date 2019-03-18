@@ -32,7 +32,7 @@ class ZipCodeRepository extends AbstractRepository
         return $this->createQueryBuilder('z')
             ->leftJoin('z.city', 'c')
             ->where('c.name like :term')
-            ->setParameter('term', '%' . $term . '%')
+            ->setParameter('term', '%'.$term.'%')
             ->getQuery()
             ->execute();
     }

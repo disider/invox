@@ -8,11 +8,13 @@
  *
  */
 
+namespace Features\App;
+
 use App\Entity\DocumentTemplate;
 use App\Entity\DocumentTemplatePerCompany;
 use Behat\Gherkin\Node\TableNode;
 
-class DocumentTemplateContext extends BaseMinkContext
+class DocumentTemplateContext extends AbstractMinkContext
 {
     /**
      * @Given /^there is a document template:$/

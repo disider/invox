@@ -8,12 +8,14 @@
  *
  */
 
+namespace Features\App;
+
 use App\Entity\Product;
 use App\Entity\ProductAttachment;
 use App\Entity\WarehouseRecord;
 use Behat\Gherkin\Node\TableNode;
 
-class ProductContext extends BaseMinkContext
+class ProductContext extends AbstractMinkContext
 {
     /**
      * @Given /^there is a product:$/

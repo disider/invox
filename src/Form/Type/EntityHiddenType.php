@@ -31,7 +31,9 @@ class EntityHiddenType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addModelTransformer(new EntityToStringTransformer($this->entityManager, $options['class'], $options['field']));
+        $builder->addModelTransformer(
+            new EntityToStringTransformer($this->entityManager, $options['class'], $options['field'])
+        );
     }
 
     public function getParent()
@@ -41,10 +43,12 @@ class EntityHiddenType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'class' => null,
-            'field' => 'id'
-        ]);
+        $resolver->setDefaults(
+            [
+                'class' => null,
+                'field' => 'id',
+            ]
+        );
     }
 
 }

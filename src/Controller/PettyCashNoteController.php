@@ -68,10 +68,13 @@ class PettyCashNoteController extends BaseController
      * @Security("is_granted('PETTY_CASH_NOTE_CREATE')")
      * @Template
      */
-    public function createAction(Request $request, ProtocolGenerator $protocolGenerator, PettyCashNoteFormProcessor $processor)
-    {
+    public function createAction(
+        Request $request,
+        ProtocolGenerator $protocolGenerator,
+        PettyCashNoteFormProcessor $processor
+    ) {
         if (!$this->canManageCurrentCompany()) {
-            throw $this->createAccessDeniedException('Cannot manage petty cash for ' . $this->getCurrentCompany());
+            throw $this->createAccessDeniedException('Cannot manage petty cash for '.$this->getCurrentCompany());
         }
 
         $ref = $this->getCurrentCompany()
@@ -123,16 +126,22 @@ class PettyCashNoteController extends BaseController
         $processor->process($request, $pettyCashNote);
 
         if ($processor->isValid()) {
-            $this->addFlash('success', $processor->isNew() ? 'flash.petty_cash_note.created' : 'flash.petty_cash_note.updated',
-                ['%petty_cash_note%' => $processor->getData()]);
+            $this->addFlash(
+                'success',
+                $processor->isNew() ? 'flash.petty_cash_note.created' : 'flash.petty_cash_note.updated',
+                ['%petty_cash_note%' => $processor->getData()]
+            );
 
             if ($processor->isRedirectingTo(PettyCashNoteFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('petty_cash_notes');
             }
 
-            return $this->redirectToRoute('petty_cash_note_edit', [
-                'id' => $processor->getData()->getId(),
-            ]);
+            return $this->redirectToRoute(
+                'petty_cash_note_edit',
+                [
+                    'id' => $processor->getData()->getId(),
+                ]
+            );
         }
 
         $form = $processor->getForm();

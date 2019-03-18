@@ -494,7 +494,7 @@ class Company extends AttachmentContainer
         if ($this->logo) {
             $filename = sha1(uniqid(mt_rand(), true));
 
-            $this->logoUrl = $filename . '.' . $this->logo->guessExtension();
+            $this->logoUrl = $filename.'.'.$this->logo->guessExtension();
         } else {
 //            $this->logoToDelete = $this->logoUrl;
             $this->logoUrl = null;
@@ -537,19 +537,19 @@ class Company extends AttachmentContainer
 
     public function getUploadDir()
     {
-        return '/uploads/companies/' . $this->getId();
+        return '/uploads/companies/'.$this->getId();
     }
 
     public function getUploadRootDir()
     {
-        return __DIR__ . '/../../../web/' . $this->getUploadDir();
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
     }
 
     public function getLogoWebPath()
     {
         return null == $this->logoUrl
             ? ""
-            : $this->getUploadDir() . '/' . $this->logoUrl;
+            : $this->getUploadDir().'/'.$this->logoUrl;
     }
 
     public function getLogoUrl()
@@ -629,6 +629,7 @@ class Company extends AttachmentContainer
         $templatePerCompany->copyDocumentTemplateDetails();
 
         $this->addDocumentTemplatePerCompany($templatePerCompany);
+
         return $templatePerCompany;
     }
 
@@ -684,6 +685,6 @@ class Company extends AttachmentContainer
 
     public function getAttachmentsUploadDir()
     {
-        return $this->getUploadDir() . '/media';
+        return $this->getUploadDir().'/media';
     }
 }

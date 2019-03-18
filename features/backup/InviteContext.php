@@ -8,11 +8,13 @@
  *
  */
 
+namespace Features\App;
+
 use App\Entity\Invite;
 use App\Generator\TokenGenerator;
 use Behat\Gherkin\Node\TableNode;
 
-class InviteContext extends BaseMinkContext
+class InviteContext extends AbstractMinkContext
 {
     /**
      * @Given /^there is an accountant invite:$/

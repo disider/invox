@@ -25,21 +25,25 @@ class DocumentVoter extends Voter
 
     protected function supports($attribute, $subject)
     {
-        return $subject instanceof Document && in_array($attribute, [
-                self::DOCUMENT_COPY,
-                self::DOCUMENT_DELETE,
-                self::DOCUMENT_EDIT,
-                self::DOCUMENT_PRINT,
-                self::DOCUMENT_VIEW,
-            ]);
+        return $subject instanceof Document && in_array(
+                $attribute,
+                [
+                    self::DOCUMENT_COPY,
+                    self::DOCUMENT_DELETE,
+                    self::DOCUMENT_EDIT,
+                    self::DOCUMENT_PRINT,
+                    self::DOCUMENT_VIEW,
+                ]
+            );
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
         $user = $token->getUser();
 
-        if (!$user instanceof User)
+        if (!$user instanceof User) {
             return false;
+        }
 
         /** @var User $user */
         switch ($attribute) {

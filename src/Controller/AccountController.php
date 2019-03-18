@@ -99,17 +99,24 @@ class AccountController extends BaseController
         $processor->process($request, $account);
 
         if ($processor->isValid()) {
-            $this->addFlash('success', $processor->isNew() ? 'flash.account.created' : 'flash.account.updated', [
-                '%account%' => $processor->getData()
-            ]);
+            $this->addFlash(
+                'success',
+                $processor->isNew() ? 'flash.account.created' : 'flash.account.updated',
+                [
+                    '%account%' => $processor->getData(),
+                ]
+            );
 
             if ($processor->isRedirectingTo(AccountFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('accounts');
             }
 
-            return $this->redirectToRoute('account_edit', [
-                'id' => $processor->getData()->getId(),
-            ]);
+            return $this->redirectToRoute(
+                'account_edit',
+                [
+                    'id' => $processor->getData()->getId(),
+                ]
+            );
         }
 
         $form = $processor->getForm();

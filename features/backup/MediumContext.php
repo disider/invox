@@ -8,10 +8,12 @@
  *
  */
 
+namespace Features\App;
+
 use App\Entity\Medium;
 use Behat\Gherkin\Node\TableNode;
 
-class MediumContext extends BaseMinkContext
+class MediumContext extends AbstractMinkContext
 {
 
     /**

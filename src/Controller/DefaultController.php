@@ -49,8 +49,14 @@ class DefaultController extends BaseController
         if ($this->hasCurrentCompany()) {
             $currentCompany = $this->getCurrentCompany();
             if (!$currentCompany->hasSalesAgent($this->getUser())) {
-                $incomingInvoices = $this->getDocumentRepository()->findExpiredInvoices($this->getCurrentCompany(), Document::INCOMING);
-                $outgoingInvoices = $this->getDocumentRepository()->findExpiredInvoices($this->getCurrentCompany(), Document::OUTGOING);
+                $incomingInvoices = $this->getDocumentRepository()->findExpiredInvoices(
+                    $this->getCurrentCompany(),
+                    Document::INCOMING
+                );
+                $outgoingInvoices = $this->getDocumentRepository()->findExpiredInvoices(
+                    $this->getCurrentCompany(),
+                    Document::OUTGOING
+                );
 
                 return [
                     'currentCompany' => $currentCompany,
@@ -69,9 +75,13 @@ class DefaultController extends BaseController
      */
     public function contactUsAction(Request $request, MailerInterface $mailer)
     {
-        $form = $this->createForm(ContactUsForm::class, null, [
-            'debug' => $this->getParameter('kernel.debug'),
-        ]);
+        $form = $this->createForm(
+            ContactUsForm::class,
+            null,
+            [
+                'debug' => $this->getParameter('kernel.debug'),
+            ]
+        );
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -85,7 +95,7 @@ class DefaultController extends BaseController
         }
 
         return [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ];
     }
 

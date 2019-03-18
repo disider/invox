@@ -42,7 +42,7 @@ class RecurrenceController extends BaseController
         } else {
             $filters = [
                 RecurrenceRepository::FILTER_BY_COMPANY => $this->getCurrentCompany(),
-                RecurrenceRepository::FILTER_BY_MANAGER => $this->getUser()
+                RecurrenceRepository::FILTER_BY_MANAGER => $this->getUser(),
             ];
         }
 
@@ -91,11 +91,13 @@ class RecurrenceController extends BaseController
 
         $recurrences = $this->getRecurrenceRepository()->search($term, $customerId);
 
-        return $this->serialize([
-            'recurrences' => $recurrences,
-            'customerId' => $customerId,
-            'term' => $term
-        ]);
+        return $this->serialize(
+            [
+                'recurrences' => $recurrences,
+                'customerId' => $customerId,
+                'term' => $term,
+            ]
+        );
     }
 
     /**
@@ -116,15 +118,21 @@ class RecurrenceController extends BaseController
         $processor->process($request, $recurrence);
 
         if ($processor->isValid()) {
-            $this->addFlash('success', $processor->isNew() ? 'flash.recurrence.created' : 'flash.recurrence.updated',
-                ['%recurrence%' => $processor->getData()]);
+            $this->addFlash(
+                'success',
+                $processor->isNew() ? 'flash.recurrence.created' : 'flash.recurrence.updated',
+                ['%recurrence%' => $processor->getData()]
+            );
 
             if ($processor->isRedirectingTo(RecurrenceFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('recurrences');
             }
 
-            return $this->redirectToRoute('recurrence_edit', [
-                    'id' => $processor->getData()->getId(),]
+            return $this->redirectToRoute(
+                'recurrence_edit',
+                [
+                    'id' => $processor->getData()->getId(),
+                ]
             );
         }
 

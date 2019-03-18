@@ -34,11 +34,13 @@ class LocalizedNumberType extends LocalizedType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'attr' => [
-                'class' => 'localized-number'
+        $resolver->setDefaults(
+            [
+                'attr' => [
+                    'class' => 'localized-number',
+                ],
             ]
-        ]);
+        );
     }
 
 }

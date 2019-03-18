@@ -8,13 +8,15 @@
  *
  */
 
+namespace Features\App;
+
 use App\Entity\Account;
 use App\Entity\Document;
 use App\Entity\PettyCashNote;
 use App\Entity\PettyCashNoteAttachment;
 use Behat\Gherkin\Node\TableNode;
 
-class PettyCashContext extends BaseMinkContext
+class PettyCashContext extends AbstractMinkContext
 {
     /**
      * @Given /^there is a petty cash note:$/

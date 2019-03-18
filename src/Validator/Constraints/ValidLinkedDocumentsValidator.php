@@ -24,15 +24,33 @@ class ValidLinkedDocumentsValidator extends ConstraintValidator
     public function validate($document, Constraint $constraint)
     {
         if ($document->hasLinkedOrder()) {
-            $this->validateLinkedDocument($document, $document->getLinkedOrder(), DocumentType::ORDER, 'linkedOrder', 'invalid_order');
+            $this->validateLinkedDocument(
+                $document,
+                $document->getLinkedOrder(),
+                DocumentType::ORDER,
+                'linkedOrder',
+                'invalid_order'
+            );
         }
 
         if ($document->hasLinkedCreditNote()) {
-            $this->validateLinkedDocument($document, $document->getLinkedCreditNote(), DocumentType::CREDIT_NOTE, 'linkedCreditNote', 'invalid_credit_note');
+            $this->validateLinkedDocument(
+                $document,
+                $document->getLinkedCreditNote(),
+                DocumentType::CREDIT_NOTE,
+                'linkedCreditNote',
+                'invalid_credit_note'
+            );
         }
 
         if ($document->hasLinkedInvoice()) {
-            $this->validateLinkedDocument($document, $document->getLinkedInvoice(), DocumentType::INVOICE, 'linkedInvoice', 'invalid_invoice');
+            $this->validateLinkedDocument(
+                $document,
+                $document->getLinkedInvoice(),
+                DocumentType::INVOICE,
+                'linkedInvoice',
+                'invalid_invoice'
+            );
         }
     }
 
@@ -45,7 +63,7 @@ class ValidLinkedDocumentsValidator extends ConstraintValidator
         }
 
         if (!$document->hasSameCompanyAs($linkedDocument)) {
-            $this->context->buildViolation('error.' . $error)
+            $this->context->buildViolation('error.'.$error)
                 ->atPath($field)
                 ->addViolation();
         }

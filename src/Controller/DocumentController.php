@@ -299,9 +299,9 @@ class DocumentController extends BaseController
 
         return new Response(
             $pdf->getOutputFromHtml($body, $options), 200, [
-            'Content-Type' => 'application/pdf',
-            'Content-Disposition' => $mode,
-        ]
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => $mode,
+            ]
         );
     }
 

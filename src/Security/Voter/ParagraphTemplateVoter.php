@@ -22,10 +22,13 @@ class ParagraphTemplateVoter extends BaseVoter
 
     protected function supports($attribute, $subject)
     {
-        return $subject instanceof ParagraphTemplate && in_array($attribute, [
-                self::PARAGRAPH_TEMPLATE_DELETE,
-                self::PARAGRAPH_TEMPLATE_EDIT,
-            ]);
+        return $subject instanceof ParagraphTemplate && in_array(
+                $attribute,
+                [
+                    self::PARAGRAPH_TEMPLATE_DELETE,
+                    self::PARAGRAPH_TEMPLATE_EDIT,
+                ]
+            );
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
@@ -40,7 +43,10 @@ class ParagraphTemplateVoter extends BaseVoter
         switch ($attribute) {
             case self::PARAGRAPH_TEMPLATE_DELETE:
             case self::PARAGRAPH_TEMPLATE_EDIT:
-                return $user->ownsParagraphTemplate($subject) && $this->isModuleEnabled($subject->getCompany(), Module::WORKING_NOTES_MODULE);
+                return $user->ownsParagraphTemplate($subject) && $this->isModuleEnabled(
+                        $subject->getCompany(),
+                        Module::WORKING_NOTES_MODULE
+                    );
         }
 
         return false;

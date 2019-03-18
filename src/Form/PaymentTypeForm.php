@@ -26,23 +26,35 @@ class PaymentTypeForm extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('days', NumberType::class, [
-            'label' => 'fields.days',
-            'required' => false,
-        ]);
-        $builder->add('endOfMonth', CheckboxType::class, [
-            'label' => 'fields.end_of_month',
-            'required' => false,
-        ]);
-        $builder->add('translations', TranslationsType::class, [
-            'label' => false,
-            'fields' => [
-                'name' => [
-                    'field_type' => TextType::class,
-                    'label' => 'fields.name',
+        $builder->add(
+            'days',
+            NumberType::class,
+            [
+                'label' => 'fields.days',
+                'required' => false,
+            ]
+        );
+        $builder->add(
+            'endOfMonth',
+            CheckboxType::class,
+            [
+                'label' => 'fields.end_of_month',
+                'required' => false,
+            ]
+        );
+        $builder->add(
+            'translations',
+            TranslationsType::class,
+            [
+                'label' => false,
+                'fields' => [
+                    'name' => [
+                        'field_type' => TextType::class,
+                        'label' => 'fields.name',
+                    ],
                 ],
             ]
-        ]);
+        );
 
         $builder->add('save', SubmitType::class, ['label' => 'actions.save']);
         $builder->add(
@@ -62,10 +74,12 @@ class PaymentTypeForm extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => PaymentType::class,
-            'constraints' => new Valid(),
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => PaymentType::class,
+                'constraints' => new Valid(),
+            ]
+        );
     }
 
 }

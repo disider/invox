@@ -20,14 +20,14 @@ class CsvToArray
     public function convert($filename, $delimiter = ',')
     {
         if (!file_exists($filename) || !is_readable($filename)) {
-            return FALSE;
+            return false;
         }
 
-        $header = NULL;
+        $header = null;
         $data = [];
 
-        if (($handle = fopen($filename, 'r')) !== FALSE) {
-            while (($row = fgetcsv($handle, 1000, $delimiter)) !== FALSE) {
+        if (($handle = fopen($filename, 'r')) !== false) {
+            while (($row = fgetcsv($handle, 1000, $delimiter)) !== false) {
                 if (!$header) {
                     $header = $row;
                 } else {
@@ -36,6 +36,7 @@ class CsvToArray
             }
             fclose($handle);
         }
+
         return $data;
     }
 

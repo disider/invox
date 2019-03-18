@@ -86,16 +86,22 @@ class TaxRateController extends BaseController
         $processor->process($request, $taxRate);
 
         if ($processor->isValid()) {
-            $this->addFlash('success', $processor->isNew() ? 'flash.tax_rate.created' : 'flash.tax_rate.updated',
-                ['%tax_rate%' => $processor->getData()]);
+            $this->addFlash(
+                'success',
+                $processor->isNew() ? 'flash.tax_rate.created' : 'flash.tax_rate.updated',
+                ['%tax_rate%' => $processor->getData()]
+            );
 
             if ($processor->isRedirectingTo(TaxRateFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('tax_rates');
             }
 
-            return $this->redirectToRoute('tax_rate_edit', [
-                'id' => $processor->getData()->getId(),
-            ]);
+            return $this->redirectToRoute(
+                'tax_rate_edit',
+                [
+                    'id' => $processor->getData()->getId(),
+                ]
+            );
         }
 
         $form = $processor->getForm();

@@ -40,8 +40,12 @@ class InviteFormProcessor extends AbstractFormProcessor
      */
     private $hasSentInvite;
 
-    public function __construct(InviteRepository $inviteRepository, MailerInterface $mailer, FormFactoryInterface $formFactory, TokenStorageInterface $tokenStorage)
-    {
+    public function __construct(
+        InviteRepository $inviteRepository,
+        MailerInterface $mailer,
+        FormFactoryInterface $formFactory,
+        TokenStorageInterface $tokenStorage
+    ) {
         parent::__construct($formFactory, $tokenStorage);
 
         $this->inviteRepository = $inviteRepository;

@@ -8,10 +8,12 @@
  *
  */
 
+namespace Features\App;
+
 use App\Entity\ParagraphTemplate;
 use Behat\Gherkin\Node\TableNode;
 
-class ParagraphTemplateContext extends BaseMinkContext
+class ParagraphTemplateContext extends AbstractMinkContext
 {
     /**
      * @Given /^there is a paragraph template:$/

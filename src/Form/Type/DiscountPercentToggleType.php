@@ -23,10 +23,12 @@ class DiscountPercentToggleType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'label' => false,
-            'required' => false,
-        ]);
+        $resolver->setDefaults(
+            [
+                'label' => false,
+                'required' => false,
+            ]
+        );
     }
 
     public function getBlockPrefix()

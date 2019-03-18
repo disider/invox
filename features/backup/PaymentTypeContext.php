@@ -8,10 +8,12 @@
  *
  */
 
+namespace Features\App;
+
 use App\Entity\PaymentType;
 use Behat\Gherkin\Node\TableNode;
 
-class PaymentTypeContext extends BaseMinkContext
+class PaymentTypeContext extends AbstractMinkContext
 {
     /**
      * @Given /^there is a payment type:$/

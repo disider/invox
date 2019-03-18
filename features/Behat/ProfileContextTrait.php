@@ -82,5 +82,6 @@ trait ProfileContextTrait
     }
 
     protected abstract function getUserProvider();
+
     protected abstract function getFirewallName();
 }

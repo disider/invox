@@ -30,11 +30,14 @@ class DirectorySubscriber implements EventSubscriberInterface
             $iter = $finder->getIterator();
             $files = iterator_to_array($iter);
             $event->count = count($files);
-            $event->items = $this->buildFiles(array_slice(
-                $files,
-                $event->getOffset(),
-                $event->getLimit()
-            ), $uploadDir);
+            $event->items = $this->buildFiles(
+                array_slice(
+                    $files,
+                    $event->getOffset(),
+                    $event->getLimit()
+                ),
+                $uploadDir
+            );
             $event->stopPropagation();
         }
     }
@@ -42,7 +45,7 @@ class DirectorySubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            'knp_pager.items' => ['items', 1/*increased priority to override any internal*/]
+            'knp_pager.items' => ['items', 1/*increased priority to override any internal*/],
         ];
     }
 

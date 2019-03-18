@@ -75,7 +75,7 @@ class AttachableListener implements EventSubscriber
             $source = $file->getPathname();
 
             $fs->mkdir($attachable->getUploadRootDir());
-            $destination = $attachable->getUploadRootDir() . '/' . $file->getFilename();
+            $destination = $attachable->getUploadRootDir().'/'.$file->getFilename();
 
             if (is_file($source)) {
                 $fs->rename($source, $destination);

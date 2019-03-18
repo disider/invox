@@ -7,13 +7,13 @@
  * file that was distributed with this source code.
  *
  */
-namespace Features\App;
 
+namespace Features\App;
 
 use App\Entity\City;
 use Behat\Gherkin\Node\TableNode;
 
-class CityContext extends BaseMinkContext
+class CityContext extends AbstractMinkContext
 {
     /**
      * @Given /^there is a city:$/

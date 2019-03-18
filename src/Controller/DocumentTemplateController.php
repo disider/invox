@@ -59,8 +59,11 @@ class DocumentTemplateController extends BaseController
      * @Route("/{id}/edit", name="document_template_edit")
      * @Template
      */
-    public function editAction(Request $request, DocumentTemplateFormProcessor $processor, DocumentTemplate $documentTemplate)
-    {
+    public function editAction(
+        Request $request,
+        DocumentTemplateFormProcessor $processor,
+        DocumentTemplate $documentTemplate
+    ) {
         return $this->processForm($request, $processor, $documentTemplate);
     }
 
@@ -80,7 +83,9 @@ class DocumentTemplateController extends BaseController
      */
     public function restoreAction(DocumentTemplate $documentTemplate)
     {
-        $templates = $this->getDocumentTemplatePerCompanyRepository()->findBy(['documentTemplate' => $documentTemplate]);
+        $templates = $this->getDocumentTemplatePerCompanyRepository()->findBy(
+            ['documentTemplate' => $documentTemplate]
+        );
 
         /** @var DocumentTemplatePerCompany $template */
         foreach ($templates as $template) {
@@ -100,7 +105,7 @@ class DocumentTemplateController extends BaseController
     public function previewAction(DocumentTemplate $documentTemplate)
     {
         return [
-            'documentTemplate' => $documentTemplate
+            'documentTemplate' => $documentTemplate,
         ];
     }
 
@@ -126,7 +131,7 @@ class DocumentTemplateController extends BaseController
                 'template' => $documentTemplatePerCompany,
                 'header' => $this->renderSection($builder, $document, 'header'),
                 'footer' => $this->renderSection($builder, $document, 'footer'),
-                'content' => $this->renderSection($builder, $document, 'content')
+                'content' => $this->renderSection($builder, $document, 'content'),
             ];
 
             return $this->render('document_template_per_company/render.html.twig', $params);
@@ -140,23 +145,32 @@ class DocumentTemplateController extends BaseController
         return $builder->build($document, $section);
     }
 
-    private function processForm(Request $request, DocumentTemplateFormProcessor $processor, DocumentTemplate $documentTemplate = null)
-    {
+    private function processForm(
+        Request $request,
+        DocumentTemplateFormProcessor $processor,
+        DocumentTemplate $documentTemplate = null
+    ) {
         $processor->process($request, $documentTemplate);
 
         if ($processor->isValid()) {
-            $this->addFlash('success', $processor->isNew() ?
-                'flash.document_template.created' :
-                'flash.document_template.updated',
-                ['%document_template%' => $processor->getData()->getName()]);
+            $this->addFlash(
+                'success',
+                $processor->isNew() ?
+                    'flash.document_template.created' :
+                    'flash.document_template.updated',
+                ['%document_template%' => $processor->getData()->getName()]
+            );
 
             if ($processor->isRedirectingTo(DocumentTemplateFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('document_templates');
             }
 
-            return $this->redirectToRoute('document_template_edit', [
-                'id' => $processor->getData()->getId(),
-            ]);
+            return $this->redirectToRoute(
+                'document_template_edit',
+                [
+                    'id' => $processor->getData()->getId(),
+                ]
+            );
         }
 
         $form = $processor->getForm();

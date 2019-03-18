@@ -56,7 +56,7 @@ class CustomerController extends BaseController
 
         return [
             'pagination' => $pagination,
-            'filterForm' => $filterForm->createView()
+            'filterForm' => $filterForm->createView(),
         ];
     }
 
@@ -106,9 +106,11 @@ class CustomerController extends BaseController
 
         $customers = $this->getCustomerRepository()->search($term, $this->getCurrentCompany());
 
-        return $this->serialize([
-            'customers' => $customers,
-        ]);
+        return $this->serialize(
+            [
+                'customers' => $customers,
+            ]
+        );
     }
 
     private function processForm(Request $request, CustomerFormProcessor $processor, Customer $customer)
@@ -116,16 +118,22 @@ class CustomerController extends BaseController
         $processor->process($request, $customer);
 
         if ($processor->isValid()) {
-            $this->addFlash('success', $processor->isNew() ? 'flash.customer.created' : 'flash.customer.updated',
-                ['%customer%' => $processor->getData()]);
+            $this->addFlash(
+                'success',
+                $processor->isNew() ? 'flash.customer.created' : 'flash.customer.updated',
+                ['%customer%' => $processor->getData()]
+            );
 
             if ($processor->isRedirectingTo(CustomerFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('customers');
             }
 
-            return $this->redirectToRoute('customer_edit', [
-                'id' => $processor->getData()->getId(),
-            ]);
+            return $this->redirectToRoute(
+                'customer_edit',
+                [
+                    'id' => $processor->getData()->getId(),
+                ]
+            );
         }
 
         $form = $processor->getForm();

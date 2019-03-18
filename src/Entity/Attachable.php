@@ -83,21 +83,21 @@ abstract class Attachable
 
     private function removeFile()
     {
-        @unlink($this->getUploadRootDir() . '/' . $this->fileUrl);
+        @unlink($this->getUploadRootDir().'/'.$this->fileUrl);
     }
 
     public function getWebPath()
     {
         return null == $this->fileUrl
             ? ""
-            : $this->getUploadDir() . '/' . $this->fileUrl;
+            : $this->getUploadDir().'/'.$this->fileUrl;
     }
 
     public function getPath()
     {
         return null == $this->fileUrl
             ? ""
-            : $this->getUploadRootDir() . '/' . $this->fileUrl;
+            : $this->getUploadRootDir().'/'.$this->fileUrl;
     }
 
     public function getUploadDir()

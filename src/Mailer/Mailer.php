@@ -64,8 +64,14 @@ class Mailer implements MailerInterface
      */
     private $html;
 
-    public function __construct(\Twig_Environment $templating, RouterInterface $router, \Swift_Mailer $mailer, TranslatorInterface $translator, array $displayNames, array $emails)
-    {
+    public function __construct(
+        \Twig_Environment $templating,
+        RouterInterface $router,
+        \Swift_Mailer $mailer,
+        TranslatorInterface $translator,
+        array $displayNames,
+        array $emails
+    ) {
         $this->mailer = $mailer;
         $this->templating = $templating;
         $this->displayNames = $displayNames;
@@ -76,54 +82,85 @@ class Mailer implements MailerInterface
 
     public function sendConfirmRegistrationEmailTo(User $user)
     {
-        $this->sendHtml('registration.confirm', $this->getFullEmailAddress('no-reply'), $user->getEmail(), [
-            'url' => $this->generateUrl('register_confirm', [
-                'token' => $user->getConfirmationToken()
-            ]),
-            'user' => $user->getEmail(),
-        ]);
+        $this->sendHtml(
+            'registration.confirm',
+            $this->getFullEmailAddress('no-reply'),
+            $user->getEmail(),
+            [
+                'url' => $this->generateUrl(
+                    'register_confirm',
+                    [
+                        'token' => $user->getConfirmationToken(),
+                    ]
+                ),
+                'user' => $user->getEmail(),
+            ]
+        );
     }
 
     public function sendRegistrationCompletedEmailTo(User $user)
     {
-        $this->sendHtml('registration.completed', $this->getFullEmailAddress('no-reply'), $user->getEmail(), [
-            'user' => $user->getEmail(),
-        ]);
+        $this->sendHtml(
+            'registration.completed',
+            $this->getFullEmailAddress('no-reply'),
+            $user->getEmail(),
+            [
+                'user' => $user->getEmail(),
+            ]
+        );
     }
 
     public function sendResetPasswordRequestEmailTo(User $user)
     {
-        $this->sendHtml('reset_password', $this->getFullEmailAddress('no-reply'), $user->getEmail(), [
-            'url' => $this->generateUrl('reset_password', [
-                'token' => $user->getResetPasswordToken()
-            ]),
-            'user' => $user->getEmail(),
-        ]);
+        $this->sendHtml(
+            'reset_password',
+            $this->getFullEmailAddress('no-reply'),
+            $user->getEmail(),
+            [
+                'url' => $this->generateUrl(
+                    'reset_password',
+                    [
+                        'token' => $user->getResetPasswordToken(),
+                    ]
+                ),
+                'user' => $user->getEmail(),
+            ]
+        );
     }
 
     public function sendInviteAccountantEmailTo(Invite $invite)
     {
-        $this->sendHtml('invite.accountant', $this->getFullEmailAddress('no-reply'), $invite->getEmail(), [
-            'company' => $invite->getCompany(),
-            'accountant' => $invite->getEmail(),
-            'url' => $this->generateUrl('invite_view', ['token' => $invite->getToken()]),
-        ]);
+        $this->sendHtml(
+            'invite.accountant',
+            $this->getFullEmailAddress('no-reply'),
+            $invite->getEmail(),
+            [
+                'company' => $invite->getCompany(),
+                'accountant' => $invite->getEmail(),
+                'url' => $this->generateUrl('invite_view', ['token' => $invite->getToken()]),
+            ]
+        );
     }
 
     public function sendContactUsMail($email, $subject, $body)
     {
-        $this->sendHtml('contact_us', $email, $this->getFullEmailAddress('info'), [
-            'from' => $email,
-            'subject' => $subject,
-            'body' => $body
-        ]);
+        $this->sendHtml(
+            'contact_us',
+            $email,
+            $this->getFullEmailAddress('info'),
+            [
+                'from' => $email,
+                'subject' => $subject,
+                'body' => $body,
+            ]
+        );
     }
 
     protected function sendHtml($content, $from, $to, array $params = [])
     {
-        $subject = $content . '.subject';
-        $htmlBody = $content . '.html_body';
-        $txtBody = $content . '.txt_body';
+        $subject = $content.'.subject';
+        $htmlBody = $content.'.html_body';
+        $txtBody = $content.'.txt_body';
 
         $this->subject = $this->translate($subject, $params);
         $this->txt = $this->translate($txtBody, $params);
@@ -150,7 +187,7 @@ class Mailer implements MailerInterface
         $transParams = [];
 
         foreach ($params as $i => $param) {
-            $transParams['%' . $i . '%'] = $param;
+            $transParams['%'.$i.'%'] = $param;
         }
 
         return $this->translator->trans($message, $transParams, 'emails');

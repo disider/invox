@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 abstract class AttachmentContainer
 {
-    const UPLOAD_ROOT_DIR = __DIR__ . '/../../../web/';
+    const UPLOAD_ROOT_DIR = __DIR__.'/../../../web/';
 
     /**
      * @Assert\Valid
@@ -70,12 +70,12 @@ abstract class AttachmentContainer
 
     public function getAttachmentsUploadRootDir()
     {
-        return self::UPLOAD_ROOT_DIR . $this->getAttachmentsUploadDir();
+        return self::UPLOAD_ROOT_DIR.$this->getAttachmentsUploadDir();
     }
 
     public function getUploadRootDir()
     {
-        return self::UPLOAD_ROOT_DIR . $this->getUploadDir();
+        return self::UPLOAD_ROOT_DIR.$this->getUploadDir();
     }
 
 }

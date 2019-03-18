@@ -82,16 +82,22 @@ class ProvinceController extends BaseController
         $processor->process($request, $province);
 
         if ($processor->isValid()) {
-            $this->addFlash('success', $processor->isNew() ? 'flash.province.created' : 'flash.province.updated',
-                ['%province%' => $processor->getData()]);
+            $this->addFlash(
+                'success',
+                $processor->isNew() ? 'flash.province.created' : 'flash.province.updated',
+                ['%province%' => $processor->getData()]
+            );
 
             if ($processor->isRedirectingTo(ProvinceFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('provinces');
             }
 
-            return $this->redirectToRoute('province_edit', [
-                'id' => $processor->getData()->getId(),
-            ]);
+            return $this->redirectToRoute(
+                'province_edit',
+                [
+                    'id' => $processor->getData()->getId(),
+                ]
+            );
         }
 
         $form = $processor->getForm();

@@ -52,8 +52,8 @@ class MediumRepository extends AbstractRepository
     {
         foreach ($mimeTypes as $i => $mimeType) {
             $qb
-                ->orWhere(sprintf('(medium.fileUrl LIKE :%s)', 'mimeType' . $i))
-                ->setParameter('mimeType' . $i, '%.' . $mimeType);
+                ->orWhere(sprintf('(medium.fileUrl LIKE :%s)', 'mimeType'.$i))
+                ->setParameter('mimeType'.$i, '%.'.$mimeType);
         }
 
         return $qb;
@@ -62,7 +62,7 @@ class MediumRepository extends AbstractRepository
     protected function filterByCompany(QueryBuilder $qb, Company $company)
     {
         $qb
-            ->andWhere($this->getRootAlias() . '.container = :company')
+            ->andWhere($this->getRootAlias().'.container = :company')
             ->setParameter('company', $company);
 
         return $qb;

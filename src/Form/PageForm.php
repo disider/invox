@@ -22,18 +22,30 @@ class PageForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('translations', TranslationsType::class, [
-            'label' => false
-        ]);
+        $builder->add(
+            'translations',
+            TranslationsType::class,
+            [
+                'label' => false,
+            ]
+        );
 
-        $builder->add('save', SubmitType::class, [
-            'label' => 'actions.save',
-        ]);
+        $builder->add(
+            'save',
+            SubmitType::class,
+            [
+                'label' => 'actions.save',
+            ]
+        );
 
-        $builder->add('saveAndClose', SubmitType::class, [
-            'label' => 'actions.save_and_close',
-            'button_class' => 'btn btn-default',
-        ]);
+        $builder->add(
+            'saveAndClose',
+            SubmitType::class,
+            [
+                'label' => 'actions.save_and_close',
+                'button_class' => 'btn btn-default',
+            ]
+        );
     }
 
     public function getBlockPrefix()
@@ -43,9 +55,11 @@ class PageForm extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => Page::class,
-            'constraints' => new Valid(),
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => Page::class,
+                'constraints' => new Valid(),
+            ]
+        );
     }
 }

@@ -55,7 +55,7 @@ abstract class SelectedCompanyRepository extends AbstractRepository
     protected function filterByManager(QueryBuilder $qb, User $user)
     {
         $qb
-            ->leftJoin($this->getRootAlias() . '.company', 'company')
+            ->leftJoin($this->getRootAlias().'.company', 'company')
             ->leftJoin('company.managers', 'manager')
             ->andWhere('company.owner = :user')
             ->orWhere('manager = :user')
@@ -67,7 +67,7 @@ abstract class SelectedCompanyRepository extends AbstractRepository
     protected function filterBySales($qb, $user)
     {
         $qb
-            ->leftJoin($this->getRootAlias() . '.company', 'company')
+            ->leftJoin($this->getRootAlias().'.company', 'company')
             ->leftJoin('company.salesAgents', 'salesAgents')
             ->andWhere('company.owner = :user')
             ->orWhere('salesAgents = :user')
@@ -80,7 +80,7 @@ abstract class SelectedCompanyRepository extends AbstractRepository
     protected function filterByAccountant(QueryBuilder $qb, User $user)
     {
         $qb
-            ->leftJoin($this->getRootAlias() . '.company', 'company')
+            ->leftJoin($this->getRootAlias().'.company', 'company')
             ->andWhere('company.accountant = :user')
             ->setParameter('user', $user);
 
@@ -90,7 +90,7 @@ abstract class SelectedCompanyRepository extends AbstractRepository
     protected function filterByCompany(QueryBuilder $qb, Company $company)
     {
         $qb
-            ->andWhere($this->getRootAlias() . '.company = :company')
+            ->andWhere($this->getRootAlias().'.company = :company')
             ->setParameter('company', $company);
 
         return $qb;

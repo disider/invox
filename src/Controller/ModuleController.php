@@ -43,7 +43,14 @@ class ModuleController extends BaseController
         $company = $this->getCurrentCompany();
 
         if ($company->hasModule($module)) {
-            $this->addFlash('danger', $this->translate('error.module_already_enabled', ['%module%' => $this->translate($module)], 'validators'));
+            $this->addFlash(
+                'danger',
+                $this->translate(
+                    'error.module_already_enabled',
+                    ['%module%' => $this->translate($module)],
+                    'validators'
+                )
+            );
         } else {
             $company->addModule($module);
             $this->save($company);
@@ -64,7 +71,10 @@ class ModuleController extends BaseController
         $company = $this->getCurrentCompany();
 
         if (!$company->hasModule($module)) {
-            $this->addFlash('danger', $this->translate('error.module_not_enabled', ['%module%' => $this->translate($module)], 'validators'));
+            $this->addFlash(
+                'danger',
+                $this->translate('error.module_not_enabled', ['%module%' => $this->translate($module)], 'validators')
+            );
         } else {
             $company->removeModule($module);
             $this->save($company);

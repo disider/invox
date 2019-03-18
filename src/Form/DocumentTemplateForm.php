@@ -23,50 +23,94 @@ class DocumentTemplateForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', TextType::class, [
-            'label' => 'fields.name'
-        ]);
+        $builder->add(
+            'name',
+            TextType::class,
+            [
+                'label' => 'fields.name',
+            ]
+        );
 
-        $builder->add('textColor', ColorType::class, [
-            'label' => 'fields.text_color'
-        ]);
+        $builder->add(
+            'textColor',
+            ColorType::class,
+            [
+                'label' => 'fields.text_color',
+            ]
+        );
 
-        $builder->add('tableHeaderBackgroundColor', ColorType::class, [
-            'label' => 'fields.background_color',
-        ]);
+        $builder->add(
+            'tableHeaderBackgroundColor',
+            ColorType::class,
+            [
+                'label' => 'fields.background_color',
+            ]
+        );
 
-        $builder->add('tableHeaderColor', ColorType::class, [
-            'label' => 'fields.text_color'
-        ]);
+        $builder->add(
+            'tableHeaderColor',
+            ColorType::class,
+            [
+                'label' => 'fields.text_color',
+            ]
+        );
 
-        $builder->add('headingColor', ColorType::class, [
-            'label' => 'fields.heading_color'
-        ]);
+        $builder->add(
+            'headingColor',
+            ColorType::class,
+            [
+                'label' => 'fields.heading_color',
+            ]
+        );
 
-        $builder->add('fontFamily', TextType::class, [
-            'label' => 'fields.font_family'
-        ]);
+        $builder->add(
+            'fontFamily',
+            TextType::class,
+            [
+                'label' => 'fields.font_family',
+            ]
+        );
 
-        $builder->add('header', TextareaType::class, [
-            'label' => 'fields.header'
-        ]);
+        $builder->add(
+            'header',
+            TextareaType::class,
+            [
+                'label' => 'fields.header',
+            ]
+        );
 
-        $builder->add('content', TextareaType::class, [
-            'label' => 'fields.content'
-        ]);
+        $builder->add(
+            'content',
+            TextareaType::class,
+            [
+                'label' => 'fields.content',
+            ]
+        );
 
-        $builder->add('footer', TextareaType::class, [
-            'label' => 'fields.footer'
-        ]);
+        $builder->add(
+            'footer',
+            TextareaType::class,
+            [
+                'label' => 'fields.footer',
+            ]
+        );
 
-        $builder->add('save', SubmitType::class, [
-            'label' => 'actions.save'
-        ]);
+        $builder->add(
+            'save',
+            SubmitType::class,
+            [
+                'label' => 'actions.save',
+            ]
+        );
 
-        $builder->add('saveAndClose', SubmitType::class, [
-            'button_class' => 'btn btn-default',
-            'label' => 'actions.save_and_close'
-        ]);
+        $builder->add(
+            'saveAndClose',
+            SubmitType::class,
+            [
+                'button_class' => 'btn btn-default',
+                'label' => 'actions.save_and_close',
+            ]
+        );
 
     }
 
@@ -77,8 +121,10 @@ class DocumentTemplateForm extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => DocumentTemplate::class,
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => DocumentTemplate::class,
+            ]
+        );
     }
 }

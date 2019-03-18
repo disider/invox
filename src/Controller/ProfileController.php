@@ -40,12 +40,17 @@ class ProfileController extends BaseController
     {
         if ($this->isInDemoMode()) {
             $this->addFlash('danger', 'demo.action_not_allowed');
+
             return $this->redirectToRoute('homepage');
         }
 
-        $form = $this->createForm(ChangePasswordForm::class, $this->getUser(), [
-            'data_class' => User::class,
-        ]);
+        $form = $this->createForm(
+            ChangePasswordForm::class,
+            $this->getUser(),
+            [
+                'data_class' => User::class,
+            ]
+        );
 
         if ($request->isMethod(Request::METHOD_POST)) {
             $form->handleRequest($request);
@@ -83,7 +88,8 @@ class ProfileController extends BaseController
                 $this->save($user);
 
                 $this->addFlash(
-                    'success', 'flash.profile.updated'
+                    'success',
+                    'flash.profile.updated'
                 );
 
                 if ($form->get('saveAndClose')->isClicked()) {

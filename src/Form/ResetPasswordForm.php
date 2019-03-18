@@ -18,10 +18,14 @@ class ResetPasswordForm extends BaseForm
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('password', PasswordType::class, [
-            'label' => 'fields.password',
-            'property_path' => 'plainPassword',
-        ]);
+        $builder->add(
+            'password',
+            PasswordType::class,
+            [
+                'label' => 'fields.password',
+                'property_path' => 'plainPassword',
+            ]
+        );
     }
 
     public function getBlockPrefix()
@@ -33,8 +37,10 @@ class ResetPasswordForm extends BaseForm
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefaults([
-            'validation_groups' => ['reset_password'],
-        ]);
+        $resolver->setDefaults(
+            [
+                'validation_groups' => ['reset_password'],
+            ]
+        );
     }
 }

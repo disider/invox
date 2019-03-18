@@ -29,8 +29,11 @@ class CurrencyListener implements EventSubscriberInterface
      */
     private $localeFormatter;
 
-    public function __construct(TokenStorageInterface $tokenStorage, \Twig_Environment $twigEnvironment, LocaleFormatter $localeFormatter)
-    {
+    public function __construct(
+        TokenStorageInterface $tokenStorage,
+        \Twig_Environment $twigEnvironment,
+        LocaleFormatter $localeFormatter
+    ) {
         $this->tokenStorage = $tokenStorage;
         $this->twigEnvironment = $twigEnvironment;
         $this->localeFormatter = $localeFormatter;

@@ -38,7 +38,7 @@ class RecurrenceRepository extends AbstractRepository
     {
         $qb = parent::findAllQuery($filters, $pageIndex, $pageSize);
 
-        $qb->leftJoin($this->getRootAlias() . '.company', 'company');
+        $qb->leftJoin($this->getRootAlias().'.company', 'company');
 
         return $this->applyFilters($qb, $filters);
     }
@@ -61,7 +61,7 @@ class RecurrenceRepository extends AbstractRepository
             ->leftJoin('r.customer', 'c')
             ->andWhere('c.id = :customer')
             ->andWhere('r.nextDueDate IS NOT NULL')
-            ->setParameter('term', '%' . $term . '%')
+            ->setParameter('term', '%'.$term.'%')
             ->setParameter('customer', $customerId)
             ->getQuery()
             ->execute();

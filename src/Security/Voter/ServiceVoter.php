@@ -22,10 +22,13 @@ class ServiceVoter extends BaseVoter
 
     protected function supports($attribute, $subject)
     {
-        return $subject instanceof Service && in_array($attribute, [
-                self::SERVICE_DELETE,
-                self::SERVICE_EDIT,
-            ]);
+        return $subject instanceof Service && in_array(
+                $attribute,
+                [
+                    self::SERVICE_DELETE,
+                    self::SERVICE_EDIT,
+                ]
+            );
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
@@ -33,10 +36,14 @@ class ServiceVoter extends BaseVoter
         /** @var User $user */
         $user = $token->getUser();
 
-        if (!($user instanceof User))
+        if (!($user instanceof User)) {
             return false;
+        }
 
-        if ($user->isSuperadmin() || ($user->ownsService($subject) && $this->isModuleEnabled($subject->getCompany(), Module::SERVICES_MODULE))) {
+        if ($user->isSuperadmin() || ($user->ownsService($subject) && $this->isModuleEnabled(
+                    $subject->getCompany(),
+                    Module::SERVICES_MODULE
+                ))) {
             return true;
         }
 

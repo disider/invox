@@ -8,16 +8,18 @@
  *
  */
 
+namespace Features\App;
+
 use App\Entity\Company;
 use App\Entity\Customer;
+use App\Entity\Document;
 use App\Entity\DocumentAttachment;
 use App\Entity\DocumentRow;
 use App\Entity\Recurrence;
 use App\Model\DocumentType;
-use App\Entity\Document;
 use Behat\Gherkin\Node\TableNode;
 
-class DocumentContext extends BaseMinkContext
+class DocumentContext extends AbstractMinkContext
 {
     /**
      * @Given /^there is a quote:$/

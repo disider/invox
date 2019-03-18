@@ -49,7 +49,7 @@ class PettyCashNoteRepository extends ProtocolRepository
     /** @return QueryBuilder */
     protected function filterByYear(QueryBuilder $qb, $alias, $year)
     {
-        return $qb->andWhere($alias . '.recordedAt BETWEEN :first AND :last')
+        return $qb->andWhere($alias.'.recordedAt BETWEEN :first AND :last')
             ->setParameter('first', new \DateTime(sprintf('%s-01-01', $year)))
             ->setParameter('last', new \DateTime(sprintf('%s-12-31', $year)));
     }

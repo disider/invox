@@ -42,8 +42,8 @@ class DocumentFormProcessor extends AbstractFormProcessor
         CompanyManager $companyManager,
         FormFactoryInterface $formFactory,
         TokenStorageInterface $tokenStorage,
-        array $availableLocales)
-    {
+        array $availableLocales
+    ) {
         parent::__construct($formFactory, $tokenStorage);
 
         $this->documentRepository = $inviteRepository;

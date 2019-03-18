@@ -28,26 +28,28 @@ class ParagraphCollectionType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'label' => false,
-            'entry_type' => ParagraphType::class,
-            'allow_add' => true,
-            'allow_delete' => true,
-            'by_reference' => false,
-            'error_bubbling' => false,
-            'required' => false,
-            'prototype' => true,
-            'prototype_id' => 'paragraph-template',
-            'prototype_data' => new Paragraph(),
-            'delete_empty' => true,
-            'attr' => [
-                'class' => 'collection',
-            ],
-            'entry_options' => [
+        $resolver->setDefaults(
+            [
                 'label' => false,
-                'prototype' => false,
+                'entry_type' => ParagraphType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'error_bubbling' => false,
+                'required' => false,
+                'prototype' => true,
+                'prototype_id' => 'paragraph-template',
+                'prototype_data' => new Paragraph(),
+                'delete_empty' => true,
+                'attr' => [
+                    'class' => 'collection',
+                ],
+                'entry_options' => [
+                    'label' => false,
+                    'prototype' => false,
+                ],
             ]
-        ]);
+        );
     }
 
     public function getParent()

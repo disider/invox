@@ -26,30 +26,48 @@ class MediumForm extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('fileName', TextType::class, [
-            'label' => 'fields.file_name'
-        ]);
+        $builder->add(
+            'fileName',
+            TextType::class,
+            [
+                'label' => 'fields.file_name',
+            ]
+        );
 
-        $builder->add('fileUrl', UploaderType::class, [
-            'label' => false,
-            'endpoint' => 'medium'
-        ]);
+        $builder->add(
+            'fileUrl',
+            UploaderType::class,
+            [
+                'label' => false,
+                'endpoint' => 'medium',
+            ]
+        );
 
-        $builder->add('save', SubmitType::class, [
-            'label' => 'actions.save',
-        ]);
+        $builder->add(
+            'save',
+            SubmitType::class,
+            [
+                'label' => 'actions.save',
+            ]
+        );
 
-        $builder->add('saveAndClose', SubmitType::class, [
-            'label' => 'actions.save_and_close',
-            'button_class' => 'btn btn-default',
-        ]);
+        $builder->add(
+            'saveAndClose',
+            SubmitType::class,
+            [
+                'label' => 'actions.save_and_close',
+                'button_class' => 'btn btn-default',
+            ]
+        );
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => Medium::class
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => Medium::class,
+            ]
+        );
     }
 
     /**

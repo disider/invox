@@ -17,8 +17,11 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 class ParagraphTemplateFormProcessor extends DefaultFormProcessor
 {
-    public function __construct(ParagraphTemplateRepository $repository, FormFactoryInterface $formFactory, TokenStorageInterface $tokenStorage)
-    {
+    public function __construct(
+        ParagraphTemplateRepository $repository,
+        FormFactoryInterface $formFactory,
+        TokenStorageInterface $tokenStorage
+    ) {
         parent::__construct(ParagraphTemplateForm::class, $repository, $formFactory, $tokenStorage);
     }
 }

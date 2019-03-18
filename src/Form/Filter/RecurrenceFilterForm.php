@@ -21,65 +21,81 @@ class RecurrenceFilterForm extends BaseFilterForm
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('direction', ChoiceFilterType::class, [
-            'choices' => [
-                'recurrence.direction.outgoing' => Recurrence::OUTGOING,
-                'recurrence.direction.incoming' => Recurrence::INCOMING
-            ],
-            'label' => 'fields.direction',
-            'apply_filter' => function (QueryInterface $filterQuery, $field, $values) {
-                if (empty($values['value'])) {
-                    return null;
-                }
+        $builder->add(
+            'direction',
+            ChoiceFilterType::class,
+            [
+                'choices' => [
+                    'recurrence.direction.outgoing' => Recurrence::OUTGOING,
+                    'recurrence.direction.incoming' => Recurrence::INCOMING,
+                ],
+                'label' => 'fields.direction',
+                'apply_filter' => function (QueryInterface $filterQuery, $field, $values) {
+                    if (empty($values['value'])) {
+                        return null;
+                    }
 
-                $qb = $filterQuery->getQueryBuilder();
+                    $qb = $filterQuery->getQueryBuilder();
 
-                $qb->andWhere($filterQuery->getRootAlias() . '.direction = :direction')
-                    ->setParameter('direction', $values['value']);
+                    $qb->andWhere($filterQuery->getRootAlias().'.direction = :direction')
+                        ->setParameter('direction', $values['value']);
 
-                return $filterQuery;
-            },
-        ]);
+                    return $filterQuery;
+                },
+            ]
+        );
 
-        $builder->add('content', TextFilterType::class, [
-            'label' => 'fields.content',
-            'apply_filter' => function (QueryInterface $filterQuery, $field, $values) {
-                if (empty($values['value'])) {
-                    return null;
-                }
+        $builder->add(
+            'content',
+            TextFilterType::class,
+            [
+                'label' => 'fields.content',
+                'apply_filter' => function (QueryInterface $filterQuery, $field, $values) {
+                    if (empty($values['value'])) {
+                        return null;
+                    }
 
-                $qb = $filterQuery->getQueryBuilder();
-                $qb->andWhere($filterQuery->getRootAlias() . '.content LIKE :content')
-                    ->setParameter('content', '%' . $values['value'] . '%');
+                    $qb = $filterQuery->getQueryBuilder();
+                    $qb->andWhere($filterQuery->getRootAlias().'.content LIKE :content')
+                        ->setParameter('content', '%'.$values['value'].'%');
 
-                return $filterQuery;
-            },
-        ]);
+                    return $filterQuery;
+                },
+            ]
+        );
 
-        $builder->add('customer', TextFilterType::class, [
-            'label' => 'fields.customer',
-            'apply_filter' => function (QueryInterface $filterQuery, $field, $values) {
-                if (empty($values['value'])) {
-                    return null;
-                }
+        $builder->add(
+            'customer',
+            TextFilterType::class,
+            [
+                'label' => 'fields.customer',
+                'apply_filter' => function (QueryInterface $filterQuery, $field, $values) {
+                    if (empty($values['value'])) {
+                        return null;
+                    }
 
-                $qb = $filterQuery->getQueryBuilder();
-                $qb->leftJoin($filterQuery->getRootAlias() . '.customer', 'customer')
-                    ->andWhere('customer.name LIKE :name')
-                    ->setParameter('name', '%' . $values['value'] . '%');
+                    $qb = $filterQuery->getQueryBuilder();
+                    $qb->leftJoin($filterQuery->getRootAlias().'.customer', 'customer')
+                        ->andWhere('customer.name LIKE :name')
+                        ->setParameter('name', '%'.$values['value'].'%');
 
-                return $filterQuery;
-            },
-        ]);
+                    return $filterQuery;
+                },
+            ]
+        );
 
         $this->addDateRangeType($builder, 'startAt', 'fields.start_at');
 
         $this->addDateRangeType($builder, 'nextDueDate', 'fields.next_due_date');
 
-        $builder->add('filter', SubmitType::class, [
-            'label' => 'actions.filter',
-            'button_class' => 'btn btn-primary btn-sm',
-        ]);
+        $builder->add(
+            'filter',
+            SubmitType::class,
+            [
+                'label' => 'actions.filter',
+                'button_class' => 'btn btn-primary btn-sm',
+            ]
+        );
     }
 
     public function getBlockPrefix()

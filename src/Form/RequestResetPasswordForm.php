@@ -30,8 +30,10 @@ class RequestResetPasswordForm extends BaseForm
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefaults([
-            'validation_groups' => ['request_reset_password'],
-        ]);
+        $resolver->setDefaults(
+            [
+                'validation_groups' => ['request_reset_password'],
+            ]
+        );
     }
 }

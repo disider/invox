@@ -26,7 +26,7 @@ class Service extends Item
 
     public function getAttachmentsUploadDir()
     {
-        return $this->getUploadDir() . sprintf('/services/%s/attachments', $this->getId());
+        return $this->getUploadDir().sprintf('/services/%s/attachments', $this->getId());
     }
 
     protected function buildAttachment()

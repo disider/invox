@@ -79,8 +79,17 @@ class DocumentRow
      */
     private $linkedService;
 
-    public static function create($id, $position, $title, $description, $unitPrice, $quantity, TaxRate $taxRate, $discount, $discountPercent = false)
-    {
+    public static function create(
+        $id,
+        $position,
+        $title,
+        $description,
+        $unitPrice,
+        $quantity,
+        TaxRate $taxRate,
+        $discount,
+        $discountPercent = false
+    ) {
         $entity = new self();
         $entity->id = $id;
         $entity->position = $position;

@@ -59,7 +59,7 @@ class ProductController extends BaseController
 
         return [
             'pagination' => $pagination,
-            'filterForm' => $filterForm->createView()
+            'filterForm' => $filterForm->createView(),
         ];
     }
 
@@ -116,7 +116,7 @@ class ProductController extends BaseController
         }
 
         $filters = [
-            WarehouseRecordRepository::FILTER_BY_PRODUCT => $product
+            WarehouseRecordRepository::FILTER_BY_PRODUCT => $product,
         ];
 
         $query = $this->getWarehouseRecordRepository()->findAllQuery($filters);
@@ -141,9 +141,12 @@ class ProductController extends BaseController
 
         $this->addFlash('success', 'flash.warehouse_record.deleted');
 
-        return $this->redirectToRoute('product_show_warehouse', [
-            'id' => $product->getId(),
-        ]);
+        return $this->redirectToRoute(
+            'product_show_warehouse',
+            [
+                'id' => $product->getId(),
+            ]
+        );
     }
 
     /**
@@ -161,9 +164,11 @@ class ProductController extends BaseController
 
         $products = $this->getProductRepository()->search($term, $this->getCurrentCompany(), $filters);
 
-        return $this->serialize([
-            'products' => $products,
-        ]);
+        return $this->serialize(
+            [
+                'products' => $products,
+            ]
+        );
     }
 
     /**
@@ -179,9 +184,11 @@ class ProductController extends BaseController
 
         $tags = $this->getProductTagRepository()->search($term, $this->getCurrentCompany());
 
-        return $this->serialize([
-            'tags' => $tags,
-        ]);
+        return $this->serialize(
+            [
+                'tags' => $tags,
+            ]
+        );
     }
 
     private function processForm(Request $request, ProductFormProcessor $processor, Product $product = null)
@@ -189,16 +196,22 @@ class ProductController extends BaseController
         $processor->process($request, $product);
 
         if ($processor->isValid()) {
-            $this->addFlash('success', $processor->isNew() ? 'flash.product.created' : 'flash.product.updated',
-                ['%product%' => $processor->getData()]);
+            $this->addFlash(
+                'success',
+                $processor->isNew() ? 'flash.product.created' : 'flash.product.updated',
+                ['%product%' => $processor->getData()]
+            );
 
             if ($processor->isRedirectingTo(ProductFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('products');
             }
 
-            return $this->redirectToRoute('product_edit', [
-                'id' => $processor->getData()->getId(),
-            ]);
+            return $this->redirectToRoute(
+                'product_edit',
+                [
+                    'id' => $processor->getData()->getId(),
+                ]
+            );
         }
 
         $form = $processor->getForm();
@@ -208,8 +221,12 @@ class ProductController extends BaseController
         ];
     }
 
-    private function processWarehouseRecordForm(Request $request, WarehouseRecordFormProcessor $processor, PaginationInterface $pagination, Product $product)
-    {
+    private function processWarehouseRecordForm(
+        Request $request,
+        WarehouseRecordFormProcessor $processor,
+        PaginationInterface $pagination,
+        Product $product
+    ) {
         $warehouseRecord = new WarehouseRecord();
         $warehouseRecord->setProduct($product);
         $processor->process($request, $warehouseRecord);
@@ -217,9 +234,12 @@ class ProductController extends BaseController
         if ($processor->isValid()) {
             $this->addFlash('success', 'flash.warehouse_record.created');
 
-            return $this->redirectToRoute('product_show_warehouse', [
-                'id' => $product->getId(),
-            ]);
+            return $this->redirectToRoute(
+                'product_show_warehouse',
+                [
+                    'id' => $product->getId(),
+                ]
+            );
         }
 
         $form = $processor->getForm();
@@ -227,7 +247,7 @@ class ProductController extends BaseController
         return [
             'form' => $form->createView(),
             'pagination' => $pagination,
-            'product' => $product
+            'product' => $product,
         ];
     }
 }

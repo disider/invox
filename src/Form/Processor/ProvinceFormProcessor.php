@@ -17,8 +17,11 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 class ProvinceFormProcessor extends DefaultFormProcessor
 {
-    public function __construct(ProvinceRepository $repository, FormFactoryInterface $formFactory, TokenStorageInterface $tokenStorage)
-    {
+    public function __construct(
+        ProvinceRepository $repository,
+        FormFactoryInterface $formFactory,
+        TokenStorageInterface $tokenStorage
+    ) {
         parent::__construct(ProvinceForm::class, $repository, $formFactory, $tokenStorage);
     }
 }

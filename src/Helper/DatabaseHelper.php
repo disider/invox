@@ -30,6 +30,7 @@ class DatabaseHelper
 
         $stmt = $this->connection->executeQuery($sql);
         $actual = $stmt->fetch();
+
         return $actual;
     }
 
@@ -38,6 +39,7 @@ class DatabaseHelper
         $sql = sprintf('SELECT * FROM %s %s', $table, $where);
 
         $stmt = $this->connection->executeQuery($sql);
+
         return $stmt->fetchAll();
     }
 

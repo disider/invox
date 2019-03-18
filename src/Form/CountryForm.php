@@ -25,9 +25,13 @@ class CountryForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('code', TextType::class, ['label' => 'fields.code']);
-        $builder->add('translations', TranslationsType::class, [
-            'label' => false,
-        ]);
+        $builder->add(
+            'translations',
+            TranslationsType::class,
+            [
+                'label' => false,
+            ]
+        );
 
         $builder->add('save', SubmitType::class, ['label' => 'actions.save']);
         $builder->add(
@@ -47,10 +51,12 @@ class CountryForm extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => Country::class,
-            'constraints' => new Valid(),
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => Country::class,
+                'constraints' => new Valid(),
+            ]
+        );
     }
 
 }

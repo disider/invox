@@ -2,8 +2,8 @@
 
 namespace DoctrineMigrations;
 
-use Doctrine\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
+use Doctrine\Migrations\AbstractMigration;
 
 /**
  * Auto-generated Migration: Please modify to your needs!
@@ -16,10 +16,15 @@ class Version20160706101208 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf(
+            $this->connection->getDatabasePlatform()->getName() != 'mysql',
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
         $this->addSql('ALTER TABLE document_row ADD linked_product_id INT DEFAULT NULL');
-        $this->addSql('ALTER TABLE document_row ADD CONSTRAINT FK_579A043FD240BD1D FOREIGN KEY (linked_product_id) REFERENCES product (id) ON DELETE SET NULL');
+        $this->addSql(
+            'ALTER TABLE document_row ADD CONSTRAINT FK_579A043FD240BD1D FOREIGN KEY (linked_product_id) REFERENCES product (id) ON DELETE SET NULL'
+        );
         $this->addSql('CREATE UNIQUE INDEX UNIQ_579A043FD240BD1D ON document_row (linked_product_id)');
     }
 
@@ -29,7 +34,10 @@ class Version20160706101208 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf(
+            $this->connection->getDatabasePlatform()->getName() != 'mysql',
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
         $this->addSql('ALTER TABLE document_row DROP FOREIGN KEY FK_579A043FD240BD1D');
         $this->addSql('DROP INDEX UNIQ_579A043FD240BD1D ON document_row');

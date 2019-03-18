@@ -8,10 +8,12 @@
  *
  */
 
+namespace Features\App;
+
 use App\Entity\TaxRate;
 use Behat\Gherkin\Node\TableNode;
 
-class TaxRateContext extends BaseMinkContext
+class TaxRateContext extends AbstractMinkContext
 {
     /**
      * @Given /^there is a tax rate:$/

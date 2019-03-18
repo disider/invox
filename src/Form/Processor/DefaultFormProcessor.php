@@ -18,8 +18,12 @@ class DefaultFormProcessor extends AbstractEntityFormProcessor
 {
     private $formClass;
 
-    public function __construct($formClass, AbstractRepositoryInterface $repository, FormFactoryInterface $formFactory, TokenStorageInterface $tokenStorage)
-    {
+    public function __construct(
+        $formClass,
+        AbstractRepositoryInterface $repository,
+        FormFactoryInterface $formFactory,
+        TokenStorageInterface $tokenStorage
+    ) {
         parent::__construct($repository, $formFactory, $tokenStorage);
 
         $this->formClass = $formClass;

@@ -8,10 +8,12 @@
  *
  */
 
+namespace Features\App;
+
 use App\Entity\Page;
 use Behat\Gherkin\Node\TableNode;
 
-class PageContext extends BaseMinkContext
+class PageContext extends AbstractMinkContext
 {
     /**
      * @Given /^there is a page:$/

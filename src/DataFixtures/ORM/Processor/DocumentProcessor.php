@@ -12,7 +12,7 @@ namespace App\DataFixtures\ORM\Processor;
 
 use App\Entity\Document;
 use App\Entity\DocumentRow;
-use Nelmio\Alice\ProcessorInterface;
+use Fidry\AliceDataFixtures\ProcessorInterface;
 
 class DocumentProcessor implements ProcessorInterface
 {
@@ -20,7 +20,7 @@ class DocumentProcessor implements ProcessorInterface
     /**
      * {@inheritdoc}
      */
-    public function preProcess($object)
+    public function preProcess(string $id, $object): void
     {
         if (!($object instanceof Document || $object instanceof DocumentRow)) {
             return;
@@ -36,7 +36,7 @@ class DocumentProcessor implements ProcessorInterface
     /**
      * {@inheritdoc}
      */
-    public function postProcess($object)
+    public function postProcess(string $id, $object): void
     {
     }
 }

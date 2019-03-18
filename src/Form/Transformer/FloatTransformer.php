@@ -31,8 +31,9 @@ class FloatTransformer implements DataTransformerInterface
      */
     public function transform($value)
     {
-        if ($value === null)
+        if ($value === null) {
             return null;
+        }
 
         return $this->localeFormatter->format($value);
     }
@@ -44,8 +45,9 @@ class FloatTransformer implements DataTransformerInterface
      */
     public function reverseTransform($value)
     {
-        if (empty($value))
+        if (empty($value)) {
             return null;
+        }
 
         $defaults = $this->localeFormatter->getDefaults();
         $decimalPoint = $defaults[1];

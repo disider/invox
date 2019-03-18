@@ -36,16 +36,20 @@ class DocumentLinkType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'attr' => [
-                'autocomplete' => 'off'
-            ],
-        ]);
+        $resolver->setDefaults(
+            [
+                'attr' => [
+                    'autocomplete' => 'off',
+                ],
+            ]
+        );
 
-        $resolver->setRequired([
-            'type',
-            'linked_to'
-        ]);
+        $resolver->setRequired(
+            [
+                'type',
+                'linked_to',
+            ]
+        );
     }
 
 }

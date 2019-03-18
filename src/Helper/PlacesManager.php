@@ -61,7 +61,9 @@ class PlacesManager
                 ->findOneByCode($place['COUNTRY'])
                 ->getId();
 
-            $this->insert("INSERT INTO province (country_id,name,code) VALUES(\"$country\",\"$province\",\"$provinceCode\")");
+            $this->insert(
+                "INSERT INTO province (country_id,name,code) VALUES(\"$country\",\"$province\",\"$provinceCode\")"
+            );
         }
     }
 

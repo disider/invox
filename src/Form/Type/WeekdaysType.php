@@ -26,13 +26,15 @@ class WeekdaysType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'label' => 'fields.weekdays',
-            'choices' => $this->formatWeekdays(),
-            'multiple' => true,
-            'expanded' => true,
-            'required' => false,
-        ]);
+        $resolver->setDefaults(
+            [
+                'label' => 'fields.weekdays',
+                'choices' => $this->formatWeekdays(),
+                'multiple' => true,
+                'expanded' => true,
+                'required' => false,
+            ]
+        );
     }
 
     public function formatWeekdays($weekdays = '1111111')
@@ -48,7 +50,7 @@ class WeekdaysType extends AbstractType
 
         for ($i = 0; $i < 7; ++$i) {
             if ($weekdays[$i] != '0') {
-                $days['days.' . $names[$i]] = $i;
+                $days['days.'.$names[$i]] = $i;
             }
         }
 

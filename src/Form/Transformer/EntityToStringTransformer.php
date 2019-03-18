@@ -41,7 +41,7 @@ class EntityToStringTransformer implements DataTransformerInterface
             return '';
         }
 
-        $method = 'get' . ucfirst($this->field);
+        $method = 'get'.ucfirst($this->field);
 
         return (string)$entity->$method();
     }
@@ -65,11 +65,13 @@ class EntityToStringTransformer implements DataTransformerInterface
             // causes a validation error
             // this message is not shown to the user
             // see the invalid_message option
-            throw new TransformationFailedException(sprintf(
-                'An object with %s "%s" does not exist!',
-                $this->field,
-                $text
-            ));
+            throw new TransformationFailedException(
+                sprintf(
+                    'An object with %s "%s" does not exist!',
+                    $this->field,
+                    $text
+                )
+            );
         }
 
         return $entity;

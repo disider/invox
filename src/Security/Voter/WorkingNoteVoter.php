@@ -25,13 +25,16 @@ class WorkingNoteVoter extends BaseVoter
 
     protected function supports($attribute, $subject)
     {
-        return $subject instanceof WorkingNote && in_array($attribute, [
-                self::WORKING_NOTE_DELETE,
-                self::WORKING_NOTE_EDIT,
-                self::WORKING_NOTE_PRINT,
-                self::WORKING_NOTE_RENDER,
-                self::WORKING_NOTE_VIEW
-            ]);
+        return $subject instanceof WorkingNote && in_array(
+                $attribute,
+                [
+                    self::WORKING_NOTE_DELETE,
+                    self::WORKING_NOTE_EDIT,
+                    self::WORKING_NOTE_PRINT,
+                    self::WORKING_NOTE_RENDER,
+                    self::WORKING_NOTE_VIEW,
+                ]
+            );
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
@@ -49,7 +52,10 @@ class WorkingNoteVoter extends BaseVoter
             case self::WORKING_NOTE_EDIT:
             case self::WORKING_NOTE_RENDER:
             case self::WORKING_NOTE_VIEW:
-                return $user->ownsWorkingNote($subject) && $this->isModuleEnabled($subject->getCompany(), Module::WORKING_NOTES_MODULE);
+                return $user->ownsWorkingNote($subject) && $this->isModuleEnabled(
+                        $subject->getCompany(),
+                        Module::WORKING_NOTES_MODULE
+                    );
         }
 
         return false;

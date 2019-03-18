@@ -22,10 +22,13 @@ class AccountVoter extends BaseVoter
 
     protected function supports($attribute, $subject)
     {
-        return $subject instanceof Account && in_array($attribute, [
-                self::ACCOUNT_DELETE,
-                self::ACCOUNT_EDIT
-            ]);
+        return $subject instanceof Account && in_array(
+                $attribute,
+                [
+                    self::ACCOUNT_DELETE,
+                    self::ACCOUNT_EDIT,
+                ]
+            );
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
@@ -33,11 +36,15 @@ class AccountVoter extends BaseVoter
         /** @var User $user */
         $user = $token->getUser();
 
-        if (!($user instanceof User))
+        if (!($user instanceof User)) {
             return false;
+        }
 
         if ($user->isSuperadmin()
-            || ($user->ownsAccount($subject) && $this->isModuleEnabled($subject->getCompany(), Module::ACCOUNTS_MODULE))) {
+            || ($user->ownsAccount($subject) && $this->isModuleEnabled(
+                    $subject->getCompany(),
+                    Module::ACCOUNTS_MODULE
+                ))) {
             return true;
         }
 

@@ -31,13 +31,17 @@ class AttachmentType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'label' => false,
-        ]);
+        $resolver->setDefaults(
+            [
+                'label' => false,
+            ]
+        );
 
-        $resolver->setRequired([
-            'data_class'
-        ]);
+        $resolver->setRequired(
+            [
+                'data_class',
+            ]
+        );
     }
 
 }

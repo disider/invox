@@ -237,6 +237,7 @@ class PettyCashNote extends AttachmentContainer
         foreach ($this->invoices as $invoice) {
             $total += $invoice->getAmount();
         }
+
         return $total;
     }
 
@@ -247,7 +248,7 @@ class PettyCashNote extends AttachmentContainer
 
     public function getAttachmentsUploadDir()
     {
-        return $this->getUploadDir() . sprintf('/pettycashnotes/%s/attachments', $this->getId());
+        return $this->getUploadDir().sprintf('/pettycashnotes/%s/attachments', $this->getId());
     }
 
     public function updateType()
@@ -283,8 +284,9 @@ class PettyCashNote extends AttachmentContainer
         /** @var InvoicePerNote $invoice */
         foreach ($this->getInvoices() as $invoice) {
 
-            if (!$customers->contains($invoice->getInvoice()->getLinkedCustomer()))
+            if (!$customers->contains($invoice->getInvoice()->getLinkedCustomer())) {
                 $customers->add($invoice);
+            }
         }
 
         return $customers;

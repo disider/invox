@@ -8,10 +8,12 @@
  *
  */
 
+namespace Features\App;
+
 use App\Entity\Country;
 use Behat\Gherkin\Node\TableNode;
 
-class CountryContext extends BaseMinkContext
+class CountryContext extends AbstractMinkContext
 {
     /**
      * @Given /^there is a country:$/

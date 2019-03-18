@@ -23,11 +23,14 @@ class ProductVoter extends BaseVoter
 
     protected function supports($attribute, $subject)
     {
-        return $subject instanceof Product && in_array($attribute, [
-                self::PRODUCT_DELETE,
-                self::PRODUCT_EDIT,
-                self::PRODUCT_SHOW_WAREHOUSE,
-            ]);
+        return $subject instanceof Product && in_array(
+                $attribute,
+                [
+                    self::PRODUCT_DELETE,
+                    self::PRODUCT_EDIT,
+                    self::PRODUCT_SHOW_WAREHOUSE,
+                ]
+            );
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
@@ -42,9 +45,15 @@ class ProductVoter extends BaseVoter
         switch ($attribute) {
             case self::PRODUCT_DELETE:
             case self::PRODUCT_EDIT:
-                return ($user->ownsProduct($subject) && $this->isModuleEnabled($subject->getCompany(), Module::PRODUCTS_MODULE));
+                return ($user->ownsProduct($subject) && $this->isModuleEnabled(
+                        $subject->getCompany(),
+                        Module::PRODUCTS_MODULE
+                    ));
             case self::PRODUCT_SHOW_WAREHOUSE:
-                return ($user->ownsProduct($subject) && $this->isModuleEnabled($subject->getCompany(), Module::WAREHOUSE_MODULE));
+                return ($user->ownsProduct($subject) && $this->isModuleEnabled(
+                        $subject->getCompany(),
+                        Module::WAREHOUSE_MODULE
+                    ));
         }
 
         return false;

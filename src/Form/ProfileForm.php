@@ -41,8 +41,10 @@ class ProfileForm extends BaseForm
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefaults([
-            'validation_groups' => ['edit_profile'],
-        ]);
+        $resolver->setDefaults(
+            [
+                'validation_groups' => ['edit_profile'],
+            ]
+        );
     }
 }

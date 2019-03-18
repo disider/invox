@@ -355,11 +355,13 @@ class Recurrence
 
         if (!$totalDocuments && $this->repeats != self::EVERY_WEEK) {
             $this->nextDueDate = clone $this->startAt;
+
             return;
         }
 
         if ($this->occurrences && $totalDocuments == $this->occurrences) {
             $this->nextDueDate = null;
+
             return;
         }
 
@@ -374,7 +376,11 @@ class Recurrence
                     $formatDate .= 'week';
                 } else {
                     $value = floor($totalDocuments / count($weekdays));
-                    $formatDate = sprintf("+%d %s", $value * $this->repeatEvery, $weekdays[$totalDocuments % count($weekdays)]);
+                    $formatDate = sprintf(
+                        "+%d %s",
+                        $value * $this->repeatEvery,
+                        $weekdays[$totalDocuments % count($weekdays)]
+                    );
                 }
                 break;
             case self::EVERY_MONTH:

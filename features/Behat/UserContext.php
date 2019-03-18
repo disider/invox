@@ -16,7 +16,7 @@ use App\Repository\UserRepository;
 use App\Security\UserPasswordEncoder;
 use Behat\Gherkin\Node\TableNode;
 
-class UserContext extends BaseMinkContext
+class UserContext extends AbstractMinkContext
 {
     private $passwordEncoder;
 

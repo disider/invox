@@ -17,8 +17,11 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 class WorkingNoteFormProcessor extends DefaultFormProcessor
 {
-    public function __construct(WorkingNoteRepository $repository, FormFactoryInterface $formFactory, TokenStorageInterface $tokenStorage)
-    {
+    public function __construct(
+        WorkingNoteRepository $repository,
+        FormFactoryInterface $formFactory,
+        TokenStorageInterface $tokenStorage
+    ) {
         parent::__construct(WorkingNoteForm::class, $repository, $formFactory, $tokenStorage);
     }
 }

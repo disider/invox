@@ -10,15 +10,18 @@
 
 namespace App\Form\Processor;
 
-use App\Repository\PaymentTypeRepository;
 use App\Form\PaymentTypeForm;
+use App\Repository\PaymentTypeRepository;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class PaymentTypeFormProcessor extends DefaultFormProcessor
 {
-    public function __construct(PaymentTypeRepository $repository, FormFactoryInterface $formFactory, TokenStorageInterface $tokenStorage)
-    {
+    public function __construct(
+        PaymentTypeRepository $repository,
+        FormFactoryInterface $formFactory,
+        TokenStorageInterface $tokenStorage
+    ) {
         parent::__construct(PaymentTypeForm::class, $repository, $formFactory, $tokenStorage);
     }
 }

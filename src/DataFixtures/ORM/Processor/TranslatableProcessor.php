@@ -11,7 +11,7 @@
 namespace App\DataFixtures\ORM\Processor;
 
 use App\Entity\TaxRate;
-use Nelmio\Alice\ProcessorInterface;
+use Fidry\AliceDataFixtures\ProcessorInterface;
 
 class TranslatableProcessor implements ProcessorInterface
 {
@@ -19,7 +19,7 @@ class TranslatableProcessor implements ProcessorInterface
     /**
      * {@inheritdoc}
      */
-    public function preProcess($object)
+    public function preProcess(string $id, $object): void
     {
         if (!($object instanceof TaxRate)) {
             return;
@@ -32,7 +32,7 @@ class TranslatableProcessor implements ProcessorInterface
     /**
      * {@inheritdoc}
      */
-    public function postProcess($object)
+    public function postProcess(string $id, $object): void
     {
     }
 }

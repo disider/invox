@@ -23,11 +23,14 @@ class InviteVoter extends Voter
 
     protected function supports($attribute, $subject)
     {
-        return $subject instanceof Invite && in_array($attribute, [
-                self::INVITE_ACCEPT,
-                self::INVITE_REFUSE,
-                self::INVITE_DELETE
-            ]);
+        return $subject instanceof Invite && in_array(
+                $attribute,
+                [
+                    self::INVITE_ACCEPT,
+                    self::INVITE_REFUSE,
+                    self::INVITE_DELETE,
+                ]
+            );
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
@@ -35,11 +38,13 @@ class InviteVoter extends Voter
         /** @var Invite $subject */
         $user = $token->getUser();
 
-        if (!($user instanceof User))
+        if (!($user instanceof User)) {
             return false;
+        }
 
-        if ($attribute == self::INVITE_DELETE)
+        if ($attribute == self::INVITE_DELETE) {
             return $user->ownsCompany($subject->getCompany());
+        }
 
         /** @var User $user */
         return ($user->isSuperadmin() || ($user->getEmail() == $subject->getEmail()));

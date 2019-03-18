@@ -31,7 +31,7 @@ class CityRepository extends AbstractRepository
     {
         return $this->createQueryBuilder('c')
             ->where('c.name like :term')
-            ->setParameter('term', '%' . $term . '%')
+            ->setParameter('term', '%'.$term.'%')
             ->getQuery()
             ->execute();
     }

@@ -25,18 +25,24 @@ class DocumentTemplatePerCompanyForm extends DocumentTemplateForm
         $user = $options['user'];
 
         if ($user->isSuperadmin()) {
-            $builder->add('company', EntityType::class, [
-                'class' => Company::class,
-                'label' => 'fields.company',
-            ]);
+            $builder->add(
+                'company',
+                EntityType::class,
+                [
+                    'class' => Company::class,
+                    'label' => 'fields.company',
+                ]
+            );
         }
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setRequired('user');
-        $resolver->setDefaults([
-            'data_class' => DocumentTemplatePerCompany::class
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => DocumentTemplatePerCompany::class,
+            ]
+        );
     }
 }

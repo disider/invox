@@ -103,14 +103,14 @@ class Attachment
 
     public function onRemove()
     {
-        @unlink($this->getUploadRootDir() . '/' . $this->fileUrl);
+        @unlink($this->getUploadRootDir().'/'.$this->fileUrl);
     }
 
     public function getWebPath()
     {
         return null == $this->fileUrl
             ? ""
-            : $this->getUploadDir() . '/' . $this->fileUrl;
+            : $this->getUploadDir().'/'.$this->fileUrl;
     }
 
     public function moveFile()
@@ -135,9 +135,9 @@ class Attachment
     {
         $ext = pathinfo($this->fileUrl, PATHINFO_EXTENSION);
 
-        $newFileUrl = sha1(uniqid(mt_rand(), true)) . '.' . $ext;
+        $newFileUrl = sha1(uniqid(mt_rand(), true)).'.'.$ext;
 
-        copy($this->getUploadRootDir() . '/' . $this->fileUrl, $this->getUploadRootDir() . '/' . $newFileUrl);
+        copy($this->getUploadRootDir().'/'.$this->fileUrl, $this->getUploadRootDir().'/'.$newFileUrl);
 
         $this->fileUrl = $newFileUrl;
     }

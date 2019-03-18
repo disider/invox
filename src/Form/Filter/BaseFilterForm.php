@@ -20,10 +20,12 @@ class BaseFilterForm extends AbstractType
 {
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'csrf_protection' => false,
-            'validation_groups' => ['filtering']
-        ]);
+        $resolver->setDefaults(
+            [
+                'csrf_protection' => false,
+                'validation_groups' => ['filtering'],
+            ]
+        );
     }
 
     protected function getFilterFunction()
@@ -32,45 +34,50 @@ class BaseFilterForm extends AbstractType
             if (!empty($field['value'])) {
                 $value = $field['value'];
 
-                if ($value instanceof \DateTime)
+                if ($value instanceof \DateTime) {
                     $queryBuilder->getQueryBuilder()
-                        ->andWhere($expr . ' =  :value')
+                        ->andWhere($expr.' =  :value')
                         ->setParameter('value', $value);
-                else
+                } else {
                     $queryBuilder->getQueryBuilder()
-                        ->andWhere($expr . ' LIKE  :value')
-                        ->setParameter('value', '%' . $value . '%');
+                        ->andWhere($expr.' LIKE  :value')
+                        ->setParameter('value', '%'.$value.'%');
+                }
             }
         };
     }
 
     protected function addDateRangeType(FormBuilderInterface $builder, $field, $label)
     {
-        $builder->add($field, DateRangeFilterType::class, [
-            'label' => $label,
-            'left_date_options' => [
-                'label' => false,
-                'widget' => 'single_text',
-                'format' => 'dd/MM/yyyy',
-                'attr' => [
-                    'class' => 'datepicker',
-                    'input_group' => [
-                        'prepend' => 'fields.from_date',
+        $builder->add(
+            $field,
+            DateRangeFilterType::class,
+            [
+                'label' => $label,
+                'left_date_options' => [
+                    'label' => false,
+                    'widget' => 'single_text',
+                    'format' => 'dd/MM/yyyy',
+                    'attr' => [
+                        'class' => 'datepicker',
+                        'input_group' => [
+                            'prepend' => 'fields.from_date',
+                        ],
                     ],
                 ],
-            ],
-            'right_date_options' => [
-                'label' => false,
-                'widget' => 'single_text',
-                'format' => 'dd/MM/yyyy',
-                'attr' => [
-                    'class' => 'datepicker',
-                    'input_group' => [
-                        'prepend' => 'fields.to_date',
+                'right_date_options' => [
+                    'label' => false,
+                    'widget' => 'single_text',
+                    'format' => 'dd/MM/yyyy',
+                    'attr' => [
+                        'class' => 'datepicker',
+                        'input_group' => [
+                            'prepend' => 'fields.to_date',
+                        ],
                     ],
                 ],
-            ],
-        ]);
+            ]
+        );
     }
 
 }

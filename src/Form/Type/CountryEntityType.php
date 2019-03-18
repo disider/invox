@@ -37,16 +37,18 @@ class CountryEntityType extends AbstractType
     {
         $locale = $this->locale;
 
-        $resolver->setDefaults([
-            'label' => 'fields.country',
-            'class' => Country::class,
-            'query_builder' => function (CountryRepository $repository) use ($locale) {
-                return $repository->findOrderedByLocale($locale);
-            },
-            'attr' => [
-                'class' => 'input-sm',
+        $resolver->setDefaults(
+            [
+                'label' => 'fields.country',
+                'class' => Country::class,
+                'query_builder' => function (CountryRepository $repository) use ($locale) {
+                    return $repository->findOrderedByLocale($locale);
+                },
+                'attr' => [
+                    'class' => 'input-sm',
+                ],
             ]
-        ]);
+        );
     }
 
     public function getBlockPrefix()

@@ -117,9 +117,12 @@ class UserController extends BaseController
                 return $this->redirectToRoute('users');
             }
 
-            return $this->redirectToRoute('user_edit', [
-                'id' => $processor->getUser()->getId(),
-            ]);
+            return $this->redirectToRoute(
+                'user_edit',
+                [
+                    'id' => $processor->getUser()->getId(),
+                ]
+            );
         }
 
         $form = $processor->getForm();

@@ -26,48 +26,70 @@ class ContactUsForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', TextType::class, [
-                'label' => 'fields.email',
-                'required' => true,
-                'constraints' => [
-                    new NotBlank(['message' => 'error.empty_email']),
-                    new Email(['message' => 'error.invalid_email'])
-                ],
-            ])
-            ->add('subject', TextType::class, [
-                'label' => 'fields.subject',
-                'required' => true,
-                'constraints' => [
-                    new NotBlank(['message' => 'error.empty_subject']),
-                ],
-            ])
-            ->add('body', TextareaType::class, [
-                'label' => 'fields.body',
-                'required' => true,
-                'constraints' => [
-                    new NotBlank(['message' => 'error.empty_body']),
-                ],
-            ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'actions.send',
-            ]);
+            ->add(
+                'email',
+                TextType::class,
+                [
+                    'label' => 'fields.email',
+                    'required' => true,
+                    'constraints' => [
+                        new NotBlank(['message' => 'error.empty_email']),
+                        new Email(['message' => 'error.invalid_email']),
+                    ],
+                ]
+            )
+            ->add(
+                'subject',
+                TextType::class,
+                [
+                    'label' => 'fields.subject',
+                    'required' => true,
+                    'constraints' => [
+                        new NotBlank(['message' => 'error.empty_subject']),
+                    ],
+                ]
+            )
+            ->add(
+                'body',
+                TextareaType::class,
+                [
+                    'label' => 'fields.body',
+                    'required' => true,
+                    'constraints' => [
+                        new NotBlank(['message' => 'error.empty_body']),
+                    ],
+                ]
+            )
+            ->add(
+                'submit',
+                SubmitType::class,
+                [
+                    'label' => 'actions.send',
+                ]
+            );
 
         if (!$options['debug']) {
-            $builder->add('recaptcha', EWZRecaptchaType::class, [
-                'label' => false,
-                'mapped' => false,
-                'constraints' => [
-                    new RecaptchaTrue(['message' => 'contact_us.invalid_recaptcha'])
-                ],
-            ]);
+            $builder->add(
+                'recaptcha',
+                EWZRecaptchaType::class,
+                [
+                    'label' => false,
+                    'mapped' => false,
+                    'constraints' => [
+                        new RecaptchaTrue(['message' => 'contact_us.invalid_recaptcha']),
+                    ],
+                ]
+            );
         }
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'debug' => false
-        ]);
+        $resolver->setDefaults(
+            [
+                'debug' => false,
+            ]
+        );
     }
 
     public function getBlockPrefix()

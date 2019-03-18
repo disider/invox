@@ -23,7 +23,7 @@ abstract class AbstractRepository extends EntityRepository implements AbstractRe
         $alias = $this->getRootAlias();
 
         return $this->createQueryBuilder($alias)
-            ->orderBy($alias . '.id', 'DESC')
+            ->orderBy($alias.'.id', 'DESC')
             ->setMaxResults(1)
             ->getQuery()->getOneOrNullResult();
     }
@@ -39,7 +39,7 @@ abstract class AbstractRepository extends EntityRepository implements AbstractRe
         $alias = $this->getRootAlias();
 
         $qb = $this->createQueryBuilder($alias)
-            ->where($alias . '.id = :id')
+            ->where($alias.'.id = :id')
             ->setParameter('id', $id);
 
         return $qb->getQuery()->getOneOrNullResult();

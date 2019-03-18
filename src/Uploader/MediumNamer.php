@@ -30,6 +30,6 @@ class MediumNamer implements NamerInterface
     {
         $company = $this->companyManager->getCurrent();
 
-        return sprintf('%s/%s', $company->getAttachmentsUploadDir(), uniqid() . '.' . $file->getExtension());
+        return sprintf('%s/%s', $company->getAttachmentsUploadDir(), uniqid().'.'.$file->getExtension());
     }
 }

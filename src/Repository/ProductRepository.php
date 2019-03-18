@@ -57,7 +57,7 @@ class ProductRepository extends AbstractRepository
         $qb = $this->createQueryBuilder('product')
             ->where('(product.code LIKE :term OR product.name LIKE :term)')
             ->andWhere('product.company = :company')
-            ->setParameter('term', '%' . $term . '%')
+            ->setParameter('term', '%'.$term.'%')
             ->setParameter('company', $company);
 
         $qb = $this->applyFilters($qb, $filters);
@@ -74,7 +74,7 @@ class ProductRepository extends AbstractRepository
             ->leftJoin('product.tags', 'tags')
             ->where('(tag.name LIKE :term)')
             ->andWhere('product.company = :company')
-            ->setParameter('term', '%' . $term . '%')
+            ->setParameter('term', '%'.$term.'%')
             ->setParameter('company', $company);
 
         return $qb

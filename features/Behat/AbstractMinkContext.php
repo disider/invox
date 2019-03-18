@@ -19,7 +19,7 @@ use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Symfony2Extension\Context\KernelAwareContext;
 use Diside\BehatExtension\Context\ContextTrait;
 
-abstract class BaseMinkContext implements Context, KernelAwareContext
+abstract class AbstractMinkContext implements Context, KernelAwareContext
 {
     use ContextTrait;
     use EntityLookupContextTrait;

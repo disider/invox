@@ -29,49 +29,75 @@ class AccountForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $user = $options['user'];
-        $builder->add('type', ChoiceType::class, [
-            'choices' => $this->buildTypes(),
-            'label' => 'fields.type',
-        ]);
+        $builder->add(
+            'type',
+            ChoiceType::class,
+            [
+                'choices' => $this->buildTypes(),
+                'label' => 'fields.type',
+            ]
+        );
         $builder->add('name', TextType::class, ['label' => 'fields.name']);
         $builder->add('initialAmount', NumberType::class, ['label' => 'fields.initial_amount']);
-        $builder->add('iban', TextType::class, [
-            'label' => 'fields.iban',
-            'required' => false,
-        ]);
+        $builder->add(
+            'iban',
+            TextType::class,
+            [
+                'label' => 'fields.iban',
+                'required' => false,
+            ]
+        );
 
         if ($user->isSuperadmin()) {
-            $builder->add('company', EntityType::class, [
-                'class' => Company::class,
-                'label' => 'fields.company',
-            ]);
+            $builder->add(
+                'company',
+                EntityType::class,
+                [
+                    'class' => Company::class,
+                    'label' => 'fields.company',
+                ]
+            );
         }
 
         $builder->add('save', SubmitType::class, ['label' => 'actions.save']);
-        $builder->add('saveAndClose', SubmitType::class, [
-            'label' => 'actions.save_and_close',
-            'button_class' => 'btn btn-default',
-        ]);
+        $builder->add(
+            'saveAndClose',
+            SubmitType::class,
+            [
+                'label' => 'actions.save_and_close',
+                'button_class' => 'btn btn-default',
+            ]
+        );
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
-            $data = $event->getData();
-            $form = $event->getForm();
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) {
+                $data = $event->getData();
+                $form = $event->getForm();
 
-            if ($data && $data->getId()) {
-                $form->add('currentAmount', NumberType::class, [
-                    'label' => 'fields.current_amount',
-                ]);
+                if ($data && $data->getId()) {
+                    $form->add(
+                        'currentAmount',
+                        NumberType::class,
+                        [
+                            'label' => 'fields.current_amount',
+                        ]
+                    );
+                }
             }
-        });
+        );
 
-        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
-            /** @var Account $data */
-            $data = $event->getData();
+        $builder->addEventListener(
+            FormEvents::SUBMIT,
+            function (FormEvent $event) {
+                /** @var Account $data */
+                $data = $event->getData();
 
-            if (is_null($data->getId())) {
-                $data->setCurrentAmount($data->getInitialAmount());
+                if (is_null($data->getId())) {
+                    $data->setCurrentAmount($data->getInitialAmount());
+                }
             }
-        });
+        );
 
     }
 
@@ -83,16 +109,18 @@ class AccountForm extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setRequired('user');
-        $resolver->setDefaults([
-            'data_class' => Account::class
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => Account::class,
+            ]
+        );
     }
 
     private function buildTypes()
     {
         $types = [];
         foreach (AccountType::getTypes() as $type) {
-            $types['account.type.' . $type] = $type;
+            $types['account.type.'.$type] = $type;
         };
 
         return $types;

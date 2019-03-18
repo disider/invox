@@ -10,8 +10,8 @@
 
 namespace AdminBundle\Controller;
 
-use App\Form\LoginForm;
 use App\EventListener\FormAuthenticationListener;
+use App\Form\LoginForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,7 +30,10 @@ class SecurityController extends Controller
     {
         $targetPath = $request->headers->get('referer');
 
-        $form = $this->createForm(LoginForm::class, null, [
+        $form = $this->createForm(
+            LoginForm::class,
+            null,
+            [
                 'target_path' => $targetPath,
                 'authentication_listener' => $listener,
             ]

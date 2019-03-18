@@ -10,8 +10,8 @@
 
 namespace App\Security\Voter;
 
-use App\Entity\User;
 use App\Entity\Customer;
+use App\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
@@ -22,10 +22,13 @@ class CustomerVoter extends Voter
 
     protected function supports($attribute, $subject)
     {
-        return $subject instanceof Customer && in_array($attribute, [
-                self::CUSTOMER_DELETE,
-                self::CUSTOMER_EDIT
-            ]);
+        return $subject instanceof Customer && in_array(
+                $attribute,
+                [
+                    self::CUSTOMER_DELETE,
+                    self::CUSTOMER_EDIT,
+                ]
+            );
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)

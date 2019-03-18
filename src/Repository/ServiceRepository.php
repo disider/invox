@@ -57,7 +57,7 @@ class ServiceRepository extends AbstractRepository
         $qb = $this->createQueryBuilder('service')
             ->where('(service.code LIKE :term OR service.name LIKE :term)')
             ->andWhere('service.company = :company')
-            ->setParameter('term', '%' . $term . '%')
+            ->setParameter('term', '%'.$term.'%')
             ->setParameter('company', $company);
 
         $qb = $this->applyFilters($qb, $filters);

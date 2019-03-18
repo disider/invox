@@ -86,9 +86,11 @@ class ZipCodeController extends BaseController
 
         $zipCodes = $this->getZipCodeRepository()->search($term);
 
-        return $this->serialize([
-            'zipCodes' => $zipCodes,
-        ]);
+        return $this->serialize(
+            [
+                'zipCodes' => $zipCodes,
+            ]
+        );
     }
 
     private function processForm(Request $request, ZipCodeFormProcessor $processor, ZipCode $zipCode)
@@ -96,16 +98,22 @@ class ZipCodeController extends BaseController
         $processor->process($request, $zipCode);
 
         if ($processor->isValid()) {
-            $this->addFlash('success', $processor->isNew() ? 'flash.zip_code.created' : 'flash.zip_code.updated',
-                ['%zip_code%' => $processor->getData()]);
+            $this->addFlash(
+                'success',
+                $processor->isNew() ? 'flash.zip_code.created' : 'flash.zip_code.updated',
+                ['%zip_code%' => $processor->getData()]
+            );
 
             if ($processor->isRedirectingTo(ZipCodeFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('zip_codes');
             }
 
-            return $this->redirectToRoute('zip_code_edit', [
-                'id' => $processor->getData()->getId(),
-            ]);
+            return $this->redirectToRoute(
+                'zip_code_edit',
+                [
+                    'id' => $processor->getData()->getId(),
+                ]
+            );
         }
 
         $form = $processor->getForm();

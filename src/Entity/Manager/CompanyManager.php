@@ -31,8 +31,11 @@ class CompanyManager
     /** @var Company|null */
     private $currentCompany;
 
-    public function __construct(CompanyRepository $companyRepository, TokenStorageInterface $tokenStorage, SessionInterface $session)
-    {
+    public function __construct(
+        CompanyRepository $companyRepository,
+        TokenStorageInterface $tokenStorage,
+        SessionInterface $session
+    ) {
         $this->tokenStorage = $tokenStorage;
         $this->session = $session;
         $this->companyRepository = $companyRepository;
@@ -42,7 +45,8 @@ class CompanyManager
     {
         $user = $this->getUser();
 
-        if (!($user->isAccountant() || $user->isManagingSingleCompany() || $user->canManageMultipleCompanies() || $user->isSalesAgent())) {
+        if (!($user->isAccountant() || $user->isManagingSingleCompany() || $user->canManageMultipleCompanies(
+            ) || $user->isSalesAgent())) {
             throw new \LogicException('Cannot get current company if user is not managing companies');
         }
 
@@ -51,7 +55,9 @@ class CompanyManager
         }
 
         if (!$this->hasCurrent()) {
-            throw new \LogicException('Cannot get current company if user is managing multiple companies and no company is selected');
+            throw new \LogicException(
+                'Cannot get current company if user is managing multiple companies and no company is selected'
+            );
         }
 
         return $this->currentCompany;
@@ -79,6 +85,7 @@ class CompanyManager
 
         if (!$this->currentCompany) {
             $this->session->remove(self::CURRENT_COMPANY);
+
             return false;
         }
 

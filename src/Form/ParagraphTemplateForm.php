@@ -26,21 +26,29 @@ class ParagraphTemplateForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('title', TextType::class, ['label' => 'fields.title']);
-        $builder->add('description', TextEditorType::class, [
-            'label' => 'fields.description',
-            'required' => false
-        ]);
-
-        $builder->add('children', ParagraphCollectionType::class, [
-            'prototype' => $options['prototype'],
-            'prototype_data' => new ParagraphTemplate(),
-            'entry_type' => ParagraphTemplateForm::class,
-            'entry_options' => [
-                'label' => false,
-                'prototype' => false,
-                'data_class' => ParagraphTemplate::class,
+        $builder->add(
+            'description',
+            TextEditorType::class,
+            [
+                'label' => 'fields.description',
+                'required' => false,
             ]
-        ]);
+        );
+
+        $builder->add(
+            'children',
+            ParagraphCollectionType::class,
+            [
+                'prototype' => $options['prototype'],
+                'prototype_data' => new ParagraphTemplate(),
+                'entry_type' => ParagraphTemplateForm::class,
+                'entry_options' => [
+                    'label' => false,
+                    'prototype' => false,
+                    'data_class' => ParagraphTemplate::class,
+                ],
+            ]
+        );
 
         if ($options['prototype']) {
             $builder->add('save', SubmitType::class, ['label' => 'actions.save',]);
@@ -62,11 +70,13 @@ class ParagraphTemplateForm extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'label' => false,
-            'data_class' => ParagraphTemplate::class,
-            'prototype' => true,
-        ]);
+        $resolver->setDefaults(
+            [
+                'label' => false,
+                'data_class' => ParagraphTemplate::class,
+                'prototype' => true,
+            ]
+        );
     }
 
     public function getBlockPrefix()

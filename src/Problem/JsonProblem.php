@@ -30,9 +30,11 @@ class JsonProblem
 
     public function format()
     {
-        return json_encode([
-            'title' => $this->title
-        ]);
+        return json_encode(
+            [
+                'title' => $this->title,
+            ]
+        );
     }
 
     public function getStatusCode()

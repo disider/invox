@@ -86,9 +86,11 @@ class CityController extends BaseController
 
         $cities = $this->getCityRepository()->search($term);
 
-        return $this->serialize([
-            'cities' => $cities,
-        ]);
+        return $this->serialize(
+            [
+                'cities' => $cities,
+            ]
+        );
     }
 
     private function processForm(Request $request, CityFormProcessor $processor, City $city)
@@ -96,17 +98,24 @@ class CityController extends BaseController
         $processor->process($request, $city);
 
         if ($processor->isValid()) {
-            $this->addFlash('success', $processor->isNew() ? 'flash.city.created' : 'flash.city.updated', [
-                '%city%' => $processor->getData()
-            ]);
+            $this->addFlash(
+                'success',
+                $processor->isNew() ? 'flash.city.created' : 'flash.city.updated',
+                [
+                    '%city%' => $processor->getData(),
+                ]
+            );
 
             if ($processor->isRedirectingTo(CityFormProcessor::REDIRECT_TO_LIST)) {
                 return $this->redirectToRoute('cities');
             }
 
-            return $this->redirectToRoute('city_edit', [
-                'id' => $processor->getData()->getId(),
-            ]);
+            return $this->redirectToRoute(
+                'city_edit',
+                [
+                    'id' => $processor->getData()->getId(),
+                ]
+            );
         }
 
         $form = $processor->getForm();
