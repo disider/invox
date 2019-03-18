@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {% block stylesheets %}
-        <link href="/css/main.css?{{ version }}" rel="stylesheet" media="screen" />
+        <link href="{{ asset('css/main.css') }}?{{ version }}" rel="stylesheet" media="screen" />
     {% endblock stylesheets %}
 
     <!-- HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries -->
@@ -14,7 +14,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 
-    <script src="/js/jquery.min.js"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
 
     <script>
         $('html').addClass('js');
@@ -87,7 +87,7 @@
 </div>
 
 {% block javascripts %}
-    <script src="/js/main.min.js?{{ version }}"></script>
+    <script src="{{ asset('js/main.min.js') }}?{{ version }}"></script>
 {% endblock javascripts %}
 
 </body>

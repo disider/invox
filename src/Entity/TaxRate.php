@@ -30,6 +30,11 @@ class TaxRate
      */
     private $amount;
 
+    /**
+     * @Assert\Valid
+     */
+    protected $translations;
+
     public static function create($name, $amount)
     {
         $entity = new self();

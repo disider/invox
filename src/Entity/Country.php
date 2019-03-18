@@ -31,6 +31,11 @@ class Country
     /** @var ArrayCollection */
     private $provinces;
 
+    /**
+     * @Assert\Valid
+     */
+    protected $translations;
+
     public static function create($code, $name = null)
     {
         $entity = new self();

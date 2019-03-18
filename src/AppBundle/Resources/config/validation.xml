@@ -9,12 +9,6 @@
         </property>
     </class>
 
-    <class name="App\Entity\Page">
-        <property name="translations">
-            <constraint name="Valid"/>
-        </property>
-    </class>
-
     <class name="App\Entity\PaymentType">
         <property name="translations">
             <constraint name="Valid"/>
