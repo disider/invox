@@ -11,10 +11,16 @@
 namespace App\Entity;
 
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class PaymentType extends BasePaymentType
 {
     use ORMBehaviors\Translatable\Translatable;
+
+    /**
+     * @Assert\Valid
+     */
+    protected $translations;
 
     public static function create($position, $name, $days, $endOfMonth)
     {

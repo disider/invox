@@ -91,7 +91,7 @@
                                         {% for invoicePerNote in pettyCashNote.invoices %}
                                             {% set invoice = invoicePerNote.invoice %}
                                             <tr>
-                                                <td>{{ format_view_link('document', invoice, invoice)|replace('"', '\'') }}
+                                                <td>{{ format_view_link('document', invoice, invoice)|replace({'"': '\''}) }}
                                                     :
                                                 </td>
                                                 <td>&nbsp;{{ invoicePerNote.amount|format_currency }}</td>
