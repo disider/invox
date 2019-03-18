@@ -12,6 +12,7 @@ namespace App\Entity;
 
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class Page
 {
@@ -19,6 +20,11 @@ class Page
 
     /** @var int */
     private $id;
+
+    /**
+     * @Assert\Valid
+     */
+    protected $translations;
 
     public static function create($title, $url, $content)
     {

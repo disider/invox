@@ -27,6 +27,7 @@ class PageForm extends AbstractType
             TranslationsType::class,
             [
                 'label' => false,
+                'constraints' => new Valid()
             ]
         );
 

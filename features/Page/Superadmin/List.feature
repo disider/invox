@@ -30,9 +30,9 @@ Feature: Superadmin can list all pages
       | Page5 |
       | Page6 |
     When I am on "/pages"
-    Then I should see 5 "page"
+    Then I should see 6 "page"
     When I am on "/pages?page=2"
-    Then I should see 1 "page"
+    Then I should see 2 "page"
     When I am on "/pages?page=3"
     Then I should see 0 "page"
 

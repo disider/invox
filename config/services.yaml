@@ -144,3 +144,10 @@ services:
     Oneup\UploaderBundle\Uploader\Orphanage\OrphanageManager: '@oneup_uploader.orphanage_manager'
 
     JMS\Serializer\SerializerBuilder: ~
+
+    App\EventListener\TranslationsListener:
+        arguments:
+            $formManipulator: '@a2lix_auto_form.form.manipulator.doctrine_orm_manipulator'
+
+    A2lix\TranslationFormBundle\Form\EventListener\TranslationsListener: '@App\EventListener\TranslationsListener'
+
