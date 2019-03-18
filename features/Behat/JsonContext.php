@@ -12,7 +12,7 @@ namespace Features\App;
 
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
-use PHPUnit_Framework_Assert as a;
+use PHPUnit\Framework\Assert as a;
 
 class JsonContext extends AbstractMinkContext
 {
