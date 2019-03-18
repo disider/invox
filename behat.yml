@@ -11,29 +11,28 @@ default:
                   session: '@Symfony\Component\HttpFoundation\Session\SessionInterface'
 
               - Features\App\AccountContext
-#              - Features\App\CityContext
+              - Features\App\CityContext
               - Features\App\CompanyContext
-#              - Features\App\CountryContext
+              - Features\App\CountryContext
               - Features\App\CustomerContext
               - Features\App\DocumentContext
-#              - Features\App\DocumentTemplateContext
-#              - Features\App\InviteContext
-#              - Features\App\JsonContext
-#              - Features\App\MediumContext
-#              - Features\App\PageContext
-#              - Features\App\ParagraphTemplateContext
-#              - Features\App\PaymentTypeContext
+              - Features\App\DocumentTemplateContext
+              - Features\App\InviteContext
+              - Features\App\JsonContext
+              - Features\App\MediumContext
+              - Features\App\PageContext
+              - Features\App\ParagraphTemplateContext
+              - Features\App\PaymentTypeContext
               - Features\App\PettyCashContext
-#              - Features\App\ProductContext
-#              - Features\App\ProvinceContext
-#              - Features\App\RecurrenceContext
-#              - Features\App\ServiceContext
-#              - Features\App\TaxRateContext
+              - Features\App\ProductContext
+              - Features\App\ProvinceContext
+              - Features\App\RecurrenceContext
+              - Features\App\ServiceContext
+              - Features\App\TaxRateContext
               - Features\App\UserContext:
                   passwordEncoder: '@App\Security\UserPasswordEncoder'
-
-#              - WorkingNoteContext
-#              - ZipCodeContext
+              - Features\App\WorkingNoteContext
+              - Features\App\ZipCodeContext
 
     extensions:
         DMore\ChromeExtension\Behat\ServiceContainer\ChromeExtension: ~
