@@ -123,7 +123,6 @@ class MenuBuilder
         $this->addMenu($menu, 'tachometer', 'dashboard', 'dashboard', 'menu.dashboard');
 
         if ($this->isAuthenticated()) {
-            var_dump('here');
             $this->addMenu($menu, 'user', 'users', 'users', 'menu.users', User::ROLE_SUPER_ADMIN);
             $this->addMenu(
                 $menu,

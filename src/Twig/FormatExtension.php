@@ -12,6 +12,7 @@ namespace App\Twig;
 
 use App\Model\LocaleFormatter;
 use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
+use Symfony\Bridge\Twig\Node\RenderBlockNode;
 use Twig_Environment;
 
 class FormatExtension extends \Twig_Extension
@@ -40,12 +41,12 @@ class FormatExtension extends \Twig_Extension
             new \Twig_SimpleFunction(
                 'filter_start',
                 null,
-                ['node_class' => 'Symfony\Bridge\Twig\Node\RenderBlockNode', 'is_safe' => ['html']]
+                ['node_class' => RenderBlockNode::class, 'is_safe' => ['html']]
             ),
             new \Twig_SimpleFunction(
                 'filter_end',
                 null,
-                ['node_class' => 'Symfony\Bridge\Twig\Node\RenderBlockNode', 'is_safe' => ['html']]
+                ['node_class' => RenderBlockNode::class, 'is_safe' => ['html']]
             ),
         ];
     }

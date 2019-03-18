@@ -10,6 +10,17 @@
     {% endspaceless %}
 {% endblock form_javascript %}
 
+{% block filter_start %}
+    {% spaceless %}
+<div id="filter" class="collapse {{ app.request.query.has(name) ? 'in' : '' }}">
+    {% endspaceless %}
+{% endblock filter_start %}
+
+{% block filter_end %}
+    {% spaceless %}
+</div>
+    {% endspaceless %}
+{% endblock filter_end %}
 
 {% block field_javascript "" %}
 

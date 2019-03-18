@@ -17,3 +17,5 @@ twig:
         - 'bootstrap_3_layout.html.twig'
         - 'forms.html.twig'
         - 'fields.html.twig'
+#        - 'bundles/BraincraftedBootstrapBundle/Form/bootstrap.html.twig'
+#        - 'bundles/BraincraftedBootstrapBundle/Pagination/bootstrap.html.twig'
