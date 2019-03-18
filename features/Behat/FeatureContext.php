@@ -221,10 +221,10 @@ class FeatureContext extends AbstractContext
     {
         $fileName = $this->replacePlaceholders($fileName);
 
-        $root = __DIR__.'/../../../../web';
+        $root = __DIR__.'/../../public';
 
         if (!is_file($root.'/'.$fileName)) {
-            throw new \InvalidArgumentException(sprintf('File %s not found inside %s', $fileName, $root));
+            throw new \InvalidArgumentException(sprintf('File "%s" not found inside "%s"', $fileName, $root));
         }
     }
 

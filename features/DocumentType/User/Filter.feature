@@ -77,7 +77,6 @@ Feature: User filters his invoices
   Scenario Outline: I filter the invoices by valid until (from)
     Given I fill the "documentFilter[validUntil][left_date]" field with "%date('d/m/Y', '<date>')%"
     When I press "Filter"
-    And print last response
     Then I should see <invoices> "invoice"
 
     Examples:

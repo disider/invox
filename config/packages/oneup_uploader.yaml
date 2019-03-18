@@ -5,12 +5,12 @@ oneup_uploader:
             use_orphanage: true
             frontend: fineuploader
             storage:
-                directory: "%kernel.root_dir%/../web"
+                directory: "%kernel.root_dir%/../public"
             namer: App\Uploader\MediumNamer
             max_size: 2m
         attachable:
             use_orphanage: true
             frontend: fineuploader
             storage:
-                directory: "%kernel.root_dir%/../web"
+                directory: "%kernel.root_dir%/../public"
             max_size: 2m
