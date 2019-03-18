@@ -168,7 +168,7 @@ class FeatureContext extends AbstractContext
         foreach ($table->getRowsHash() as $field => $value) {
             $field = str_replace('.', '_', $field);
 
-            $element = sprintf('div.has-error label[for="%s_%s"] ~ div > ul', $form, $field);
+            $element = sprintf('div.has-error label[for="%s_%s"] ~ span > ul', $form, $field);
             $this->assertElementContains($element, $value);
         }
     }

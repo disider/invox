@@ -60,9 +60,9 @@ class BaseFilterForm extends AbstractType
                     'format' => 'dd/MM/yyyy',
                     'attr' => [
                         'class' => 'datepicker',
-//                        'input_group' => [
-//                            'prepend' => 'fields.from_date',
-//                        ],
+                        'input_group' => [
+                            'prepend' => 'fields.from_date',
+                        ],
                     ],
                 ],
                 'right_date_options' => [
@@ -71,9 +71,9 @@ class BaseFilterForm extends AbstractType
                     'format' => 'dd/MM/yyyy',
                     'attr' => [
                         'class' => 'datepicker',
-//                        'input_group' => [
-//                            'prepend' => 'fields.to_date',
-//                        ],
+                        'input_group' => [
+                            'prepend' => 'fields.to_date',
+                        ],
                     ],
                 ],
             ]

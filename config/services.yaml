@@ -143,3 +143,4 @@ services:
 
     Oneup\UploaderBundle\Uploader\Orphanage\OrphanageManager: '@oneup_uploader.orphanage_manager'
 
+    JMS\Serializer\SerializerBuilder: ~

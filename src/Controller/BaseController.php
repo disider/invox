@@ -43,6 +43,8 @@ use App\Problem\JsonProblem;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
+use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
+use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Lexik\Bundle\FormFilterBundle\Filter\FilterBuilderUpdaterInterface;
@@ -67,7 +69,6 @@ class BaseController extends AbstractController
     private $tokenStorage;
     private $translator;
     private $entityManager;
-    private $serializer;
     private $parameterHelper;
     private $filterBuilderUpdater;
     private $paginator;
@@ -75,6 +76,7 @@ class BaseController extends AbstractController
     private $defaultPageSize;
     private $environment;
     private $profiler;
+    private $serializerBuilder;
 
     public function __construct(
         CompanyManager $companyManager,
@@ -82,7 +84,7 @@ class BaseController extends AbstractController
         TokenStorageInterface $tokenStorage,
         TranslatorInterface $translator,
         EntityManagerInterface $entityManager,
-        SerializerInterface $serializer,
+        SerializerBuilder $serializerBuilder,
         ParameterHelperInterface $parameterHelper,
         FilterBuilderUpdaterInterface $filterBuilderUpdater,
         PaginatorInterface $paginator,
@@ -96,7 +98,6 @@ class BaseController extends AbstractController
         $this->tokenStorage = $tokenStorage;
         $this->translator = $translator;
         $this->entityManager = $entityManager;
-        $this->serializer = $serializer;
         $this->parameterHelper = $parameterHelper;
         $this->filterBuilderUpdater = $filterBuilderUpdater;
         $this->paginator = $paginator;
@@ -104,6 +105,7 @@ class BaseController extends AbstractController
         $this->profiler = $profiler;
         $this->defaultPageSize = $defaultPageSize;
         $this->environment = $environment;
+        $this->serializerBuilder = $serializerBuilder;
     }
 
     protected function isAuthenticated()
@@ -294,7 +296,9 @@ class BaseController extends AbstractController
 
     protected function serialize($object)
     {
-        $response = new Response($this->serializer->serialize($object, 'json'));
+        $serializer = $this->serializerBuilder->setPropertyNamingStrategy(new IdenticalPropertyNamingStrategy())->build();
+
+        $response = new Response($serializer->serialize($object, 'json'));
         $response->headers->add(
             [
                 'Content-Type' => 'application/json',

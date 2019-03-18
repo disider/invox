@@ -15,6 +15,7 @@ twig:
         demo_credentials:     "%demo_credentials%"
     form_themes:
         - 'bootstrap_3_layout.html.twig'
+        - 'bootstrap_forms.html.twig'
         - 'forms.html.twig'
         - 'fields.html.twig'
 #        - 'bundles/BraincraftedBootstrapBundle/Form/bootstrap.html.twig'
