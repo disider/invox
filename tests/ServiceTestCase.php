@@ -14,14 +14,9 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ServiceTestCase extends WebTestCase
 {
-    /** @var \Symfony\Component\DependencyInjection\ContainerInterface */
-    protected static $container;
-
-    public static function setUpBeforeClass()
+    public function setUp()
     {
-        $kernel = static::bootKernel([]);
-
-//        static::$container = $kernel->getContainer();
+        static::bootKernel([]);
     }
 
     protected static function getService($service)

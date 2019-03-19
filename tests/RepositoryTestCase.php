@@ -12,6 +12,7 @@ namespace Tests\App;
 
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Tools\SchemaTool;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 abstract class RepositoryTestCase extends ServiceTestCase
@@ -24,6 +25,8 @@ abstract class RepositoryTestCase extends ServiceTestCase
 
     public function setUp()
     {
+        parent::setUp();
+
         $this->dispatcher = $this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
 
         $this->entityManager = $this->getService('doctrine')->getManager();
@@ -38,7 +41,7 @@ abstract class RepositoryTestCase extends ServiceTestCase
 
         if (!empty($metadatas)) {
             /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-            $tool = new \Doctrine\ORM\Tools\SchemaTool($this->entityManager);
+            $tool = new SchemaTool($this->entityManager);
             $tool->dropSchema($metadatas);
             $tool->createSchema($metadatas);
         }

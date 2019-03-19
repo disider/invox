@@ -38,6 +38,8 @@ class ProtocolGeneratorTest extends RepositoryTestCase
      */
     public function setUp()
     {
+        parent::setUp();
+
         $this->em = $this->getService('doctrine.orm.entity_manager');
         $this->generator = new ProtocolGenerator($this->em);
         $this->country = $this->givenCountry();
@@ -48,7 +50,7 @@ class ProtocolGeneratorTest extends RepositoryTestCase
      */
     public function testGenerateFirstForDocuments()
     {
-        $company = $this->givenCompany();
+        $company = $this->givenCompanyFor('user@example.com');
 
         $this->assertThat($this->generator->generate(Document::class, $company, 2016), $this->equalTo(1));
     }
@@ -58,7 +60,7 @@ class ProtocolGeneratorTest extends RepositoryTestCase
      */
     public function testGenerateFirstForPettyCashNotes()
     {
-        $company = $this->givenCompany();
+        $company = $this->givenCompanyFor('user@example.com');
 
         $this->assertThat($this->generator->generate(PettyCashNote::class, $company, 2016), $this->equalTo(1));
     }
@@ -68,7 +70,7 @@ class ProtocolGeneratorTest extends RepositoryTestCase
      */
     public function testGenerateNext()
     {
-        $company = $this->givenCompany();
+        $company = $this->givenCompanyFor('user@example.com');
         $this->givenDocument($company);
 
         $this->assertThat($this->generator->generate(Document::class, $company, 2016), $this->equalTo(2));
@@ -79,8 +81,8 @@ class ProtocolGeneratorTest extends RepositoryTestCase
      */
     public function whenGeneratingForAnotherCompany_thenGenerateFirst()
     {
-        $company1 = $this->givenCompany();
-        $company2 = $this->givenCompany();
+        $company1 = $this->givenCompanyFor('user1@example.com');
+        $company2 = $this->givenCompanyFor('user2@example.com');
         $this->givenDocument($company1);
 
         $this->assertThat($this->generator->generate(Document::class, $company2, 2016), $this->equalTo(1));
@@ -91,7 +93,7 @@ class ProtocolGeneratorTest extends RepositoryTestCase
      */
     public function whenGeneratingForAnotherYear_thenGenerateFirst()
     {
-        $company = $this->givenCompany();
+        $company = $this->givenCompanyFor('user@example.com');
         $this->givenDocument($company, 2015);
 
         $this->assertThat($this->generator->generate(Document::class, $company, 2016), $this->equalTo(1));
@@ -109,9 +111,9 @@ class ProtocolGeneratorTest extends RepositoryTestCase
         $this->assertThat($this->generator->increment('A1.B2.C3'), $this->equalTo('A1.B2.C4'));
     }
 
-    private function givenCompany()
+    private function givenCompanyFor($email)
     {
-        $user = $this->givenUser();
+        $user = $this->givenUser($email);
 
         $company = Company::create($this->country, $user, 'Acme', 'Address', '01234567890');
 
@@ -125,9 +127,9 @@ class ProtocolGeneratorTest extends RepositoryTestCase
         return $this->save($country);
     }
 
-    private function givenUser()
+    private function givenUser($email = 'user@example.com')
     {
-        $user = User::create('user@example.com', 'password', '1234');
+        $user = User::create($email, 'password', '1234');
 
         return $this->save($user);
     }

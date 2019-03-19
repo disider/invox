@@ -41,7 +41,7 @@ class DocumentTest extends TestCase
         $this->assertThat($document->getCompanyAddress(), $this->equalTo($company->getAddress()));
         $this->assertThat($document->getCompanyVatNumber(), $this->equalTo($company->getVatNumber()));
         $this->assertThat($document->getRef(), $this->equalTo($number));
-        $this->assertThat($document->getIssuedAt(), $this->equalTo($issueDate));
+        $this->assertThat($document->getIssuedAt()->format('Y-m-d'), $this->equalTo($issueDate->format('Y-m-d')));
         $this->assertThat($document->countRows(), $this->equalTo(0));
     }
 
