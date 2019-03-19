@@ -1,7 +1,6 @@
 {% block a2lix_translations_widget %}
     {{ form_errors(form) }}
     <div class="a2lix_translations tabbable">
-        here
         <ul class="a2lix_translationsLocales nav nav-tabs">
         {% for translationsFields in form %}
             {% set locale = translationsFields.vars.name %}
