@@ -11,6 +11,7 @@
 namespace App\Controller;
 
 use App\Entity\Invite;
+use App\Form\Type\UploaderType;
 use App\Mailer\MailerInterface;
 use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -102,5 +103,17 @@ class TestController extends BaseController
     public function renderHtml($html)
     {
         return new Response($html);
+    }
+
+    /**
+     * @Route("/upload", name="test_upload")
+     * @Template
+     */
+    public function upload() {
+        $form = $this->createForm(UploaderType::class, null, ['endpoint' => 'medium']);
+
+        return [
+            'form' => $form->createView()
+        ];
     }
 }

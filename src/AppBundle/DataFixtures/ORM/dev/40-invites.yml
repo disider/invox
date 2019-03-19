@@ -1,6 +1,0 @@
-App\Entity\Invite:
-  accountant_invite:
-    sender: '@owner'
-    email: 'accountant@example.com'
-    company: '@bros'
-    token: 12345678

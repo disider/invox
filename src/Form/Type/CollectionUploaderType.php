@@ -18,7 +18,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CollectionUploaderType extends AbstractType
 {
-
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setRequired(

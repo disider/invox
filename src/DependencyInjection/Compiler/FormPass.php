@@ -23,12 +23,12 @@ class FormPass implements CompilerPassInterface
         $resources = $container->getParameter('twig.form.resources');
 
         $resources[] = 'Form/country.html.twig';
-        $resources[] = 'Form/uploader.html.twig';
         $resources[] = 'Form/collection_uploader.html.twig';
         $resources[] = 'Form/attachment.html.twig';
         $resources[] = 'Form/localized_number.html.twig';
         $resources[] = 'Form/tag.html.twig';
         $resources[] = 'Form/text_editor.html.twig';
+        $resources[] = 'Form/uploader.html.twig';
 
         $container->setParameter('twig.form.resources', $resources);
     }

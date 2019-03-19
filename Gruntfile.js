@@ -1,11 +1,11 @@
 module.exports = function (grunt) {
 
-    var sourceDir = 'app/Resources/public';
+    var sourceDir = 'assets';
     var sassDir = sourceDir + '/sass';
     var cssDir = sourceDir + '/css';
     var jsDir = sourceDir + '/js';
     var compiledCssDir = cssDir + '/compiled';
-    var webDir = 'web';
+    var publicDir = 'public';
 
     // Project configuration.
     grunt.initConfig({
@@ -15,13 +15,13 @@ module.exports = function (grunt) {
             fontsToWeb: {
                 cwd: sourceDir + '/fonts',
                 src: ['**'],
-                dest: webDir + '/fonts',
+                dest: publicDir + '/fonts',
                 expand: true
             },
             imagesToWeb: {
                 cwd: sourceDir + '/images',
                 src: ['**'],
-                dest: webDir + '/images',
+                dest: publicDir + '/images',
                 expand: true
             }
         },
@@ -44,7 +44,7 @@ module.exports = function (grunt) {
                     src: [
                         sourceDir + '/js/jquery.js'
                     ],
-                    dest: webDir + '/js/jquery.min.js'
+                    dest: publicDir + '/js/jquery.min.js'
                 }]
             },
             main: {
@@ -53,7 +53,7 @@ module.exports = function (grunt) {
                         sourceDir + '/js/bootstrap.js',
                         sourceDir + '/js/bootbox.js'
                     ],
-                    dest: webDir + '/js/main.min.js'
+                    dest: publicDir + '/js/main.min.js'
                 }]
             },
             form: {
@@ -75,7 +75,7 @@ module.exports = function (grunt) {
                         jsDir + '/form.js',
                         jsDir + '/zipcode-typeahead.js'
                     ],
-                    dest: webDir + '/js/form.min.js'
+                    dest: publicDir + '/js/form.min.js'
                 }]
             },
             filter: {
@@ -85,7 +85,7 @@ module.exports = function (grunt) {
                         jsDir + '/selectize.js',
                         jsDir + '/list.js'
                     ],
-                    dest: webDir + '/js/filter.min.js'
+                    dest: publicDir + '/js/filter.min.js'
                 }]
             }
         },
@@ -102,7 +102,7 @@ module.exports = function (grunt) {
                         compiledCssDir + '/layout.css',
                         compiledCssDir + '/style.css'
                     ],
-                    dest: webDir + '/css/main.css',
+                    dest: publicDir + '/css/main.css',
                     expand: false
                 }]
             },
@@ -120,7 +120,7 @@ module.exports = function (grunt) {
                         compiledCssDir + '/selectize.css',
                         compiledCssDir + '/uploader.css'
                     ],
-                    dest: webDir + '/css/form.css',
+                    dest: publicDir + '/css/form.css',
                     expand: false
                 }]
             },
@@ -131,7 +131,7 @@ module.exports = function (grunt) {
                         cssDir + '/datepicker3.css',
                         compiledCssDir + '/selectize.css'
                     ],
-                    dest: webDir + '/css/filter.css',
+                    dest: publicDir + '/css/filter.css',
                     expand: false
                 }]
             },
@@ -140,7 +140,7 @@ module.exports = function (grunt) {
                     src: [
                         compiledCssDir + '/launcher.css'
                     ],
-                    dest: webDir + '/css/launcher.css',
+                    dest: publicDir + '/css/launcher.css',
                     expand: false
                 }]
             }

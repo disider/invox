@@ -118,7 +118,7 @@ class MenuBuilder
     public function mainMenu(array $options)
     {
         $menu = $this->factory->createItem('root', ['allow_safe_labels' => true]);
-        $menu->setChildrenAttribute('class', 'main-menu');
+        $menu->setChildrenAttribute('class', 'main-menu nav');
 
         $this->addMenu($menu, 'tachometer', 'dashboard', 'dashboard', 'menu.dashboard');
 
@@ -280,7 +280,7 @@ class MenuBuilder
     public function superadminMenu(array $options)
     {
         $menu = $this->factory->createItem('root', ['allow_safe_labels' => true]);
-        $menu->setChildrenAttribute('class', 'superadmin-menu');
+        $menu->setChildrenAttribute('class', 'superadmin-menu nav');
 
         if ($this->isGranted(User::ROLE_SUPER_ADMIN)) {
 

@@ -181,6 +181,7 @@ class CustomerForm extends AbstractType
                 'label' => 'actions.save',
             ]
         );
+
         $builder->add(
             'saveAndClose',
             SubmitType::class,

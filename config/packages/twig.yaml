@@ -1,22 +1,27 @@
 twig:
-    default_path: '%kernel.project_dir%/templates'
-    debug: '%kernel.debug%'
+    default_path:     '%kernel.project_dir%/templates'
+    debug:            '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     globals:
-        version:        "%version%"
-        enable_analytics: "%enable_analytics%"
-        enable_chat:      "%enable_chat%"
-        enable_registration:    "%enable_registration%"
-        enable_fork_me:    "%enable_fork_me%"
-        min_page_size: 25
-        page_sizes:    [25, 50, 75, 100]
-        launcher_links: "%launcher_links%"
-        enable_demo_mode:            "%enable_demo_mode%"
-        demo_credentials:     "%demo_credentials%"
+        version:             '%version%'
+        enable_analytics:    '%enable_analytics%'
+        enable_chat:         '%enable_chat%'
+        enable_registration: '%enable_registration%'
+        enable_fork_me:      '%enable_fork_me%'
+        min_page_size:       25
+        page_sizes:          [25, 50, 75, 100]
+        launcher_links:      '%launcher_links%'
+        enable_demo_mode:    '%enable_demo_mode%'
+        demo_credentials:    '%demo_credentials%'
     form_themes:
         - 'bootstrap_3_layout.html.twig'
         - 'bootstrap_forms.html.twig'
-        - 'forms.html.twig'
         - 'fields.html.twig'
-#        - 'bundles/BraincraftedBootstrapBundle/Form/bootstrap.html.twig'
-#        - 'bundles/BraincraftedBootstrapBundle/Pagination/bootstrap.html.twig'
+        - 'form/country.html.twig'
+        - 'form/collection_uploader.html.twig'
+        - 'form/attachment.html.twig'
+        - 'form/localized_number.html.twig'
+        - 'form/tag.html.twig'
+        - 'form/text_editor.html.twig'
+        - 'form/uploader.html.twig'
+

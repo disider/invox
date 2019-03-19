@@ -16,7 +16,9 @@
         <script type="text/javascript">
             $(function () {
                 var $fileUrl = $('#{{ form.vars.id }}');
+                {% if form.parent.fileName is defined %}
                 var $fileName = $('#{{ form.parent.fileName.vars.id }}');
+                {% endif %}
                 $fileUrl.hide();
 
                 var options = {
@@ -34,7 +36,9 @@
                 };
 
                 $('#{{ id }}').fineUploader(options).on('complete', function (event, id, name, responseJson) {
+                    {% if form.parent.fileName is defined %}
                     $fileName.val(responseJson.fileName);
+                    {% endif %}
                     $fileUrl.val(responseJson.fileUrl);
                 });
             });

@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 abstract class AttachmentContainer
 {
-    const UPLOAD_ROOT_DIR = __DIR__.'/../../../web/';
+    const UPLOAD_ROOT_DIR = __DIR__.'/../../../public/';
 
     /**
      * @Assert\Valid

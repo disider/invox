@@ -849,36 +849,48 @@
     {% endif %}
 {% endblock global_form_errors %}
 
-{% block form_errors %}
-    {% spaceless %}
-        {% set global_errors = global_errors|default(false) %}
-        {% set style = style|default(bootstrap_get_style()) %}
+{#{% block form_errors %}#}
+    {#{% spaceless %}#}
+        {#{% set global_errors = global_errors|default(false) %}#}
+        {#{% set style = style|default(bootstrap_get_style()) %}#}
 
-        {% if attr.style is defined and attr.style is not empty %}
-            {% set style = attr.style %}
-        {% endif %}
+        {#{% if attr.style is defined and attr.style is not empty %}#}
+            {#{% set style = attr.style %}#}
+        {#{% endif %}#}
 
-        {% if errors|length > 0 %}
-            {% if global_errors %}
-                <div class="alert alert-danger">
-                    <ul class="list-unstyled">
-                        {% for error in errors %}
-                            <li>{{ error.message|raw }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% else %}
-                <div class="help-block with-errors">
-                    <ul class="list-unstyled">
-                        {% for error in errors %}
-                            <li>{{ error.message|raw }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endif %}
-        {% endif %}
-    {% endspaceless %}
-{% endblock form_errors %}
+        {#{% if errors|length > 0 %}#}
+            {#{% if global_errors %}#}
+                {#<div class="alert alert-danger">#}
+                    {#<ul class="list-unstyled">#}
+                        {#{% for error in errors %}#}
+                            {#<li>{{ error.message|raw }}</li>#}
+                        {#{% endfor %}#}
+                    {#</ul>#}
+                {#</div>#}
+            {#{% else %}#}
+                {#<div class="help-block with-errors">#}
+                    {#<ul class="list-unstyled">#}
+                        {#{% for error in errors %}#}
+                            {#<li>{{ error.message|raw }}</li>#}
+                        {#{% endfor %}#}
+                    {#</ul>#}
+                {#</div>#}
+            {#{% endif %}#}
+        {#{% endif %}#}
+    {#{% endspaceless %}#}
+{#{% endblock form_errors %}#}
+
+{% block form_errors -%}
+    {% if errors|length > 0 -%}
+        {% if form is not rootform %}<span class="help-block">{% else %}<div class="alert alert-danger">{% endif %}
+        <ul class="list-unstyled">
+        {%- for error in errors -%}
+            <li><span class="glyphicon glyphicon-exclamation-sign"></span> {{ error.message | raw }}</li>
+        {%- endfor -%}
+    </ul>
+        {% if form is not rootform %}</span>{% else %}</div>{% endif %}
+    {%- endif %}
+{%- endblock form_errors %}
 
 {% block form_rest %}
     {% spaceless %}
