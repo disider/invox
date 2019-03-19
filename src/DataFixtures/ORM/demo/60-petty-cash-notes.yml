@@ -1,0 +1,18 @@
+App\Entity\PettyCashNote:
+  PettyCashNote1:
+    ref: '0'
+    company: '@acme'
+    description: 'Coffee cash'
+    recordedAt: '2016-03-20'
+    type: outcome
+    accountFrom: '@cash'
+    amount: 120.00
+    type: outcome
+  PettyCashNote2:
+    ref: '2'
+    company: '@acme'
+    description: 'Cash deposit'
+    recordedAt: '2011-03-15'
+    type: income
+    accountTo: '@bank'
+    amount: 10012.87

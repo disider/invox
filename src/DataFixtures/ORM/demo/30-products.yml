@@ -1,0 +1,12 @@
+App\Entity\Product:
+  product_{1..10}:
+    company: '@acme'
+    name: Product<current()>
+    code: P0<current()>
+
+  warehouse_product_{1..10}:
+    company: '@acme'
+    name: Warehouse Product<current()>
+    code: WP0<current()>
+    enabledInWarehouse: true
+    initialStock: <numberBetween(1, 100)>

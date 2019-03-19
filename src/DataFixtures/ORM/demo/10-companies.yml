@@ -1,0 +1,53 @@
+App\Entity\Company:
+  acme:
+    name: 'Acme s.r.l.'
+    address: '221B Baker Street'
+    city: London
+    country: '@country_gb'
+    vatNumber: '12345678901'
+    owner: '@owner'
+    accountant: '@accountant'
+    managers:
+      - '@manager'
+    salesAgents:
+      - '@salesAgent'
+    modules:
+      - petty-cash-notes
+      - accounts
+      - services
+      - warehouse
+      - products
+      - working_notes
+      - recurrences
+    documentTypes:
+      - quote
+      - order
+      - invoice
+      - credit_note
+      - receipt
+      - delivery_note
+
+  invox:
+    name: 'New Company, Inc'
+    address: 'Piazza del Colosseo'
+    city: Roma
+    province: RO
+    zipCode: 00118
+    country: '@country_it'
+    vatNumber: '98765431298'
+    owner: '@owner'
+    modules:
+      - petty-cash-notes
+      - accounts
+      - services
+      - warehouse
+      - products
+      - working_notes
+      - recurrences
+    documentTypes:
+      - quote
+      - order
+      - invoice
+      - credit_note
+      - receipt
+      - delivery_note

@@ -1,0 +1,32 @@
+App\Entity\Page:
+  privacy: {}
+  terms: {}
+
+App\Entity\PageTranslation:
+  privacy_en:
+    translatable: '@privacy'
+    locale: en
+    title: Privacy
+    url: privacy
+    content: <paragraph(3)>
+
+  terms_en:
+    translatable: '@terms'
+    locale: en
+    title: Terms and conditions
+    url: terms
+    content: <paragraph(3)>
+
+  privacy_it:
+    translatable: '@privacy'
+    locale: it
+    title: Privacy
+    url: privacy
+    content: <paragraph(3)>
+
+  terms_it:
+    translatable: '@terms'
+    locale: it
+    title: Termini e condizioni
+    url: termini
+    content: <paragraph(3)>

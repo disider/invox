@@ -4,3 +4,4 @@
 - fix javascripts for custom types
 - replace jms serializer
 - fix translation tab panes 
+- use webpack encore

@@ -1,0 +1,29 @@
+App\Entity\TaxRate:
+  vat_22:
+    amount: 22
+    position: 0
+
+  vat_10:
+    amount: 10
+    position: 1
+
+App\Entity\TaxRateTranslation:
+  vat_22_en:
+    locale: en
+    name: VAT 22%
+    translatable: '@vat_22'
+
+  vat_22_it:
+    locale: it
+    name: IVA 22%
+    translatable: '@vat_22'
+
+  vat_10_en:
+    locale: en
+    name: VAT 10%
+    translatable: '@vat_10'
+
+  vat_10_it:
+    locale: it
+    name: IVA 10%
+    translatable: '@vat_10'

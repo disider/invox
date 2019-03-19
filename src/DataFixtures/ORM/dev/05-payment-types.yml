@@ -1,0 +1,112 @@
+App\Entity\PaymentType:
+  payment_type_0:
+    days: '-1'
+    position: '0'
+    endOfMonth: false
+  payment_type_1:
+    days: '0'
+    position: '1'
+    endOfMonth: false
+  payment_type_2:
+    days: null
+    position: '2'
+    endOfMonth: false
+  payment_type_3:
+    days: '30'
+    position: '3'
+    endOfMonth: false
+  payment_type_4:
+    days: '30'
+    position: '4'
+    endOfMonth: true
+  payment_type_5:
+    days: '60'
+    position: '5'
+    endOfMonth: false
+  payment_type_6:
+    days: '60'
+    position: '6'
+    endOfMonth: true
+  payment_type_7:
+    days: '90'
+    position: '7'
+    endOfMonth: false
+  payment_type_8:
+    days: '90'
+    position: '8'
+    endOfMonth: true
+
+App\Entity\PaymentTypeTranslation:
+  payment_type_0_en:
+    locale: en
+    name: 'In advance'
+    translatable: '@payment_type_0'
+  payment_type_1_en:
+    locale: en
+    name: 'On delivery'
+    translatable: '@payment_type_1'
+  payment_type_2_en:
+    locale: en
+    name: 'On invoice date'
+    translatable: '@payment_type_2'
+  payment_type_3_en:
+    locale: en
+    name: '30 days from invoice date'
+    translatable: '@payment_type_3'
+  payment_type_4_en:
+    locale: en
+    name: '30 days from invoice date (end of month)'
+    translatable: '@payment_type_4'
+  payment_type_5_en:
+    locale: en
+    name: '60 days from invoice date'
+    translatable: '@payment_type_5'
+  payment_type_6_en:
+    locale: en
+    name: '60 days from invoice date (end of month)'
+    translatable: '@payment_type_6'
+  payment_type_7_en:
+    locale: en
+    name: '90 days from invoice date'
+    translatable: '@payment_type_7'
+  payment_type_8_en:
+    locale: en
+    name: '90 days from invoice date (end of month)'
+    translatable: '@payment_type_8'
+
+  payment_type_0_it:
+    locale: it
+    name: 'In anticipo'
+    translatable: '@payment_type_0'
+  payment_type_1_it:
+    locale: it
+    name: 'Alla consegna'
+    translatable: '@payment_type_1'
+  payment_type_2_it:
+    locale: it
+    name: 'In data fattura'
+    translatable: '@payment_type_2'
+  payment_type_3_it:
+    locale: it
+    name: '30gg data fattura'
+    translatable: '@payment_type_3'
+  payment_type_4_it:
+    locale: it
+    name: '30gg data fattura (fine mese)'
+    translatable: '@payment_type_4'
+  payment_type_5_it:
+    locale: it
+    name: '60gg data fattura'
+    translatable: '@payment_type_5'
+  payment_type_6_it:
+    locale: it
+    name: '60gg data fattura (fine mese)'
+    translatable: '@payment_type_6'
+  payment_type_7_it:
+    locale: it
+    name: '90gg data fattura'
+    translatable: '@payment_type_7'
+  payment_type_8_it:
+    locale: it
+    name: '90gg data fattura (fine mese)'
+    translatable: '@payment_type_8'

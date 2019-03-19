@@ -1,0 +1,11 @@
+App\Entity\DocumentTemplate:
+  default_template:
+    name: 'Default template'
+    textColor: '#434343'
+    tableHeaderBackgroundColor: '#1482a0'
+    tableHeaderColor: '#fff'
+    headingColor: '#2898b7'
+    fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif'
+    header: ''
+    content: ''
+    footer: ''

@@ -1,0 +1,20 @@
+App\Entity\Document:
+  Quote1:
+    ref: '001'
+    company: '@acme'
+    notes: ''
+    discount: !!float 0
+    language: en
+    linkedCustomer: '@customer_google'
+    customerName: 'Google, Inc'
+    customerVatNumber: '12312313212'
+    customerAddress: '1600 Amphitheatre Parkway'
+    customerPhoneNumber: '555111222'
+    customerFaxNumber: ''
+    customerCity: 'Mountain View'
+    customerZipCode: '94043'
+    documentTemplate: '@acme_template'
+    customerCountry: '@country_us'
+    type: quote
+    issuedAt: '2016-10-15'
+    year: '2016'
