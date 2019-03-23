@@ -1,0 +1,41 @@
+$brand-primary: #064d6d;
+$brand-success: #5cb85c;
+$brand-warning: #f0ad4e;
+$brand-danger: #d9534f;
+$brand-info: #5bc0de;
+
+$border-color: $brand-primary;
+$active-bkg: lighten($brand-primary, 55%);
+$light-primary: lighten($brand-primary, 65%);
+$lighter-primary: lighten($brand-primary, 70%);
+$info-bkg: #fcf8e3;
+$info-color: #8a6d3b;
+$info-border-color: darken(adjust-hue($info-bkg, -10), 50%);
+
+$font-size-base: 14px;
+$font-size-large: ceil($font-size-base * 1.25); // ~18px
+$font-size-small: ceil($font-size-base * 0.85); // ~12px
+
+$line-height-base: 1.1;
+
+$line-height-computed: floor($font-size-base * $line-height-base);
+
+$headings-color: #21639D;
+
+$border-radius-base: 4px;
+$border-radius-large: 6px;
+$border-radius-small: 3px;
+
+$btn-danger-color: #fff;
+$btn-danger-bg: $brand-danger;
+$btn-danger-border: darken($btn-danger-bg, 5%);
+
+$table-border-color: #ddd;
+
+$padding-xs-vertical: 1px !default;
+$padding-xs-horizontal: 5px !default;
+
+$border-radius-base: 4px !default;
+$border-radius-large: 6px !default;
+$border-radius-small: 3px !default;
+
