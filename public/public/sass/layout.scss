@@ -1,0 +1,71 @@
+@import 'variables';
+
+#main-content {
+  padding-bottom: 50px;
+
+  > .panel {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: none;
+  }
+}
+
+header .navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+#top-navbar-collapse {
+  padding: 0;
+  margin: 0;
+}
+
+.navbar-brand {
+  padding: 5px 15px;
+  margin-left: 15px;
+
+  img {
+    height: 40px;
+    margin-left: 15px;
+  }
+}
+
+.main-footer {
+  background-color: $light-primary;
+  border-top: 1px solid $brand-primary;
+  color: #666;
+  height: 40px;
+  left: 0;
+  margin-top: 10px;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 999;
+}
+
+.preview-container {
+  height: 600px;
+  width: 100%;
+  position: relative;
+
+  .loader {
+    background: rgba(0, 0, 0, 0) url("../images/loader-big.gif") no-repeat scroll center 0;
+    color: #999;
+    font-size: 24px;
+    height: 100%;
+    left: 0;
+    padding: 105px 0 0 15px;
+    position: absolute;
+    text-align: center;
+    top: 40%;
+    width: 100%;
+  }
+
+  .preview {
+    border: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+}

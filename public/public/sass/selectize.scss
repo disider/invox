@@ -1,0 +1,24 @@
+.selectize-input {
+  padding: 4px 8px 3px;
+
+  min-height: 30px;
+  > input {
+    padding-left: 1px !important;
+  }
+
+}
+
+.selectize-control.single {
+  .selectize-input:after {
+    margin-top: -2px;
+    right: 8px;
+  }
+}
+
+.selectize-control.multi .selectize-input.has-items {
+  padding: 3px 4px 0;
+}
+
+.selectize-control.multi .selectize-input > div {
+  padding: 1px 4px;
+}
