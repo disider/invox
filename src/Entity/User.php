@@ -13,6 +13,8 @@ namespace App\Entity;
 use App\Model\UserInterface;
 use App\Validator\Constraints as CustomAssert;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Criteria;
+use Doctrine\ORM\PersistentCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -742,6 +744,14 @@ class User implements UserInterface
         return $this->canManageCompany($paragraphTemplate->getCompany()) || $this->canManageParagraphTemplates(
                 $paragraphTemplate->getCompany()
             );
+    }
+
+    public function getManagedNotOwnedCompanies()
+    {
+        $that = $this;
+        return $this->managedCompanies->filter(function(Company $company) use ($that) {
+            return !$company->getOwner()->isSameAs($that);
+        });
     }
 
 }

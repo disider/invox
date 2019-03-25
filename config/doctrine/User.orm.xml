@@ -41,18 +41,6 @@
             </cascade>
         </one-to-many>
 
-        <one-to-many field="receivedInvites" target-entity="Invite" mapped-by="receiver">
-            <cascade>
-                <cascade-all/>
-            </cascade>
-        </one-to-many>
-
-        <one-to-many field="sentInvites" target-entity="Invite" mapped-by="sender">
-            <cascade>
-                <cascade-all/>
-            </cascade>
-        </one-to-many>
-
         <many-to-many field="managedCompanies" target-entity="Company" mapped-by="managers">
             <cascade>
                 <cascade-persist/>
@@ -64,6 +52,18 @@
                 <cascade-persist/>
             </cascade>
         </many-to-many>
+
+        <one-to-many field="receivedInvites" target-entity="Invite" mapped-by="receiver">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+        <one-to-many field="sentInvites" target-entity="Invite" mapped-by="sender">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
 
     </entity>
 

@@ -4,13 +4,12 @@
 
 {% macro print_companies(label, companies) %}
     {% if companies|length > 0 %}
-        <dt>{{ label|trans }}:</dt>
-        <dd>
-            {% for company in companies %}
-                <a href="{{ path('company_edit', {'id': company.id }) }}"
-                   title="{{ 'company.edit'|trans({'%company%': company}) }}">{{ company }}</a>
-            {% endfor %}
-        </dd>
+        {% for company in companies %}
+            <a href="{{ path('company_edit', {'id': company.id }) }}"
+               title="{{ 'company.edit'|trans({'%company%': company}) }}">{{ company }}</a>
+            <small>({{ label|trans }})</small>
+            <br>
+        {% endfor %}
     {% endif %}
 {% endmacro %}
 
@@ -31,7 +30,7 @@
             </thead>
             <tbody>
             {% for user in pagination %}
-                <tr class="user {{ user.isSuperadmin ? 'superadmin' : user.isOwner ? 'owner' : '' }} {{ user.enabled ? '' : 'inactive' }}">
+                <tr class="user {{ user.isSuperadmin ? 'superadmin' : user.isOwner ? 'owner' : '' }} {{ user.enabled ? '' : 'inactive' }}{{ app.user == user ? 'bg-warning' : ''}}">
                     <td class="email col-md-{{ app.user.isSuperadmin ? 4 : 7 }}">
                         {% if is_granted('USER_EDIT', user) %}
                             <a href="{{ app.user.sameAs(user) ? path('profile_edit') : path('user_edit', {'id': user.id }) }}"
@@ -42,17 +41,15 @@
                     </td>
 
                     {% if is_granted('ROLE_SUPER_ADMIN') %}
-                        <td>
-                            <dl class="dl-horizontal">
-                                {% if user.isSuperAdmin %}
-                                    <dt>{{ 'role.super_admin'|trans }}</dt>
-                                {% else %}
-                                    {{ macro.print_companies('fields.owner', user.ownedCompanies) }}
-                                    {{ macro.print_companies('fields.manager', user.managedCompanies) }}
-                                    {{ macro.print_companies('fields.sales_agent', user.marketedCompanies) }}
-                                    {{ macro.print_companies('fields.accountant', user.accountedCompanies) }}
-                                {% endif %}
-                            </dl>
+                        <td class="text-center">
+                            {% if user.isSuperAdmin %}
+                                {{ 'role.super_admin'|trans }}
+                            {% else %}
+                                {{ macro.print_companies('fields.owner', user.ownedCompanies) }}
+                                {{ macro.print_companies('fields.manager', user.managedNotOwnedCompanies) }}
+                                {{ macro.print_companies('fields.sales_agent', user.marketedCompanies) }}
+                                {{ macro.print_companies('fields.accountant', user.accountedCompanies) }}
+                            {% endif %}
                         </td>
                     {% endif %}
 
