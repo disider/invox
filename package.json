@@ -1,0 +1,12 @@
+{
+  "name": "invox",
+  "version": "0.2.19",
+  "description": "The Invox Website",
+  "main": "index.js",
+  "repository": "git@github.com:disider/invox.git",
+  "author": "Pietrino Atzeni <pietrino.atzeni@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^4.29.6"
+  }
+}
