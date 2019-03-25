@@ -6,7 +6,10 @@
   "repository": "git@github.com:disider/invox.git",
   "author": "Pietrino Atzeni <pietrino.atzeni@gmail.com>",
   "license": "MIT",
-  "devDependencies": {
-    "webpack": "^4.29.6"
+  "scripts": {
+    "dev-server": "encore dev-server",
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production"
   }
 }
