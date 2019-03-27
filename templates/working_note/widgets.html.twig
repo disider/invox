@@ -76,12 +76,12 @@
 
 {% block paragraphs_javascript %}
     {% if prototype is defined %}
-        <script src="{{ asset('js/jquery.collection.js') }}"></script>
-        <script src="{{ asset('js/paragraphs.js') }}"></script>
-
         <script type="text/template" id="{{ prototype_id }}">
             {{ form_row(prototype) }}
         </script>
+
+        <script src="{{ asset('js/jquery.collection.js') }}"></script>
+        <script src="{{ asset('js/paragraphs.js') }}"></script>
 
         <script>
             $(function () {
@@ -154,7 +154,7 @@
                     var partialElementId = parent;
                     var $add = dollar(parentId).siblings('.actions').find('.add-paragraph');
 
-                    if (index != null && index != '') {
+                    if (index != null && index !== '') {
                         parentId = parent + index + '_children';
                         partialElementId = parentId;
                         $add = dollar(parentId).parent().find('.add-paragraph');
@@ -177,7 +177,6 @@
                         }
                     });
                 }
-
             });
         </script>
     {% endif %}

@@ -13,15 +13,28 @@ namespace App\Form\Processor;
 use App\Form\WorkingNoteForm;
 use App\Repository\WorkingNoteRepository;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class WorkingNoteFormProcessor extends DefaultFormProcessor
 {
+    private $router;
+
     public function __construct(
         WorkingNoteRepository $repository,
         FormFactoryInterface $formFactory,
-        TokenStorageInterface $tokenStorage
+        TokenStorageInterface $tokenStorage,
+        RouterInterface $router
     ) {
         parent::__construct(WorkingNoteForm::class, $repository, $formFactory, $tokenStorage);
+        $this->router = $router;
     }
+
+    protected function getFormOptions()
+    {
+        return [
+            'search-url' => $this->router->generate('customer_search'),
+        ];
+    }
+
 }

@@ -41,7 +41,7 @@ class WorkingNoteForm extends AbstractType
                 'class' => Customer::class,
                 'required' => false,
                 'attr' => [
-                    'class' => 'hidden',
+                    'class' => 'hidden js-customer',
                 ],
                 'invalid_message' => 'error.invalid_customer',
             ]
@@ -56,6 +56,8 @@ class WorkingNoteForm extends AbstractType
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'fields.autocomplete_customer',
+                    'class' => 'js-customer-name',
+                    'data-search-url' => $options['search-url'],
                 ],
                 'linked_to' => 'customer',
                 'type' => 'customer',
@@ -95,6 +97,7 @@ class WorkingNoteForm extends AbstractType
                 'data_class' => WorkingNote::class,
             ]
         );
+        $resolver->setRequired(['search-url']);
     }
 
     public function getBlockPrefix()

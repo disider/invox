@@ -225,11 +225,11 @@
 
 {% block documentLink_row %}
     <div class="form-group {% if form.vars.errors|length > 0 %} has-error{% endif %}">
-
         {{ form_label(form) }}
+
         <div class="input-group">
         <span class="input-group-addon">
-            <a href="#" class="{{ type }}-link">
+            <a href="#" class="{{ type }}-link js-{{ type }}-link">
             {% if form.parent.offsetGet(linkedTo).vars.data %}
                 {{ fa_icon('link') }}
             {% else %}
@@ -239,6 +239,7 @@
         </span>
             {{ form_widget(form) }}
         </div>
+
         {{ form_errors(form) }}
     </div>
 {% endblock %}
