@@ -94,7 +94,7 @@ describe('DynamicList', function () {
         var dom = $('.dynamic');
         dom.data('plugin_dynamicList', null);
 
-        var plugin = dom.dynamicList({
+        dom.dynamicList({
             itemTemplateId: '#dynamic-list-li',
             addButtonStyle: '<span class="fa fa-plus" />',
             deleteButtonStyle: '<span class="fa fa-trash" />'

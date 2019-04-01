@@ -133,26 +133,27 @@
                         {{ form_row(form.customerFiscalCode) }}
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-5">
-                        {{ form_row(form.customerCity) }}
+                <div class="js-address">
+                    <div class="row">
+                        <div class="col-md-5">
+                            {{ form_row(form.customerCity) }}
+                        </div>
+                        <div class="col-md-2">
+                            {{ form_row(form.customerProvince, { attr: { class: 'text-center' }}) }}
+                        </div>
+                        <div class="col-md-5">
+                            {{ form_row(form.customerCountry) }}
+                        </div>
                     </div>
-                    <div class="col-md-2">
-                        {{ form_row(form.customerProvince, { attr: { class: 'text-center' }}) }}
-                    </div>
-                    <div class="col-md-5">
-                        {{ form_row(form.customerCountry) }}
+                    <div class="row">
+                        <div class="col-md-9">
+                            {{ form_row(form.customerAddress) }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form_row(form.customerZipCode, { attr: { class: 'text-center' }}) }}
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-9">
-                        {{ form_row(form.customerAddress) }}
-                    </div>
-                    <div class="col-md-3">
-                        {{ form_row(form.customerZipCode, { attr: { class: 'text-center' }}) }}
-                    </div>
-                </div>
-
                 {{ form_row(form.customerAddressNotes) }}
 
                 <div class="linked-recurrence">
@@ -166,7 +167,7 @@
 
 {% set document = form.vars.data %}
 
-    {% set activePanel = 'rows-panel' %}
+{% set activePanel = 'rows-panel' %}
 
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="{{ activePanel == 'rows-panel' ? 'active' : '' }}">

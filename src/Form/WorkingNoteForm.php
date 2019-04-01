@@ -57,7 +57,7 @@ class WorkingNoteForm extends AbstractType
                 'attr' => [
                     'placeholder' => 'fields.autocomplete_customer',
                     'class' => 'js-customer-name',
-                    'data-search-url' => $options['search-url'],
+                    'data-search-url' => $options['search_url'],
                 ],
                 'linked_to' => 'customer',
                 'type' => 'customer',
@@ -97,7 +97,7 @@ class WorkingNoteForm extends AbstractType
                 'data_class' => WorkingNote::class,
             ]
         );
-        $resolver->setRequired(['search-url']);
+        $resolver->setRequired(['search_url']);
     }
 
     public function getBlockPrefix()

@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Editable Test</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+
+    <link rel="stylesheet" href="../public/css/checklist-template.css">
+
+    <script type="text/javascript" src="lib/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="lib/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="../public/js/editable.js"></script>
+
+</head>
+
+<body>
+<div class="container">
+    <div id="menu" class="navbar navbar-default"></div>
+
+    <div class="row">
+        <div id="container" class="col-md-9"></div>
+    </div>
+</div>
+
+<script>
+    $('#menu').load('menu.html');
+
+    $('#container').load('spec/javascripts/fixtures/editable.html', function () {
+        $('li:nth-child(1) input').editable({
+            toggleType: 'preview',
+            saveButtonStyle: '<span class="fa fa-check" />',
+            cancelButtonStyle: '<span class="fa fa-close" />'
+        });
+        $('li:nth-child(2) input').editable({
+            showToggle: 'always'
+        });
+        $('li:nth-child(3) textarea').editable({
+            controlsType: 'popup',
+            controlsClass: 'arrow',
+            showToggle: 'always',
+            toggleButtonStyle: '<span class="fa fa-bars" />',
+            saveButtonStyle: '<span class="fa fa-check" />',
+            cancelButtonStyle: '<span class="fa fa-close" />'
+        });
+        $('li:nth-child(4) input').editable({
+            showToggle: 'always',
+            saveButtonStyle: '<span class="fa fa-check" />',
+            cancelButtonStyle: '<span class="fa fa-close" />'
+        });
+    });
+</script>
+</body>
+</html>

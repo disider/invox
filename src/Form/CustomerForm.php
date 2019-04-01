@@ -124,6 +124,7 @@ class CustomerForm extends AbstractType
                 'label' => 'fields.zip_code',
                 'invalid_message' => 'error.invalid_zip_code',
                 'required' => false,
+                'attr' => [ 'class' => 'js-zip-code']
             ]
         );
 
@@ -136,6 +137,8 @@ class CustomerForm extends AbstractType
                 'invalid_message' => 'error.invalid_city',
                 'attr' => [
                     'placeholder' => 'fields.autocomplete_city',
+                    'class' => 'js-city',
+                    'data-search-url' => $options['search_url'],
                 ],
             ]
         );
@@ -147,6 +150,7 @@ class CustomerForm extends AbstractType
                 'label' => 'fields.province',
                 'required' => false,
                 'invalid_message' => 'error.invalid_province',
+                'attr' => [ 'class' => 'js-province']
             ]
         );
 
@@ -199,7 +203,7 @@ class CustomerForm extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setRequired('user');
+        $resolver->setRequired(['user', 'search_url']);
         $resolver->setDefaults(
             [
                 'data_class' => Customer::class,

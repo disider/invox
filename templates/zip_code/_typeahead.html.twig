@@ -1,12 +1,1 @@
-<script type="text/javascript">
-    $(function () {
-        var $city = $('#{{ form.city.vars.id }}');
-
-        $city.zipCodeTypeahead({
-            url: '{{ path('zip_code_search') }}',
-            provinceId: '#{{ form.province.vars.id }}',
-            zipCodeId: '#{{ form.zipCode.vars.id }}',
-            countryId: '#{{ form.country.vars.id }}'
-        });
-    });
-</script>
+{{ encore_entry_script_tags('address-autocomplete') }}

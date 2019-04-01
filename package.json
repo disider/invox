@@ -10,14 +10,24 @@
     "dev-server": "encore dev-server",
     "dev": "encore dev",
     "watch": "encore dev --watch",
-    "build": "encore production"
+    "build": "encore production",
+    "test": "karma start"
   },
   "devDependencies": {
+    "@metahub/karma-jasmine-jquery": "^2.0.1",
     "@symfony/webpack-encore": "^0.25.0",
     "corejs-typeahead": "^1.2.1",
     "event-emitter-es6": "^1.1.5",
     "imports-loader": "^0.8.0",
+    "jasmine-jquery": "^2.1.1",
     "jquery": "1",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-fixture": "^0.2.6",
+    "karma-html2js-preprocessor": "^1.1.0",
+    "karma-jasmine-jquery": "^0.1.1",
+    "karma-source-map-support": "^1.4.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "webpack-karma-jasmine": "^3.0.6",
     "webpack-notifier": "^1.7.0"
   }
 }

@@ -300,6 +300,7 @@ class DocumentForm extends AbstractType
                 'label' => 'fields.zip_code',
                 'required' => false,
                 'invalid_message' => 'error.invalid_zip_code',
+                'attr' => ['class' => 'js-zip-code'],
             ]
         );
 
@@ -312,6 +313,7 @@ class DocumentForm extends AbstractType
                 'invalid_message' => 'error.invalid_city',
                 'attr' => [
                     'placeholder' => 'fields.autocomplete_city',
+                    'class' => 'js-city',
                 ],
             ]
         );
@@ -323,6 +325,7 @@ class DocumentForm extends AbstractType
                 'label' => 'fields.province',
                 'required' => false,
                 'invalid_message' => 'error.invalid_province',
+                'attr' => ['class' => 'js-province'],
             ]
         );
 

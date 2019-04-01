@@ -33,8 +33,7 @@ class WorkingNoteFormProcessor extends DefaultFormProcessor
     protected function getFormOptions()
     {
         return [
-            'search-url' => $this->router->generate('customer_search'),
+            'search_url' => $this->router->generate('customer_search'),
         ];
     }
-
 }

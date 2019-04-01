@@ -45,7 +45,7 @@ class CountryEntityType extends AbstractType
                     return $repository->findOrderedByLocale($locale);
                 },
                 'attr' => [
-                    'class' => 'input-sm',
+                    'class' => 'input-sm js-country',
                 ],
             ]
         );

@@ -1,16 +1,17 @@
 import EventEmitter from 'event-emitter-es6';
 
 class DocumentLink extends EventEmitter {
-    constructor($element, options) {
-        super();
+    constructor($element, $linkedTo, options = {}) {
+        super(options);
 
         this.$element = $element;
-        this.$linkedElement = options.linkedTo;
+        this.$linkedTo = $linkedTo;
         this.$icon = $element.find('span');
 
-        this.$linkedElement.attr('type', 'hidden');
-        if(this.$linkedElement.val()) {
-            this.link(this.$linkedElement.val());
+        this.$linkedTo.attr('type', 'hidden');
+
+        if(this.$linkedTo.val()) {
+            this.link(this.$linkedTo.val());
         }
         else {
             this.unlink();
@@ -22,14 +23,14 @@ class DocumentLink extends EventEmitter {
     }
 
     onMouseEnter() {
-        if (this.$linkedElement.val()) {
+        if (this.$linkedTo.val()) {
             this.$icon.removeClass('fa-link');
             this.$icon.addClass('fa-chain-broken');
         }
     }
 
     onMouseLeave() {
-        if (this.$linkedElement.val()) {
+        if (this.$linkedTo.val()) {
             this.$icon.addClass('fa-link');
             this.$icon.removeClass('fa-chain-broken');
         }
@@ -43,23 +44,23 @@ class DocumentLink extends EventEmitter {
     }
 
     link(itemId) {
-        this.$linkedElement.val(itemId);
+        this.$linkedTo.val(itemId);
 
         this.$icon.addClass('fa-link');
         this.$icon.removeClass('fa-search');
 
-        this.emit('afterLink');
+        this.emit('linked', itemId);
     }
 
     unlink() {
         this.$element.val('');
-        this.$linkedElement.val('');
+        this.$linkedTo.val('');
 
         this.$icon.removeClass('fa-link');
         this.$icon.removeClass('fa-chain-broken');
         this.$icon.addClass('fa-search');
 
-        this.emit('afterUnlink');
+        this.emit('unlinked');
     }
 }
 
